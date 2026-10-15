@@ -72,3 +72,43 @@ document.addEventListener('fullscreenchange', () => {
   fullscreen.textContent = document.fullscreenElement ? 'SAIR DA TELA CHEIA' : 'ENTRAR EM TELA CHEIA';
 });
 applyPreferences();
+
+// Flores e pétalas sobre o cenário. A imagem de Kai e Flora permanece estática.
+const flowerLayer = document.querySelector('.falling-flowers');
+const compactScreen = window.matchMedia('(max-width: 760px)');
+function createFallingFlowers() {
+  const fragment = document.createDocumentFragment();
+  const count = compactScreen.matches ? 14 : 26;
+  for (let i = 0; i < count; i++) {
+    const flower = document.createElement('span');
+    flower.className = 'falling-flower';
+    const art = document.createElement('span');
+    art.className = i % 3 === 0 ? 'flower-art blossom' : 'flower-art petal';
+    const duration = 15 + Math.random() * 13;
+    flower.style.left = `${(i + Math.random()) / count * 100}%`;
+    flower.style.setProperty('--fall-duration', `${duration}s`);
+    flower.style.setProperty('--fall-delay', `${-Math.random() * duration}s`);
+    flower.style.setProperty('--flower-size', `${i % 3 === 0 ? 20 + Math.random() * 14 : 12 + Math.random() * 12}px`);
+    flower.style.setProperty('--drift', `${25 + Math.random() * 55}px`);
+    flower.style.setProperty('--sway', `${8 + Math.random() * 18}px`);
+    flower.style.setProperty('--sway-duration', `${3 + Math.random() * 3}s`);
+    flower.style.setProperty('--turn', `${Math.random() * 180}deg`);
+    flower.style.setProperty('--tint', `${Math.random() * 24 - 12}deg`);
+    flower.append(art);
+    fragment.append(flower);
+  }
+  flowerLayer.replaceChildren(fragment);
+}
+function resizeFlowerLayer() {
+  flowerLayer.style.setProperty('--fall-distance', `${document.querySelector('.scene').clientHeight + 130}px`);
+}
+createFallingFlowers();
+resizeFlowerLayer();
+compactScreen.addEventListener('change', createFallingFlowers);
+if (typeof ResizeObserver !== 'undefined') new ResizeObserver(resizeFlowerLayer).observe(document.querySelector('.scene'));
+else window.addEventListener('resize', resizeFlowerLayer);
+function pauseBackground() {
+  document.body.classList.toggle('page-hidden', document.hidden);
+}
+document.addEventListener('visibilitychange', pauseBackground);
+pauseBackground();

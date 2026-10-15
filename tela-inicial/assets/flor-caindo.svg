@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+ <defs><radialGradient id="petal"><stop stop-color="#ffe4b4"/><stop offset=".55" stop-color="#ffada0"/><stop offset="1" stop-color="#de617b"/></radialGradient><radialGradient id="center"><stop stop-color="#fff6b4"/><stop offset="1" stop-color="#e9ac36"/></radialGradient></defs>
+ <g fill="url(#petal)" stroke="#c45a7044" stroke-width="1"><ellipse cx="32" cy="18" rx="10" ry="16"/><ellipse cx="32" cy="18" rx="10" ry="16" transform="rotate(72 32 32)"/><ellipse cx="32" cy="18" rx="10" ry="16" transform="rotate(144 32 32)"/><ellipse cx="32" cy="18" rx="10" ry="16" transform="rotate(216 32 32)"/><ellipse cx="32" cy="18" rx="10" ry="16" transform="rotate(288 32 32)"/></g><circle cx="32" cy="32" r="7" fill="url(#center)"/><circle cx="30" cy="30" r="2" fill="#fff7ce"/>
+</svg>

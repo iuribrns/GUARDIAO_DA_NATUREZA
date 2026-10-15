@@ -25,3 +25,48 @@
   .forest-button svg { width: 26px; height: 26px; }
   .round-button { width: 72px; height: 72px; bottom: 32px; padding: 12px; }
 }
+
+/* Queda suave em profundidade: os personagens e a câmera ficam parados. */
+.falling-flowers {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  --fall-distance: calc(100svh + 130px);
+}
+.falling-flower {
+  position: absolute;
+  top: -65px;
+  width: var(--flower-size);
+  height: var(--flower-size);
+  opacity: 0;
+  animation: flower-fall var(--fall-duration) var(--fall-delay) linear infinite;
+}
+.flower-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: center / contain no-repeat;
+  filter: hue-rotate(var(--tint)) drop-shadow(0 2px 2px #4a452322);
+  animation: flower-sway var(--sway-duration) var(--fall-delay) ease-in-out infinite alternate;
+}
+.flower-art.blossom { background-image: url('assets/flor-caindo.svg'); }
+.flower-art.petal { background-image: url('assets/petala-caindo.svg'); }
+@keyframes flower-fall {
+  0% { transform: translate3d(0, 0, 0); opacity: 0; }
+  8% { opacity: .8; }
+  85% { opacity: .7; }
+  100% { transform: translate3d(var(--drift), var(--fall-distance), 0); opacity: 0; }
+}
+@keyframes flower-sway {
+  from { transform: translateX(calc(-1 * var(--sway))) rotate(var(--turn)) rotateX(15deg); }
+  to { transform: translateX(var(--sway)) rotate(calc(var(--turn) + 95deg)) rotateX(55deg); }
+}
+body.no-motion .falling-flowers { display: none; }
+body.page-hidden .falling-flower,
+body.page-hidden .flower-art,
+body.page-hidden .fireflies i { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .falling-flowers { display: none; }
+}

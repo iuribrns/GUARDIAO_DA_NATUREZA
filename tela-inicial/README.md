@@ -37,3 +37,9 @@ A implementação está restrita à pasta `tela-inicial`; os arquivos das fases 
 As artes e a fonte do menu ficam em `tela-inicial/assets/` e são independentes da pasta `assets/` da raiz. A tela inicial pode ser aberta mesmo se os assets das fases forem substituídos. A fase beta ainda faz referência aos assets antigos que o usuário excluiu; a integração deve ser atualizada quando os novos sprites e cenários forem fornecidos. Consulte `../assets/README.md` para organizar as novas artes.
 
 O botão e a janela de mochila foram retirados a pedido do usuário. A nova organização do fundo foi testada com os assets antigos indisponíveis, em desktop e celular nas orientações vertical e horizontal.
+
+## Fundo animado com flores
+
+Flores e pétalas SVG caem sobre o cenário em trajetórias suaves com oscilação e rotação, inspiradas no vídeo enviado pelo usuário. Kai, Flora e a câmera continuam estáticos: o vídeo não é reproduzido nem incluído no site. O efeito usa 26 partículas em telas maiores e 14 em telas menores, sem desenhar a cada frame em JavaScript.
+
+A opção Animações desliga o efeito, a preferência de movimento reduzido do sistema é respeitada e as animações pausam quando a aba fica oculta. A camada não captura cliques nem faz parte da leitura por tecnologias assistivas. As ilustrações vetoriais estão em `assets/flor-caindo.svg` e `assets/petala-caindo.svg`.
