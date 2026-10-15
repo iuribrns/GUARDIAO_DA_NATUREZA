@@ -38,8 +38,8 @@ As artes e a fonte do menu ficam em `tela-inicial/assets/` e são independentes 
 
 O botão e a janela de mochila foram retirados a pedido do usuário. A nova organização do fundo foi testada com os assets antigos indisponíveis, em desktop e celular nas orientações vertical e horizontal.
 
-## Fundo animado com flores
+## Fundo animado em vídeo
 
-Flores e pétalas SVG caem sobre o cenário em trajetórias suaves com oscilação e rotação, inspiradas no vídeo enviado pelo usuário. Kai, Flora e a câmera continuam estáticos: o vídeo não é reproduzido nem incluído no site. O efeito usa 26 partículas em telas maiores e 14 em telas menores, sem desenhar a cada frame em JavaScript.
+O cenário usa o segundo vídeo enviado pelo usuário, em loop silencioso, com a cachoeira se movendo e folhas atravessando a cena. O arquivo foi convertido para MP4/H.264 sem áudio em `assets/floresta-animada.mp4`. Kai e Flora são cobertos com recortes estáticos de um frame do mesmo vídeo, em `assets/floresta-poster.jpg`. A composição se adapta à tela mantendo vídeo e personagens alinhados. Os botões continuam sendo HTML clicável.
 
-A opção Animações desliga o efeito, a preferência de movimento reduzido do sistema é respeitada e as animações pausam quando a aba fica oculta. A camada não captura cliques nem faz parte da leitura por tecnologias assistivas. As ilustrações vetoriais estão em `assets/flor-caindo.svg` e `assets/petala-caindo.svg`.
+A opção Animações liga/desliga o vídeo. A preferência de movimento reduzido do sistema é respeitada e a reprodução pausa quando a aba fica oculta. Se o navegador bloquear a reprodução, o frame estático continua visível. O vídeo é um cenário ilustrado de referência, sem conexão com a coleta de itens ou o progresso da fase.

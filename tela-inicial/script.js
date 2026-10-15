@@ -9,10 +9,13 @@ const soundInput = document.getElementById('sound');
 const motionInput = document.getElementById('motion');
 const status = document.getElementById('settings-status');
 let audioContext;
+const backgroundVideo = document.querySelector('.scenery-video');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 function applyPreferences() {
   soundInput.checked = preferences.sound;
   motionInput.checked = preferences.motion;
   document.body.classList.toggle('no-motion', !preferences.motion);
+  syncBackgroundVideo();
 }
 function savePreferences() {
   applyPreferences();
@@ -73,42 +76,33 @@ document.addEventListener('fullscreenchange', () => {
 });
 applyPreferences();
 
-// Flores e pétalas sobre o cenário. A imagem de Kai e Flora permanece estática.
-const flowerLayer = document.querySelector('.falling-flowers');
-const compactScreen = window.matchMedia('(max-width: 760px)');
-function createFallingFlowers() {
-  const fragment = document.createDocumentFragment();
-  const count = compactScreen.matches ? 14 : 26;
-  for (let i = 0; i < count; i++) {
-    const flower = document.createElement('span');
-    flower.className = 'falling-flower';
-    const art = document.createElement('span');
-    art.className = i % 3 === 0 ? 'flower-art blossom' : 'flower-art petal';
-    const duration = 15 + Math.random() * 13;
-    flower.style.left = `${(i + Math.random()) / count * 100}%`;
-    flower.style.setProperty('--fall-duration', `${duration}s`);
-    flower.style.setProperty('--fall-delay', `${-Math.random() * duration}s`);
-    flower.style.setProperty('--flower-size', `${i % 3 === 0 ? 20 + Math.random() * 14 : 12 + Math.random() * 12}px`);
-    flower.style.setProperty('--drift', `${25 + Math.random() * 55}px`);
-    flower.style.setProperty('--sway', `${8 + Math.random() * 18}px`);
-    flower.style.setProperty('--sway-duration', `${3 + Math.random() * 3}s`);
-    flower.style.setProperty('--turn', `${Math.random() * 180}deg`);
-    flower.style.setProperty('--tint', `${Math.random() * 24 - 12}deg`);
-    flower.append(art);
-    fragment.append(flower);
+// O vídeo move apenas o cenário; duas imagens recortadas mantêm Kai e Flora parados.
+function syncBackgroundVideo() {
+  const shouldPlay = preferences.motion && !reducedMotion.matches && !document.hidden;
+  if (!shouldPlay) {
+    backgroundVideo.pause();
+    document.body.classList.remove('video-running');
+    return;
   }
-  flowerLayer.replaceChildren(fragment);
+  backgroundVideo.muted = true;
+  backgroundVideo.play().then(() => {
+    if (preferences.motion && !reducedMotion.matches && !document.hidden) document.body.classList.add('video-running');
+    else backgroundVideo.pause();
+  }).catch(() => document.body.classList.remove('video-running'));
 }
-function resizeFlowerLayer() {
-  flowerLayer.style.setProperty('--fall-distance', `${document.querySelector('.scene').clientHeight + 130}px`);
+function fitBackgroundFrame() {
+  const scene = document.querySelector('.scene');
+  const frame = document.querySelector('.scenery-frame');
+  const width = Math.max(scene.clientWidth, scene.clientHeight * 16 / 9);
+  frame.style.width = `${width}px`;
+  frame.style.height = `${width * 9 / 16}px`;
 }
-createFallingFlowers();
-resizeFlowerLayer();
-compactScreen.addEventListener('change', createFallingFlowers);
-if (typeof ResizeObserver !== 'undefined') new ResizeObserver(resizeFlowerLayer).observe(document.querySelector('.scene'));
-else window.addEventListener('resize', resizeFlowerLayer);
-function pauseBackground() {
+fitBackgroundFrame();
+if (typeof ResizeObserver !== 'undefined') new ResizeObserver(fitBackgroundFrame).observe(document.querySelector('.scene'));
+else window.addEventListener('resize', fitBackgroundFrame);
+reducedMotion.addEventListener('change', syncBackgroundVideo);
+document.addEventListener('visibilitychange', () => {
   document.body.classList.toggle('page-hidden', document.hidden);
-}
-document.addEventListener('visibilitychange', pauseBackground);
-pauseBackground();
+  syncBackgroundVideo();
+});
+backgroundVideo.addEventListener('error', () => document.body.classList.remove('video-running'));

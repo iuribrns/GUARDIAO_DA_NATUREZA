@@ -26,47 +26,12 @@
   .round-button { width: 72px; height: 72px; bottom: 32px; padding: 12px; }
 }
 
-/* Queda suave em profundidade: os personagens e a câmera ficam parados. */
-.falling-flowers {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
-  --fall-distance: calc(100svh + 130px);
-}
-.falling-flower {
-  position: absolute;
-  top: -65px;
-  width: var(--flower-size);
-  height: var(--flower-size);
-  opacity: 0;
-  animation: flower-fall var(--fall-duration) var(--fall-delay) linear infinite;
-}
-.flower-art {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: center / contain no-repeat;
-  filter: hue-rotate(var(--tint)) drop-shadow(0 2px 2px #4a452322);
-  animation: flower-sway var(--sway-duration) var(--fall-delay) ease-in-out infinite alternate;
-}
-.flower-art.blossom { background-image: url('assets/flor-caindo.svg'); }
-.flower-art.petal { background-image: url('assets/petala-caindo.svg'); }
-@keyframes flower-fall {
-  0% { transform: translate3d(0, 0, 0); opacity: 0; }
-  8% { opacity: .8; }
-  85% { opacity: .7; }
-  100% { transform: translate3d(var(--drift), var(--fall-distance), 0); opacity: 0; }
-}
-@keyframes flower-sway {
-  from { transform: translateX(calc(-1 * var(--sway))) rotate(var(--turn)) rotateX(15deg); }
-  to { transform: translateX(var(--sway)) rotate(calc(var(--turn) + 95deg)) rotateX(55deg); }
-}
-body.no-motion .falling-flowers { display: none; }
-body.page-hidden .falling-flower,
-body.page-hidden .flower-art,
-body.page-hidden .fireflies i { animation-play-state: paused; }
-@media (prefers-reduced-motion: reduce) {
-  .falling-flowers { display: none; }
-}
+/* Fundo real em vídeo, com personagens congelados sobre a mesma composição. */
+.scenery-frame { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
+.scenery-frame > img, .scenery-frame > video { position:absolute; inset:0; width:100%; height:100%; object-fit:fill; pointer-events:none; }
+.scenery-video { opacity:0; transition:opacity .4s; }
+body.video-running .scenery-video { opacity:1; }
+.still-kai { clip-path:polygon(16% 10%,28% 10%,33% 19%,32% 29%,35% 43%,36% 65%,33% 74%,37% 95%,13% 98%,9% 93%,12% 71%,7% 53%,10% 39%,14% 29%,12% 21%); }
+.still-flora { clip-path:polygon(71% 3%,81% 7%,89% 8%,99% 12%,99% 24%,91% 34%,79% 40%,72% 32%,69% 19%); }
+body.page-hidden .fireflies i { animation-play-state:paused; }
+@media(max-width:760px) { .scenery-frame { left:42%; } }
