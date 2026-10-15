@@ -12,7 +12,6 @@
   <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <defs>
       <symbol id="leaf" viewBox="0 0 64 64"><path d="M9 9C40 4 63 25 47 45C28 65 5 43 9 9Z" fill="#93d727" stroke="#31520e" stroke-width="3"/><path d="M14 15L53 54M22 23L23 11M31 33L45 31M24 26L11 29M39 41L40 49" fill="none" stroke="#426a16" stroke-width="2.5" stroke-linecap="round"/></symbol>
-      <symbol id="icon-backpack" viewBox="0 0 64 64"><path d="M23 15V9Q32 3 41 9V15" fill="none" stroke="currentColor" stroke-width="5"/><rect x="11" y="14" width="42" height="44" rx="9" fill="currentColor"/><path d="M10 27H6V52Q6 57 12 57M54 27H58V52Q58 57 52 57" fill="none" stroke="currentColor" stroke-width="4"/><path d="M15 31H49M21 42H43V53H21Z" fill="none" stroke="#70501f" stroke-width="3"/><path d="M28 27H36V37H28Z" fill="#ffe7a2" stroke="#70501f" stroke-width="3"/></symbol>
       <symbol id="gear" viewBox="0 0 64 64"><path d="M27 4H37L39 13L46 16L54 12L61 23L53 29V36L60 42L54 53L45 49L39 52L37 61H26L24 52L17 49L9 53L3 42L11 36V28L3 22L10 12L18 16L24 13Z" fill="currentColor" stroke="#70501f" stroke-width="2"/><circle cx="32" cy="32" r="11" fill="#235d27" stroke="#70501f" stroke-width="3"/></symbol>
     </defs>
   </svg>
@@ -35,7 +34,6 @@
         <button class="forest-button about" type="button" data-dialog="about"><svg aria-hidden="true"><use href="#leaf"/></svg><span>SOBRE O JOGO</span><svg aria-hidden="true"><use href="#leaf"/></svg></button>
       </nav>
     </section>
-    <button class="round-button backpack" type="button" data-dialog="backpack" aria-label="Abrir mochila"><svg aria-hidden="true"><use href="#icon-backpack"/></svg></button>
     <button class="round-button settings" type="button" data-dialog="settings" aria-label="Abrir configurações"><svg aria-hidden="true"><use href="#gear"/></svg></button>
     <p class="edition">UMA AVENTURA PARA PROTEGER A NATUREZA · BETA</p>
   </main>
@@ -47,18 +45,6 @@
     <div class="mission"><svg aria-hidden="true"><use href="#leaf"/></svg><div><strong>Fase beta · Amazônia em Chamas</strong><p>Encontre a mangueira e apague os três focos de incêndio.</p></div></div>
     <p class="controls-note">A/D ou setas para mover · Espaço para pular · E para interagir.<br>No celular, use os botões da tela.</p>
     <a class="small-button" href="../beta/index.html">COMEÇAR A AVENTURA →</a>
-  </dialog>
-  <dialog id="backpack" aria-labelledby="backpack-title">
-    <button class="close" type="button" data-close aria-label="Fechar">×</button>
-    <p class="dialog-eyebrow">PRONTO PARA EXPLORAR?</p>
-    <h2 id="backpack-title">Mochila de Kai</h2>
-    <p>Conheça os equipamentos do nosso guardião.</p>
-    <div class="inventory">
-      <article><span class="item-icon crystal" aria-hidden="true">◆</span><h3>Cristal verde</h3><p>O símbolo da ligação de Kai com a natureza.</p></article>
-      <article><span class="item-icon" aria-hidden="true">✧</span><h3>Espírito de aventura</h3><p>Curiosidade para descobrir e coragem para ajudar.</p></article>
-      <article><span class="item-icon" aria-hidden="true">≈</span><h3>Mangueira</h3><p>Encontre este equipamento durante a fase beta.</p></article>
-    </div>
-    <p class="controls-note">Esta tela apresenta os equipamentos. A coleta da mangueira acontece dentro da fase.</p>
   </dialog>
   <dialog id="settings" aria-labelledby="settings-title">
     <button class="close" type="button" data-close aria-label="Fechar">×</button>
