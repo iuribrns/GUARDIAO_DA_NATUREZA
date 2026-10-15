@@ -1,4 +1,0 @@
-Flora — ciclo principal de voo
-Arquivos: flora_voando_01.png até flora_voando_08.png
-Cada arquivo é um quadro individual recortado da ficha original, com transparência preservada.
-Copie a pasta para: assets/personagens/flora_sprites/voando/
