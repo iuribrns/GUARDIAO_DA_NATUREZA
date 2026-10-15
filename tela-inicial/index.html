@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#23431f">
   <title>Guardiões da Natureza — Jornada de Kai</title>
-  <link rel="stylesheet" href="style.css?v=fundo-video-2">
-  <script src="script.js?v=fundo-video-2" defer></script>
+  <link rel="stylesheet" href="style.css?v=folhas-v3">
+  <script src="script.js?v=folhas-v3" defer></script>
+  <script src="folhas.js?v=folhas-v3" defer></script>
 </head>
 <body>
   <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -16,16 +17,8 @@
     </defs>
   </svg>
   <main class="scene" aria-label="Menu principal">
-    <div class="scenery" aria-hidden="true">
-      <div class="scenery-frame">
-        <img class="scenery-poster" src="assets/floresta-poster.jpg" alt="">
-        <video class="scenery-video" muted loop playsinline preload="auto" poster="assets/floresta-poster.jpg" tabindex="-1">
-          <source src="assets/floresta-animada.mp4" type="video/mp4">
-        </video>
-        <img class="still-kai" src="assets/floresta-poster.jpg" alt="">
-        <img class="still-flora" src="assets/floresta-poster.jpg" alt="">
-      </div>
-    </div>
+    <div class="scenery" aria-hidden="true"></div>
+    <div class="falling-leaves" aria-hidden="true"></div>
     <div class="sunlight" aria-hidden="true"></div>
     <div class="fireflies" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <section class="menu" aria-labelledby="game-title">
@@ -60,7 +53,7 @@
     <p class="dialog-eyebrow">DO SEU JEITO</p>
     <h2 id="settings-title">Configurações</h2>
     <label class="setting-row"><span><strong>Efeitos sonoros</strong><small>Som suave ao tocar nos botões do menu</small></span><input id="sound" type="checkbox" role="switch"></label>
-    <label class="setting-row"><span><strong>Animações</strong><small>Cachoeira em movimento e folhas ao vento</small></span><input id="motion" type="checkbox" role="switch"></label>
+    <label class="setting-row"><span><strong>Animações</strong><small>Folhas caindo sobre o fundo da floresta</small></span><input id="motion" type="checkbox" role="switch"></label>
     <button type="button" class="small-button" id="fullscreen">ENTRAR EM TELA CHEIA</button>
     <p class="controls-note" id="settings-status" role="status">As preferências ficam salvas neste navegador.</p>
   </dialog>

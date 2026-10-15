@@ -14,3 +14,7 @@ Os caminhos CSS são relativos a `tela-inicial/style.css`; o menu pode ser abert
 - `floresta-poster.jpg`: frame extraído desse vídeo, usado como fundo estático e para manter os personagens parados.
 
 O vídeo fica em loop atrás do menu HTML e pausa quando as animações são desligadas, o sistema solicita movimento reduzido ou a aba fica oculta.
+
+## Fundo atual: imagem e folhas
+
+A tela inicial voltou a usar `floresta-menu.png`, com `folhas-sprites.png` por cima. A prancha de folhas foi preparada com transparência a partir da imagem enviada pelo usuário, mantendo oito variações em uma grade 4×2. Os arquivos de vídeo são históricos e não são carregados pela página atual.

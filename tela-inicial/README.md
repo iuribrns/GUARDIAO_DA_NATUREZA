@@ -38,8 +38,10 @@ As artes e a fonte do menu ficam em `tela-inicial/assets/` e são independentes 
 
 O botão e a janela de mochila foram retirados a pedido do usuário. A nova organização do fundo foi testada com os assets antigos indisponíveis, em desktop e celular nas orientações vertical e horizontal.
 
-## Fundo animado em vídeo
+## Foto original e folhas caindo
 
-O cenário usa o segundo vídeo enviado pelo usuário, em loop silencioso, com a cachoeira se movendo e folhas atravessando a cena. O arquivo foi convertido para MP4/H.264 sem áudio em `assets/floresta-animada.mp4`. Kai e Flora são cobertos com recortes estáticos de um frame do mesmo vídeo, em `assets/floresta-poster.jpg`. A composição se adapta à tela mantendo vídeo e personagens alinhados. Os botões continuam sendo HTML clicável.
+O fundo usa novamente a foto `assets/floresta-menu.png`. A animação fica em uma camada independente de folhas, implementada em `folhas.js` e CSS: não usa reprodução de vídeo. Kai, Flora e a câmera permanecem estáticos.
 
-A opção Animações liga/desliga o vídeo. A preferência de movimento reduzido do sistema é respeitada e a reprodução pausa quando a aba fica oculta. Se o navegador bloquear a reprodução, o frame estático continua visível. O vídeo é um cenário ilustrado de referência, sem conexão com a coleta de itens ou o progresso da fase.
+`assets/folhas-sprites.png` é uma versão preparada com transparência a partir da prancha de oito folhas enviada pelo usuário, organizada em quatro colunas e duas linhas. Os oito formatos são usados com tamanhos, giros e trajetórias diferentes. São 30 folhas em telas maiores e 18 em telas menores, distribuídas pela tela desde a abertura.
+
+A opção Configurações → Animações desliga o efeito e salva a preferência. O movimento reduzido do sistema é respeitado; as animações pausam com a aba oculta. A camada não intercepta cliques. Os vídeos das versões anteriores foram preservados como arquivos, mas não são requisitados nem reproduzidos pela tela inicial.

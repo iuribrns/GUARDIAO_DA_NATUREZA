@@ -26,12 +26,42 @@
   .round-button { width: 72px; height: 72px; bottom: 32px; padding: 12px; }
 }
 
-/* Fundo real em vídeo, com personagens congelados sobre a mesma composição. */
-.scenery-frame { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
-.scenery-frame > img, .scenery-frame > video { position:absolute; inset:0; width:100%; height:100%; object-fit:fill; pointer-events:none; }
-.scenery-video { opacity:0; transition:opacity .4s; }
-body.video-running .scenery-video { opacity:1; }
-.still-kai { clip-path:polygon(16% 10%,28% 10%,33% 19%,32% 29%,35% 43%,36% 65%,33% 74%,37% 95%,13% 98%,9% 93%,12% 71%,7% 53%,10% 39%,14% 29%,12% 21%); }
-.still-flora { clip-path:polygon(71% 3%,81% 7%,89% 8%,99% 12%,99% 24%,91% 34%,79% 40%,72% 32%,69% 19%); }
-body.page-hidden .fireflies i { animation-play-state:paused; }
-@media(max-width:760px) { .scenery-frame { left:42%; } }
+/* A foto original fica estática; só os sprites das folhas se movem. */
+.falling-leaves {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  --leaf-fall-distance: calc(100svh + 180px);
+}
+.falling-leaf {
+  position: absolute;
+  top: -90px;
+  width: var(--leaf-size);
+  height: var(--leaf-size);
+  animation: leaf-fall var(--fall-time) var(--phase) linear infinite;
+}
+.leaf-face {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url('assets/folhas-sprites.png') var(--sprite-x) var(--sprite-y) / 400% 200% no-repeat;
+  filter: drop-shadow(1px 3px 2px #12290d40);
+  animation: leaf-flutter var(--flutter-time) var(--phase) ease-in-out infinite alternate;
+}
+@keyframes leaf-fall {
+  0% { transform: translate3d(0, 0, 0); opacity: 0; }
+  5% { opacity: var(--leaf-opacity); }
+  88% { opacity: var(--leaf-opacity); }
+  100% { transform: translate3d(var(--leaf-drift), var(--leaf-fall-distance), 0); opacity: 0; }
+}
+@keyframes leaf-flutter {
+  from { transform: translateX(calc(-1 * var(--leaf-sway))) rotate(var(--leaf-angle)) rotateY(-35deg); }
+  to { transform: translateX(var(--leaf-sway)) rotate(calc(var(--leaf-angle) + 130deg)) rotateY(60deg); }
+}
+body.no-motion .falling-leaves { display: none; }
+body.page-hidden .falling-leaf,
+body.page-hidden .leaf-face,
+body.page-hidden .fireflies i { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .falling-leaves { display: none; } }

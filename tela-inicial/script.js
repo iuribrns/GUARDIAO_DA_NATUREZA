@@ -9,13 +9,10 @@ const soundInput = document.getElementById('sound');
 const motionInput = document.getElementById('motion');
 const status = document.getElementById('settings-status');
 let audioContext;
-const backgroundVideo = document.querySelector('.scenery-video');
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 function applyPreferences() {
   soundInput.checked = preferences.sound;
   motionInput.checked = preferences.motion;
   document.body.classList.toggle('no-motion', !preferences.motion);
-  syncBackgroundVideo();
 }
 function savePreferences() {
   applyPreferences();
@@ -75,34 +72,3 @@ document.addEventListener('fullscreenchange', () => {
   fullscreen.textContent = document.fullscreenElement ? 'SAIR DA TELA CHEIA' : 'ENTRAR EM TELA CHEIA';
 });
 applyPreferences();
-
-// O vídeo move apenas o cenário; duas imagens recortadas mantêm Kai e Flora parados.
-function syncBackgroundVideo() {
-  const shouldPlay = preferences.motion && !reducedMotion.matches && !document.hidden;
-  if (!shouldPlay) {
-    backgroundVideo.pause();
-    document.body.classList.remove('video-running');
-    return;
-  }
-  backgroundVideo.muted = true;
-  backgroundVideo.play().then(() => {
-    if (preferences.motion && !reducedMotion.matches && !document.hidden) document.body.classList.add('video-running');
-    else backgroundVideo.pause();
-  }).catch(() => document.body.classList.remove('video-running'));
-}
-function fitBackgroundFrame() {
-  const scene = document.querySelector('.scene');
-  const frame = document.querySelector('.scenery-frame');
-  const width = Math.max(scene.clientWidth, scene.clientHeight * 16 / 9);
-  frame.style.width = `${width}px`;
-  frame.style.height = `${width * 9 / 16}px`;
-}
-fitBackgroundFrame();
-if (typeof ResizeObserver !== 'undefined') new ResizeObserver(fitBackgroundFrame).observe(document.querySelector('.scene'));
-else window.addEventListener('resize', fitBackgroundFrame);
-reducedMotion.addEventListener('change', syncBackgroundVideo);
-document.addEventListener('visibilitychange', () => {
-  document.body.classList.toggle('page-hidden', document.hidden);
-  syncBackgroundVideo();
-});
-backgroundVideo.addEventListener('error', () => document.body.classList.remove('video-running'));
