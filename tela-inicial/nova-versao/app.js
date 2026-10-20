@@ -2,7 +2,7 @@
 (() => {
   const storageKey = 'guardiao.horizonte.preferences.v1';
   const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const defaults = { music: false, musicVolume: 40, effects: true, effectsVolume: 60, largeText: false, reduceMotion: media.matches };
+  const defaults = { music: false, musicVolume: 40, effects: true, effectsVolume: 60, largeText: false, fallingLeaves: true, reduceMotion: false };
   let preferences = { ...defaults };
   let storageAvailable = true;
   try {
@@ -10,7 +10,8 @@
     const legacy = JSON.parse(localStorage.getItem('guardiao.menu.preferences') || 'null');
     if (!saved && legacy) {
       if (typeof legacy.sound === 'boolean') preferences.effects = legacy.sound;
-      if (typeof legacy.motion === 'boolean') preferences.reduceMotion = !legacy.motion;
+      // A opção antiga controlava apenas folhas, não as trocas de tela.
+      if (typeof legacy.motion === 'boolean') preferences.fallingLeaves = legacy.motion;
     }
     if (saved && typeof saved === 'object') for (const key of Object.keys(defaults)) {
       if (typeof defaults[key] === 'boolean' && typeof saved[key] === 'boolean') preferences[key] = saved[key];
@@ -69,6 +70,13 @@
   function apply() {
     document.documentElement.classList.toggle('large-text', preferences.largeText);
     document.body.classList.toggle('reduce-motion', preferences.reduceMotion || media.matches);
+    document.body.classList.toggle('still-leaves', !preferences.fallingLeaves);
+    const motionStatus = document.getElementById('motion-status');
+    if (motionStatus) motionStatus.textContent = media.matches
+      ? 'Seu dispositivo solicita movimento reduzido. As transições ficam desativadas enquanto essa preferência do sistema estiver ativa.'
+      : preferences.reduceMotion
+        ? 'Transições desativadas. Desative “Reduzir animações” para animar as trocas de tela.'
+        : 'Transições entre telas ativadas.';
     if (form) for (const key of Object.keys(defaults)) {
       const input = document.getElementById(key); if (!input) continue;
       if (input.type === 'checkbox') input.checked = preferences[key];
@@ -80,7 +88,7 @@
     apply();
     try { localStorage.setItem(storageKey, JSON.stringify(preferences)); announce('Preferências salvas neste navegador.'); storageAvailable = true; }
     catch { storageAvailable = false; announce('Preferências aplicadas nesta sessão. O navegador bloqueou o armazenamento.'); }
-    if (media.matches) announce('Seu dispositivo solicita movimento reduzido; as folhas continuam paradas.');
+    if (media.matches) announce('Seu dispositivo solicita movimento reduzido; folhas e transições ficam desativadas.');
   }
   form?.addEventListener('submit', event => event.preventDefault());
   form?.addEventListener('input', event => {
@@ -92,7 +100,7 @@
     if (input.name === 'effects') clickSound();
   });
   document.getElementById('preview-sound')?.addEventListener('click', () => clickSound(true));
-  document.getElementById('reset')?.addEventListener('click', () => { preferences = { ...defaults, reduceMotion: media.matches }; save(); });
+  document.getElementById('reset')?.addEventListener('click', () => { preferences = { ...defaults }; save(); });
   document.addEventListener('click', event => { if (event.target.closest('a, [role="tab"]')) clickSound(); updateMusic(true); });
   const unlock = () => updateMusic(true);
   document.addEventListener('pointerdown', unlock, { once: true });
@@ -132,7 +140,7 @@
   compact.addEventListener('change', createLeaves);
   apply(); createLeaves();
   if (!storageAvailable) announce('As preferências funcionam nesta sessão; o armazenamento está indisponível.');
-  if (media.matches) announce('Seu dispositivo solicita movimento reduzido; as folhas continuam paradas.');
+  if (media.matches) announce('Seu dispositivo solicita movimento reduzido; folhas e transições ficam desativadas.');
   if (!window.AudioContext && !window.webkitAudioContext && form) {
     for (const id of ['music', 'musicVolume', 'effects', 'effectsVolume', 'preview-sound']) document.getElementById(id).disabled = true;
     announce('Este navegador não oferece áudio. As demais preferências continuam disponíveis.');

@@ -15,7 +15,7 @@ Abra o caminho `/tela-inicial/nova-versao/index.html` no servidor. O endereço a
 ## Telas e arquivos
 
 - `index.html`: título ilustrado, Jogar, Sobre o jogo e engrenagem de Configurações.
-- `configuracoes.html`: música ambiente, efeitos, volumes, prévia, texto maior e redução de animações, com áreas de toque ampliadas.
+- `configuracoes.html`: música ambiente, efeitos, volumes, prévia, texto maior, folhas no cenário e redução de animações, com áreas de toque ampliadas.
 - `sobre.html`: história, controles para celular, teclado opcional e missão do colar.
 - `aventura.html`: seleção de fases em desenvolvimento. A pasta beta foi excluída pelo usuário; nenhuma fase foi recriada nesta tarefa.
 - `app.js`: preferências, áudio sintetizado localmente, abas e folhas em movimento.
@@ -25,9 +25,9 @@ Abra o caminho `/tela-inicial/nova-versao/index.html` no servidor. O endereço a
 
 ## Transição circular
 
-Ao tocar num link de navegação, um círculo verde parte do ponto tocado e se expande até cobrir a tela. Pelo teclado, o centro do botão é usado como origem. Ao concluir a cobertura, a próxima página abre e o verde desaparece suavemente. A navegação continua funcionando se o armazenamento for bloqueado ou a animação for interrompida. Âncoras locais, nova aba, downloads e links externos mantêm o comportamento padrão. Voltar pelo navegador não deixa a interface coberta ou bloqueada.
+Ao tocar num link de navegação, um círculo verde parte do ponto tocado e se expande até cobrir a tela. Pelo teclado, o centro do botão é usado como origem. Ao concluir a cobertura, a próxima página abre e o círculo encolhe a partir do mesmo ponto, revelando o conteúdo. Os painéis também têm uma entrada suave. A expansão usa `transform` e keyframes, sem exigir `clip-path` nem transições nativas do navegador. A navegação continua funcionando se o armazenamento for bloqueado, o CSS falhar ou a animação for interrompida; há um limite de espera tanto na saída quanto na chegada. Sem armazenamento, a saída circular e a entrada do painel continuam disponíveis. Âncoras locais, nova aba, downloads e links externos mantêm o comportamento padrão. Voltar pelo navegador não deixa a interface coberta ou bloqueada.
 
-Movimento reduzido, escolhido nas configurações ou solicitado pelo sistema, desliga o efeito. A área circular decorativa não entra na leitura por tecnologia assistiva.
+Movimento reduzido, escolhido nas configurações ou solicitado pelo sistema, desliga o efeito; a tela de configurações informa quando isso acontece. A opção **Folhas no cenário** é independente: desligá-la não remove as transições. A preferência antiga `guardiao.menu.preferences.motion` é migrada somente para as folhas. A preferência de movimento do sistema é consultada em tempo real, sem gravá-la como uma escolha manual permanente. A área circular decorativa não entra na leitura por tecnologia assistiva.
 
 ## Arte e preferências
 
@@ -43,10 +43,23 @@ As pastas e artes das versões anteriores foram preservadas. O desenvolvimento d
 
 ## Integração do ZIP atualizado pelo Claude
 
-O ZIP enviado pelo usuário foi revisado e comparado com o repositório, sem substituir arquivos por versões anteriores. Foram incorporadas as artes de Jogar, Sobre e Configurações em `assets/claude/`, mantendo links HTML acessíveis, toque e teclado. `ambiente.js` e `melhorias.css` adicionam raios de luz discretos, brilhos e a apresentação dos sprites; `transicoes.js` ganhou uma rajada de folhas na cobertura/revelação da próxima tela.
+O ZIP enviado pelo usuário foi revisado e comparado com o repositório, sem substituir arquivos por versões anteriores. As artes de Jogar, Sobre e Configurações foram preservadas em `assets/claude/`. Jogar e Sobre usam os sprites em links HTML acessíveis. A engrenagem passou a usar um símbolo SVG com oito dentes iguais, furo circular e proporção fixa, evitando a deformação do recorte rasterizado; o arquivo original foi mantido. `ambiente.js` e `melhorias.css` adicionam raios de luz discretos, brilhos e a apresentação dos sprites de Jogar e Sobre; `transicoes.js` ganhou uma rajada de folhas na cobertura/revelação da próxima tela.
 
 Há 6 brilhos em telas pequenas e 12 em maiores; a rajada usa 8 ou 14 folhas. Os efeitos são CSS, respeitam movimento reduzido, pausam com a aba oculta e não interceptam cliques. Não há espera artificial de vários segundos para mostrar o efeito. As versões anteriores do menu e os personagens permanecem preservados.
 
 O protótipo do ZIP tinha somente o botão Jogar conectado e apontava para a pasta beta excluída. A integração usa os destinos atuais — missões, Sobre e Configurações — e não reintroduz arquivos removidos. O fundo do ZIP apresentava áreas preenchidas/esticadas; foi mantido o cenário limpo já aprovado.
 
-Validação adicional: carregamento das três artes WebP, alternativa com as imagens bloqueadas, links por toque, rajada real, limite de partículas por tamanho de tela, preferências persistidas e áreas de toque com pelo menos 44 px. Os testes gerais das quatro telas e movimento reduzido também passaram em Chromium.
+Validação adicional: carregamento dos sprites, alternativa com as imagens bloqueadas, links por toque, rajada real, limite de partículas por tamanho de tela, preferências persistidas e áreas de toque com pelo menos 44 px. Os testes gerais das quatro telas e movimento reduzido também passaram em Chromium.
+
+## Regressão das transições e da engrenagem
+
+`validacao/transicoes.cjs` verifica, em Chromium, a progressão visual do círculo na saída e na revelação das três telas, mesmo com `CSS.supports('clip-path', ...)` retornando falso. Cobre também a preferência antiga das folhas desligadas, navegação por toque e teclado, proporções da engrenagem, preferências salvas, movimento reduzido do sistema, armazenamento bloqueado, CSS ausente, animação interrompida e larguras de 320 a 1280 px.
+
+Com o servidor local ativo, instale a ferramenta de validação fora do projeto e execute:
+
+```sh
+npm install --prefix /tmp/guardiao-validacao playwright-core
+NODE_PATH=/tmp/guardiao-validacao/node_modules GUARDIAO_TEST_URL=http://127.0.0.1:8000/tela-inicial/nova-versao/ node tela-inicial/nova-versao/validacao/transicoes.cjs
+```
+
+O script usa `/usr/bin/chromium`; para outra instalação, informe `CHROMIUM_PATH`. O jogo continua sem dependências de execução ou processo de build. Os HTMLs usam a versão `transicoes-2` nos recursos alterados para evitar reaproveitar os scripts e estilos anteriores do cache.

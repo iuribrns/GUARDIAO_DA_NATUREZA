@@ -1,16 +1,36 @@
-/* Círculo verde nasce no ponto tocado, como na gravação de referência. */
+/* Círculo por transform: compatível também sem suporte a clip-path. */
 .navigation-veil {
   position:fixed; inset:0; z-index:10000; display:grid; place-items:center;
-  background:radial-gradient(ellipse at 50% 48%,#397b3d,#193d2a 75%);
-  clip-path:circle(0px at var(--origin-x) var(--origin-y));
-  transition:clip-path 600ms cubic-bezier(.55,.05,.3,1),opacity 240ms ease-out;
-  pointer-events:all;
+  overflow:hidden; pointer-events:all; isolation:isolate;
 }
-.navigation-veil.is-covering,.navigation-veil.is-covered { clip-path:circle(var(--cover-radius) at var(--origin-x) var(--origin-y)); }
-.navigation-veil.is-covered { transition:opacity 240ms ease-out; }
-.navigation-veil.is-revealing { opacity:0; pointer-events:none; }
-.transition-message { opacity:0; transition:opacity 100ms; color:#fff1bb; font-weight:bold; font-size:clamp(1.2rem,3vw,2rem); text-align:center; padding:24px; margin:0; text-shadow:0 2px 3px #19371f77; }
+.transition-circle {
+  position:absolute; left:var(--origin-x); top:var(--origin-y);
+  width:var(--cover-size); height:var(--cover-size); border-radius:50%;
+  background:radial-gradient(circle,#397b3d,#193d2a 75%);
+  transform:translate(-50%,-50%) scale(0); will-change:transform;
+}
+.is-covering .transition-circle { animation:circle-cover 560ms cubic-bezier(.55,.05,.3,1) both; }
+.is-covered .transition-circle { transform:translate(-50%,-50%) scale(1); }
+.is-revealing .transition-circle { animation:circle-reveal 520ms cubic-bezier(.25,.65,.3,1) both; }
+.navigation-veil.is-revealing { pointer-events:none; }
+.transition-message { position:relative; opacity:0; transition:opacity 100ms; color:#fff1bb; font-weight:bold; font-size:clamp(1.2rem,3vw,2rem); text-align:center; padding:24px; margin:0; text-shadow:0 2px 3px #19371f77; }
 .navigation-veil.is-ready .transition-message { opacity:1; }
+.screen-entering :is(.landing-menu,.wood-panel) { animation:screen-arrive 480ms ease-out both; }
+@keyframes circle-cover {
+  from { transform:translate(-50%,-50%) scale(0); }
+  to { transform:translate(-50%,-50%) scale(1); }
+}
+@keyframes circle-reveal {
+  from { transform:translate(-50%,-50%) scale(1); }
+  to { transform:translate(-50%,-50%) scale(0); }
+}
+@keyframes screen-arrive {
+  from { opacity:0; transform:translateY(16px); }
+  to { opacity:1; transform:none; }
+}
+body.reduce-motion .screen-entering :is(.landing-menu,.wood-panel) { animation:none; }
+body.still-leaves .leaves { display:none; }
+.motion-status { font-size:.7rem; line-height:1.5; color:#63744d; margin:14px 0 0; }
 .forest-button,.quiet-button,.tabs button,.back-link { transition:transform 140ms ease,filter 140ms ease,background-color 160ms ease; }
 .forest-button:active,.quiet-button:active,.tabs button:active,.back-link:active { transform:scale(.975); }
 body.reduce-motion .forest-button,body.reduce-motion .quiet-button,body.reduce-motion .tabs button,body.reduce-motion .back-link { transition:none!important; }
@@ -19,4 +39,3 @@ body.reduce-motion .forest-button,body.reduce-motion .quiet-button,body.reduce-m
 .mission-preview h2 { padding-right:35px; }
 .mission-number { position:absolute; right:20px; top:24px; font:400 3rem Adventure,sans-serif; color:#78934755; }
 .mission-status { display:inline-flex; border:1px solid #bba26c; border-radius:20px; padding:8px 13px; color:#806532; background:#e8dab17a; font-size:.75rem; font-weight:bold; }
-@media(prefers-reduced-motion:reduce) { .navigation-veil { transition:none!important; } }

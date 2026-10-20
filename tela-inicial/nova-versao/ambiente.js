@@ -1,7 +1,7 @@
 'use strict';
 (() => {
   // A arte substitui apenas a aparência: links, rótulos e áreas de toque continuam HTML.
-  document.querySelectorAll('.claude-card-art, .claude-gear-art').forEach(image => {
+  document.querySelectorAll('.claude-card-art').forEach(image => {
     const update = () => image.closest('a').classList.toggle('claude-skin-ready', image.complete && image.naturalWidth > 0);
     image.addEventListener('load', update);
     image.addEventListener('error', update);
