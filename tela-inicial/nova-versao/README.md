@@ -40,3 +40,13 @@ As preferências ficam em `guardiao.horizonte.preferences.v1`. Áudio começa ap
 Validado em Chromium, inclusive com toque emulado, em desktop 1280×720 e telas de 320, 390 e 667 px: carregamento do logo/cenário, título singular, origem e expansão real do círculo, ida e volta entre as quatro telas, engrenagem, abas, preferências persistidas, movimento reduzido, armazenamento bloqueado e ausência de overflow horizontal. Testes em navegador emulado não substituem a verificação em aparelhos físicos.
 
 As pastas e artes das versões anteriores foram preservadas. O desenvolvimento das fases permanece separado da interface.
+
+## Integração do ZIP atualizado pelo Claude
+
+O ZIP enviado pelo usuário foi revisado e comparado com o repositório, sem substituir arquivos por versões anteriores. Foram incorporadas as artes de Jogar, Sobre e Configurações em `assets/claude/`, mantendo links HTML acessíveis, toque e teclado. `ambiente.js` e `melhorias.css` adicionam raios de luz discretos, brilhos e a apresentação dos sprites; `transicoes.js` ganhou uma rajada de folhas na cobertura/revelação da próxima tela.
+
+Há 6 brilhos em telas pequenas e 12 em maiores; a rajada usa 8 ou 14 folhas. Os efeitos são CSS, respeitam movimento reduzido, pausam com a aba oculta e não interceptam cliques. Não há espera artificial de vários segundos para mostrar o efeito. As versões anteriores do menu e os personagens permanecem preservados.
+
+O protótipo do ZIP tinha somente o botão Jogar conectado e apontava para a pasta beta excluída. A integração usa os destinos atuais — missões, Sobre e Configurações — e não reintroduz arquivos removidos. O fundo do ZIP apresentava áreas preenchidas/esticadas; foi mantido o cenário limpo já aprovado.
+
+Validação adicional: carregamento das três artes WebP, alternativa com as imagens bloqueadas, links por toque, rajada real, limite de partículas por tamanho de tela, preferências persistidas e áreas de toque com pelo menos 44 px. Os testes gerais das quatro telas e movimento reduzido também passaram em Chromium.

@@ -16,6 +16,28 @@
     document.body.removeAttribute('aria-busy');
   }
   window.addEventListener('pageshow', event => { if (event.persisted) removeVeil(); });
+  function leafBurst(overlay) {
+    if (reduceMotion()) return;
+    const count = innerWidth < 651 ? 8 : 14;
+    const fragment = document.createDocumentFragment();
+    for (let i = 0; i < count; i++) {
+      const leaf = document.createElement('span');
+      leaf.className = 'transition-burst';
+      const angle = i / count * Math.PI * 2;
+      const distance = 120 + Math.random() * 240;
+      const properties = {
+        '--burst-x': `${Math.cos(angle) * distance}px`,
+        '--burst-y': `${Math.sin(angle) * distance * .65}px`,
+        '--burst-turn': `${Math.random() * 260 - 130}deg`,
+        '--burst-size': `${18 + Math.random() * 16}px`,
+        '--sprite-x': `${i % 4 * 100 / 3}%`,
+        '--sprite-y': `${Math.floor(i % 8 / 4) * 100}%`
+      };
+      for (const [name, value] of Object.entries(properties)) leaf.style.setProperty(name, value);
+      fragment.append(leaf);
+    }
+    overlay.append(fragment);
+  }
   function makeVeil(x, y) {
     const overlay = document.createElement('div');
     overlay.className = 'navigation-veil'; overlay.setAttribute('aria-hidden', 'true');
@@ -34,6 +56,7 @@
   if (arriving?.path === window.location.pathname && Number.isFinite(arriving.at) && Date.now() - arriving.at < 10000 && !reduceMotion()) {
     veil = makeVeil(innerWidth / 2, innerHeight / 2);
     veil.classList.add('is-covered');
+    leafBurst(veil);
     const arrivalVeil = veil;
     document.body.setAttribute('aria-busy', 'true');
     let revealed = false;
@@ -77,6 +100,7 @@
       covered = true;
       window.clearTimeout(navigationTimer);
       veil.classList.add('is-ready');
+      leafBurst(veil);
       navigationTimer = window.setTimeout(navigate, 120);
     });
     requestAnimationFrame(() => requestAnimationFrame(() => veil?.classList.add('is-covering')));
