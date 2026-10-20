@@ -5,6 +5,13 @@ const { chromium } = require('playwright-core');
 const base = process.env.GUARDIAO_TEST_URL || 'http://127.0.0.1:8005/tela-inicial/nova-versao/';
 const home = `${base}index.html`;
 const ready = page => page.waitForFunction(() => !document.querySelector('.navigation-veil') && !document.body.hasAttribute('aria-busy'));
+const fading = (page, phase) => page.waitForFunction(phase => {
+  const veil = document.querySelector(`.navigation-veil.is-fade.${phase}`);
+  if (!veil) return false;
+  const style = getComputedStyle(veil);
+  const opacity = Number(style.opacity);
+  return opacity > .03 && opacity < .97 && style.animationName.startsWith('veil-fade-');
+}, phase);
 const options = { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true };
 
 (async () => {
@@ -52,12 +59,14 @@ const options = { viewport: { width: 390, height: 844 }, isMobile: true, hasTouc
   await page.locator('#music').check(); await page.locator('#musicVolume').fill('35');
   await page.locator('#largeText').check();
   await page.locator('#reduceMotion').check();
-  assert.match(await page.locator('#motion-status').textContent(), /Transições desativadas/);
+  assert.match(await page.locator('#motion-status').textContent(), /Movimento reduzido/);
   await page.getByRole('link', { name: 'Voltar à tela inicial' }).tap();
+  await fading(page, 'is-covering');
+  assert.equal(await page.locator('.transition-burst').count(), 0, 'movimento reduzido sem folhas');
   await page.waitForURL('**/index.html');
-  assert.equal(await page.locator('.navigation-veil').count(), 0, 'preferência explícita respeitada');
+  await fading(page, 'is-revealing'); await ready(page);
   await page.getByRole('link', { name: 'Abrir configurações' }).tap();
-  await page.waitForURL('**/configuracoes.html');
+  await page.waitForURL('**/configuracoes.html'); await ready(page);
   assert.equal(await page.locator('#musicVolume').inputValue(), '35');
   await page.locator('#reset').click();
   await page.getByRole('link', { name: 'Voltar à tela inicial' }).tap();
@@ -92,17 +101,40 @@ const options = { viewport: { width: 390, height: 844 }, isMobile: true, hasTouc
   await blocked.waitForURL('**/sobre.html'); await ready(blocked);
   await blocked.goBack(); await ready(blocked);
 
-  const reduced = await browser.newPage({ ...options, reducedMotion: 'reduce' });
-  await reduced.goto(home);
-  await reduced.getByRole('link', { name: 'Abrir configurações' }).tap();
-  await reduced.waitForURL('**/configuracoes.html');
-  assert.equal(await reduced.locator('.navigation-veil').count(), 0);
-  assert.match(await reduced.locator('#motion-status').textContent(), /dispositivo solicita movimento reduzido/);
-  // A preferência do sistema não fica gravada como escolha manual permanente.
-  await reduced.emulateMedia({ reducedMotion: 'no-preference' });
-  assert.equal(await reduced.locator('#reduceMotion').isChecked(), false);
-  await reduced.getByRole('link', { name: 'Voltar à tela inicial' }).tap();
-  await reduced.waitForURL('**/index.html'); await ready(reduced);
+  // O CSS principal também tem animation:none!important sob esta preferência.
+  // Verifica opacidade intermediária real, não apenas a existência do elemento.
+  for (const viewport of [{ width: 390, height: 844 }, { width: 1280, height: 720 }]) {
+    const reduced = await browser.newPage({ ...options, viewport, reducedMotion: 'reduce' });
+    reduced.on('pageerror', error => errors.push(error.message));
+    await reduced.goto(home);
+    for (const [label, destination] of [['Jogar', 'aventura'], ['Sobre o jogo', 'sobre'], ['Abrir configurações', 'configuracoes']]) {
+      await reduced.getByRole('link', { name: label, exact: true }).tap();
+      await fading(reduced, 'is-covering');
+      assert.equal(await reduced.locator('.transition-circle').isVisible(), false);
+      assert.equal(await reduced.locator('.transition-burst').count(), 0);
+      assert.equal(await reduced.locator('.leaves').isVisible(), false);
+      await reduced.waitForURL(`**/${destination}.html`);
+      await fading(reduced, 'is-revealing'); await ready(reduced);
+      if (destination === 'configuracoes') assert.match(await reduced.locator('#motion-status').textContent(), /dispositivo solicita movimento reduzido/);
+      await reduced.getByRole('link', { name: 'Voltar à tela inicial' }).tap();
+      await reduced.waitForURL('**/index.html'); await ready(reduced);
+    }
+    await reduced.getByRole('link', { name: 'Abrir configurações' }).tap();
+    await reduced.waitForURL('**/configuracoes.html'); await ready(reduced);
+    // A preferência do sistema não fica gravada como escolha manual permanente.
+    await reduced.emulateMedia({ reducedMotion: 'no-preference' });
+    assert.equal(await reduced.locator('#reduceMotion').isChecked(), false);
+    await reduced.getByRole('link', { name: 'Voltar à tela inicial' }).tap();
+    await reduced.waitForURL('**/index.html'); await ready(reduced);
+    await reduced.close();
+  }
+  const dynamic = await browser.newPage(options);
+  await dynamic.goto(home);
+  await dynamic.getByRole('link', { name: 'Sobre o jogo', exact: true }).tap();
+  await dynamic.emulateMedia({ reducedMotion: 'reduce' });
+  await fading(dynamic, 'is-covering');
+  await dynamic.waitForURL('**/sobre.html'); await ready(dynamic);
+  await dynamic.goBack(); await dynamic.waitForURL('**/index.html'); await ready(dynamic);
 
   // CSS que não chega ou animationend ausente nunca pode bloquear os links.
   const noCSS = await browser.newPage(options);
@@ -118,6 +150,25 @@ const options = { viewport: { width: 390, height: 844 }, isMobile: true, hasTouc
   await interrupted.getByRole('link', { name: 'Sobre o jogo', exact: true }).tap();
   await interrupted.waitForURL('**/sobre.html'); await ready(interrupted);
 
+  // Também há uma saída garantida se o fade não emitir animationend.
+  const interruptedFade = await browser.newPage({ ...options, reducedMotion: 'reduce' });
+  await interruptedFade.addInitScript(() => document.addEventListener('DOMContentLoaded', () => {
+    const style = document.createElement('style'); style.textContent = '.navigation-veil.is-fade.is-covering,.navigation-veil.is-fade.is-revealing{animation:none!important}'; document.head.append(style);
+  }));
+  await interruptedFade.goto(home);
+  await interruptedFade.getByRole('link', { name: 'Jogar', exact: true }).tap();
+  await interruptedFade.waitForURL('**/aventura.html'); await ready(interruptedFade);
+  // Duplo toque não pode enfileirar navegações para destinos diferentes.
+  const repeated = await browser.newPage(options);
+  await repeated.goto(home);
+  await repeated.evaluate(() => {
+    document.querySelector('.primary').click();
+    document.querySelector('.settings-dock').click();
+  });
+  await repeated.waitForURL('**/aventura.html'); await ready(repeated);
+  await repeated.waitForTimeout(700);
+  assert.ok(repeated.url().endsWith('aventura.html'));
+
   for (const viewport of [{ width: 320, height: 740 }, { width: 667, height: 375 }, { width: 1280, height: 720 }]) {
     await page.setViewportSize(viewport);
     for (const file of ['index', 'configuracoes', 'sobre', 'aventura']) {
@@ -127,5 +178,5 @@ const options = { viewport: { width: 390, height: 844 }, isMobile: true, hasTouc
   }
   assert.deepEqual(errors, []);
   await browser.close();
-  console.log('PASS: ida/volta nos três botões, saída e revelação animadas sem clip-path, toque/teclado, engrenagem proporcional, migração das folhas, abas, preferências, sistema, armazenamento bloqueado, CSS ausente e animação interrompida, layouts 320–1280px.');
+  console.log('PASS: ida/volta nos três botões, saída e revelação animadas sem clip-path, toque/teclado, engrenagem proporcional, migração das folhas, abas, preferências, fade real sob movimento reduzido manual e do sistema, mudança durante a transição, armazenamento bloqueado, CSS ausente e animação interrompida, layouts 320–1280px.');
 })().catch(error => { console.error(error); process.exit(1); });

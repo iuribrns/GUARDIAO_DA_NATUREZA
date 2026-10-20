@@ -19,15 +19,15 @@ Abra o caminho `/tela-inicial/nova-versao/index.html` no servidor. O endereço a
 - `sobre.html`: história, controles para celular, teclado opcional e missão do colar.
 - `aventura.html`: seleção de fases em desenvolvimento. A pasta beta foi excluída pelo usuário; nenhuma fase foi recriada nesta tarefa.
 - `app.js`: preferências, áudio sintetizado localmente, abas e folhas em movimento.
-- `transicoes.js` e `transicoes.css`: transição circular e animação das abas/botões.
+- `transicoes.js` e `transicoes.css`: transição circular, fade no modo reduzido e animação das abas/botões.
 - `modelo.css`: composição e estilo da gravação, sobre os estilos compartilhados existentes.
 - `entrada.js`: encaminhamento do endereço antigo.
 
-## Transição circular
+## Transições entre telas
 
-Ao tocar num link de navegação, um círculo verde parte do ponto tocado e se expande até cobrir a tela. Pelo teclado, o centro do botão é usado como origem. Ao concluir a cobertura, a próxima página abre e o círculo encolhe a partir do mesmo ponto, revelando o conteúdo. Os painéis também têm uma entrada suave. A expansão usa `transform` e keyframes, sem exigir `clip-path` nem transições nativas do navegador. A navegação continua funcionando se o armazenamento for bloqueado, o CSS falhar ou a animação for interrompida; há um limite de espera tanto na saída quanto na chegada. Sem armazenamento, a saída circular e a entrada do painel continuam disponíveis. Âncoras locais, nova aba, downloads e links externos mantêm o comportamento padrão. Voltar pelo navegador não deixa a interface coberta ou bloqueada.
+Ao tocar num link de navegação, um círculo verde parte do ponto tocado e se expande até cobrir a tela. Pelo teclado, o centro do botão é usado como origem. Após a cobertura de 650 ms, a mensagem e as folhas aparecem por mais 650 ms; então a próxima página abre e o círculo encolhe a partir do mesmo ponto, revelando o conteúdo. Os painéis também têm uma entrada suave. A expansão usa `transform` e keyframes, sem exigir `clip-path` nem transições nativas do navegador. A navegação continua funcionando se o armazenamento for bloqueado, o CSS falhar ou a animação for interrompida; há um limite de espera tanto na saída quanto na chegada. Sem armazenamento, a saída circular e a entrada do painel continuam disponíveis. Âncoras locais, nova aba, downloads e links externos mantêm o comportamento padrão. Voltar pelo navegador não deixa a interface coberta ou bloqueada.
 
-Movimento reduzido, escolhido nas configurações ou solicitado pelo sistema, desliga o efeito; a tela de configurações informa quando isso acontece. A opção **Folhas no cenário** é independente: desligá-la não remove as transições. A preferência antiga `guardiao.menu.preferences.motion` é migrada somente para as folhas. A preferência de movimento do sistema é consultada em tempo real, sem gravá-la como uma escolha manual permanente. A área circular decorativa não entra na leitura por tecnologia assistiva.
+Movimento reduzido, escolhido nas configurações ou solicitado pelo sistema, troca o círculo por um fade de 240 ms na saída e na chegada, sem folhas, expansão ou deslocamento do painel; a tela de configurações informa qual modo está ativo. A regra de CSS que desliga as demais animações continua valendo; somente o fade de opacidade recebe uma exceção específica. A opção **Folhas no cenário** é independente: desligá-la não remove as transições. A preferência antiga `guardiao.menu.preferences.motion` é migrada somente para as folhas. A preferência de movimento do sistema é consultada em tempo real, sem gravá-la como uma escolha manual permanente. A área circular decorativa não entra na leitura por tecnologia assistiva.
 
 ## Arte e preferências
 
@@ -53,7 +53,7 @@ Validação adicional: carregamento dos sprites, alternativa com as imagens bloq
 
 ## Regressão das transições e da engrenagem
 
-`validacao/transicoes.cjs` verifica, em Chromium, a progressão visual do círculo na saída e na revelação das três telas, mesmo com `CSS.supports('clip-path', ...)` retornando falso. Cobre também a preferência antiga das folhas desligadas, navegação por toque e teclado, proporções da engrenagem, preferências salvas, movimento reduzido do sistema, armazenamento bloqueado, CSS ausente, animação interrompida e larguras de 320 a 1280 px.
+`validacao/transicoes.cjs` verifica, em Chromium, a progressão visual do círculo na saída e na revelação das três telas, mesmo com `CSS.supports('clip-path', ...)` retornando falso. Cobre também a preferência antiga das folhas desligadas, navegação por toque e teclado, proporções da engrenagem, preferências salvas, fade com opacidade intermediária sob movimento reduzido manual e do sistema, alteração da preferência durante a navegação, armazenamento bloqueado, CSS ausente, animação interrompida, duplo toque e larguras de 320 a 1280 px.
 
 Com o servidor local ativo, instale a ferramenta de validação fora do projeto e execute:
 
@@ -62,4 +62,10 @@ npm install --prefix /tmp/guardiao-validacao playwright-core
 NODE_PATH=/tmp/guardiao-validacao/node_modules GUARDIAO_TEST_URL=http://127.0.0.1:8000/tela-inicial/nova-versao/ node tela-inicial/nova-versao/validacao/transicoes.cjs
 ```
 
-O script usa `/usr/bin/chromium`; para outra instalação, informe `CHROMIUM_PATH`. O jogo continua sem dependências de execução ou processo de build. Os HTMLs usam a versão `transicoes-2` nos recursos alterados para evitar reaproveitar os scripts e estilos anteriores do cache.
+O script usa `/usr/bin/chromium`; para outra instalação, informe `CHROMIUM_PATH`. O jogo continua sem dependências de execução ou processo de build. Os HTMLs usam a versão `transicoes-3` nos recursos alterados para evitar reaproveitar os scripts e estilos anteriores do cache.
+
+## Revisão do diagnóstico de transições
+
+A proposta em `CORRECAO-TRANSICOES-para-ChatGPT.md` foi integrada à base atual. O ZIP correspondente contém versões anteriores de outros arquivos; copiá-lo inteiro removeria a engrenagem SVG e os controles mais recentes. Foi aproveitada a ideia de manter uma passagem visual no modo reduzido, com um fade de opacidade e sem forçar a animação circular.
+
+A integração resolve também o conflito com `style.css`, cuja regra global `animation:none!important; transition:none!important` impediria o fade de animar. Os testes verificam a opacidade mudando de fato sob essa regra. O círculo continua usando `transform`, sem dependência de `clip-path`. Se o usuário ativar movimento reduzido durante a navegação, o efeito muda para fade e continua até o destino. A mensagem e as folhas do modo normal têm tempo de exibição maior; temporizadores limitados mantêm os links funcionando quando eventos de animação não chegam.

@@ -73,10 +73,10 @@
     document.body.classList.toggle('still-leaves', !preferences.fallingLeaves);
     const motionStatus = document.getElementById('motion-status');
     if (motionStatus) motionStatus.textContent = media.matches
-      ? 'Seu dispositivo solicita movimento reduzido. As transições ficam desativadas enquanto essa preferência do sistema estiver ativa.'
+      ? 'Seu dispositivo solicita movimento reduzido. As telas usam uma transição suave de transparência, sem círculo nem folhas.'
       : preferences.reduceMotion
-        ? 'Transições desativadas. Desative “Reduzir animações” para animar as trocas de tela.'
-        : 'Transições entre telas ativadas.';
+        ? 'Movimento reduzido: as telas usam uma transição suave de transparência, sem círculo nem folhas.'
+        : 'Transições com círculo e folhas ativadas.';
     if (form) for (const key of Object.keys(defaults)) {
       const input = document.getElementById(key); if (!input) continue;
       if (input.type === 'checkbox') input.checked = preferences[key];
@@ -88,7 +88,7 @@
     apply();
     try { localStorage.setItem(storageKey, JSON.stringify(preferences)); announce('Preferências salvas neste navegador.'); storageAvailable = true; }
     catch { storageAvailable = false; announce('Preferências aplicadas nesta sessão. O navegador bloqueou o armazenamento.'); }
-    if (media.matches) announce('Seu dispositivo solicita movimento reduzido; folhas e transições ficam desativadas.');
+    if (media.matches) announce('Preferência do dispositivo respeitada: transições suaves, sem movimento de folhas ou círculo.');
   }
   form?.addEventListener('submit', event => event.preventDefault());
   form?.addEventListener('input', event => {
@@ -140,7 +140,7 @@
   compact.addEventListener('change', createLeaves);
   apply(); createLeaves();
   if (!storageAvailable) announce('As preferências funcionam nesta sessão; o armazenamento está indisponível.');
-  if (media.matches) announce('Seu dispositivo solicita movimento reduzido; folhas e transições ficam desativadas.');
+  if (media.matches) announce('Preferência do dispositivo respeitada: transições suaves, sem movimento de folhas ou círculo.');
   if (!window.AudioContext && !window.webkitAudioContext && form) {
     for (const id of ['music', 'musicVolume', 'effects', 'effectsVolume', 'preview-sound']) document.getElementById(id).disabled = true;
     announce('Este navegador não oferece áudio. As demais preferências continuam disponíveis.');

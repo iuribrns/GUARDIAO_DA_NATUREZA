@@ -4,8 +4,11 @@
   const reduceMotion = () => media.matches || document.body.classList.contains('reduce-motion');
   const storageKey = 'guardiao.navigation.circle.v1';
   const panelAnimations = new WeakMap();
+  const CIRCLE_HOLD_MS = 650;
+  const FADE_HOLD_MS = 80;
   let navigating = false;
-  let activeDestination;
+  let finishCover;
+  let navigateToDestination;
   let veil;
   let navigationTimer;
   let revealTimer;
@@ -14,7 +17,7 @@
     clearTimeout(navigationTimer);
     clearTimeout(revealTimer);
     veil?.remove(); veil = null;
-    navigating = false;
+    navigating = false; finishCover = null; navigateToDestination = null;
     document.body.removeAttribute('aria-busy');
   }
   function clearArrival() {
@@ -24,7 +27,7 @@
     if (event.persisted) { removeVeil(); clearArrival(); }
   });
   function leafBurst(overlay) {
-    if (reduceMotion()) return;
+    if (reduceMotion() || overlay.classList.contains('is-fade')) return;
     const count = innerWidth < 651 ? 8 : 14;
     const fragment = document.createDocumentFragment();
     for (let i = 0; i < count; i++) {
@@ -48,6 +51,7 @@
   function makeVeil(x, y) {
     const overlay = document.createElement('div');
     overlay.className = 'navigation-veil'; overlay.setAttribute('aria-hidden', 'true');
+    overlay.classList.toggle('is-fade', reduceMotion());
     const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 8;
     overlay.style.setProperty('--origin-x', `${x}px`);
     overlay.style.setProperty('--origin-y', `${y}px`);
@@ -66,7 +70,7 @@
   let arriving;
   try { arriving = JSON.parse(sessionStorage.getItem(storageKey) || 'null'); } catch { arriving = null; }
   clearArrival();
-  if (arriving?.path === location.pathname && Number.isFinite(arriving.at) && Date.now() - arriving.at < 10000 && !reduceMotion()) {
+  if (arriving?.path === location.pathname && Number.isFinite(arriving.at) && Date.now() - arriving.at < 15000) {
     const x = Number.isFinite(arriving.x) ? Math.max(0, Math.min(1, arriving.x)) * innerWidth : innerWidth / 2;
     const y = Number.isFinite(arriving.y) ? Math.max(0, Math.min(1, arriving.y)) * innerHeight : innerHeight / 2;
     veil = makeVeil(x, y);
@@ -81,14 +85,15 @@
       // Dois frames garantem que o círculo coberto apareça antes da abertura.
       requestAnimationFrame(() => requestAnimationFrame(() => {
         if (veil !== arrivalVeil) return;
-        animateScreen();
+        if (!arrivalVeil.classList.contains('is-fade')) animateScreen();
         leafBurst(arrivalVeil);
         arrivalVeil.classList.add('is-revealing');
         const circle = arrivalVeil.querySelector('.transition-circle');
-        circle.addEventListener('animationend', event => {
-          if (event.animationName === 'circle-reveal') removeVeil();
-        }, { once: true });
-        navigationTimer = setTimeout(removeVeil, 800);
+        arrivalVeil.addEventListener('animationend', event => {
+          if ((event.target === circle && event.animationName === 'circle-reveal') ||
+              (event.target === arrivalVeil && event.animationName === 'veil-fade-out')) removeVeil();
+        });
+        navigationTimer = setTimeout(removeVeil, arrivalVeil.classList.contains('is-fade') ? 450 : 800);
       }));
     };
     if (document.readyState === 'complete') reveal();
@@ -104,10 +109,9 @@
     const destination = new URL(link.href, location.href);
     if (destination.origin !== location.origin || !['http:', 'https:', 'file:'].includes(destination.protocol)) return;
     if (destination.pathname === location.pathname && destination.search === location.search) return;
-    if (reduceMotion()) return;
     event.preventDefault();
     if (navigating) return;
-    removeVeil(); navigating = true; activeDestination = destination;
+    removeVeil(); navigating = true;
     const rect = link.getBoundingClientRect();
     const x = event.detail > 0 ? Math.max(0, Math.min(innerWidth, event.clientX)) : rect.left + rect.width / 2;
     const y = event.detail > 0 ? Math.max(0, Math.min(innerHeight, event.clientY)) : rect.top + rect.height / 2;
@@ -125,17 +129,24 @@
       try { sessionStorage.setItem(storageKey, JSON.stringify({ path: destination.pathname, at: Date.now(), x: x / innerWidth, y: y / innerHeight })); } catch { /* A saída também funciona sem armazenamento. */ }
       location.assign(destination.href);
     };
-    circle.addEventListener('animationend', event => {
-      if (event.animationName !== 'circle-cover' || veil !== departureVeil) return;
+    navigateToDestination = navigate;
+    let covered = false;
+    finishCover = () => {
+      if (covered || veil !== departureVeil) return;
+      covered = true;
       clearTimeout(navigationTimer);
       departureVeil.classList.add('is-ready');
       leafBurst(departureVeil);
-      navigationTimer = setTimeout(navigate, 100);
-    }, { once: true });
+      navigationTimer = setTimeout(navigate, departureVeil.classList.contains('is-fade') ? FADE_HOLD_MS : CIRCLE_HOLD_MS);
+    };
+    departureVeil.addEventListener('animationend', event => {
+      if ((event.target === circle && event.animationName === 'circle-cover') ||
+          (event.target === departureVeil && event.animationName === 'veil-fade-in')) finishCover?.();
+    });
     // Keyframes de transform funcionam sem clip-path e não dependem de um estilo
     // inicial já pintado. O temporizador preserva os links se o CSS falhar.
     veil.classList.add('is-covering');
-    navigationTimer = setTimeout(navigate, 850);
+    navigationTimer = setTimeout(navigate, departureVeil.classList.contains('is-fade') ? 550 : 1700);
   });
 
   function animateTab() {
@@ -156,9 +167,20 @@
     if (!reduceMotion()) return;
     document.body.classList.remove('screen-entering');
     document.querySelectorAll('[role="tabpanel"]').forEach(panel => panelAnimations.get(panel)?.cancel());
-    if (navigating && activeDestination) {
-      clearArrival(); removeVeil(); location.assign(activeDestination.href);
-    } else removeVeil();
+    if (!veil || veil.classList.contains('is-fade')) return;
+    // Se o sistema pedir menos movimento durante a transição, passa para fade
+    // sem abandonar a navegação nem manter folhas/círculo em movimento.
+    veil.querySelectorAll('.transition-burst').forEach(leaf => leaf.remove());
+    veil.classList.add('is-fade');
+    if (navigating) {
+      clearTimeout(navigationTimer);
+      navigationTimer = veil.classList.contains('is-ready')
+        ? setTimeout(navigateToDestination, FADE_HOLD_MS)
+        : setTimeout(finishCover, 400);
+    } else if (veil.classList.contains('is-revealing')) {
+      clearTimeout(navigationTimer);
+      navigationTimer = setTimeout(removeVeil, 450);
+    }
   }
   media.addEventListener('change', respectReducedMotion);
   document.addEventListener('input', event => { if (event.target.id === 'reduceMotion') respectReducedMotion(); });

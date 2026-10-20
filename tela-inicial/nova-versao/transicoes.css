@@ -9,12 +9,21 @@
   background:radial-gradient(circle,#397b3d,#193d2a 75%);
   transform:translate(-50%,-50%) scale(0); will-change:transform;
 }
-.is-covering .transition-circle { animation:circle-cover 560ms cubic-bezier(.55,.05,.3,1) both; }
+.is-covering .transition-circle { animation:circle-cover 650ms cubic-bezier(.55,.05,.3,1) both; }
 .is-covered .transition-circle { transform:translate(-50%,-50%) scale(1); }
 .is-revealing .transition-circle { animation:circle-reveal 520ms cubic-bezier(.25,.65,.3,1) both; }
 .navigation-veil.is-revealing { pointer-events:none; }
-.transition-message { position:relative; opacity:0; transition:opacity 100ms; color:#fff1bb; font-weight:bold; font-size:clamp(1.2rem,3vw,2rem); text-align:center; padding:24px; margin:0; text-shadow:0 2px 3px #19371f77; }
+.transition-message { position:relative; opacity:0; transition:opacity 180ms; color:#fff1bb; font-weight:bold; font-size:clamp(1.2rem,3vw,2rem); text-align:center; padding:24px; margin:0; text-shadow:0 2px 3px #19371f77; }
 .navigation-veil.is-ready .transition-message { opacity:1; }
+/* Exceção restrita ao fade: a regra global de movimento reduzido continua
+   desligando deslocamentos, círculo, folhas e efeitos ambientais. */
+.navigation-veil.is-fade { background:radial-gradient(ellipse at 50% 48%,#397b3d,#193d2a 75%); opacity:0; }
+.navigation-veil.is-fade .transition-circle { display:none; }
+.navigation-veil.is-fade.is-covering { animation:veil-fade-in 240ms ease-out both!important; }
+.navigation-veil.is-fade.is-covered,.navigation-veil.is-fade.is-ready { animation:none!important; opacity:1; }
+.navigation-veil.is-fade.is-revealing { animation:veil-fade-out 240ms ease-out both!important; }
+@keyframes veil-fade-in { from { opacity:0; } to { opacity:1; } }
+@keyframes veil-fade-out { from { opacity:1; } to { opacity:0; } }
 .screen-entering :is(.landing-menu,.wood-panel) { animation:screen-arrive 480ms ease-out both; }
 @keyframes circle-cover {
   from { transform:translate(-50%,-50%) scale(0); }
