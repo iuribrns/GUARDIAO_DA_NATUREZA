@@ -1,0 +1,5 @@
+/* Recorte da grade original por CSS: 4 colunas e 2 linhas, sem redesenho. */
+.necklace-remodeled { float:right; width:150px; max-width:45%; margin:0 0 15px 16px; text-align:center; }
+.necklace-remodeled .necklace-sprite { display:block; width:100%; aspect-ratio:1; background:url('assets/01_progressao.png') 100% 100%/400% 200% no-repeat; }
+.necklace-remodeled figcaption { margin-top:5px; font-size:.65rem; line-height:1.4; color:#7b6947; }
+@media(max-width:360px) { .necklace-remodeled { width:116px; margin-left:10px; } }

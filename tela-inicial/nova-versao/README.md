@@ -17,7 +17,7 @@ Abra o caminho `/tela-inicial/nova-versao/index.html` no servidor. O endereço a
 - `index.html`: título ilustrado, Jogar, Sobre o jogo e engrenagem de Configurações.
 - `configuracoes.html`: música ambiente, efeitos, volumes, prévia, texto maior, folhas no cenário e redução de animações, com áreas de toque ampliadas.
 - `sobre.html`: história, controles para celular, teclado opcional e missão do colar.
-- `aventura.html`: seleção de fases em desenvolvimento. A pasta beta foi excluída pelo usuário; nenhuma fase foi recriada nesta tarefa.
+- `aventura.html`: mapa interativo com as seis regiões da referência, áreas de toque sobre as placas, prévia da recuperação da floresta e persistência preparada para a conclusão da primeira fase. O gameplay das fases continua em desenvolvimento; a pasta beta excluída não foi recriada.
 - `app.js`: preferências, áudio sintetizado localmente, abas e folhas em movimento.
 - `transicoes.js` e `transicoes.css`: transição circular, fade no modo reduzido e animação das abas/botões.
 - `modelo.css`: composição e estilo da gravação, sobre os estilos compartilhados existentes.
@@ -69,3 +69,9 @@ O script usa `/usr/bin/chromium`; para outra instalação, informe `CHROMIUM_PAT
 A proposta em `CORRECAO-TRANSICOES-para-ChatGPT.md` foi integrada à base atual. O ZIP correspondente contém versões anteriores de outros arquivos; copiá-lo inteiro removeria a engrenagem SVG e os controles mais recentes. Foi aproveitada a ideia de manter uma passagem visual no modo reduzido, com um fade de opacidade e sem forçar a animação circular.
 
 A integração resolve também o conflito com `style.css`, cuja regra global `animation:none!important; transition:none!important` impediria o fade de animar. Os testes verificam a opacidade mudando de fato sob essa regra. O círculo continua usando `transform`, sem dependência de `clip-path`. Se o usuário ativar movimento reduzido durante a navegação, o efeito muda para fade e continua até o destino. A mensagem e as folhas do modo normal têm tempo de exibição maior; temporizadores limitados mantêm os links funcionando quando eventos de animação não chegam.
+
+## Mapa e colar das referências enviadas
+
+A seleção de fases usa agora as pinturas originais de `mapa-ilhas-transicao.zip`, preservando os desenhos e os nomes. O código novo e a documentação estão em `../selecao-fases/`. A prévia de recuperação não registra missão como concluída; a integração real tem API separada e progresso salvo. No celular em pé, uma lista legível acompanha o mapa inteiro.
+
+O desenho antigo do colar na aba **Sua missão** foi substituído pela arte de `kai-colar-mochila-itens.zip`, usando o cordão e a folha dourada com as cinco peças. Os arquivos novos ficam em `../colar-remodelado/`. Os outros sprites enviados foram preservados em `../../assets/itens-remodelados/` para as próximas fases.
