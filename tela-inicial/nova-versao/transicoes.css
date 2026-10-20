@@ -1,36 +1,22 @@
-/* Troca de telas sem mover Kai e Flora, com alternativa para navegadores mais antigos. */
-@view-transition { navigation: auto; }
-.world { view-transition-name: forest-scenery; }
-.landing-menu, .wood-panel { view-transition-name: menu-screen; }
-::view-transition-group(forest-scenery) { animation-duration: 0s; }
-::view-transition-old(forest-scenery) { animation: none; }
-::view-transition-new(forest-scenery) { animation: none; mix-blend-mode: normal; }
-::view-transition-old(root), ::view-transition-new(root) { animation: none; }
-::view-transition-group(menu-screen) { animation-duration: 340ms; animation-timing-function: cubic-bezier(.2,.7,.3,1); }
-::view-transition-old(menu-screen) { animation: menu-exit 180ms ease-in both; mix-blend-mode: normal; }
-::view-transition-new(menu-screen) { animation: menu-enter 340ms cubic-bezier(.2,.7,.3,1) both; mix-blend-mode: normal; }
-@keyframes menu-exit { to { opacity: 0; transform: translateY(-14px) scale(.985); } }
-@keyframes menu-enter { from { opacity: 0; transform: translateY(24px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
-.forest-button, .quiet-button, .tabs button, .back-link { transition: transform 140ms ease, filter 140ms ease, background-color 160ms ease; }
-.forest-button:active, .quiet-button:active, .tabs button:active, .back-link:active { transform: scale(.975); }
-.screen-leaving .landing-menu, .screen-leaving .wood-panel { animation: fallback-exit 180ms ease-in both; pointer-events: none; }
-@keyframes fallback-exit { to { opacity: 0; transform: translateY(-14px); } }
-html:has(body.reduce-motion) { view-transition-name: none; }
-html:has(body.reduce-motion)::view-transition-group(*),
-html:has(body.reduce-motion)::view-transition-old(*),
-html:has(body.reduce-motion)::view-transition-new(*) { animation-duration: 0s!important; }
-body.reduce-motion .landing-menu,
-body.reduce-motion .wood-panel { animation: none!important; }
-body.reduce-motion .forest-button,
-body.reduce-motion .quiet-button,
-body.reduce-motion .tabs button,
-body.reduce-motion .back-link { transition: none!important; }
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation-duration: 0s!important; }
+/* Círculo verde nasce no ponto tocado, como na gravação de referência. */
+.navigation-veil {
+  position:fixed; inset:0; z-index:10000; display:grid; place-items:center;
+  background:radial-gradient(ellipse at 50% 48%,#397b3d,#193d2a 75%);
+  clip-path:circle(0px at var(--origin-x) var(--origin-y));
+  transition:clip-path 600ms cubic-bezier(.55,.05,.3,1),opacity 240ms ease-out;
+  pointer-events:all;
 }
-
+.navigation-veil.is-covering,.navigation-veil.is-covered { clip-path:circle(var(--cover-radius) at var(--origin-x) var(--origin-y)); }
+.navigation-veil.is-covered { transition:opacity 240ms ease-out; }
+.navigation-veil.is-revealing { opacity:0; pointer-events:none; }
+.transition-message { opacity:0; transition:opacity 100ms; color:#fff1bb; font-weight:bold; font-size:clamp(1.2rem,3vw,2rem); text-align:center; padding:24px; margin:0; text-shadow:0 2px 3px #19371f77; }
+.navigation-veil.is-ready .transition-message { opacity:1; }
+.forest-button,.quiet-button,.tabs button,.back-link { transition:transform 140ms ease,filter 140ms ease,background-color 160ms ease; }
+.forest-button:active,.quiet-button:active,.tabs button:active,.back-link:active { transform:scale(.975); }
+body.reduce-motion .forest-button,body.reduce-motion .quiet-button,body.reduce-motion .tabs button,body.reduce-motion .back-link { transition:none!important; }
 .mission-preview { position:relative; border:1px solid #b9bd85; border-radius:15px; padding:24px; margin:26px 0; background:linear-gradient(135deg,#e3eac477,#f8edc5); }
 .mission-preview p:not(.chapter) { color:#6a7855; font-size:.9rem; line-height:1.8; }
 .mission-preview h2 { padding-right:35px; }
 .mission-number { position:absolute; right:20px; top:24px; font:400 3rem Adventure,sans-serif; color:#78934755; }
 .mission-status { display:inline-flex; border:1px solid #bba26c; border-radius:20px; padding:8px 13px; color:#806532; background:#e8dab17a; font-size:.75rem; font-weight:bold; }
+@media(prefers-reduced-motion:reduce) { .navigation-veil { transition:none!important; } }

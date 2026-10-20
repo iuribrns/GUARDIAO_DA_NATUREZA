@@ -1,0 +1,69 @@
+/* Composição observada na gravação: placa à esquerda, personagens à direita. */
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.world { background-image:url('assets/floresta-modelo.png'); background-position:center; }
+.world:after { background:linear-gradient(0deg,#183e2820,transparent 35%); }
+.home-layout { display:flex; align-items:flex-start; min-height:100svh; padding:10vh 5.5vw 130px; }
+.landing-menu { width:min(600px,48vw); margin:0; justify-self:start; text-align:center; }
+.reference-brand { margin:0; width:100%; animation:sign-arrive 580ms cubic-bezier(.18,.7,.3,1) both; }
+.reference-brand img { display:block; width:100%; height:auto; filter:drop-shadow(0 7px 5px #15351c40); }
+.home-actions { width:86%; display:grid; grid-template-columns:1fr 1fr; gap:23px; margin:16px auto 0; }
+.forest-button.wood-card {
+  position:relative; min-height:0; height:clamp(148px,14.5vw,205px); border:5px solid #533015; border-radius:12px; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px; padding:18px 10px 13px; color:#4e2a0d;
+  background:repeating-linear-gradient(175deg,transparent 0 21px,#ab7a3620 22px 23px,transparent 24px 47px),radial-gradient(ellipse at center,#fff2b2,#f0d48a 80%,#bf8b3e);
+  box-shadow:inset 0 0 0 3px #e3b068,inset 0 0 0 7px #8a4e23,inset 0 0 0 10px #f1c878,0 4px 0 #3f2815,0 9px 12px #17371c40;
+  animation:card-arrive 480ms 120ms cubic-bezier(.18,.8,.3,1.2) both;
+}
+.forest-button.wood-card:nth-child(2) { animation-delay:220ms; }
+.forest-button.wood-card .card-label { flex:0; font:400 clamp(1.5rem,3.1vw,2.7rem)/1.02 Adventure,sans-serif; color:#4e2709; text-shadow:0 1px 0 #d09b49; letter-spacing:.5px; }
+.forest-button.wood-card.primary .card-label { font-size:clamp(2rem,4vw,3.5rem); }
+.forest-button.wood-card .card-icon { width:clamp(35px,4.6vw,62px); height:clamp(35px,4.6vw,62px); color:#4d8c29; transform:rotate(5deg); filter:drop-shadow(1px 2px 0 #305017); }
+.forest-button.wood-card .book-icon { color:#6a451b; filter:drop-shadow(1px 2px 0 #bca25b); transform:none; }
+.rope { position:absolute; width:27px; height:28px; z-index:2; background:repeating-linear-gradient(62deg,transparent 0 6px,#573116 7px 8px,#f4ce89 9px 12px,#a87838 13px 15px,transparent 16px 20px); border-radius:8px; pointer-events:none; }
+.top-left { top:-7px; left:-7px; transform:rotate(-5deg); }
+.top-right { top:-7px; right:-7px; transform:rotate(85deg); }
+.bottom-left { bottom:-7px; left:-7px; transform:rotate(85deg); }
+.bottom-right { bottom:-7px; right:-7px; transform:rotate(-5deg); }
+.settings-dock { position:fixed; right:max(22px,env(safe-area-inset-right)); bottom:max(22px,env(safe-area-inset-bottom)); z-index:4; display:grid; place-items:center; width:86px; height:86px; border-radius:50%; border:4px solid #623714; color:#5f3310; background:radial-gradient(circle at 40% 35%,#fff1b8,#e9bc65); box-shadow:inset 0 0 0 3px #dd9d48,inset 0 0 0 6px #f5d892,0 5px 0 #3c2815,0 6px 14px #16342166; transition:transform 150ms,filter 150ms; animation:card-arrive 450ms 280ms ease-out both; }
+.settings-dock svg { width:44px; height:44px; }
+.settings-dock svg circle { fill:#f5d98c; }
+.settings-dock:hover { filter:brightness(1.08); transform:rotate(8deg); }
+.settings-dock:active { transform:scale(.94); }
+body[data-page=home] .page-footer { display:none; }
+.panel-layout { grid-template-columns:60% 40%; padding-left:5.5vw; }
+.wood-panel { grid-column:1; justify-self:start; }
+.panel-inner { background:radial-gradient(ellipse at 30% 0,#fff4cb,#efd799 95%); }
+.leaf-particle { opacity:.94; }
+.leaf-particle:nth-child(3n) { filter:blur(.4px); }
+body[data-page=missions] .world { background:radial-gradient(ellipse at 50% 45%,#38753b,#193c2a 72%); }
+body[data-page=missions] .panel-layout { display:grid; grid-template-columns:1fr; place-items:center; }
+body[data-page=missions] .wood-panel { grid-column:1; justify-self:center; }
+@keyframes sign-arrive { from { opacity:0; transform:translateY(-24px) scale(.97); } to { opacity:1; transform:none; } }
+@keyframes card-arrive { from { opacity:0; transform:translateY(20px) scale(.94); } to { opacity:1; transform:none; } }
+body.reduce-motion .reference-brand,body.reduce-motion .wood-card,body.reduce-motion .settings-dock { animation:none!important; }
+@media(min-width:1700px) { .landing-menu { width:min(760px,48vw); } .forest-button.wood-card { height:240px; } .forest-button.wood-card .card-label { font-size:3.5rem; } .forest-button.wood-card.primary .card-label { font-size:4rem; } }
+@media(max-width:1000px) and (min-width:651px) { .panel-layout { grid-template-columns:73% 27%; } .home-layout { padding-top:12vh; } }
+@media(max-width:650px) {
+  .world { background-position:88% center; }
+  .home-layout { min-height:100svh; display:block; padding:calc(34px + env(safe-area-inset-top)) 15px calc(112px + env(safe-area-inset-bottom)); }
+  .landing-menu { width:min(440px,100%); margin:0 auto; }
+  .home-actions { width:90%; margin-top:10px; gap:17px; }
+  .forest-button.wood-card { height:140px; padding:18px 10px 12px; }
+  .forest-button.wood-card .card-label { font-size:1.6rem; }
+  .forest-button.wood-card.primary .card-label { font-size:2.1rem; }
+  .forest-button.wood-card .card-icon { width:43px; height:43px; }
+  .settings-dock { width:72px; height:72px; right:max(18px,env(safe-area-inset-right)); bottom:max(18px,env(safe-area-inset-bottom)); }
+  .settings-dock svg { width:36px; height:36px; }
+  .panel-layout { display:block; padding-left:13px; }
+  .wood-panel { margin:0 auto; }
+}
+@media(max-height:500px) and (min-width:651px) {
+  .home-layout { padding:5vh 5vw 65px; }
+  .landing-menu { width:min(460px,48vw); }
+  .home-actions { margin-top:8px; gap:18px; }
+  .forest-button.wood-card { height:116px; padding:13px 8px 9px; }
+  .forest-button.wood-card .card-label { font-size:1.45rem; }
+  .forest-button.wood-card.primary .card-label { font-size:2rem; }
+  .forest-button.wood-card .card-icon { width:35px; height:35px; }
+  .settings-dock { width:66px; height:66px; bottom:17px; }
+  .settings-dock svg { width:33px; height:33px; }
+}
