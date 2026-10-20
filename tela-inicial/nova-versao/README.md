@@ -31,7 +31,7 @@ A opção Texto maior afeta as três novas telas. A opção Reduzir animações 
 
 `assets/horizonte-kai-flora.png` é a nova ilustração. A fonte Lilita One e a prancha de folhas foram copiadas dos assets já existentes, com a licença da fonte mantida em `assets/OFL-Lilita-One.txt`. A mochila não foi reintroduzida como botão.
 
-Todo o código novo e os assets desta interface estão nesta pasta. No HTML anterior foi acrescentada somente a referência ao encaminhamento `nova-versao/entrada.js`. As versões anteriores, as fases e as demais pastas foram preservadas. O botão Jogar mantém o destino da fase beta existente, que ainda depende da futura integração dos novos sprites/cenários; esta tarefa não modifica a jogabilidade nem implementa a jornada completa do colar.
+Todo o código novo e os assets desta interface estão nesta pasta. No HTML anterior foi acrescentada somente a referência ao encaminhamento `nova-versao/entrada.js`. As versões anteriores, as fases e as demais pastas foram preservadas. A pasta beta foi removida pelo usuário no GitHub. O botão Jogar agora abre `aventura.html`, que apresenta as missões em desenvolvimento. Não há fase jogável integrada nesta versão; a jornada completa do colar ainda será implementada.
 
 ## Validação
 
@@ -44,3 +44,13 @@ A interface foi ajustada para toque: alvos de pelo menos 44×44 px, chaves maior
 A seção Como jogar apresenta primeiro os botões de toque da fase; o teclado fica em uma seção opcional recolhida. Não foram acrescentadas opções que simulam configurar controles ainda não implementados na fase.
 
 Validado por simulação de celular com toque: ativação das chaves, arrasto do volume com eventos de toque, persistência e ausência de overflow entre 320 e 430 px, inclusive com Texto maior ativado. Testes em navegador emulado não substituem uma verificação em aparelhos físicos Android/iOS.
+
+## Transições de tela
+
+`transicoes.css` e `transicoes.js` adicionam transições ao abrir Configurações, Sobre o jogo e ao voltar ao início. Navegadores com View Transitions entre documentos usam uma troca suave dos painéis, mantendo o cenário. Nos demais navegadores e para outros destinos internos, há uma saída curta em CSS seguida da navegação normal; nas três telas também há uma entrada suave quando o recurso nativo não está disponível. As abas de Sobre o jogo têm uma transição própria, e os botões dão retorno visual ao pressionar.
+
+Movimento reduzido desativa as animações de navegação. Links modificados (Ctrl/Cmd, nova aba), âncoras da própria página e destinos externos mantêm seu comportamento padrão. O botão Voltar do navegador restaura o estado da tela sem deixá-la bloqueada. Validado em Chromium com toque em celular, navegação nativa, alternativa sem recurso nativo, teclado, abas e navegação para a tela das missões.
+
+O modelo do Claude enviado em `https://claude.ai/artifact/7eGwKq6gPJ36wEZ7U7RcDB` não estava acessível neste ambiente (erro 403 na requisição e falha de acesso pelo navegador). Estas transições foram feitas sobre o visual atual do jogo; não representam uma cópia conferida daquele modelo. A reprodução do modelo depende do envio do HTML ou de uma gravação acessível.
+
+`aventura.html` foi acrescentada após sincronizar a exclusão da pasta beta no GitHub. O menu mantém a navegação sem apontar para arquivos removidos.
