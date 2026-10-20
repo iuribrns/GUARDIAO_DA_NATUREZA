@@ -36,3 +36,11 @@ Todo o código novo e os assets desta interface estão nesta pasta. No HTML ante
 ## Validação
 
 Validado em Chromium em desktop 1440×900, celular 390×844 e celular deitado 667×375: entrada antiga, carregamento da nova arte/fonte, navegação entre as três telas, música e efeitos gerando áudio com contexto ativo, volumes, prévia, texto maior, restauração dos padrões, preferências persistidas, redução de movimento, abas por teclado, ausência de overflow horizontal e funcionamento com armazenamento bloqueado. Nenhum erro de JavaScript ou falha no carregamento dos arquivos das três novas telas.
+
+## Prioridade para celular
+
+A interface foi ajustada para toque: alvos de pelo menos 44×44 px, chaves maiores, barras de volume com puxadores de 28 px e área de arrasto com 44 px de altura. Em telas pequenas, os volumes ocupam a largura do painel, a leitura foi ampliada e o layout considera áreas seguras de telas com recortes. Rolagem e zoom do navegador continuam disponíveis.
+
+A seção Como jogar apresenta primeiro os botões de toque da fase; o teclado fica em uma seção opcional recolhida. Não foram acrescentadas opções que simulam configurar controles ainda não implementados na fase.
+
+Validado por simulação de celular com toque: ativação das chaves, arrasto do volume com eventos de toque, persistência e ausência de overflow entre 320 e 430 px, inclusive com Texto maior ativado. Testes em navegador emulado não substituem uma verificação em aparelhos físicos Android/iOS.
