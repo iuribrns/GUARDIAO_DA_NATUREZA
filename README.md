@@ -15,6 +15,14 @@ O servidor Vite abre o menu atual a partir da raiz. Para testar no celular na me
 
 O laboratório fica no caminho `/desenvolvimento/laboratorio/index.html`. Ele mostra uma animação real de Kai com a mangueira, usando Phaser e GSAP, com pausa e respeito a movimento reduzido. É uma ferramenta separada para desenvolvimento; não altera o progresso das fases.
 
+## Menu vivo, configurações e sobre o jogo
+
+As folhas do cenário usam recortes individuais da arte, com queda, balanço e giro independentes. Em **Configurações**, os ajustes ficam em cartões de som e conforto, com volumes visuais e preferências salvas. **Sobre o jogo** apresenta a história, os controles para celular e o colar remodelado.
+
+Toque em Kai ou Flora para ver expressões e ler suas respostas. No computador, os personagens também reagem ao cursor. Flora tem seis poses novas, incluindo olhos fechados e asas abertas. As animações param com movimento reduzido ou quando a aba fica oculta.
+
+Os arquivos novos e sua documentação estão em [tela-inicial/menu-vivo/README.md](tela-inicial/menu-vivo/README.md).
+
 ## Mapa interativo e informações das fases
 
 Em **Jogar**, toque na placa ou no terreno de uma região para conhecer sua missão. O mapa tem correntes, ondulações, fogo, fumaça e portal animados; os controles permitem ampliar e arrastar a ilha. Em pé, o celular também mostra uma lista de fases com áreas de toque maiores.
@@ -34,7 +42,7 @@ A recuperação da floresta continua disponível como prévia, separada do progr
 | Tiled | 1.12.2 | Edição e exportação de mapas |
 | LibreSprite | 1.3 | Edição e exportação de sprites |
 
-Phaser e GSAP são carregados somente pelo laboratório por enquanto. As telas existentes mantêm seus scripts e animações atuais. O modelo inicial de mapa para o Tiled está em `desenvolvimento/modelos/mapa-base.tmj`.
+Phaser é carregado pelo laboratório. GSAP também anima as reações de Kai, Flora e do colar nas telas do menu; uma cópia local versionada permite hospedagem estática, sem CDN. O modelo inicial de mapa para o Tiled está em `desenvolvimento/modelos/mapa-base.tmj`.
 
 ## Comandos
 

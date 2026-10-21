@@ -33,7 +33,7 @@ Movimento reduzido, escolhido nas configurações ou solicitado pelo sistema, tr
 
 `assets/floresta-modelo.png` e `assets/titulo-guardiao.png` foram preparados a partir de frames da gravação, usando a referência para recompor o cenário sem UI e isolar/reproduzir a placa do título com transparência. São assets adaptados da referência, não uma reprodução do vídeo em segundo plano. A prancha de folhas e a fonte Lilita One já existentes foram mantidas, com sua licença em `assets/OFL-Lilita-One.txt`.
 
-As preferências ficam em `guardiao.horizonte.preferences.v1`. Áudio começa após interação e música pausa quando a aba fica oculta. Sem armazenamento, os controles continuam funcionando na sessão. Texto maior afeta as telas do menu; folhas e personagens não dependem de reprodução de vídeo. Kai e Flora continuam estáticos.
+As preferências ficam em `guardiao.horizonte.preferences.v1`. Áudio começa após interação e música pausa quando a aba fica oculta. Sem armazenamento, os controles continuam funcionando na sessão. Texto maior afeta as telas do menu; folhas e personagens não dependem de reprodução de vídeo. A ilustração original de fundo foi preservada. Kai e Flora têm versões interativas no acampamento do menu e nas duas telas remodeladas, com código e sprites em `../menu-vivo/`.
 
 ## Validação
 
@@ -62,7 +62,7 @@ npm install --prefix /tmp/guardiao-validacao playwright-core
 NODE_PATH=/tmp/guardiao-validacao/node_modules GUARDIAO_TEST_URL=http://127.0.0.1:8000/tela-inicial/nova-versao/ node tela-inicial/nova-versao/validacao/transicoes.cjs
 ```
 
-O script usa `/usr/bin/chromium`; para outra instalação, informe `CHROMIUM_PATH`. O jogo continua sem dependências de execução ou processo de build. Os HTMLs usam a versão `folhas-1` no script de transições e nos estilos dos efeitos alterados para evitar reaproveitar os scripts e estilos anteriores do cache.
+O script usa `/usr/bin/chromium`; para outra instalação, informe `CHROMIUM_PATH`. As telas podem ser servidas sem processo de build. O acampamento usa uma cópia local do GSAP 3.15.0 e mantém os controles funcionando se ela falhar. Os HTMLs usam a versão `folhas-1` no script de transições e nos estilos dos efeitos alterados para evitar reaproveitar os scripts e estilos anteriores do cache.
 
 ## Revisão do diagnóstico de transições
 
@@ -83,3 +83,7 @@ A proposta em `CORRECAO-FOLHAS-para-ChatGPT.md` foi integrada à versão que já
 A animação dura 1300 ms e a cobertura permanece por 1400 ms, evitando interrompê-la na saída. Na chegada, a rajada usa uma camada decorativa própria, sem interceptar toques, que termina mesmo depois que o círculo já abriu. A camada é removida ao final, ao navegar ou quando movimento reduzido é ativado. O modo reduzido continua usando somente fade, sem folhas.
 
 O limite de segurança para navegação circular é de 2600 ms caso o evento CSS não chegue; o fade mantém seu limite anterior. O mapa e o colar continuam usando os arquivos originais já integrados. A validação específica está em `../efeitos-folhas/validacao/folhas.cjs`.
+
+## Configurações, Sobre e folhas remodelados
+
+O conteúdo das duas telas ganhou uma composição de diário com madeira e cartões de leitura, e um acampamento com Kai e Flora. As poses respondem ao toque, teclado e cursor; as folhas do cenário usam recortes corrigidos, com balanço e giro independentes. GSAP fica servido localmente e não exige CDN. A documentação e os testes novos ficam em [`../menu-vivo/README.md`](../menu-vivo/README.md). Os testes anteriores das transições, do mapa e do colar continuam integrados a `npm test`.

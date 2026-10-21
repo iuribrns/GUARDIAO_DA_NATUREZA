@@ -1,0 +1,20 @@
+/* Queda, balanço e giro são camadas distintas; sem disputa pelo mesmo transform. */
+.living-menu .leaves { z-index:0; overflow:hidden; contain:strict; pointer-events:none; }
+.living-menu :is(.home-layout,.panel-layout,.page-footer) { position:relative; z-index:2; }
+.living-menu .back-link { z-index:5; }
+.living-leaves .living-leaf { position:absolute; top:-100px; width:var(--size); height:var(--size); opacity:var(--leaf-opacity); animation:living-leaf-fall var(--duration) var(--delay) linear infinite; filter:drop-shadow(0 2px 2px #123e2426); will-change:transform; }
+.living-leaves .living-leaf:nth-child(4n) { filter:blur(.45px) drop-shadow(0 3px 3px #17351633); }
+.living-leaves .living-leaf span { display:block; width:100%; height:100%; background:none; animation:none; }
+.living-leaves .living-leaf .leaf-sway { animation:living-leaf-sway var(--sway-time) var(--delay) ease-in-out infinite alternate; }
+.living-leaves .living-leaf .leaf-turn { animation:living-leaf-turn calc(var(--sway-time)*1.7) var(--delay) ease-in-out infinite alternate; }
+.living-leaves svg { display:block; width:100%; height:100%; overflow:hidden; }
+@keyframes living-leaf-fall {
+  from { transform:translate3d(0,-140px,0) rotate(var(--turn)); }
+  to { transform:translate3d(var(--drift),calc(100vh + 300px),0) rotate(calc(var(--turn) + 130deg)); }
+}
+@supports(height:100lvh) { @keyframes living-leaf-fall { from { transform:translate3d(0,-140px,0) rotate(var(--turn)); } to { transform:translate3d(var(--drift),calc(100lvh + 300px),0) rotate(calc(var(--turn) + 130deg)); } } }
+@keyframes living-leaf-sway { from { transform:translateX(calc(var(--sway)*-1)) rotate(-12deg); } to { transform:translateX(var(--sway)) rotate(18deg); } }
+@keyframes living-leaf-turn { from { transform:rotateY(-35deg) rotateZ(-12deg); } to { transform:rotateY(40deg) rotateZ(24deg); } }
+body.page-hidden .living-leaf,body.page-hidden .living-leaf span { animation-play-state:paused!important; }
+body.still-leaves .living-leaves,body.reduce-motion .living-leaves { display:none; }
+@media(prefers-reduced-motion:reduce) { .living-leaves { display:none; } }

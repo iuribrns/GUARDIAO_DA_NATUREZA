@@ -101,7 +101,7 @@
   });
   document.getElementById('preview-sound')?.addEventListener('click', () => clickSound(true));
   document.getElementById('reset')?.addEventListener('click', () => { preferences = { ...defaults }; save(); });
-  document.addEventListener('click', event => { if (event.target.closest('a, [role="tab"]')) clickSound(); updateMusic(true); });
+  document.addEventListener('click', event => { if (event.target.closest('a, [role="tab"], [data-companion], [data-react="necklace"]')) clickSound(); updateMusic(true); });
   const unlock = () => updateMusic(true);
   document.addEventListener('pointerdown', unlock, { once: true });
   document.addEventListener('keydown', unlock, { once: true });
@@ -124,6 +124,8 @@
   const layer = document.querySelector('.leaves');
   const compact = window.matchMedia('(max-width: 650px)');
   function createLeaves() {
+    if (!layer || layer.hidden) return;
+    if (window.GuardiaoFolhas) { window.GuardiaoFolhas.preparar(layer, { compact: compact.matches }); return; }
     const fragment = document.createDocumentFragment(); const count = compact.matches ? 10 : 18;
     for (let i = 0; i < count; i++) {
       const leaf = document.createElement('span'); leaf.className = 'leaf-particle';
