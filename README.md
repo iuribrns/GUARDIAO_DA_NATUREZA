@@ -15,6 +15,14 @@ O servidor Vite abre o menu atual a partir da raiz. Para testar no celular na me
 
 O laboratório fica no caminho `/desenvolvimento/laboratorio/index.html`. Ele mostra uma animação real de Kai com a mangueira, usando Phaser e GSAP, com pausa e respeito a movimento reduzido. É uma ferramenta separada para desenvolvimento; não altera o progresso das fases.
 
+## Mapa interativo e informações das fases
+
+Em **Jogar**, toque na placa ou no terreno de uma região para conhecer sua missão. O mapa tem correntes, ondulações, fogo, fumaça e portal animados; os controles permitem ampliar e arrastar a ilha. Em pé, o celular também mostra uma lista de fases com áreas de toque maiores.
+
+Cada seleção abre um painel com o aliado, a situação, três objetivos, o equipamento, a recompensa e a duração estimada fornecidos em `paineis-das-fases.zip`. Os personagens alternam poses durante a leitura. As animações respeitam a configuração de movimento reduzido e pausam quando a aba fica oculta.
+
+A recuperação da floresta continua disponível como prévia, separada do progresso real. As seis missões jogáveis ainda estão em desenvolvimento. Detalhes dos arquivos em [tela-inicial/mapa-interativo/README.md](tela-inicial/mapa-interativo/README.md).
+
 ## Ferramentas instaladas
 
 | Ferramenta | Versão | Uso |

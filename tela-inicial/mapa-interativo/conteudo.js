@@ -1,0 +1,109 @@
+/* Conteúdo do pacote paineis-das-fases; versão clássica para hospedagem estática. */
+window.GuardiaoFases = Object.freeze(({
+  "fluxo": [
+    "Selecionar região no mapa",
+    "Abrir painel de informações da fase",
+    "Ler situação, objetivos, equipamentos, recompensa e duração estimada",
+    "Escolher INICIAR FASE para entrar ou VOLTAR AO MAPA/X para retornar"
+  ],
+  "duracao_e_proposta": true,
+  "fases": [
+    {
+      "id": 1,
+      "nome": "FLORESTA EM CHAMAS",
+      "npc": "Carlos",
+      "profissao": "Guarda florestal",
+      "situacao": "O fogo se espalhou pela floresta. Carlos precisa da sua ajuda para proteger os animais.",
+      "objetivos": [
+        "Apague os focos de incêndio.",
+        "Desvie dos perigos pelo caminho.",
+        "Abra uma passagem segura."
+      ],
+      "equipamento": "Mangueira e luvas",
+      "rotulo_equipamento": "VOCÊ RECEBE",
+      "recompensa": "1ª peça do colar",
+      "duracao_estimada": "5–8 min"
+    },
+    {
+      "id": 2,
+      "nome": "RIO POLUÍDO",
+      "npc": "Seu Antônio",
+      "profissao": "Pescador",
+      "situacao": "O lixo está contaminando o rio. Seu Antônio precisa recuperar a água e proteger os peixes.",
+      "objetivos": [
+        "Recolha o lixo do rio.",
+        "Retire os obstáculos da água.",
+        "Limpe as margens."
+      ],
+      "equipamento": "Rede e sacola de lixo",
+      "rotulo_equipamento": "VOCÊ RECEBE",
+      "recompensa": "2ª peça do colar",
+      "duracao_estimada": "6–9 min"
+    },
+    {
+      "id": 3,
+      "nome": "RESGATE DA FAUNA",
+      "npc": "Dra. Marina",
+      "profissao": "Bióloga e veterinária",
+      "situacao": "Os animais perderam seu abrigo. Dra. Marina precisa de ajuda no resgate e nos cuidados.",
+      "objetivos": [
+        "Encontre os animais.",
+        "Abra as gaiolas e ajude no resgate.",
+        "Cuide e alimente os resgatados."
+      ],
+      "equipamento": "Kit veterinário e ração",
+      "rotulo_equipamento": "VOCÊ RECEBE",
+      "recompensa": "3ª peça do colar",
+      "duracao_estimada": "6–10 min"
+    },
+    {
+      "id": 4,
+      "nome": "REFLORESTAMENTO",
+      "npc": "Rafael",
+      "profissao": "Engenheiro florestal",
+      "situacao": "O desmatamento deixou a terra sem vida. Rafael quer trazer a floresta de volta.",
+      "objetivos": [
+        "Encontre os pontos de plantio.",
+        "Plante as sementes.",
+        "Regue para recuperar a vegetação."
+      ],
+      "equipamento": "Sementes e regador",
+      "rotulo_equipamento": "VOCÊ RECEBE",
+      "recompensa": "4ª peça do colar",
+      "duracao_estimada": "5–8 min"
+    },
+    {
+      "id": 5,
+      "nome": "CIDADE SUSTENTÁVEL",
+      "npc": "Luciana",
+      "profissao": "Engenheira ambiental",
+      "situacao": "A cidade precisa reduzir o lixo e a poluição. Luciana vai mostrar como fazer a diferença.",
+      "objetivos": [
+        "Separe os resíduos.",
+        "Resolva os desafios de energia limpa.",
+        "Recupere os espaços da cidade."
+      ],
+      "equipamento": "Kit de coleta seletiva",
+      "rotulo_equipamento": "VOCÊ RECEBE",
+      "recompensa": "5ª peça do colar",
+      "duracao_estimada": "7–10 min"
+    },
+    {
+      "id": 6,
+      "nome": "BATALHA FINAL",
+      "npc": "Cacique Aru",
+      "profissao": "Sábio da natureza",
+      "situacao": "A ameaça final chegou ao santuário. Cacique Aru orienta Kai a usar tudo o que aprendeu.",
+      "objetivos": [
+        "Desvie dos ataques do chefe.",
+        "Use o poder do colar completo.",
+        "Restaure o santuário."
+      ],
+      "equipamento": "Colar completo",
+      "rotulo_equipamento": "VOCÊ USA",
+      "recompensa": "Natureza restaurada",
+      "duracao_estimada": "5–8 min"
+    }
+  ]
+}
+).fases.map(fase => Object.freeze(fase)));

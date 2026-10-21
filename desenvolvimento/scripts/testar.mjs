@@ -53,8 +53,9 @@ try {
   assert.deepEqual(errors, []);
   await browser.close(); browser = undefined;
   console.log(`PASS: ${production ? 'build de produção' : 'Vite em desenvolvimento'}, menu, Phaser com sprite real, GSAP, pausa, movimento reduzido e celular.`);
-  if (!production) {
-    for (const file of ['tela-inicial/nova-versao/validacao/transicoes.cjs', 'tela-inicial/selecao-fases/validacao/mapa.cjs', 'tela-inicial/efeitos-folhas/validacao/folhas.cjs']) {
+  {
+    const suites = production ? ['tela-inicial/mapa-interativo/validacao/interacoes.cjs'] : ['tela-inicial/nova-versao/validacao/transicoes.cjs', 'tela-inicial/selecao-fases/validacao/mapa.cjs', 'tela-inicial/mapa-interativo/validacao/interacoes.cjs', 'tela-inicial/efeitos-folhas/validacao/folhas.cjs'];
+    for (const file of suites) {
       await new Promise((resolveRun, reject) => {
         const child = spawn(process.execPath, [file], { cwd: root, stdio: 'inherit', env: { ...process.env, GUARDIAO_TEST_URL: `${origin}/tela-inicial/nova-versao/` } });
         child.on('error', reject);

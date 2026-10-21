@@ -17,7 +17,7 @@ const phase = (page, number) => page.locator(`.map-stage [data-phase="${number}"
     assert.equal(await page.locator('.map-art').first().evaluate(image => image.naturalWidth), 1672);
     await page.locator('.map-stage').screenshot({ path: '/workspace/mapa-inicial-implementado.png' });
     assert.equal(await phase(page, 1).getAttribute('aria-current'), 'step');
-    for (let number = 2; number <= 6; number++) assert.equal(await phase(page, number).getAttribute('aria-disabled'), 'true');
+    for (let number = 2; number <= 6; number++) assert.equal(await phase(page, number).getAttribute('data-locked'), 'true');
     await phase(page, 2).dispatchEvent('click');
     assert.equal(await page.locator('#phase-dialog').isVisible(), true);
     assert.match(await page.locator('#phase-state').textContent(), /Conclua a fase 1/);
@@ -33,14 +33,14 @@ const phase = (page, number) => page.locator(`.map-stage [data-phase="${number}"
     await page.locator('.map-stage').screenshot({ path: '/workspace/mapa-recuperacao-em-andamento.png' });
     await ready(page);
     assert.equal(await page.locator('.map-stage').getAttribute('data-current-phase'), '2');
-    assert.equal(await phase(page, 2).getAttribute('aria-disabled'), 'false');
-    assert.equal(await phase(page, 3).getAttribute('aria-disabled'), 'true');
+    assert.equal(await phase(page, 2).getAttribute('data-locked'), 'false');
+    assert.equal(await phase(page, 3).getAttribute('data-locked'), 'true');
     assert.deepEqual(await page.evaluate(() => GuardiaoMapa.obterProgresso()), { completedFirst: false, current: 1, preview: true });
     assert.equal(await page.evaluate(() => localStorage.getItem('guardiao.mapa.progresso.v1')), null, 'prévia não registra conclusão real');
     await phase(page, 2).click();
     await page.getByRole('button', { name: 'Voltar ao progresso salvo' }).click();
     assert.equal(await page.locator('.map-stage').getAttribute('data-current-phase'), '1');
-    assert.equal(await phase(page, 2).getAttribute('aria-disabled'), 'true');
+    assert.equal(await phase(page, 2).getAttribute('data-locked'), 'true');
     // A futura fase jogável chama a mesma recuperação com persistência real.
     assert.deepEqual(await page.evaluate(() => GuardiaoMapa.concluirFase(1)), { completedFirst: true, current: 2, preview: false });
     await page.reload(); await ready(page);
@@ -90,7 +90,7 @@ const phase = (page, number) => page.locator(`.map-stage [data-phase="${number}"
     await reduced.waitForFunction(() => Number(getComputedStyle(document.querySelector('.map-restored')).opacity) > 0);
     assert.equal(await reduced.locator('.map-restored').evaluate(element => getComputedStyle(element).transitionDuration), '0.24s');
     await ready(reduced);
-    assert.equal(await phase(reduced, 2).getAttribute('aria-disabled'), 'false');
+    assert.equal(await phase(reduced, 2).getAttribute('data-locked'), 'false');
 
     const blocked = await browser.newPage();
     await blocked.addInitScript(() => {
@@ -105,7 +105,7 @@ const phase = (page, number) => page.locator(`.map-stage [data-phase="${number}"
     await failure.route('**/mapa-apos-fase-1.png', route => route.abort());
     await failure.goto(mapURL); await ready(failure);
     assert.equal(await failure.evaluate(() => GuardiaoMapa.concluirFase(1).then(() => false, () => true)), true);
-    assert.equal(await phase(failure, 2).getAttribute('aria-disabled'), 'true');
+    assert.equal(await phase(failure, 2).getAttribute('data-locked'), 'true');
     assert.equal(await failure.locator('.map-stage').getAttribute('aria-busy'), null);
     assert.match(await failure.locator('.map-error').textContent(), /Não foi possível carregar/);
 

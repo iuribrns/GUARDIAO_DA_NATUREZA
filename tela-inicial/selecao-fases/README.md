@@ -1,6 +1,6 @@
-# Seleção de fases — artes originais do mapa
+# Seleção de fases — mapa e progresso
 
-A entrada continua em `../nova-versao/aventura.html`, aberta pelo botão **Jogar**. Os arquivos novos de comportamento, estilo e referência ficam nesta pasta.
+A entrada continua em `../nova-versao/aventura.html`, aberta pelo botão **Jogar**. Esta pasta mantém as pinturas e o controle de progresso. As camadas interativas, o zoom e os seis painéis completos estão em [`../mapa-interativo/`](../mapa-interativo/README.md).
 
 ## Fidelidade à referência
 
@@ -10,7 +10,7 @@ Os quatro arquivos em `assets/` foram copiados sem alteração de `mapa-ilhas-tr
 - `mapa-apos-fase-1.png` — 1672 × 941, floresta verde, confirmação de conclusão e Kai no Rio Poluído.
 - `transicao-fase-1.gif` e `transicao-fase-1.mp4` — prévias originais preservadas; não são baixadas automaticamente pela interface.
 
-As placas, os nomes das fases, os caminhos, o retrato de Kai e os biomas continuam nas pinturas originais. Os seis botões transparentes ficam sobre as placas, além do botão Voltar já desenhado no mapa. O mapa inteiro é exibido sem recorte ou filtros, respeitando sua proporção.
+As placas, os nomes das fases, os caminhos, o retrato de Kai e os biomas continuam nas pinturas originais. Os seis botões transparentes ficam sobre as placas, além do botão Voltar já desenhado no mapa. O mapa inteiro respeita sua proporção. A camada nova acrescenta correntes, ondulações, brilho do fogo, fumaça e energia do portal. É possível ampliar e arrastar a ilha; **Ver ilha inteira** restaura o enquadramento.
 
 A restauração usa uma dissolução de opacidade de 1,6 segundo entre as duas pinturas, como descrito na referência. Pequenas diferenças entre os desenhos são as dos arquivos fornecidos. Com movimento reduzido do sistema ou do menu, a passagem usa apenas opacidade por 240 ms. A interface mantém foco, teclado, leitura por tecnologia assistiva e áreas de toque de pelo menos 44 px.
 
@@ -44,9 +44,9 @@ O armazenamento bloqueado não impede o uso na aba atual. Se a imagem restaurada
 `validacao/mapa.cjs` usa `playwright-core` e Chromium. Com o servidor HTTP do projeto ativo:
 
 ```sh
-NODE_PATH=/tmp/guardiao-validacao/node_modules GUARDIAO_TEST_URL=http://127.0.0.1:8000/tela-inicial/nova-versao/ node tela-inicial/selecao-fases/validacao/mapa.cjs
+GUARDIAO_TEST_URL=http://127.0.0.1:5173/tela-inicial/nova-versao/ node tela-inicial/selecao-fases/validacao/mapa.cjs
 ```
 
 Verificações: bloqueios, seleção, restauração com opacidade intermediária, prévia sem conclusão falsa, persistência, revisita, navegação pelo menu, colar remodelado, larguras de 320/390/667 px, movimento reduzido, armazenamento bloqueado, progresso inválido e erro de imagem.
 
-As capturas dos estados inicial e restaurado em 1672 × 941 também foram comparadas pixel a pixel aos PNGs fornecidos, sem diferença. A comparação considera o mapa em repouso, sem os realces de foco/hover.
+Os PNGs de referência continuam intactos. A interface atual acrescenta camadas animadas e controles sobre a pintura; suas capturas já não têm a comparação pixel a pixel da primeira versão sem camadas.

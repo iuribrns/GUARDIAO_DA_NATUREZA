@@ -6,14 +6,7 @@
   const dialog = document.getElementById('phase-dialog');
   const status = document.getElementById('map-status');
   const storageKey = 'guardiao.mapa.progresso.v1';
-  const phases = [
-    { name: 'Floresta em Chamas', objective: 'Encontre a mangueira e apague os focos de incêndio para recuperar a floresta.' },
-    { name: 'Rio Poluído', objective: 'Recolha os resíduos e ajude a recuperar a água e a vida do rio.' },
-    { name: 'Resgate da Fauna', objective: 'Encontre os animais em perigo e cuide deles para que voltem à natureza.' },
-    { name: 'Reflorestamento', objective: 'Prepare o solo, plante sementes e regue os novos brotos.' },
-    { name: 'Cidade Sustentável', objective: 'Ajude a cidade a cuidar dos resíduos e a diminuir a poluição.' },
-    { name: 'Batalha Final', objective: 'Reúna a força do colar e proteja o equilíbrio da natureza.' }
-  ];
+  const phases = window.GuardiaoFases.map(phase => ({ ...phase, name: phase.nome.toLocaleLowerCase('pt-BR').replace(/(^|\s)\S/g, letter => letter.toLocaleUpperCase('pt-BR')).replace(/\b(Em|Da|Do|De|Das|Dos)\b/g, word => word.toLowerCase()), objective: phase.situacao }));
   let progress = { completedFirst: false, current: 1 };
   let preview = null;
   let busy = false;
@@ -49,11 +42,13 @@
       const completed = phase === 1 && current.completedFirst;
       const label = !available ? 'Bloqueada' : current.current === phase ? (completed ? 'Fase atual · concluída' : 'Fase atual') : completed ? 'Concluída' : 'Disponível';
       button.setAttribute('aria-label', `Fase ${phase}: ${phases[phase - 1].name}. ${label}.`);
-      button.setAttribute('aria-disabled', String(!available));
+      button.removeAttribute('aria-disabled');
+      button.dataset.locked = String(!available);
       if (current.current === phase) button.setAttribute('aria-current', 'step'); else button.removeAttribute('aria-current');
       const caption = button.querySelector('[data-phase-state]'); if (caption) caption.textContent = label;
     });
     if (instant) { void stage.offsetWidth; stage.classList.remove('no-animation'); }
+    document.dispatchEvent(new CustomEvent('guardiao:mapa-atualizado', { detail: { ...current, preview: preview !== null } }));
   }
   function getProgress() {
     return { completedFirst: progress.completedFirst, current: progress.current, preview: preview !== null };
@@ -83,7 +78,7 @@
           : 'Fase em desenvolvimento. O mapa e a prévia da recuperação já estão disponíveis.';
     document.querySelector('[data-map-action="preview"]').hidden = phase !== 1;
     document.querySelector('[data-map-action="exit-preview"]').hidden = preview === null;
-    if (!dialog.open) dialog.showModal();
+    window.GuardiaoPaineis.abrir({ ...phases[phase - 1], available, preview: preview !== null });
   }
   function waitForRestoration() {
     return new Promise(resolve => {
@@ -140,14 +135,14 @@
     const phaseButton = event.target.closest('button[data-phase]');
     if (phaseButton) { openPhase(Number(phaseButton.dataset.phase)); return; }
     const action = event.target.closest('[data-map-action]')?.dataset.mapAction;
-    if (action === 'close') dialog.close();
+    if (action === 'close') window.GuardiaoPaineis.fechar();
     if (action === 'preview') restoreForest({ demonstration: true }).catch(() => {});
     if (action === 'exit-preview') { exitPreview(); dialog.close(); }
   });
   dialog.addEventListener('click', event => {
     if (event.target !== dialog) return;
     const rect = dialog.getBoundingClientRect();
-    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) window.GuardiaoPaineis.fechar();
   });
   window.addEventListener('pagehide', () => finishAnimation?.());
   // Integração para a futura fase jogável. A prévia não chama esta conclusão.
