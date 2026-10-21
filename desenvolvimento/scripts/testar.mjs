@@ -54,10 +54,10 @@ try {
   await browser.close(); browser = undefined;
   console.log(`PASS: ${production ? 'build de produção' : 'Vite em desenvolvimento'}, menu, Phaser com sprite real, GSAP, pausa, movimento reduzido e celular.`);
   {
-    const suites = production ? ['tela-inicial/mapa-interativo/validacao/interacoes.cjs', 'tela-inicial/menu-vivo/validacao/menu.cjs'] : ['tela-inicial/nova-versao/validacao/transicoes.cjs', 'tela-inicial/selecao-fases/validacao/mapa.cjs', 'tela-inicial/mapa-interativo/validacao/interacoes.cjs', 'tela-inicial/efeitos-folhas/validacao/folhas.cjs', 'tela-inicial/menu-vivo/validacao/menu.cjs'];
+    const suites = production ? ['tela-inicial/mapa-interativo/validacao/interacoes.cjs', 'tela-inicial/menu-vivo/validacao/menu.cjs', 'jogo/controles/validacao/controles.cjs'] : ['tela-inicial/nova-versao/validacao/transicoes.cjs', 'tela-inicial/selecao-fases/validacao/mapa.cjs', 'tela-inicial/mapa-interativo/validacao/interacoes.cjs', 'tela-inicial/efeitos-folhas/validacao/folhas.cjs', 'tela-inicial/menu-vivo/validacao/menu.cjs', 'jogo/controles/validacao/controles.cjs'];
     for (const file of suites) {
       await new Promise((resolveRun, reject) => {
-        const child = spawn(process.execPath, [file], { cwd: root, stdio: 'inherit', env: { ...process.env, GUARDIAO_TEST_URL: `${origin}/tela-inicial/nova-versao/` } });
+        const child = spawn(process.execPath, [file], { cwd: root, stdio: 'inherit', env: { ...process.env, GUARDIAO_TEST_URL: `${origin}/tela-inicial/nova-versao/`, GUARDIAO_PRODUCTION: String(production) } });
         child.on('error', reject);
         child.on('exit', code => code === 0 ? resolveRun() : reject(new Error(`${file} falhou (${code}).`)));
       });

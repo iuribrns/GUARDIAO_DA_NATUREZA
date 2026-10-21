@@ -14,7 +14,8 @@
     "test": "node desenvolvimento/scripts/testar.mjs",
     "check:tools": "node desenvolvimento/scripts/verificar-ferramentas.mjs",
     "tools:install": "python3 desenvolvimento/scripts/instalar-editores.py",
-    "test:build": "node desenvolvimento/scripts/testar.mjs --production"
+    "test:build": "node desenvolvimento/scripts/testar.mjs --production",
+    "check:site": "node desenvolvimento/scripts/verificar-site.mjs"
   },
   "dependencies": {
     "gsap": "3.15.0",

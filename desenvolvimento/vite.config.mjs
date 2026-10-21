@@ -29,11 +29,12 @@ export default defineConfig({
       // Copia apenas as pastas públicas conhecidas. Nunca publica .git, caches
       // ou node_modules. Os scripts clássicos das telas continuam intactos.
       const output = resolve(root, 'dist');
-      for (const folder of ['assets', 'tela-inicial', 'desenvolvimento/modelos']) {
+      for (const folder of ['assets', 'tela-inicial', 'jogo', 'desenvolvimento/modelos']) {
         await mkdir(resolve(output, folder), { recursive: true });
         await cp(resolve(root, folder), resolve(output, folder), { recursive: true });
       }
-      await writeFile(resolve(output, 'index.html'), await readFile(resolve(root, 'desenvolvimento/inicio.html')));
+      await writeFile(resolve(output, 'index.html'), await readFile(resolve(root, 'index.html')));
+      await cp(resolve(root, '.nojekyll'), resolve(output, '.nojekyll'));
     }
   }]
 });

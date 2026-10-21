@@ -1,0 +1,27 @@
+.controls-training { margin:20px 0; padding:0; border:2px solid #a1aa73; border-radius:17px; overflow:hidden; background:#e5eac7; }
+.panel-remodeled .controls-training h3 { margin:0; padding:12px 14px; font:400 1.15rem Adventure,sans-serif; color:#3f6234; background:#e8edcf; }
+.controls-training .training-scene { position:relative; height:290px; overflow:hidden; isolation:isolate; background:linear-gradient(#31774d00 25%,#163b2b9c 60%,#163b2bea),url('../../tela-inicial/nova-versao/assets/floresta-modelo.png') left center/cover; }
+.training-ground { position:absolute; bottom:110px; left:0; right:0; height:12px; background:linear-gradient(#95c35b 0 35%,#6e8b3d 36% 55%,#957540 56%); border-radius:8px; box-shadow:0 4px 0 #3a4e2d66; }
+.training-kai { position:absolute; width:72px; height:86px; transform:scaleX(var(--facing,1)); transform-origin:center bottom; pointer-events:none; }
+.training-kai svg,.training-kai img { width:100%; height:100%; display:block; object-fit:contain; }
+.training-kai img { display:none; }.training-kai.is-jumping svg { display:none; }.training-kai.is-jumping img { display:block; }
+.mobile-controls { position:absolute; inset:auto 12px 10px; display:flex; align-items:flex-end; justify-content:space-between; gap:8px; user-select:none; -webkit-user-select:none; }
+.joystick { position:relative; width:92px; height:92px; flex-shrink:0; display:grid; place-items:center; touch-action:none; border:2px solid #dbe5b67d; border-radius:50%; background:radial-gradient(#c3d9a026,#123a2d9c); box-shadow:inset 0 2px 13px #071f2c66,0 2px 0 #092b2840; cursor:grab; }
+.joystick.is-held { cursor:grabbing; border-color:#edf4bf; }
+.joystick-knob { position:relative; width:44px; height:44px; border:2px solid #f3e6aa; border-radius:50%; background:radial-gradient(circle at 35% 25%,#d2e79c,#79a95a); box-shadow:0 3px 0 #3b6635,0 5px 9px #072a2466; pointer-events:none; }
+.joystick-axis { position:absolute; inset:13px; border:1px dashed #d1e0b94d; border-radius:50%; pointer-events:none; }
+.joystick-axis::before,.joystick-axis::after { content:""; position:absolute; background:#e2edb83d; }
+.joystick-axis::before { top:50%; left:0; width:100%; height:1px; }.joystick-axis::after { left:50%; top:0; height:100%; width:1px; }
+.control-caption { position:absolute; left:0; right:0; bottom:4px; text-align:center; color:#e6e8c1; font:bold .45rem/1 var(--font-body); letter-spacing:1px; pointer-events:none; }
+.mobile-actions { display:flex; align-items:flex-end; gap:8px; }
+.mobile-controls button { position:relative; padding:0; display:flex; flex-direction:column; align-items:center; justify-content:center; touch-action:none; border:2px solid #f2d38e; border-radius:50%; color:#fff1c1; background:radial-gradient(circle at 35% 25%,#6eab48,#31623c); box-shadow:inset 0 0 0 3px #254f32,0 4px 0 #143d2b; }
+.mobile-controls .control-jump { width:76px; height:82px; border-radius:45%; }
+.control-jump img { display:block; width:58px; height:58px; object-fit:contain; pointer-events:none; -webkit-user-drag:none; }
+.mobile-controls small { font:700 .53rem/1.2 var(--font-body); letter-spacing:.6px; }
+.mobile-controls .control-use { width:46px; height:48px; margin-bottom:4px; color:#fcf1c8; background:linear-gradient(#769560,#456a42); }
+.control-use>span { font-size:1.15rem; line-height:1; }.control-use small { font-size:.43rem; }
+.mobile-controls .is-held,.mobile-controls button:active { filter:brightness(1.15); box-shadow:inset 0 0 0 3px #254f32,0 1px 0 #143d2b; }
+.joystick:focus-visible,.mobile-controls button:focus-visible { outline:3px solid #ffe7a0; outline-offset:4px; }
+.panel-remodeled .training-status { padding:10px 12px; margin:0; font-size:.72rem!important; line-height:1.5!important; color:#536b3c; }
+@media(hover:hover) { .mobile-controls button:hover { border-color:#fff2bc; filter:brightness(1.1); } }
+@media(max-width:360px) { .mobile-controls { left:9px; right:9px; }.mobile-actions { gap:5px; }.mobile-controls .control-jump { width:70px;height:78px; }.control-jump img { width:54px;height:54px; } }

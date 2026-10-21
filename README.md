@@ -2,6 +2,16 @@
 
 Jogo em HTML, CSS e JavaScript com foco em celular. O menu, o mapa de seleção e o colar usam as artes aprovadas. A área `desenvolvimento/` reúne as ferramentas para criar e animar as próximas fases.
 
+[Endereço do jogo no Pages](https://iuribrns.github.io/GUARDIAO_DA_NATUREZA/) · [Organização das pastas](docs/ESTRUTURA.md) · [Publicação](docs/PUBLICACAO.md)
+
+A raiz agora contém `index.html`, que abre diretamente o menu. `jogo/` reúne os controles e a futura jogabilidade; `assets/` guarda as artes compartilhadas; `tela-inicial/` mantém as telas existentes; `desenvolvimento/` guarda ferramentas e testes; `docs/` explica a estrutura e a publicação. As pastas anteriores foram preservadas.
+
+## Controles para celular
+
+O movimento usa **joystick**, e o botão de pulo mostra **Kai saltando**. Há um treino funcional em **Sobre o jogo → Como jogar**, onde é possível andar e pular com dois dedos ao mesmo tempo. O código reutilizável está em [`jogo/controles/`](jogo/controles/README.md). Esse treino é separado das fases da campanha.
+
+O workflow do Pages está em `.github/workflows/pages.yml` e publica `dist/` a cada push na `main`, depois da ativação inicial do Pages com a fonte **GitHub Actions**. Confira a execução em Actions para confirmar que a versão está no ar.
+
 ## Começar
 
 Use Node.js 24 LTS (a versão está em `.nvmrc`). Na raiz do projeto:
@@ -49,6 +59,7 @@ Phaser é carregado pelo laboratório. GSAP também anima as reações de Kai, F
 ```sh
 npm run build        # Gera dist/ com o jogo e o laboratório
 npm run preview      # Serve a compilação de produção
+npm run check:site   # Confere a entrada e os caminhos do site para o Pages
 npm test             # Testa o laboratório, as transições, o mapa e as folhas
 npm run test:build   # Testa a versão compilada no navegador
 npm run tools:install # Instala Tiled e LibreSprite no Linux da nuvem
@@ -57,7 +68,7 @@ npm run check:tools  # Confere versões e funcionamento dos editores
 
 Os testes usam `/usr/bin/chromium` quando disponível. Outra instalação pode ser indicada por `CHROMIUM_PATH`. Em outro computador, também é possível instalar o navegador do Playwright com `npx playwright-core install chromium`.
 
-A compilação copia apenas `assets/`, `tela-inicial/` e os modelos públicos, além do laboratório compilado. Dependências, caches e dados do Git não entram em `dist/`. O jogo atual também pode ser servido diretamente como arquivos estáticos.
+A compilação copia `assets/`, `tela-inicial/`, `jogo/`, a entrada da raiz e os modelos públicos, além do laboratório compilado. Dependências, caches e dados do Git não entram em `dist/`. O jogo atual também pode ser servido diretamente como arquivos estáticos.
 
 ## Editores de mapas e sprites
 
