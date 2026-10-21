@@ -1,0 +1,6 @@
+/* O pivô dos pés é comum a todos os quadros: a capa e os braços não mudam o apoio. */
+.training-kai { width:104px; height:100px; }
+.training-kai.has-sprites > svg,.training-kai.has-sprites > img { display:none; }
+.training-kai .kai-animation-canvas { display:block; width:104px; height:100px; }
+/* Mostra a área da paisagem sem os personagens já pintados no fundo. */
+.controls-training .training-scene { background-size:auto,max(200%,580px) auto; background-position:center,left center; }

@@ -1,5 +1,5 @@
-# Sprites novos — Kai
+# Sprites de Kai
 
-Coloque aqui as novas pranchas ou imagens PNG com transparência deste personagem. Nenhuma imagem foi adicionada por enquanto.
+O conjunto de locomoção está em [`animacoes/`](animacoes/README.md): 12 quadros de caminhada, 8 de salto e 4 de repouso, com as pranchas originais transparentes, atlas e recortes individuais.
 
-Para sprites individuais, use nomes como `parado_01.png`, `andando_01.png` e `pulando_01.png`. Se enviar uma prancha, informe dimensões de cada frame, quantidade de colunas e linhas, ordem das direções e animações.
+Está integrado ao personagem controlado por joystick em **Sobre o jogo → Como jogar**. As poses de diálogo e de uso de equipamentos recebidas anteriormente continuam em suas pastas originais.

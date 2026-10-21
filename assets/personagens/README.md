@@ -1,7 +1,6 @@
-# Novos sprites dos personagens
+# Sprites dos personagens
 
-Pastas preparadas para as novas artes: `kai/`, `flora/` e `carlos/`. Elas ainda não contêm imagens: os arquivos novos não estavam disponíveis nesta tarefa.
+- [`kai/animacoes/`](kai/animacoes/README.md): conjunto de locomoção pronto, com caminhada, salto, repouso, atlas e recortes individuais.
+- `flora/` e `carlos/`: pastas reservadas para sprites das futuras fases. As poses de Flora do menu estão em `../../tela-inicial/menu-vivo/assets/`; os aliados dos painéis ficam em `../../tela-inicial/mapa-interativo/assets/`.
 
-Mantenha as pranchas originais e exporte PNG com transparência. Para integrar ao jogo, registre tamanho de cada frame, colunas/linhas, ordem das direções e animações. Não basta substituir o arquivo: o carregamento e a seleção dos frames da fase beta precisam corresponder à nova arte.
-
-Os assets exclusivos do menu estão em `../../tela-inicial/assets/`; substituir os sprites das fases não altera o fundo ou a fonte da tela inicial.
+Mantenha as pranchas originais com transparência e registre limites, pivôs, direção e ordem dos quadros. As artes e versões anteriores foram preservadas.

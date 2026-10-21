@@ -28,4 +28,7 @@ function check(folder) {
 check(root);
 assert.ok(existsSync(resolve(root,'assets/interface/kai-pulando.png')));
 assert.ok(existsSync(resolve(root,'jogo/controles/controles.js')));
-console.log('PASS: '+count+' páginas, entrada direta do jogo, caminhos relativos, controles e arte do pulo presentes, sem dependências ou dados Git no site.');
+const kaiFolder=resolve(root,'assets/personagens/kai/animacoes');
+const atlas=JSON.parse(readFileSync(resolve(kaiFolder,'atlas.json'),'utf8'));
+for(const image of Object.values(atlas.images)) assert.ok(existsSync(resolve(kaiFolder,image.file)),'prancha de Kai presente: '+image.file);
+console.log('PASS: '+Object.keys(atlas.frames).length+' quadros de Kai, '+count+' páginas, entrada direta do jogo, caminhos relativos, controles e arte do pulo presentes, sem dependências ou dados Git no site.');

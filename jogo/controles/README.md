@@ -12,6 +12,6 @@ Joystick à esquerda, pulo com uma imagem de Kai saltando à direita e botão me
 
 Uma futura cena Phaser pode escutar os eventos para movimentar o corpo físico e aplicar o salto. `reset()` neutraliza a entrada; `destroy()` também remove os ouvintes. O módulo funciona sem Phaser e sem build.
 
-`treino.js` usa o mesmo componente para um pequeno teste de movimento, gravidade e pulo em um chão plano. Não é uma fase da campanha e não grava conclusão. O ciclo de desenho só continua enquanto Kai anda ou está no ar; esconder a aba de controles neutraliza os inputs. Movimento controlado pelo jogador continua disponível no modo de animações reduzidas.
+`treino.js` usa o mesmo componente para um pequeno teste de movimento, gravidade e pulo em um chão plano. Não é uma fase da campanha e não grava conclusão. A física desenha o movimento durante a caminhada e o salto; o repouso consulta os quadros em intervalos de 100 ms, sem uma atualização contínua a cada frame; esconder a aba de controles neutraliza os inputs. Movimento controlado pelo jogador continua disponível no modo de animações reduzidas.
 
-A arte `../../assets/interface/kai-pulando.png` foi gerada a partir da prancha aprovada de Kai, mantendo cabelo, capa, roupa e mochila. O PNG original gerado foi preservado. O mesmo desenho é usado no botão e na pose de salto do treino.
+A arte `../../assets/interface/kai-pulando.png` foi gerada a partir da prancha aprovada de Kai, mantendo cabelo, capa, roupa e mochila. O PNG original gerado foi preservado. O botão mantém esse desenho. O personagem no treino agora usa as sequências completas de caminhada, salto e repouso de `../personagens/kai/`, com 24 quadros finais.

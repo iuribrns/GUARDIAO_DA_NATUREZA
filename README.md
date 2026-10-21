@@ -25,6 +25,12 @@ O servidor Vite abre o menu atual a partir da raiz. Para testar no celular na me
 
 O laboratório fica no caminho `/desenvolvimento/laboratorio/index.html`. Ele mostra uma animação real de Kai com a mangueira, usando Phaser e GSAP, com pausa e respeito a movimento reduzido. É uma ferramenta separada para desenvolvimento; não altera o progresso das fases.
 
+## Animações de Kai
+
+Kai tem **12 quadros de caminhada, 8 de salto e 4 de repouso**, integrados ao treino em **Sobre o jogo → Como jogar**. A caminhada acompanha a distância do joystick, e o salto usa poses de impulso, subida, queda e aterrissagem. Os movimentos para a esquerda espelham os sprites para a direita.
+
+As pranchas, os metadados e os 24 recortes individuais estão em [`assets/personagens/kai/animacoes/`](assets/personagens/kai/animacoes/README.md). O renderizador reutilizável fica em [`jogo/personagens/kai/`](jogo/personagens/kai/README.md).
+
 ## Menu vivo, configurações e sobre o jogo
 
 As folhas do cenário usam recortes individuais da arte, com queda, balanço e giro independentes. Em **Configurações**, os ajustes ficam em cartões de som e conforto, com volumes visuais e preferências salvas. **Sobre o jogo** apresenta a história, os controles para celular e o colar remodelado.
