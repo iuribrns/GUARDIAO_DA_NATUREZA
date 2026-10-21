@@ -25,7 +25,7 @@ Abra o caminho `/tela-inicial/nova-versao/index.html` no servidor. O endereço a
 
 ## Transições entre telas
 
-Ao tocar num link de navegação, um círculo verde parte do ponto tocado e se expande até cobrir a tela. Pelo teclado, o centro do botão é usado como origem. Após a cobertura de 650 ms, a mensagem e as folhas aparecem por mais 650 ms; então a próxima página abre e o círculo encolhe a partir do mesmo ponto, revelando o conteúdo. Os painéis também têm uma entrada suave. A expansão usa `transform` e keyframes, sem exigir `clip-path` nem transições nativas do navegador. A navegação continua funcionando se o armazenamento for bloqueado, o CSS falhar ou a animação for interrompida; há um limite de espera tanto na saída quanto na chegada. Sem armazenamento, a saída circular e a entrada do painel continuam disponíveis. Âncoras locais, nova aba, downloads e links externos mantêm o comportamento padrão. Voltar pelo navegador não deixa a interface coberta ou bloqueada.
+Ao tocar num link de navegação, um círculo verde parte do ponto tocado e se expande até cobrir a tela. Pelo teclado, o centro do botão é usado como origem. Após a cobertura de 650 ms, a mensagem permanece por mais 1400 ms para a rajada de folhas completar seus 1300 ms; então a próxima página abre e o círculo encolhe a partir do mesmo ponto, revelando o conteúdo. Os painéis também têm uma entrada suave. A expansão usa `transform` e keyframes, sem exigir `clip-path` nem transições nativas do navegador. A navegação continua funcionando se o armazenamento for bloqueado, o CSS falhar ou a animação for interrompida; há um limite de espera tanto na saída quanto na chegada. Sem armazenamento, a saída circular e a entrada do painel continuam disponíveis. Âncoras locais, nova aba, downloads e links externos mantêm o comportamento padrão. Voltar pelo navegador não deixa a interface coberta ou bloqueada.
 
 Movimento reduzido, escolhido nas configurações ou solicitado pelo sistema, troca o círculo por um fade de 240 ms na saída e na chegada, sem folhas, expansão ou deslocamento do painel; a tela de configurações informa qual modo está ativo. A regra de CSS que desliga as demais animações continua valendo; somente o fade de opacidade recebe uma exceção específica. A opção **Folhas no cenário** é independente: desligá-la não remove as transições. A preferência antiga `guardiao.menu.preferences.motion` é migrada somente para as folhas. A preferência de movimento do sistema é consultada em tempo real, sem gravá-la como uma escolha manual permanente. A área circular decorativa não entra na leitura por tecnologia assistiva.
 
@@ -45,7 +45,7 @@ As pastas e artes das versões anteriores foram preservadas. O desenvolvimento d
 
 O ZIP enviado pelo usuário foi revisado e comparado com o repositório, sem substituir arquivos por versões anteriores. As artes de Jogar, Sobre e Configurações foram preservadas em `assets/claude/`. Jogar e Sobre usam os sprites em links HTML acessíveis. A engrenagem passou a usar um símbolo SVG com oito dentes iguais, furo circular e proporção fixa, evitando a deformação do recorte rasterizado; o arquivo original foi mantido. `ambiente.js` e `melhorias.css` adicionam raios de luz discretos, brilhos e a apresentação dos sprites de Jogar e Sobre; `transicoes.js` ganhou uma rajada de folhas na cobertura/revelação da próxima tela.
 
-Há 6 brilhos em telas pequenas e 12 em maiores; a rajada usa 8 ou 14 folhas. Os efeitos são CSS, respeitam movimento reduzido, pausam com a aba oculta e não interceptam cliques. Não há espera artificial de vários segundos para mostrar o efeito. As versões anteriores do menu e os personagens permanecem preservados.
+Há 6 brilhos em telas pequenas e 12 em maiores; a rajada usa 16 ou 28 folhas, respectivamente, com contraste reforçado. Os efeitos são CSS, respeitam movimento reduzido, pausam com a aba oculta e não interceptam cliques. Não há espera artificial de vários segundos para mostrar o efeito. As versões anteriores do menu e os personagens permanecem preservados.
 
 O protótipo do ZIP tinha somente o botão Jogar conectado e apontava para a pasta beta excluída. A integração usa os destinos atuais — missões, Sobre e Configurações — e não reintroduz arquivos removidos. O fundo do ZIP apresentava áreas preenchidas/esticadas; foi mantido o cenário limpo já aprovado.
 
@@ -62,7 +62,7 @@ npm install --prefix /tmp/guardiao-validacao playwright-core
 NODE_PATH=/tmp/guardiao-validacao/node_modules GUARDIAO_TEST_URL=http://127.0.0.1:8000/tela-inicial/nova-versao/ node tela-inicial/nova-versao/validacao/transicoes.cjs
 ```
 
-O script usa `/usr/bin/chromium`; para outra instalação, informe `CHROMIUM_PATH`. O jogo continua sem dependências de execução ou processo de build. Os HTMLs usam a versão `transicoes-3` nos recursos alterados para evitar reaproveitar os scripts e estilos anteriores do cache.
+O script usa `/usr/bin/chromium`; para outra instalação, informe `CHROMIUM_PATH`. O jogo continua sem dependências de execução ou processo de build. Os HTMLs usam a versão `folhas-1` no script de transições e nos estilos dos efeitos alterados para evitar reaproveitar os scripts e estilos anteriores do cache.
 
 ## Revisão do diagnóstico de transições
 
@@ -75,3 +75,11 @@ A integração resolve também o conflito com `style.css`, cuja regra global `an
 A seleção de fases usa agora as pinturas originais de `mapa-ilhas-transicao.zip`, preservando os desenhos e os nomes. O código novo e a documentação estão em `../selecao-fases/`. A prévia de recuperação não registra missão como concluída; a integração real tem API separada e progresso salvo. No celular em pé, uma lista legível acompanha o mapa inteiro.
 
 O desenho antigo do colar na aba **Sua missão** foi substituído pela arte de `kai-colar-mochila-itens.zip`, usando o cordão e a folha dourada com as cinco peças. Os arquivos novos ficam em `../colar-remodelado/`. Os outros sprites enviados foram preservados em `../../assets/itens-remodelados/` para as próximas fases.
+
+## Folhas visíveis nas transições
+
+A proposta em `CORRECAO-FOLHAS-para-ChatGPT.md` foi integrada à versão que já contém o mapa e o colar remodelado. As folhas da rajada usam os sprites existentes: 16 de 40–76 px no celular e 28 de 56–112 px em telas maiores, com brilho, saturação e sombra para contrastar com o verde. A mensagem fica acima das folhas.
+
+A animação dura 1300 ms e a cobertura permanece por 1400 ms, evitando interrompê-la na saída. Na chegada, a rajada usa uma camada decorativa própria, sem interceptar toques, que termina mesmo depois que o círculo já abriu. A camada é removida ao final, ao navegar ou quando movimento reduzido é ativado. O modo reduzido continua usando somente fade, sem folhas.
+
+O limite de segurança para navegação circular é de 2600 ms caso o evento CSS não chegue; o fade mantém seu limite anterior. O mapa e o colar continuam usando os arquivos originais já integrados. A validação específica está em `../efeitos-folhas/validacao/folhas.cjs`.

@@ -4,7 +4,7 @@
   const reduceMotion = () => media.matches || document.body.classList.contains('reduce-motion');
   const storageKey = 'guardiao.navigation.circle.v1';
   const panelAnimations = new WeakMap();
-  const CIRCLE_HOLD_MS = 650;
+  const CIRCLE_HOLD_MS = 1400;
   const FADE_HOLD_MS = 80;
   let navigating = false;
   let finishCover;
@@ -23,30 +23,42 @@
   function clearArrival() {
     try { sessionStorage.removeItem(storageKey); } catch { /* Armazenamento opcional. */ }
   }
+  function clearLeafLayers() {
+    document.querySelectorAll('.transition-leaf-layer').forEach(layer => layer.remove());
+  }
+  window.addEventListener('pagehide', clearLeafLayers);
   window.addEventListener('pageshow', event => {
-    if (event.persisted) { removeVeil(); clearArrival(); }
+    if (event.persisted) { removeVeil(); clearArrival(); clearLeafLayers(); }
   });
-  function leafBurst(overlay) {
+  function leafBurst(overlay, { keepAfterReveal = false } = {}) {
     if (reduceMotion() || overlay.classList.contains('is-fade')) return;
-    const count = innerWidth < 651 ? 8 : 14;
+    const compact = innerWidth < 651;
+    const count = compact ? 16 : 28;
     const fragment = document.createDocumentFragment();
     for (let i = 0; i < count; i++) {
       const leaf = document.createElement('span');
       leaf.className = 'transition-burst';
       const angle = i / count * Math.PI * 2;
-      const distance = 120 + Math.random() * 240;
+      const distance = Math.min(innerWidth, 900) * (.18 + Math.random() * .34);
       const properties = {
         '--burst-x': `${Math.cos(angle) * distance}px`,
         '--burst-y': `${Math.sin(angle) * distance * .65}px`,
         '--burst-turn': `${Math.random() * 260 - 130}deg`,
-        '--burst-size': `${18 + Math.random() * 16}px`,
+        '--burst-size': `${(compact ? 40 : 56) + Math.random() * (compact ? 36 : 56)}px`,
         '--sprite-x': `${i % 4 * 100 / 3}%`,
         '--sprite-y': `${Math.floor(i % 8 / 4) * 100}%`
       };
       for (const [name, value] of Object.entries(properties)) leaf.style.setProperty(name, value);
       fragment.append(leaf);
     }
-    overlay.append(fragment);
+    if (keepAfterReveal) {
+      // A abertura do círculo termina antes das folhas. Esta camada decorativa
+      // deixa a rajada terminar sem manter a navegação ou os botões bloqueados.
+      const layer = document.createElement('div');
+      layer.className = 'transition-leaf-layer'; layer.setAttribute('aria-hidden', 'true');
+      layer.append(fragment); document.body.append(layer);
+      setTimeout(() => layer.remove(), 1450);
+    } else overlay.append(fragment);
   }
   function makeVeil(x, y) {
     const overlay = document.createElement('div');
@@ -86,7 +98,7 @@
       requestAnimationFrame(() => requestAnimationFrame(() => {
         if (veil !== arrivalVeil) return;
         if (!arrivalVeil.classList.contains('is-fade')) animateScreen();
-        leafBurst(arrivalVeil);
+        leafBurst(arrivalVeil, { keepAfterReveal: true });
         arrivalVeil.classList.add('is-revealing');
         const circle = arrivalVeil.querySelector('.transition-circle');
         arrivalVeil.addEventListener('animationend', event => {
@@ -111,7 +123,7 @@
     if (destination.pathname === location.pathname && destination.search === location.search) return;
     event.preventDefault();
     if (navigating) return;
-    removeVeil(); navigating = true;
+    removeVeil(); clearLeafLayers(); navigating = true;
     const rect = link.getBoundingClientRect();
     const x = event.detail > 0 ? Math.max(0, Math.min(innerWidth, event.clientX)) : rect.left + rect.width / 2;
     const y = event.detail > 0 ? Math.max(0, Math.min(innerHeight, event.clientY)) : rect.top + rect.height / 2;
@@ -146,7 +158,7 @@
     // Keyframes de transform funcionam sem clip-path e não dependem de um estilo
     // inicial já pintado. O temporizador preserva os links se o CSS falhar.
     veil.classList.add('is-covering');
-    navigationTimer = setTimeout(navigate, departureVeil.classList.contains('is-fade') ? 550 : 1700);
+    navigationTimer = setTimeout(navigate, departureVeil.classList.contains('is-fade') ? 550 : 2600);
   });
 
   function animateTab() {
@@ -165,6 +177,7 @@
   });
   function respectReducedMotion() {
     if (!reduceMotion()) return;
+    clearLeafLayers();
     document.body.classList.remove('screen-entering');
     document.querySelectorAll('[role="tabpanel"]').forEach(panel => panelAnimations.get(panel)?.cancel());
     if (!veil || veil.classList.contains('is-fade')) return;
