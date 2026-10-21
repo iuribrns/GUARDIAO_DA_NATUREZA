@@ -27,6 +27,8 @@ Os dados de fogo, resgates, água, equipamento e posição usam `guardiao.area-a
 
 A sequência de resgate também reutiliza os 12 quadros de abrir a mochila, retirar e usar o kit de `../../assets/itens-remodelados/kai/02_kit_medico.png`, descritos em `assets/kai-resgate.js`. As artes originais continuam intactas. Os testes verificam que as seis poses de retirada da mangueira e as doze do kit aparecem durante as ações reais.
 
+`assets/escadaria.png` acrescenta uma passagem de pedra com musgo entre a clareira e o patamar superior; o sprite é posicionado sobre o cenário para acompanhar o corredor de colisão que liga essas alturas.
+
 Canvas 2D nativo, sem dependências adicionais ou CDN. As artes carregam por caminhos relativos, inclusive no Pages em subpasta. O ciclo pausa quando a aba fica oculta. Movimento reduzido desliga o movimento decorativo do fogo, água, voo e brotos; movimentos e ações solicitados pelo jogador continuam funcionando. Efeitos sonoros sintetizados são opcionais, ativados pelo botão de nota musical. Não há backend, combate, controles de salto, gravidade ou câmera 3D nesta fase.
 
 ## Validar

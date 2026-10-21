@@ -7,7 +7,7 @@
   let water=0,released=false,equipped=false,equipping=0,spraying=false,space=false,waterPointer=null;
   let target=null,route=[],routeGoal=null,selectedGoal='agua',completed=false,clock=0,previous=0,frame=0,toastUntil=0,dirty=false;
   let flora={x:607,y:293},camera={x:640,y:360,scale:1},size={w:1280,h:720},audio=null,sound=false,lastSound=0;
-  let background,inhabitants,fireImage,directionImage,equipmentImage,rescueImage,animator,ready=false,paused=false,saveWarning=false,actionTime=0,rescueAnimal=null;
+  let background,inhabitants,fireImage,directionImage,equipmentImage,rescueImage,stairsImage,animator,ready=false,paused=false,saveWarning=false,actionTime=0,rescueAnimal=null;
   const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches||preferences.reduceMotion;
   let preferences={};try{const saved=JSON.parse(localStorage.getItem('guardiao.horizonte.preferences.v1')||'{}');if(saved&&typeof saved==='object')preferences=saved;}catch{}
   document.documentElement.classList.toggle('large-text',preferences.largeText===true);
@@ -235,11 +235,7 @@
     if(!ready)return;
     const {s,ox,oy}=view();ctx.clearRect(0,0,size.w,size.h);ctx.save();ctx.translate(ox,oy);ctx.scale(s,s);ctx.drawImage(background,0,0,1280,720);
     // Uma segunda escadaria liga a clareira ao patamar da escada pintada.
-    for(let j=0;j<17;j++){
-      const t=j/16,x=933+24*t,y=376-128*t;
-      ctx.fillStyle=j%2?'#a28c64':'#b8a477';ctx.fillRect(x-18,y-5,36,8);
-      ctx.fillStyle='#6f6249';ctx.fillRect(x-18,y+3,36,3);ctx.fillStyle='#d6c092';ctx.fillRect(x-17,y-5,34,1);
-    }
+    ctx.save();ctx.transform(.14,0,.012,.07,880,233);ctx.drawImage(stairsImage,0,0);ctx.restore();
     // Efeitos locais independentes; a interação não reproduz GIF ou vídeo.
     if(!reduced()){
       ctx.strokeStyle='#bcf7ff88';ctx.lineWidth=1.5;
@@ -303,8 +299,8 @@
   window.addEventListener('resize',resize);
   window.GuardiaoAreaAberta=Object.freeze({estado:()=>({ready,clock,player:{...player},flora:{...flora},water,released,equipped,equipping,fires:fires.map(f=>({...f})),animals:animals.map(a=>({...a})),route:route.map(p=>({...p})),completed,paused:stopped(),camera:{...camera},sprite:animator?.current})});
   load();
-  Promise.all([loadImage('assets/floresta.png'),loadImage('assets/habitantes.png'),loadImage('assets/fogo.png'),loadImage('assets/kai-direcoes.png'),loadImage('../../assets/itens-remodelados/kai/01_mangueira.png'),loadImage('../../assets/itens-remodelados/kai/02_kit_medico.png')]).then(async images=>{
-    [background,inhabitants,fireImage,directionImage,equipmentImage,rescueImage]=images;animator=new window.GuardiaoKaiAnimado(document.createElement('div'));await animator.ready;
+  Promise.all([loadImage('assets/floresta.png'),loadImage('assets/habitantes.png'),loadImage('assets/fogo.png'),loadImage('assets/kai-direcoes.png'),loadImage('../../assets/itens-remodelados/kai/01_mangueira.png'),loadImage('../../assets/itens-remodelados/kai/02_kit_medico.png'),loadImage('assets/escadaria.png')]).then(async images=>{
+    [background,inhabitants,fireImage,directionImage,equipmentImage,rescueImage,stairsImage]=images;animator=new window.GuardiaoKaiAnimado(document.createElement('div'));await animator.ready;
     ready=true;flora.x=player.x-35;flora.y=player.y-65;document.body.dataset.gameReady='true';$('loading').hidden=true;
     $('mangueira').setAttribute('aria-pressed',String(equipped));updateHUD();resize();start();
     if(completed)speak('Bom te ver de novo, Kai! A floresta já está segura. Vamos explorar?');
