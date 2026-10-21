@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#193923"><title>Floresta em Chamas · Guardião da Natureza</title>
+  <link rel="icon" href="../../assets/identidade-flora/favicon.ico">
+  <link rel="stylesheet" href="fase.css?v=aberta-1">
+  <script src="../../assets/personagens/kai/animacoes/atlas.js" defer></script>
+  <script src="../personagens/kai/animador.js" defer></script>
+  <script src="assets/kai-direcoes.js" defer></script><script src="assets/kai-equipamento.js" defer></script><script src="assets/kai-resgate.js" defer></script><script src="mundo.js?v=aberta-1" defer></script><script src="fase.js?v=aberta-1" defer></script>
+</head>
+<body>
+<main id="jogo" aria-label="Fase Floresta em Chamas, exploração em área aberta">
+  <canvas id="cenario" tabindex="0" aria-label="Área de exploração. Use WASD ou as setas para andar. E interage; espaço usa a mangueira; B abre a mochila. No celular use o joystick e os botões."></canvas>
+  <section class="mission wood" aria-label="Missões da fase">
+    <h1>Floresta em Chamas</h1>
+    <button class="goal" data-goal="agua"><span class="drop">◆</span><span>Água <strong id="agua-estado">fechada</strong></span><span class="goal-check" id="agua-check">○</span></button>
+    <button class="goal" data-goal="fogo"><span>🔥</span><span>Incêndios: <strong id="incendios">0/8</strong></span><span class="goal-check" id="fogo-check">○</span></button>
+    <button class="goal" data-goal="animal"><span>🐾</span><span>Animais seguros: <strong id="animais">0/3</strong></span><span class="goal-check" id="animal-check">○</span></button>
+    <div class="water"><label for="reserva">💧 Água</label><meter id="reserva" min="0" max="100" value="0">0%</meter><span id="agua-numero">0%</span></div>
+  </section>
+  <div class="top-actions"><button id="som" class="round small" aria-label="Ativar efeitos sonoros" aria-pressed="false">♪</button><button id="pausa" class="round small" aria-label="Pausar jogo">Ⅱ</button></div>
+  <div id="loading" class="loading wood" role="status">Preparando a floresta…</div>
+  <div id="toast" class="toast wood" role="status" aria-live="polite"></div>
+  <aside class="flora-talk wood" id="flora-talk" aria-label="Conversa com Flora"><strong>Flora</strong><p id="fala">Kai, precisamos liberar a água! Siga o brilho azul até o registro vermelho e toque na mão.</p><button id="fechar-fala" aria-label="Fechar fala de Flora">×</button></aside>
+  <div class="hint wood" id="dica" aria-live="polite">Explore a floresta. Toque em uma missão para Flora indicar o caminho.</div>
+  <div class="joystick" id="joystick" tabindex="0" role="group" aria-label="Joystick para mover Kai em todas as direções"><span class="directions" aria-hidden="true">▲<br>◀　▶<br>▼</span><span id="stick"></span><small>MOVER</small></div>
+  <div class="actions"><button id="mangueira" class="round" aria-label="Usar mangueira, segure para apagar fogo" aria-pressed="false"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 37Q4 25 18 26L28 17" fill="none" stroke="#d4ad59" stroke-width="7"/><path d="M17 23L28 12L36 20L25 31Z" fill="#35bded" stroke="#102d4b" stroke-width="3"/><path d="M36 12L43 8M39 18H46M35 24L43 29" stroke="#baf6ff" stroke-width="3" stroke-linecap="round"/></svg><small>ÁGUA</small></button><button id="interagir" class="round" aria-label="Interagir ou resgatar animal"><span aria-hidden="true">✋</span><small>INTERAGIR</small></button><button id="mochila" class="round" aria-label="Abrir mochila"><span aria-hidden="true">🎒</span><small>MOCHILA</small></button></div>
+  <button id="ajuda" class="help wood" aria-label="Pedir ajuda a Flora">Flora, me ajuda!</button>
+</main>
+<dialog id="inventario" class="panel wood" aria-labelledby="inventario-titulo"><h2 id="inventario-titulo">Mochila de Kai</h2><p>Escolha um equipamento para tirar da mochila.</p><button id="equipar" class="equipment"><span>💦</span><strong>Mangueira</strong><small>Apaga os incêndios. Libere o registro para abastecer.</small></button><p class="kit">🌿 Kit de resgate disponível no botão de interação.</p><button data-close="inventario" class="wood button">Voltar à floresta</button></dialog>
+<dialog id="menu-pausa" class="panel wood" aria-labelledby="pausa-titulo"><h2 id="pausa-titulo">Uma pausa na aventura</h2><p>A floresta espera por você.</p><button data-close="menu-pausa" class="wood button">Continuar</button><button id="tela-cheia" class="wood button">Expandir tela</button><button id="recomecar" class="wood button">Recomeçar a fase</button><a href="../../tela-inicial/nova-versao/aventura.html" class="wood button">Voltar ao mapa</a></dialog>
+<dialog id="vitoria" class="panel wood" aria-labelledby="vitoria-titulo"><span class="medal">✦</span><h2 id="vitoria-titulo">A floresta respira de novo!</h2><p>Você apagou os 8 incêndios e resgatou os 3 animais. Kai e Flora devolveram a esperança à floresta.</p><p id="salvo"></p><a href="../../tela-inicial/nova-versao/aventura.html" class="wood button">Ver a floresta no mapa</a><button data-close="vitoria" class="wood button">Continuar explorando</button></dialog>
+</body></html>

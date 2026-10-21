@@ -4,9 +4,15 @@ Jogo em HTML, CSS e JavaScript com foco em celular. O menu, o mapa de seleção 
 
 [Endereço do jogo no Pages](https://iuribrns.github.io/GUARDIAO_DA_NATUREZA/) · [Organização das pastas](docs/ESTRUTURA.md) · [Publicação](docs/PUBLICACAO.md)
 
-A raiz agora contém `index.html`, que abre diretamente o menu. `jogo/` reúne os controles e a futura jogabilidade; `assets/` guarda as artes compartilhadas; `tela-inicial/` mantém as telas existentes; `desenvolvimento/` guarda ferramentas e testes; `docs/` explica a estrutura e a publicação. As pastas anteriores foram preservadas.
+A raiz agora contém `index.html`, que abre diretamente o menu. `jogo/` reúne a primeira fase em área aberta e os controles; `assets/` guarda as artes compartilhadas; `tela-inicial/` mantém as telas existentes; `desenvolvimento/` guarda ferramentas e testes; `docs/` explica a estrutura e a publicação. As pastas anteriores foram preservadas.
 
-## Controles para celular
+## Primeira fase em área aberta
+
+**Jogar → Floresta em Chamas → Entrar na floresta** abre a nova fase em 2D isométrico, baseada na referência. Explore com joystick nos dois eixos, libere a água, equipe a mangueira pela mochila, apague oito incêndios e resgate três animais. Flora acompanha Kai e orienta por diálogos e rotas ao tocar nas missões. Há reservatório, reabastecimento, colisões, câmera para celular e progresso salvo; concluir libera a próxima região no mapa. As fases 2 a 6 continuam em desenvolvimento.
+
+O código e as novas artes ficam em [`jogo/area-aberta/`](jogo/area-aberta/README.md), sem apagar os protótipos anteriores. No computador, use WASD/setas, E para interagir, espaço para água e B para mochila.
+
+## Treino de movimentos anterior
 
 O movimento usa **joystick**, e o botão de pulo mostra **Kai saltando**. Há um treino funcional em **Sobre o jogo → Como jogar**, onde é possível andar e pular com dois dedos ao mesmo tempo. O código reutilizável está em [`jogo/controles/`](jogo/controles/README.md). Esse treino é separado das fases da campanha.
 
@@ -45,7 +51,7 @@ Em **Jogar**, toque na placa ou no terreno de uma região para conhecer sua miss
 
 Cada seleção abre um painel com o aliado, a situação, três objetivos, o equipamento, a recompensa e a duração estimada fornecidos em `paineis-das-fases.zip`. Os personagens alternam poses durante a leitura. As animações respeitam a configuração de movimento reduzido e pausam quando a aba fica oculta.
 
-A recuperação da floresta continua disponível como prévia, separada do progresso real. As seis missões jogáveis ainda estão em desenvolvimento. Detalhes dos arquivos em [tela-inicial/mapa-interativo/README.md](tela-inicial/mapa-interativo/README.md).
+A recuperação da floresta continua disponível como prévia, separada do progresso real. A primeira missão já pode ser jogada em área aberta; as demais estão em desenvolvimento. Detalhes dos arquivos em [tela-inicial/mapa-interativo/README.md](tela-inicial/mapa-interativo/README.md).
 
 ## Ferramentas instaladas
 

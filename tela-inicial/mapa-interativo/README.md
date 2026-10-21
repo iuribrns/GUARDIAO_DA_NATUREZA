@@ -40,3 +40,7 @@ JS
 ## Verificação
 
 `npm test` inclui as verificações de progresso anteriores e `validacao/interacoes.cjs`: todos os dados das seis fases, reabrir painéis, consultar bloqueios, poses que avançam, correntes que se movem e pausam, zoom, arraste, movimento reduzido e operação por toque em 320/390/844 px. `npm run test:build` também executa os testes dos painéis sobre os arquivos de produção.
+
+## Fase em área aberta
+
+O painel da fase 1 tem o botão **Entrar na floresta**, que abre `../../jogo/area-aberta/index.html`. As fases seguintes mantêm o bloqueio de campanha e só mostram informações. A fase jogável salva a conclusão real na mesma chave de progresso do mapa; a prévia continua sem registrar conclusão.

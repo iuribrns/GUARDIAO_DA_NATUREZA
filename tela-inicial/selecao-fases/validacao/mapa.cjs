@@ -24,7 +24,7 @@ const phase = (page, number) => page.locator(`.map-stage [data-phase="${number}"
     assert.equal(await page.locator('.map-stage').getAttribute('data-current-phase'), '1');
     await page.keyboard.press('Escape');
     await phase(page, 1).click();
-    assert.match(await page.locator('#phase-state').textContent(), /desenvolvimento/);
+    assert.match(await page.locator('#phase-state').textContent(), /área aberta/);
     await page.getByRole('button', { name: 'Ver recuperação da floresta' }).click();
     await page.waitForFunction(() => {
       const opacity = Number(getComputedStyle(document.querySelector('.map-restored')).opacity);

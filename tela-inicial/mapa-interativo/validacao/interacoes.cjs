@@ -25,7 +25,7 @@ const clickPhase = (page, number, list = false) => page.locator((list ? '.map-li
         assert.equal(await page.locator('#' + id).textContent(), value, id + ' da fase ' + phase.id);
       }
       assert.deepEqual(await page.locator('#phase-goals li').allTextContents(), phase.objetivos);
-      assert.equal(await page.locator('[data-map-action="start"]').isDisabled(), true, 'painel não simula fase jogável');
+      assert.equal(await page.locator('[data-map-action="start"]').isDisabled(), phase.id !== 1, 'somente a floresta tem fase jogável');
       if (phase.id > 1) assert.match(await page.locator('#phase-state').textContent(), /Conclua a fase/);
       assert.equal(await page.locator('.map-stage').getAttribute('data-current-phase'), '1', 'consultar região bloqueada não muda Kai');
       const original = await page.locator('.npc-sprite').getAttribute('viewBox');

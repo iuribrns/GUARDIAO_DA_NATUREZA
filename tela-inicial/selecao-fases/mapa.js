@@ -74,8 +74,8 @@
       : preview
         ? 'Prévia do mapa. As fases jogáveis estão em desenvolvimento.'
         : phase === 1 && progress.completedFirst
-          ? 'Floresta recuperada. Você pode revisitar esta região quando a fase jogável estiver disponível.'
-          : 'Fase em desenvolvimento. O mapa e a prévia da recuperação já estão disponíveis.';
+          ? 'Floresta recuperada! Entre para revisitar a área aberta e continuar explorando.'
+          : phase === 1 ? 'Explore a floresta em área aberta: libere a água, apague os incêndios e resgate os animais.' : 'Fase em desenvolvimento. O mapa e a prévia da recuperação já estão disponíveis.';
     document.querySelector('[data-map-action="preview"]').hidden = phase !== 1;
     document.querySelector('[data-map-action="exit-preview"]').hidden = preview === null;
     window.GuardiaoPaineis.abrir({ ...phases[phase - 1], available, preview: preview !== null });

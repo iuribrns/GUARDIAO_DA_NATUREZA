@@ -167,12 +167,19 @@
     cropSprite('.equipment-sprite', equipmentFrames[phase.id - 1]);
     cropSprite('.reward-sprite', rewardFrames[phase.id - 1]);
     const start = dialog.querySelector('[data-map-action="start"]');
-    start.textContent = phase.available ? 'Fase em desenvolvimento' : 'Fase bloqueada';
-    start.disabled = true;
+    const playable = phase.available && phase.id === 1;
+    start.textContent = playable ? 'Entrar na floresta' : phase.available ? 'Fase em desenvolvimento' : 'Fase bloqueada';
+    start.disabled = !playable;
+    dialog.querySelector('.map-dialog-note').textContent = phase.id === 1
+      ? 'Explore em área aberta, libere a água, apague os incêndios e resgate os animais. A prévia do mapa é separada da missão jogável.'
+      : 'Esta fase está em desenvolvimento. A prévia demonstra a transformação do mapa e não registra uma missão como concluída.';
     highlight(phase.id, true); setPose(0);
     if (!dialog.open) dialog.showModal();
     dialog.scrollTop = 0; document.body.classList.add('map-panel-open'); updateMotion();
   }
+  dialog.querySelector('[data-map-action="start"]').addEventListener('click', () => {
+    if (selected?.id === 1 && selected.available) location.href = '../../jogo/area-aberta/index.html';
+  });
   function closePanel() {
     if (!dialog.open || dialog.classList.contains('is-closing')) return;
     if (!motionAllowed()) { dialog.close(); return; }
