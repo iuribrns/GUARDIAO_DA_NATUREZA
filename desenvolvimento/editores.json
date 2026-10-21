@@ -1,0 +1,14 @@
+{
+  "tiled": {
+    "version": "1.12.2",
+    "url": "https://github.com/mapeditor/tiled/releases/download/v1.12.2/Tiled-1.12.2_Linux_x86_64.AppImage",
+    "sha256": "5e0edbff61314f41af3c72c21ec006b363cf12047cc9cfb5bbd63a98bca3721c",
+    "release": "https://github.com/mapeditor/tiled/releases/tag/v1.12.2"
+  },
+  "libresprite": {
+    "version": "1.3",
+    "url": "https://github.com/LibreSprite/LibreSprite/releases/download/v1.3/libresprite-v1.3-linux-x86_64.AppImage",
+    "sha256": "fd90bddda8135fe00f4a9a9c8c9ebd48f9b07e8782ab269be5c9efb1a851af30",
+    "release": "https://github.com/LibreSprite/LibreSprite/releases/tag/v1.3"
+  }
+}
