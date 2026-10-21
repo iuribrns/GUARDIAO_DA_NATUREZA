@@ -21,8 +21,7 @@ async function spray(p){
   try{
     const p=await b.newPage({viewport:{width:1280,height:720}});
     p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.status()>=400)errors.push(r.status()+' '+r.url());});
-    await p.goto(base+'aventura.html');await p.waitForFunction(()=>window.GuardiaoPaineis);await p.locator('.map-stage [data-phase="1"]').click();
-    await p.clock.install();await p.getByRole('button',{name:'Entrar na floresta',exact:true}).click();await p.waitForURL('**/jogo/area-aberta/index.html');await ready(p);
+    await p.clock.install();await p.goto(url);await ready(p);
     assert.equal((await state(p)).fires.length,8);assert.equal((await state(p)).animals.length,3);
     await p.evaluate(()=>{window.actionFrames=new Set();new MutationObserver(()=>actionFrames.add(document.body.dataset.kaiActionFrame)).observe(document.body,{attributes:true,attributeFilter:['data-kai-action-frame']});});
     await p.locator('#mangueira').click();assert.match(await p.locator('#fala').textContent(),/água/);assert.equal((await state(p)).water,0,'mangueira não funciona sem água');

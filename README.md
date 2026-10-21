@@ -6,11 +6,13 @@ Jogo em HTML, CSS e JavaScript com foco em celular. O menu, o mapa de seleção 
 
 A raiz agora contém `index.html`, que abre diretamente o menu. `jogo/` reúne a primeira fase em área aberta e os controles; `assets/` guarda as artes compartilhadas; `tela-inicial/` mantém as telas existentes; `desenvolvimento/` guarda ferramentas e testes; `docs/` explica a estrutura e a publicação. As pastas anteriores foram preservadas.
 
-## Primeira fase em área aberta
+## Primeira fase: Floresta Viva
 
-**Jogar → Floresta em Chamas → Entrar na floresta** abre a nova fase em 2D isométrico, baseada na referência. Explore com joystick nos dois eixos, libere a água, equipe a mangueira pela mochila, apague oito incêndios e resgate três animais. Flora acompanha Kai e orienta por diálogos e rotas ao tocar nas missões. Há reservatório, reabastecimento, colisões, câmera para celular e progresso salvo; concluir libera a próxima região no mapa. As fases 2 a 6 continuam em desenvolvimento.
+**Jogar → Floresta em Chamas → Entrar na floresta** abre a nova floresta em 2D isométrico, sem montanhas. Kai começa ao lado de Carlos, conversa com ele e recebe a mangueira e o kit. Depois, apaga oito focos, trata três animais e os acompanha pelas trilhas até Carlos. Cada área queimada volta a ficar verde. Ao retornar para Carlos, Kai recebe e ergue o fragmento do colar, e comemora com Flora.
 
-O código e as novas artes ficam em [`jogo/area-aberta/`](jogo/area-aberta/README.md), sem apagar os protótipos anteriores. No computador, use WASD/setas, E para interagir, espaço para água e B para mochila.
+São **108 quadros novos**: Kai com mangueira em oito direções, caminhada, repouso e premiação; voo, pouso e comemoração de Flora; animais feridos, tratados e em movimento; Carlos, itens, jato, árvores e folhas. Quando Kai fica parado, Flora pousa no ombro. Os balões de natureza desaparecem após a leitura. O código e as artes ficam em [`jogo/floresta-viva/`](jogo/floresta-viva/README.md); o mapa anterior continua preservado em `jogo/area-aberta/`.
+
+Controles: joystick nos dois eixos, água, mão e mochila. No computador: WASD/setas, espaço, E e B. O progresso e o fragmento são salvos neste navegador. As fases 2 a 6 continuam em desenvolvimento.
 
 ## Treino de movimentos anterior
 

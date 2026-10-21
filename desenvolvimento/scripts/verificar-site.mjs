@@ -32,3 +32,11 @@ const kaiFolder=resolve(root,'assets/personagens/kai/animacoes');
 const atlas=JSON.parse(readFileSync(resolve(kaiFolder,'atlas.json'),'utf8'));
 for(const image of Object.values(atlas.images)) assert.ok(existsSync(resolve(kaiFolder,image.file)),'prancha de Kai presente: '+image.file);
 console.log('PASS: '+Object.keys(atlas.frames).length+' quadros de Kai, '+count+' páginas, entrada direta do jogo, caminhos relativos, controles e arte do pulo presentes, sem dependências ou dados Git no site.');
+
+const forestFolder=resolve(root,'jogo/floresta-viva/assets');
+const forestAtlas=JSON.parse(readFileSync(resolve(forestFolder,'atlas.json'),'utf8'));
+let forestFrames=0;
+for(const sheet of Object.values(forestAtlas.sheets)){assert.ok(existsSync(resolve(forestFolder,sheet.file)),'prancha da floresta presente: '+sheet.file);forestFrames+=sheet.frames.length;}
+assert.equal(forestFrames,108);
+for(const file of ['floresta-queimada.png','floresta-recuperada.png'])assert.ok(existsSync(resolve(forestFolder,file)));
+console.log('PASS: floresta nova com 108 quadros, cenários queimado/recuperado e entrada pelo mapa.');

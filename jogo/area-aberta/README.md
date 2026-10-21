@@ -34,3 +34,7 @@ Canvas 2D nativo, sem dependências adicionais ou CDN. As artes carregam por cam
 ## Validar
 
 Na raiz: `npm run dev`, depois `node jogo/area-aberta/validacao/fase.cjs`. A suíte também participa de `npm test` e `npm run test:build`. Testa missão real completa, caminho sem teleporte, água, equipamento, pausa, recuperação do progresso, passagem para o mapa, celular em 320/390/844 px, toque vertical, movimento reduzido, armazenamento bloqueado e falha de carregamento.
+
+## Versão anterior preservada
+
+O botão principal do mapa agora abre `../floresta-viva/`, com o novo cenário de floresta, abertura com Carlos e novas animações. Esta pasta mantém o protótipo anterior disponível por endereço direto.

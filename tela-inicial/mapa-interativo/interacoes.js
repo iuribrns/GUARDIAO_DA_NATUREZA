@@ -178,7 +178,7 @@
     dialog.scrollTop = 0; document.body.classList.add('map-panel-open'); updateMotion();
   }
   dialog.querySelector('[data-map-action="start"]').addEventListener('click', () => {
-    if (selected?.id === 1 && selected.available) location.href = '../../jogo/area-aberta/index.html';
+    if (selected?.id === 1 && selected.available) location.href = '../../jogo/floresta-viva/index.html';
   });
   function closePanel() {
     if (!dialog.open || dialog.classList.contains('is-closing')) return;

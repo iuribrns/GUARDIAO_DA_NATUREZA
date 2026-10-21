@@ -43,4 +43,4 @@ JS
 
 ## Fase em área aberta
 
-O painel da fase 1 tem o botão **Entrar na floresta**, que abre `../../jogo/area-aberta/index.html`. As fases seguintes mantêm o bloqueio de campanha e só mostram informações. A fase jogável salva a conclusão real na mesma chave de progresso do mapa; a prévia continua sem registrar conclusão.
+O painel da fase 1 tem o botão **Entrar na floresta**, que abre `../../jogo/floresta-viva/index.html`. As fases seguintes mantêm o bloqueio de campanha e só mostram informações. A fase jogável salva a conclusão real na mesma chave de progresso do mapa; a prévia continua sem registrar conclusão.

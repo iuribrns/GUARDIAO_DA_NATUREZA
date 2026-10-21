@@ -8,7 +8,8 @@ A entrada pública é `index.html`, na raiz. Ela abre o menu atual em `tela-inic
 | `assets/` | Artes compartilhadas, personagens, itens e identidade da Flora |
 | `assets/interface/` | Imagens dos controles; inclui Kai pulando |
 | `jogo/` | Fase em área aberta, renderizador de Kai e controles |
-| `jogo/area-aberta/` | Floresta em Chamas jogável em 2D isométrico, artes e testes |
+| `jogo/floresta-viva/` | Nova floresta, encontro com Carlos, 108 quadros, resgates e fragmento do colar |
+| `jogo/area-aberta/` | Primeira versão preservada, com suas artes e testes |
 | `jogo/controles/` | Joystick, pulo, ação e área de treino |
 | `tela-inicial/nova-versao/` | Menu atual, Configurações, Sobre e entrada do mapa |
 | `tela-inicial/menu-vivo/` | Folhas, personagens interativos e aparência dos painéis |

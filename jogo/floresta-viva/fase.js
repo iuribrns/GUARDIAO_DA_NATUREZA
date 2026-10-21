@@ -1,0 +1,341 @@
+'use strict';
+(() => {
+  const $=id=>document.getElementById(id),W=window.FlorestaMundo,canvas=$('cenario'),ctx=canvas.getContext('2d');
+  const KEY='guardiao.floresta-viva.v2',MAP='guardiao.mapa.progresso.v1',ATLAS=window.GuardiaoFlorestaAtlas;
+  const player={x:286,y:260,direction:0,distance:0,idle:0,moving:false};
+  const flora={x:259,y:190,mode:'voando',elapsed:0};
+  const stick={x:0,y:0,id:null},keys=new Set(),sprites=new window.FlorestaSprites();
+  const directions=[[1,0],[.707,-.707],[0,-1],[-.707,-.707],[-1,0],[-.707,.707],[0,1],[.707,.707]];
+  let fires=W.fires.map(f=>({...f,life:1})),animals=W.animals.map(a=>({...a,stage:'ferido',position:{x:a.x,y:a.y},route:[],distance:0}));
+  let ready=false,uiTime=0,clock=0,last=0,raf=0,itemsGiven=false,released=false,water=0,equipped=false,equipping=0;
+  let completed=false,stage='abertura',introIndex=0,introDeadline=0,handoff=0,rewardTime=0,rewardStarted=false;
+  let route=[],routeGoal=null,spraying=false,waterPointer=null,target=null,healing=null,healTime=0;
+  let environment,legacyHose,legacyKit,dirty=false,saveWarning=false,sound=false,audio=null,lastSound=0;
+  let messageUntil=0,hintUntil=0,toastUntil=0,lastHint='',viewport={w:innerWidth,h:innerHeight},camera={x:640,y:360,scale:1};
+  let preferences={};try{const p=JSON.parse(localStorage.getItem('guardiao.horizonte.preferences.v1')||'{}');if(p&&typeof p==='object')preferences=p;}catch{}
+  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches||preferences.reduceMotion===true;
+  document.documentElement.classList.toggle('large-text',preferences.largeText===true);
+  const intro=[
+    'Bem-vindos, Kai e Flora! Esta é a nossa floresta. Os incêndios deixaram os animais feridos e assustados. Precisamos cuidar deles juntos.',
+    'Vou entregar uma mangueira com reservatório, um kit de resgate e os equipamentos da mochila. Abra o registro vermelho perto da ponte para liberar a água.',
+    'Apague os oito focos. Depois, use o kit nos três animais. Eles voltarão pelas trilhas até mim; vou recebê-los em segurança aqui na cabana.',
+    'Quando a floresta estiver recuperada, volte para conversar comigo. Um fragmento do colar espera por um guardião que cuide da natureza. Vamos começar?'
+  ];
+  function load(){
+    try{
+      const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s?.version!==2)return;
+      itemsGiven=s.itemsGiven===true;released=itemsGiven&&s.released===true;equipped=itemsGiven&&s.equipped===true;
+      water=released&&Number.isFinite(s.water)?Math.max(0,Math.min(100,s.water)):0;
+      if(itemsGiven&&Array.isArray(s.fires)&&s.fires.length===8)fires.forEach((f,i)=>{f.life=Number.isFinite(s.fires[i])?Math.max(0,Math.min(1,s.fires[i])):1;});
+      if(itemsGiven&&Number.isFinite(s.x)&&Number.isFinite(s.y)&&W.walkable(s))Object.assign(player,{x:s.x,y:s.y});
+      for(const a of animals){const saved=s.animals?.find?.(v=>v.id===a.id);if(!saved||!a.fires.every(id=>fires[id].life===0))continue;
+        if(saved.stage==='seguro'){a.stage='seguro';a.position={...a.home};}
+        else if(saved.stage==='voltando'){a.stage='voltando';if(saved.position&&Number.isFinite(saved.position.x)&&Number.isFinite(saved.position.y)&&W.walkable(saved.position))a.position={...saved.position};a.route=homeRoute(a);}
+      }
+      completed=s.completed===true&&released&&fires.every(f=>f.life===0)&&animals.every(a=>a.stage==='seguro');
+      if(itemsGiven)stage='explorando';
+    }catch{}
+  }
+  function save(){
+    try{localStorage.setItem(KEY,JSON.stringify({version:2,itemsGiven,released,equipped,water,x:player.x,y:player.y,fires:fires.map(f=>f.life),animals:animals.map(a=>({id:a.id,stage:a.stage,position:{...a.position}})),completed}));dirty=false;}
+    catch{if(!saveWarning){saveWarning=true;toast('O navegador não permitiu salvar. Você pode continuar nesta aba.');}}
+  }
+  function toast(text){$('toast').textContent=text;toastUntil=uiTime+4.5;}
+  function speak(text,speaker='Flora'){
+    $('falante').textContent=speaker;$('fala').textContent=text;$('flora-talk').hidden=false;$('flora-talk').classList.remove('is-leaving');
+    messageUntil=uiTime+Math.max(5,Math.min(11,text.length/19+2));
+  }
+  function hint(text,force=false){if(text!==lastHint||force){lastHint=text;$('dica').textContent=text;$('dica').hidden=false;hintUntil=uiTime+6;}}
+  function soundEffect(freq=650,duration=.12){
+    if(!sound||!audio)return;const volume=Number.isFinite(preferences.effectsVolume)?Math.max(0,Math.min(100,preferences.effectsVolume))/100:.6;if(!volume)return;
+    const o=audio.createOscillator(),g=audio.createGain();o.frequency.value=freq;g.gain.setValueAtTime(volume*.04,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+duration);o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+duration);
+  }
+  const distance=p=>W.distance(player,p),near=(p,r)=>distance(p)<r;
+  const paused=()=>document.hidden||['inventario','menu-pausa','vitoria'].some(id=>$(id).open);
+  const locked=()=>!ready||paused()||$('conversa').open||stage==='entrega'||stage==='recompensa';
+  function neutral(){keys.clear();stick.x=stick.y=0;stick.id=null;spraying=false;waterPointer=null;$('stick').style.transform='';$('mangueira').classList.remove('is-held');}
+  function openDialog(id){neutral();route=[];routeGoal=null;$(id).showModal();}
+  function lockControls(){document.body.dataset.stage=stage;document.querySelectorAll('.goal,.actions button,#ajuda').forEach(b=>{b.disabled=!itemsGiven||stage==='entrega'||stage==='recompensa';});}
+  function showIntro(){
+    neutral();route=[];stage='abertura';introIndex=0;$('flora-talk').hidden=true;introLine();$('conversa').showModal();lockControls();
+  }
+  function introLine(){
+    $('conversa-texto').textContent=intro[introIndex];$('conversa-pagina').textContent=(introIndex+1)+' / '+intro.length;
+    $('conversa-avancar').textContent=introIndex===intro.length-1?'Receber equipamentos':'Continuar';introDeadline=uiTime+14;
+    cropDOM($('retrato-carlos'),'carlos',introIndex===1?3:introIndex===3?7:2,90);
+  }
+  function advanceIntro(){
+    if(introIndex<intro.length-1){introIndex++;introLine();return;}
+    $('conversa').close();stage='entrega';handoff=1.8;lockControls();$('cinema').hidden=false;$('cinema-texto').textContent='Carlos entrega a mangueira e o kit de resgate';
+  }
+  function grant(){
+    itemsGiven=true;equipped=true;stage='explorando';$('cinema').hidden=true;dirty=true;
+    toast('Mangueira e kit de resgate recebidos!');save();lockControls();speak('Tudo pronto, Kai! Toque na missão de água e eu te mostro o caminho do registro.');soundEffect(780,.2);
+  }
+  const goalsDone=()=>released&&fires.every(f=>f.life===0)&&animals.every(a=>a.stage==='seguro');
+  function getGoal(type){
+    if(type==='carlos')return {x:286,y:260,kind:'carlos'};
+    if(type==='agua')return {x:395,y:385,kind:'agua'};
+    if(type==='fogo')return fires.filter(f=>f.life>0).sort((a,b)=>distance(a)-distance(b))[0];
+    return animals.filter(a=>a.stage==='ferido').sort((a,b)=>distance(a)-distance(b))[0];
+  }
+  function guide(type){
+    if(locked())return;
+    if(!itemsGiven){speak('Antes de partir, vamos conversar com Carlos e receber os equipamentos.');return;}
+    let point=getGoal(type);
+    if(!point){speak(type==='animal'?'Os animais tratados estão a caminho de Carlos. Vamos acompanhá-los até o abrigo!':'Todos os focos foram apagados. Vamos cuidar dos animais e voltar para Carlos.');return;}
+    if(type==='fogo'&&(!released||water<5)){point=getGoal('agua');speak('Vamos ao registro para liberar a água ou reabastecer a mochila.');}
+    else if(type==='carlos')speak(goalsDone()?'Carlos está esperando com o fragmento do colar. Vamos voltar à cabana!':'Vamos conversar com Carlos na cabana.');
+    else if(type==='animal')speak('O animal precisa de cuidados. Apague o fogo ao redor e use a mão para tratar os ferimentos com o kit.');
+    else if(type==='agua')speak('Siga comigo! O registro vermelho fica antes da ponte. Chegue perto e toque na mão.');
+    else speak('Vou indicar a trilha. Perto do incêndio, segure o botão da mangueira.');
+    route=W.route(player,point);routeGoal={...point};
+  }
+  function equip(){if(!itemsGiven){speak('Carlos vai entregar os equipamentos antes da missão.');return;}equipped=true;equipping=.65;dirty=true;$('mangueira').setAttribute('aria-pressed','true');speak('Mangueira equipada. Segure o botão de água perto do fogo.');}
+  function beginWater(){
+    if(locked()||!itemsGiven)return;if(!released){speak('Precisamos abrir o registro vermelho para liberar a água. Toque na missão de água.');return;}
+    if(water<=0){speak('A água acabou! Volte ao registro para reabastecer.');return;}
+    if(!equipped||player.idle>2.5)equip();spraying=true;route=[];routeGoal=null;$('mangueira').classList.add('is-held');
+  }
+  function homeRoute(a){const points=W.route(a.position,a.home);points.push({...a.home});return points;}
+  function interact(){
+    if(locked())return;
+    if(near({x:245,y:245},87)){
+      if(!itemsGiven){showIntro();return;}
+      if(goalsDone()&&!completed){startReward();return;}
+      speak(completed?'Obrigado, Kai! O fragmento é seu, e a floresta está segura.':animals.some(a=>a.stage==='voltando')?'Estou recebendo os animais. Acompanhe os que ainda estão na trilha e cuide dos focos restantes.':'Use a mangueira nos focos, trate os animais com o kit e traga todos para o abrigo. Quando terminar, venha buscar o fragmento do colar.','Carlos');return;
+    }
+    if(near({x:395,y:385},83)){
+      if(!itemsGiven)return;released=true;water=100;dirty=true;save();toast('Registro aberto · água liberada');speak('A água está pronta! Agora podemos apagar o fogo e abrir caminho para os resgates.');soundEffect(740,.2);return;
+    }
+    const a=animals.filter(a=>a.stage==='ferido'&&near(a,92)).sort((a,b)=>distance(a)-distance(b))[0];
+    if(a){
+      if(a.fires.some(id=>fires[id].life>0)){speak('Ainda há fogo perto deste animal. Primeiro apague as chamas para tratá-lo em segurança.');return;}
+      if(healing)return;healing=a;healTime=1.6;a.stage='tratando';route=[];routeGoal=null;player.direction=a.x<player.x?4:0;
+      speak('Vamos cuidar desse ferimento com o kit. Eu fico perto para acalmar nosso novo amigo!');return;
+    }
+    speak('Chegue perto de Carlos, do registro ou de um animal e toque na mão. As missões também mostram o caminho.');
+  }
+  function startReward(){
+    neutral();route=[];routeGoal=null;rewardStarted=true;rewardTime=0;stage='recompensa';lockControls();
+    $('cinema').hidden=false;$('cinema-texto').textContent='Carlos entrega o fragmento da floresta';
+    speak('Você devolveu a vida à floresta, Kai. Receba este fragmento do colar: ele representa o cuidado com todos os seres vivos.','Carlos');
+  }
+  function finishReward(){
+    completed=true;stage='concluido';dirty=true;save();
+    let saved=true;try{
+      const old=JSON.parse(localStorage.getItem(MAP)||'null');localStorage.setItem(MAP,JSON.stringify({...old,completedFirst:true,current:2}));
+      const oldShards=JSON.parse(localStorage.getItem('guardiao.colar.fragmentos.v1')||'[]');const shards=Array.isArray(oldShards)?oldShards.filter(n=>Number.isInteger(n)&&n>=1&&n<=6):[];
+      localStorage.setItem('guardiao.colar.fragmentos.v1',JSON.stringify([...new Set([...shards,1])]));
+    }catch{saved=false;}
+    $('cinema').hidden=true;$('salvo').textContent=saved?'Fragmento recebido! Rio Poluído liberado no mapa. Progresso salvo neste navegador.':'Fragmento recebido nesta aba. O navegador não permitiu salvar o progresso.';
+    $('vitoria').showModal();soundEffect(980,.4);lockControls();
+  }
+  function direction(dx,dy){return (Math.round(-Math.atan2(dy,dx)/(Math.PI/4))+8)%8;}
+  function canMove(p){return W.walkable(p)&&!fires.some(f=>f.life>0&&W.distance(p,f)<24);}
+  function move(dx,dy){
+    const steps=Math.max(1,Math.ceil(Math.hypot(dx,dy)/2));let moved=0;
+    for(let i=0;i<steps;i++){const old={x:player.x,y:player.y},x=player.x+dx/steps,y=player.y+dy/steps;if(canMove({x,y})){player.x=x;player.y=y;}else if(canMove({x,y:player.y}))player.x=x;else if(canMove({x:player.x,y}))player.y=y;moved+=W.distance(old,player);}
+    if(moved>.01){player.distance+=moved;player.direction=direction(dx,dy);player.idle=0;dirty=true;}return moved;
+  }
+  function updateAnimals(dt){
+    for(const a of animals){
+      if(a.stage!=='voltando')continue;
+      while(a.route.length&&W.distance(a.position,a.route[0])<2.5)a.route.shift();
+      if(!a.route.length){a.stage='seguro';a.position={...a.home};a.arrivedAt=uiTime;dirty=true;save();toast(a.name+' chegou em segurança até Carlos!');speak('Já estou cuidando deste animal. Obrigado pela ajuda!','Carlos');soundEffect(840,.18);continue;}
+      const next=a.route[0],d=W.distance(a.position,next),step=Math.min(d,91*dt);a.facingRight=next.x>a.position.x;
+      a.position.x+=(next.x-a.position.x)/d*step;a.position.y+=(next.y-a.position.y)/d*step;a.distance+=step;
+    }
+  }
+  function updateFlora(dt){
+    flora.elapsed+=dt;
+    if(stage==='recompensa'){flora.mode='comemorando';flora.x+=(player.x+36-flora.x)*Math.min(1,dt*5);flora.y+=(player.y-78-flora.y)*Math.min(1,dt*5);return;}
+    const resting=!player.moving&&!spraying&&!healing&&equipping===0&&stage!=='entrega'&&player.idle>2.5;
+    if(resting&&flora.mode==='voando'){flora.mode='aproximando';flora.elapsed=0;}
+    if(!resting&&['aproximando','pousando','ombro'].includes(flora.mode)){flora.mode='decolando';flora.elapsed=0;}
+    const shoulder={x:player.x+(player.direction>=3&&player.direction<=5?15:-15),y:player.y-42};
+    if(['aproximando','pousando','ombro'].includes(flora.mode)){
+      flora.x+=(shoulder.x-flora.x)*Math.min(1,dt*5);flora.y+=(shoulder.y-flora.y)*Math.min(1,dt*5);
+      if(flora.mode==='aproximando'&&W.distance(flora,shoulder)<2){flora.mode='pousando';flora.elapsed=0;}
+      if(flora.mode==='pousando'&&flora.elapsed>.45){flora.mode='ombro';flora.elapsed=0;}
+      if(flora.mode==='ombro')Object.assign(flora,shoulder);
+    }else{
+      const next=route[0],lead=next?{x:(next.x-player.x)/Math.max(1,W.distance(player,next)),y:(next.y-player.y)/Math.max(1,W.distance(player,next))}:{x:-.5,y:0};
+      const to=healing?{x:healing.x-15,y:healing.y-60}:{x:player.x+lead.x*52,y:player.y-71+lead.y*25};
+      flora.x+=(to.x-flora.x)*Math.min(1,dt*5);flora.y+=(to.y-flora.y)*Math.min(1,dt*5);
+      if(flora.mode==='decolando'&&flora.elapsed>.3){flora.mode='voando';flora.elapsed=0;}
+    }
+  }
+  function update(dt){
+    clock+=dt;equipping=Math.max(0,equipping-dt);
+    if(stage==='entrega'){handoff=Math.max(0,handoff-dt);player.idle+=dt;if(handoff===0)grant();updateFlora(dt);return;}
+    if(stage==='recompensa'){rewardTime+=dt;player.moving=false;updateFlora(dt);if(rewardTime>2)$('cinema-texto').textContent=rewardTime<4?'O fragmento da floresta é seu!':'Kai e Flora celebram a vida que voltou!';if(rewardTime>=6.5)finishReward();return;}
+    let dx=stick.x+Number(keys.has('d')||keys.has('arrowright'))-Number(keys.has('a')||keys.has('arrowleft'));
+    let dy=stick.y+Number(keys.has('s')||keys.has('arrowdown'))-Number(keys.has('w')||keys.has('arrowup'));
+    if(dx||dy){route=[];routeGoal=null;}else if(route.length){while(route.length&&W.distance(player,route[0])<4)route.shift();if(route.length){const d=W.distance(player,route[0]);dx=(route[0].x-player.x)/d;dy=(route[0].y-player.y)/d;}else{routeGoal=null;toast('Você chegou. Use o botão da mão ou da mangueira.');}}
+    const len=Math.hypot(dx,dy);if(len>1){dx/=len;dy/=len;}
+    const travelled=healing||equipping>0?0:move(dx*116*dt,dy*116*dt);player.moving=travelled>.01;
+    if(!player.moving)player.idle+=dt;if(route.length&&!travelled&&len>0){route=[];routeGoal=null;}
+    if(released&&near({x:395,y:385},73)&&water<100){water=Math.min(100,water+35*dt);dirty=true;}
+    target=null;
+    if(spraying&&itemsGiven&&released&&equipped&&water>0&&equipping===0&&!healing){
+      target=fires.filter(f=>f.life>0&&near(f,155)).sort((a,b)=>distance(a)-distance(b))[0]||null;
+      water=Math.max(0,water-4*dt);dirty=true;
+      if(target){player.direction=direction(target.x-player.x,target.y-player.y);target.life=Math.max(0,target.life-.36*dt);if(target.life===0){target.restoredAt=uiTime;save();toast('Incêndio apagado · a floresta está voltando a crescer!');soundEffect(760,.16);}}
+      if(uiTime-lastSound>.2){lastSound=uiTime;soundEffect(1200+Math.sin(uiTime*15)*170,.035);}
+    }
+    if(healing){healTime=Math.max(0,healTime-dt);if(healTime===0){healing.stage='voltando';healing.route=homeRoute(healing);toast(healing.name+' tratado. A caminho de Carlos!');healing=null;dirty=true;save();}}
+    updateAnimals(dt);updateFlora(dt);updateHUD();contextHint();
+  }
+  function updateHUD(){
+    $('agua-estado').textContent=released?'liberada':'fechada';$('agua-check').textContent=released?'✓':'○';$('incendios').textContent=fires.filter(f=>f.life===0).length+'/8';$('animais').textContent=animals.filter(a=>a.stage==='seguro').length+'/3';
+    $('fogo-check').textContent=fires.every(f=>f.life===0)?'✓':'○';$('animal-check').textContent=animals.every(a=>a.stage==='seguro')?'✓':'○';$('reserva').value=water;$('agua-numero').textContent=Math.floor(water)+'%';
+    const wasHidden=$('voltar-carlos').hidden;$('voltar-carlos').hidden=!goalsDone()||completed;
+    if(wasHidden&&!$('voltar-carlos').hidden){speak('Todos estão seguros e a floresta está se recuperando! Vamos conversar com Carlos para receber o fragmento do colar.');toast('Objetivos completos · volte para Carlos');}
+  }
+  function contextHint(){
+    let t='Toque numa missão para Flora indicar o caminho.';
+    if(near({x:245,y:245},87))t=goalsDone()&&!completed?'Toque na mão para receber o fragmento do colar de Carlos.':'Toque na mão para conversar com Carlos.';
+    else if(near({x:395,y:385},83))t=released?'Fique perto do registro para reabastecer.':'Toque na mão para abrir o registro vermelho.';
+    else if(animals.some(a=>a.stage==='ferido'&&near(a,92)))t='Use a mão para tratar o animal depois de apagar o fogo ao redor.';
+    else if(fires.some(f=>f.life>0&&near(f,155)))t=water<=0?'Volte ao registro para encher a mochila.':'Segure ÁGUA para apagar as chamas.';
+    if(healing)t='Tratando o ferimento com o kit de resgate…';
+    if(equipping>0)t='Kai está tirando a mangueira da mochila…';hint(t);
+  }
+  function expire(){
+    if($('toast').textContent&&uiTime>toastUntil)$('toast').textContent='';
+    if(!$('flora-talk').hidden&&uiTime>messageUntil){$('flora-talk').classList.add('is-leaving');if(uiTime>messageUntil+.3)$('flora-talk').hidden=true;}
+    if(!$('dica').hidden&&uiTime>hintUntil)$('dica').hidden=true;
+    if($('conversa').open&&uiTime>introDeadline)advanceIntro();
+  }
+  function view(){
+    const cinematic=stage==='recompensa'||stage==='concluido'&&$('vitoria').open;
+    const zoom=cinematic?1+.8*(reduced()?1:Math.min(1,rewardTime)):1;
+    const s=camera.scale*zoom,hw=viewport.w/(2*s),hh=viewport.h/(2*s),focusY=player.y-(cinematic?25:0);
+    camera.x=hw>=640?640:Math.max(hw,Math.min(1280-hw,player.x));camera.y=hh>=360?360:Math.max(hh,Math.min(720-hh,focusY));
+    return {s,ox:viewport.w/2-camera.x*s,oy:viewport.h/2-camera.y*s};
+  }
+  function resize(){const r=Math.min(devicePixelRatio||1,2);viewport={w:innerWidth,h:innerHeight};canvas.width=Math.round(viewport.w*r);canvas.height=Math.round(viewport.h*r);ctx.setTransform(r,0,0,r,0,0);camera.scale=Math.max(viewport.w/1280,viewport.h/720);draw();}
+  function shadow(x,y,r=14){ctx.fillStyle='#183e2455';ctx.beginPath();ctx.ellipse(x,y+1,r,5,0,0,Math.PI*2);ctx.fill();}
+  function ring(x,y,color='#d3ec9b',r=19){ctx.strokeStyle=color;ctx.lineWidth=1.6;ctx.beginPath();ctx.ellipse(x,y,r,r*.4,0,0,Math.PI*2);ctx.stroke();}
+  function label(text,x,y){ctx.font='bold 11px system-ui';ctx.textAlign='center';const w=ctx.measureText(text).width+15;ctx.fillStyle='#f4f1d9ef';ctx.strokeStyle='#6c8a4c';ctx.lineWidth=1.3;ctx.beginPath();ctx.roundRect(x-w/2,y-17,w,23,9);ctx.fill();ctx.stroke();ctx.fillStyle='#36502c';ctx.fillText(text,x,y-2);}
+  function legacy(image,frames,index,x,y,height,flip){const f=frames[index],[sx,sy,sw,sh]=f.bounds,scale=height/342;ctx.save();ctx.translate(x,y);if(flip)ctx.scale(-1,1);ctx.drawImage(image,sx,sy,sw,sh,(sx-f.pivot[0])*scale,(sy-f.pivot[1])*scale,sw*scale,sh*scale);ctx.restore();}
+  function drawPlayer(){
+    shadow(player.x,player.y);const flip=player.direction>=3&&player.direction<=5;
+    let name='kai-repouso',index=0;
+    if(stage==='recompensa'||stage==='concluido'&&$('vitoria').open){
+      index=stage==='concluido'?6:Math.min(7,Math.floor(rewardTime/6.5*8));name='kai-recompensa';sprites.draw(ctx,name,index,player.x,player.y-(index===7&&!reduced()?Math.abs(Math.sin(uiTime*6))*4:0),65);
+    }else if(healing){index=Math.min(11,Math.floor((1.6-healTime)/1.6*12));name='resgate';legacy(legacyKit,window.GuardiaoKaiResgate,index,player.x,player.y,62,flip);}
+    else if(equipping>0){index=Math.min(5,Math.floor((.65-equipping)/.65*6));name='equipar';legacy(legacyHose,window.GuardiaoKaiEquipamento,index,player.x,player.y,62,flip);}
+    else if(player.moving&&itemsGiven){
+      name='kai-caminhada';index=player.direction*2+Math.floor(player.distance/20)%2;
+      sprites.draw(ctx,name,index,player.x,player.y,63);
+    }else if(equipped&&(spraying||player.idle<2.5)){
+      name='kai-mangueira';index=player.direction*2+(uiTime%3.8>3.45?1:0);sprites.hose(ctx,player.direction,index%2,player.x,player.y,63+(reduced()?0:Math.sin(uiTime*2)*.35));
+    }else{
+      const dir=player.direction,base=dir===2?2:dir>=3&&dir<=5?4:dir===6?6:0;index=base+(!reduced()&&uiTime%4.7>4.48?1:0);
+      sprites.draw(ctx,name,index,player.x,player.y,63+(reduced()?0:Math.sin(uiTime*1.7)*.35));
+    }
+    document.body.dataset.kaiSprite=name+':'+index;
+    if(completed&&name!=='kai-recompensa')sprites.item(ctx,2,player.x,player.y-35,7);
+    if(healing){ring(player.x,player.y,'#d1f1a8',23);sprites.item(ctx,1,player.x+(flip?-20:20),player.y-26,12);}
+  }
+  function drawAnimal(a){
+    const p=a.position;shadow(p.x,p.y,a.id==='passaro'?8:13);let frame;
+    if(a.stage==='ferido')frame=!reduced()&&uiTime%4>3.7?1:0;
+    else if(a.stage==='tratando')frame=2;
+    else if(a.stage==='voltando')frame=4+Math.floor(a.distance/12)%4;
+    else frame=3;
+    sprites.draw(ctx,a.id,frame,p.x,p.y-(a.stage==='voltando'&&a.id==='passaro'?11:0),a.height,{flip:a.stage==='voltando'&&a.facingRight});
+    if(a.stage==='ferido'){ring(p.x,p.y,'#e8c68a',15);if(near(a,105))label(a.name+' · precisa de cuidados',p.x,p.y-a.height-10);}
+    if(a.stage==='tratando'){ring(p.x,p.y,'#b8e58c',22);sprites.draw(ctx,'natureza',6,p.x+15,p.y-14,13);}
+    if(a.stage==='voltando'&&near(p,130))label('Indo até Carlos',p.x,p.y-a.height-10);
+    if(a.stage==='seguro'&&uiTime-(a.arrivedAt??-5)<3)label('Em segurança! ✓',p.x,p.y-a.height-10);
+  }
+  function drawFlora(){
+    let frame,height=37;
+    if(flora.mode==='ombro'){frame=!reduced()&&uiTime%4.5>4.25?9:8;height=25;}
+    else if(flora.mode==='pousando'){frame=flora.elapsed<.23?6:7;height=31;}
+    else if(flora.mode==='comemorando'){frame=10+Math.floor(uiTime*4)%2;height=39;}
+    else frame=reduced()?2:Math.floor(uiTime*9)%6;
+    sprites.draw(ctx,'flora',frame,flora.x,flora.y+(reduced()||flora.mode==='ombro'?0:Math.sin(uiTime*5)*1.5),height,{flip:player.direction>=3&&player.direction<=5});
+    document.body.dataset.floraState=flora.mode;document.body.dataset.floraFrame=String(frame);
+  }
+  function drawCarlos(){
+    const receiving=animals.some(a=>a.stage==='seguro'&&uiTime-(a.arrivedAt??-5)<2);let pose;
+    if(stage==='entrega')pose=3;else if(stage==='recompensa')pose=rewardTime<1.8?5:6;else if($('conversa').open)pose=introIndex===1?3:introIndex===3?7:2;else pose=receiving?6:!reduced()&&uiTime%5>4.7?1:0;
+    shadow(245,245);sprites.draw(ctx,'carlos',pose,245,245,68);if(stage==='explorando'&&near({x:245,y:245},100))label(goalsDone()&&!completed?'Carlos · receber fragmento':'Carlos · conversar',245,166);
+  }
+  function draw(){
+    if(!ready)return;const{s,ox,oy}=view();ctx.clearRect(0,0,viewport.w,viewport.h);ctx.save();ctx.translate(ox,oy);ctx.scale(s,s);
+    environment.ground(ctx,fires,uiTime,reduced());
+    if(route.length){ctx.strokeStyle='#f9e9a799';ctx.lineWidth=2;ctx.setLineDash([3,9]);ctx.beginPath();ctx.moveTo(player.x,player.y);route.forEach(p=>ctx.lineTo(p.x,p.y));ctx.stroke();ctx.setLineDash([]);}
+    if(routeGoal)ring(routeGoal.x,routeGoal.y,'#d6eeb1',24+(reduced()?0:Math.sin(uiTime*4)*2));
+    const actors=[{y:245,draw:drawCarlos},...fires.map(f=>({y:f.y,draw:()=>environment.flame(ctx,f,uiTime,reduced())})),...animals.map(a=>({y:a.position.y,draw:()=>drawAnimal(a)})),...W.trees.map(t=>({y:t.y,draw:()=>environment.tree(ctx,t,uiTime,reduced())})),{y:player.y,draw:drawPlayer}];
+    actors.sort((a,b)=>a.y-b.y).forEach(a=>a.draw());
+    if(spraying&&released&&water>0&&equipping===0&&!healing&&!locked()){
+      const [dx,dy]=directions[player.direction],from={x:player.x+dx*21,y:player.y-33+dy*9},to=target?{x:target.x,y:target.y-12}:{x:from.x+dx*110,y:from.y+dy*80};
+      sprites.jet(ctx,Math.floor(uiTime*12)%4,from,to,uiTime);document.body.dataset.waterFrame=String(Math.floor(uiTime*12)%4);
+    }else document.body.dataset.waterFrame='none';
+    drawFlora();
+    if(stage==='entrega'){
+      const progress=1-handoff/1.8;for(let i=0;i<2;i++){const t=Math.max(0,Math.min(1,progress*1.4-i*.25)),x=245+(player.x-245)*t,y=215+(player.y-40-215)*t-Math.sin(t*Math.PI)*30;sprites.item(ctx,i,x,y,20,{alpha:Math.sin(Math.min(1,progress*1.3)*Math.PI)*.65+.35});}
+    }
+    if(stage==='recompensa'){environment.celebrate(ctx,player,uiTime,reduced());if(rewardTime<1.2){const t=rewardTime/1.2;sprites.item(ctx,2,245+(player.x-245)*t,205-18*Math.sin(t*Math.PI),17);}}
+    if(released)ring(395,385,'#a6d99d',13);else if(itemsGiven)ring(395,385,'#84e3ed',13);
+    ctx.restore();
+  }
+  function frame(time){raf=0;if(!ready||document.hidden)return;const dt=last?Math.min(.034,(time-last)/1000):.016;last=time;
+    if(!paused()){
+      uiTime+=dt;
+      if($('conversa').open){player.moving=false;player.idle+=dt;updateFlora(dt);}else update(dt);
+      expire();
+    }draw();raf=requestAnimationFrame(frame);
+  }
+  function start(){if(ready&&!raf&&!document.hidden){last=0;raf=requestAnimationFrame(frame);}}
+  function cropDOM(node,sheetName,index,size){
+    const sheet=ATLAS.sheets[sheetName],f=sheet.frames[index],[sx,sy,sw,sh]=f.bounds,k=Math.min(size/sw,size/sh);
+    node.style.backgroundImage='url(assets/'+sheet.file+')';node.style.backgroundSize=`${sheet.width*k}px ${sheet.height*k}px`;node.style.backgroundPosition=`${(size-sw*k)/2-sx*k}px ${(size-sh*k)/2-sy*k}px`;
+  }
+  function actionIcon(button,index){const c=document.createElement('canvas');c.width=c.height=100;const cctx=c.getContext('2d');sprites.item(cctx,index,50,50,82);$(button).prepend(c);}
+  const pad=$('joystick');
+  function stickMove(e){const b=pad.getBoundingClientRect(),r=b.width*.3;let x=(e.clientX-b.left-b.width/2)/r,y=(e.clientY-b.top-b.height/2)/r;const d=Math.hypot(x,y);if(d<.12)x=y=0;else if(d>1){x/=d;y/=d;}stick.x=x;stick.y=y;$('stick').style.transform=`translate(${x*r}px,${y*r}px)`;}
+  pad.addEventListener('pointerdown',e=>{if(e.button!==0||stick.id!==null||locked())return;e.preventDefault();stick.id=e.pointerId;pad.setPointerCapture(e.pointerId);stickMove(e);});
+  pad.addEventListener('pointermove',e=>{if(e.pointerId===stick.id)stickMove(e);});
+  for(const type of ['pointerup','pointercancel','lostpointercapture'])pad.addEventListener(type,e=>{if(e.pointerId===stick.id){stick.id=null;stick.x=stick.y=0;$('stick').style.transform='';if(dirty)save();}});
+  $('mangueira').addEventListener('pointerdown',e=>{if(e.button!==0||locked())return;e.preventDefault();waterPointer=e.pointerId;$('mangueira').setPointerCapture(e.pointerId);beginWater();});
+  for(const type of ['pointerup','pointercancel','lostpointercapture'])$('mangueira').addEventListener(type,e=>{if(e.pointerId===waterPointer){spraying=false;waterPointer=null;$('mangueira').classList.remove('is-held');if(dirty)save();}});
+  $('mangueira').addEventListener('click',e=>{if(e.detail===0&&!locked()){if(spraying)spraying=false;else beginWater();}});
+  $('interagir').addEventListener('click',interact);$('conversa-avancar').addEventListener('click',advanceIntro);$('conversa').addEventListener('cancel',e=>e.preventDefault());
+  $('mochila').addEventListener('click',()=>{if(!locked())openDialog('inventario');});$('equipar').addEventListener('click',()=>{$('inventario').close();equip();save();});
+  $('pausa').addEventListener('click',()=>{if(!$('conversa').open)openDialog('menu-pausa');});$('ajuda').addEventListener('click',()=>guide(goalsDone()?'carlos':!released||water<10?'agua':fires.some(f=>f.life>0)?'fogo':'animal'));
+  $('fechar-fala').addEventListener('click',()=>{$('flora-talk').hidden=true;});$('flora-talk').addEventListener('pointerenter',()=>{messageUntil=Math.max(messageUntil,uiTime+5);});
+  document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>{$(b.dataset.close).close();if(b.dataset.close==='vitoria'){stage='explorando';flora.mode='voando';flora.elapsed=0;lockControls();}}));
+  document.querySelectorAll('[data-goal]').forEach(b=>b.addEventListener('click',()=>guide(b.dataset.goal)));
+  $('recomecar').addEventListener('click',()=>{try{localStorage.removeItem(KEY);}catch{}location.reload();});
+  $('tela-cheia').addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await $('jogo').requestFullscreen();}catch{toast('Experimente virar o celular para o modo paisagem.');}});
+  $('som').addEventListener('click',async()=>{sound=!sound;const Audio=window.AudioContext||window.webkitAudioContext;if(sound&&Audio){audio??=new Audio();await audio.resume();}else if(!Audio){sound=false;toast('Este navegador não oferece efeitos sonoros.');}$('som').setAttribute('aria-pressed',String(sound));soundEffect();});
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){neutral();if(!$('conversa').open&&!paused()&&stage!=='recompensa'){e.preventDefault();openDialog('menu-pausa');}return;}
+    if(locked()||/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))return;const k=e.key.toLowerCase();
+    if(['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright',' '].includes(k)){e.preventDefault();keys.add(k);if(k===' '&&!e.repeat)beginWater();}
+    if(k==='e'&&!e.repeat)interact();if(k==='b'&&!e.repeat)openDialog('inventario');
+  });
+  document.addEventListener('keyup',e=>{keys.delete(e.key.toLowerCase());if(e.key===' '){spraying=false;$('mangueira').classList.remove('is-held');}if(dirty)save();});
+  window.addEventListener('blur',()=>{neutral();if(dirty)save();});window.addEventListener('resize',resize);
+  document.addEventListener('visibilitychange',()=>{neutral();if(document.hidden){cancelAnimationFrame(raf);raf=0;last=0;if(dirty)save();}else start();});
+  window.addEventListener('pagehide',()=>{neutral();cancelAnimationFrame(raf);raf=0;if(dirty)save();});window.addEventListener('pageshow',start);
+  window.GuardiaoFloresta=Object.freeze({estado:()=>structuredClone({ready,clock,uiTime,player,flora,stage,itemsGiven,released,water,equipped,completed,rewardStarted,rewardTime,fires,animals,route,paused:paused(),locked:locked(),camera})});
+  load();
+  let loaded=0,loadFailed=false;const total=Object.keys(ATLAS.sheets).length+5;
+  function progress(){if(loadFailed)return;loaded++;$('loading').textContent='Preparando a floresta… '+loaded+'/'+total;}
+  Promise.all([sprites.load(progress),image('assets/floresta-queimada.png'),image('assets/floresta-recuperada.png'),image('../area-aberta/assets/fogo.png'),image('../../assets/itens-remodelados/kai/01_mangueira.png'),image('../../assets/itens-remodelados/kai/02_kit_medico.png')]).then(result=>{
+    environment=new window.FlorestaAmbiente(sprites,result[1],result[2],result[3]);legacyHose=result[4];legacyKit=result[5];ready=true;
+    document.body.dataset.gameReady='true';$('loading').hidden=true;flora.x=player.x-28;flora.y=player.y-70;resize();lockControls();updateHUD();
+    cropDOM($('retrato-carlos'),'carlos',2,90);cropDOM(document.querySelector('.hose-icon'),'itens',0,54);cropDOM(document.querySelector('.kit-icon'),'itens',1,45);
+    $('mangueira').querySelector('svg').remove();actionIcon('mangueira',0);actionIcon('mochila',3);
+    if(!itemsGiven)showIntro();else speak(completed?'A floresta está segura, Kai. Que bom ter você de volta!':'Vamos continuar de onde paramos. Carlos está cuidando do abrigo e eu sigo com você!');
+    start();
+  }).catch(()=>{loadFailed=true;$('loading').innerHTML='Não foi possível carregar a floresta.<br><a href="index.html">Toque para tentar novamente</a>';});
+  function image(src){const im=new Image();im.src=new URL(src,location.href).href;return im.decode().then(()=>{progress();return im;});}
+})();
