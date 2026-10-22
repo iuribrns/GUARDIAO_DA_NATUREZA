@@ -38,11 +38,13 @@ const x = page => page.locator('.training-kai').evaluate(node=>parseFloat(node.s
     assert.equal(await page.locator('.control-jump').evaluate(node=>node.classList.contains('is-held')),false);
     assert.ok(Number(await page.locator('.joystick').getAttribute('aria-valuenow'))>80,'soltar pulo mantém movimento do outro dedo');
     await touch.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+    await page.waitForFunction(()=>document.querySelector('.joystick').getAttribute('aria-valuenow')==='0');
     assert.equal(await page.locator('.joystick').getAttribute('aria-valuenow'),'0');
     const stopped=await x(page);await page.waitForTimeout(180);assert.equal(await x(page),stopped,'cancelar toque não deixa Kai andando');
     await page.waitForFunction(()=>document.querySelector('.training-kai').dataset.grounded==='true');
     await page.locator('.joystick').focus();await page.keyboard.down('ArrowLeft');await page.waitForTimeout(140);await page.keyboard.up('ArrowLeft');
     assert.ok(await x(page)<stopped,'alternativa de teclado move para a esquerda');
+    await page.waitForFunction(()=>document.querySelector('.joystick').getAttribute('aria-valuenow')==='0');
     assert.equal(await page.locator('.joystick').getAttribute('aria-valuenow'),'0');
     await page.getByRole('button',{name:'Pular com Kai',exact:true}).focus();await page.keyboard.press('Enter');
     await page.waitForFunction(()=>document.querySelector('.training-kai').dataset.grounded==='false');

@@ -9,6 +9,11 @@ A entrada pública é `index.html`, na raiz. Ela abre o menu atual em `tela-inic
 | `assets/interface/` | Imagens dos controles; inclui Kai pulando |
 | `jogo/` | Fase em área aberta, renderizador de Kai e controles |
 | `jogo/floresta-viva/` | Nova floresta, encontro com Carlos, 108 quadros, resgates e fragmento do colar |
+| `jogo/jornada/` | Fases 2–5, quatro novos mapas, natação, resgates, plantio, reciclagem e conclusão |
+| `jogo/sistemas/` | Controles celular/computador, ícones, progresso e manifesto WebP |
+| `assets/otimizados/` | Versões leves das artes, com originais preservados |
+| `tela-inicial/campanha/` | Seleção de fases e acabamento dos painéis atuais |
+| `desenvolvimento/otimizacao/` | Conversão reproduzível de imagens e relatório |
 | `jogo/area-aberta/` | Primeira versão preservada, com suas artes e testes |
 | `jogo/controles/` | Joystick, pulo, ação e área de treino |
 | `tela-inicial/nova-versao/` | Menu atual, Configurações, Sobre e entrada do mapa |

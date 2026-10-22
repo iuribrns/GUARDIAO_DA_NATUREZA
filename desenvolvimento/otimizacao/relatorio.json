@@ -1,0 +1,626 @@
+{
+  "arquivos": [
+    {
+      "original": "assets/identidade-flora/flora-16.png",
+      "webp": "assets/otimizados/flora-16-97574bec9a16.webp",
+      "bytesAntes": 1236,
+      "bytesDepois": 536,
+      "dimensoes": [
+        16,
+        16
+      ]
+    },
+    {
+      "original": "assets/identidade-flora/flora-180.png",
+      "webp": "assets/otimizados/flora-180-0deb6d287fcc.webp",
+      "bytesAntes": 48341,
+      "bytesDepois": 13178,
+      "dimensoes": [
+        180,
+        180
+      ]
+    },
+    {
+      "original": "assets/identidade-flora/flora-32.png",
+      "webp": "assets/otimizados/flora-32-f491243a1f37.webp",
+      "bytesAntes": 3183,
+      "bytesDepois": 1302,
+      "dimensoes": [
+        32,
+        32
+      ]
+    },
+    {
+      "original": "assets/identidade-flora/flora-48.png",
+      "webp": "assets/otimizados/flora-48-42205eed98d6.webp",
+      "bytesAntes": 5864,
+      "bytesDepois": 2222,
+      "dimensoes": [
+        48,
+        48
+      ]
+    },
+    {
+      "original": "assets/identidade-flora/flora-original.png",
+      "webp": "assets/otimizados/flora-original-7302e6715183.webp",
+      "bytesAntes": 1399574,
+      "bytesDepois": 167912,
+      "dimensoes": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "original": "jogo/floresta-viva/revisao/assets/capivara-suave.png",
+      "webp": "assets/otimizados/capivara-suave-844a858538c3.webp",
+      "bytesAntes": 1374928,
+      "bytesDepois": 279370,
+      "dimensoes": [
+        1774,
+        887
+      ]
+    },
+    {
+      "original": "jogo/floresta-viva/revisao/assets/carlos-vermelho.png",
+      "webp": "assets/otimizados/carlos-vermelho-bc809df1aa4a.webp",
+      "bytesAntes": 1274604,
+      "bytesDepois": 277936,
+      "dimensoes": [
+        1774,
+        887
+      ]
+    },
+    {
+      "original": "jogo/floresta-viva/revisao/assets/cervo-suave.png",
+      "webp": "assets/otimizados/cervo-suave-25ad3fb1170f.webp",
+      "bytesAntes": 1411784,
+      "bytesDepois": 399532,
+      "dimensoes": [
+        1774,
+        887
+      ]
+    },
+    {
+      "original": "jogo/floresta-viva/revisao/assets/flora-suave.png",
+      "webp": "assets/otimizados/flora-suave-dd67f11afef6.webp",
+      "bytesAntes": 1669167,
+      "bytesDepois": 393162,
+      "dimensoes": [
+        1448,
+        1086
+      ]
+    },
+    {
+      "original": "jogo/floresta-viva/revisao/assets/floresta-ilustrada.png",
+      "webp": "assets/otimizados/floresta-ilustrada-ca31cffff4a3.webp",
+      "bytesAntes": 3606950,
+      "bytesDepois": 563766,
+      "dimensoes": [
+        1672,
+        941
+      ]
+    },
+    {
+      "original": "jogo/floresta-viva/revisao/assets/floresta-restaurada.png",
+      "webp": "assets/otimizados/floresta-restaurada-60ff764a4b71.webp",
+      "bytesAntes": 3489224,
+      "bytesDepois": 544592,
+      "dimensoes": [
+        1671,
+        941
+      ]
+    },
+    {
+      "original": "jogo/floresta-viva/revisao/assets/fogo-suave.png",
+      "webp": "assets/otimizados/fogo-suave-ee27995891b8.webp",
+      "bytesAntes": 1116593,
+      "bytesDepois": 391630,
+      "dimensoes": [
+        1774,
+        887
+      ]
+    },
+    {
+      "original": "jogo/floresta-viva/revisao/assets/itens-vermelhos.png",
+      "webp": "assets/otimizados/itens-vermelhos-bbb77e54a6b6.webp",
+      "bytesAntes": 1311123,
+      "bytesDepois": 344084,
+      "dimensoes": [
+        1774,
+        887
+      ]
+    },
+    {
+      "original": "jogo/floresta-viva/revisao/assets/kai-caminhada-suave.png",
+      "webp": "assets/otimizados/kai-caminhada-suave-e5a8badc5a4d.webp",
+      "bytesAntes": 1939681,
+      "bytesDepois": 507142,
+      "dimensoes": [
+        1263,
+        1246
+      ]
+    },
+    {
+      "original": "jogo/floresta-viva/revisao/assets/kai-cuidados-suave.png",
+      "webp": "assets/otimizados/kai-cuidados-suave-b56ebc07daff.webp",
+      "bytesAntes": 2395847,
+      "bytesDepois": 400780,
+      "dimensoes": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "original": "jogo/floresta-viva/revisao/assets/kai-mangueira-suave.png",
+      "webp": "assets/otimizados/kai-mangueira-suave-6c1802681685.webp",
+      "bytesAntes": 1976579,
+      "bytesDepois": 511292,
+      "dimensoes": [
+        1263,
+        1246
+      ]
+    },
+    {
+      "original": "jogo/floresta-viva/revisao/assets/kai-recompensa-vermelha.png",
+      "webp": "assets/otimizados/kai-recompensa-vermelha-2ebe7f054d33.webp",
+      "bytesAntes": 1851010,
+      "bytesDepois": 452204,
+      "dimensoes": [
+        1774,
+        887
+      ]
+    },
+    {
+      "original": "jogo/floresta-viva/revisao/assets/kai-repouso-suave.png",
+      "webp": "assets/otimizados/kai-repouso-suave-09f210bdbf02.webp",
+      "bytesAntes": 1564719,
+      "bytesDepois": 368806,
+      "dimensoes": [
+        1774,
+        887
+      ]
+    },
+    {
+      "original": "jogo/floresta-viva/revisao/assets/natureza-suave.png",
+      "webp": "assets/otimizados/natureza-suave-6c6e1f007ff1.webp",
+      "bytesAntes": 2688474,
+      "bytesDepois": 526894,
+      "dimensoes": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "original": "jogo/floresta-viva/revisao/assets/passaro-suave.png",
+      "webp": "assets/otimizados/passaro-suave-20523a4338eb.webp",
+      "bytesAntes": 1169119,
+      "bytesDepois": 264558,
+      "dimensoes": [
+        1774,
+        887
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/animais-fauna-andando.png",
+      "webp": "assets/otimizados/animais-fauna-andando-30ad0a98eda3.webp",
+      "bytesAntes": 1827319,
+      "bytesDepois": 536028,
+      "dimensoes": [
+        1402,
+        1122
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/animais-fauna.png",
+      "webp": "assets/otimizados/animais-fauna-b6580d117a40.webp",
+      "bytesAntes": 1695889,
+      "bytesDepois": 471688,
+      "dimensoes": [
+        1402,
+        1122
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/animais-rio.png",
+      "webp": "assets/otimizados/animais-rio-0d1f8f89e369.webp",
+      "bytesAntes": 2184776,
+      "bytesDepois": 324142,
+      "dimensoes": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/icones.png",
+      "webp": "assets/otimizados/icones-b06650070bb8.webp",
+      "bytesAntes": 1915844,
+      "bytesDepois": 504964,
+      "dimensoes": [
+        1448,
+        1086
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/kai-floresta.png",
+      "webp": "assets/otimizados/kai-floresta-cadc96bcf122.webp",
+      "bytesAntes": 2004253,
+      "bytesDepois": 515328,
+      "dimensoes": [
+        1448,
+        1086
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/kai-livre.png",
+      "webp": "assets/otimizados/kai-livre-2a780e2ee1c6.webp",
+      "bytesAntes": 1881241,
+      "bytesDepois": 505188,
+      "dimensoes": [
+        1261,
+        1247
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/kai-nadando.png",
+      "webp": "assets/otimizados/kai-nadando-c16c95e3a7c0.webp",
+      "bytesAntes": 2211829,
+      "bytesDepois": 647690,
+      "dimensoes": [
+        1341,
+        1173
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/kai-plantio.png",
+      "webp": "assets/otimizados/kai-plantio-2f09fe7cf245.webp",
+      "bytesAntes": 2097911,
+      "bytesDepois": 539208,
+      "dimensoes": [
+        1448,
+        1086
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/kai-rio.png",
+      "webp": "assets/otimizados/kai-rio-3455cd21178c.webp",
+      "bytesAntes": 2152456,
+      "bytesDepois": 555222,
+      "dimensoes": [
+        1448,
+        1086
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/mapa-cidade-restaurado.png",
+      "webp": "assets/otimizados/mapa-cidade-restaurado-1e6b5a1bc37f.webp",
+      "bytesAntes": 3729615,
+      "bytesDepois": 623096,
+      "dimensoes": [
+        1672,
+        941
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/mapa-cidade.png",
+      "webp": "assets/otimizados/mapa-cidade-f4c69f61fa04.webp",
+      "bytesAntes": 3714704,
+      "bytesDepois": 598256,
+      "dimensoes": [
+        1672,
+        941
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/mapa-fauna-restaurado.png",
+      "webp": "assets/otimizados/mapa-fauna-restaurado-c4ca2389304e.webp",
+      "bytesAntes": 3557779,
+      "bytesDepois": 586856,
+      "dimensoes": [
+        1672,
+        941
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/mapa-fauna.png",
+      "webp": "assets/otimizados/mapa-fauna-64cf0f512e24.webp",
+      "bytesAntes": 3714952,
+      "bytesDepois": 617300,
+      "dimensoes": [
+        1672,
+        941
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/mapa-plantio-restaurado.png",
+      "webp": "assets/otimizados/mapa-plantio-restaurado-a1e026f0c23f.webp",
+      "bytesAntes": 3606404,
+      "bytesDepois": 602184,
+      "dimensoes": [
+        1672,
+        941
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/mapa-plantio.png",
+      "webp": "assets/otimizados/mapa-plantio-d39478f86701.webp",
+      "bytesAntes": 3522595,
+      "bytesDepois": 552198,
+      "dimensoes": [
+        1672,
+        941
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/mapa-rio-restaurado.png",
+      "webp": "assets/otimizados/mapa-rio-restaurado-008e1d91eace.webp",
+      "bytesAntes": 3490110,
+      "bytesDepois": 551558,
+      "dimensoes": [
+        1672,
+        941
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/mapa-rio.png",
+      "webp": "assets/otimizados/mapa-rio-f0a5c324fce7.webp",
+      "bytesAntes": 3539941,
+      "bytesDepois": 551750,
+      "dimensoes": [
+        1672,
+        941
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/objetos.png",
+      "webp": "assets/otimizados/objetos-98df3395e246.webp",
+      "bytesAntes": 1905173,
+      "bytesDepois": 516068,
+      "dimensoes": [
+        1295,
+        1214
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/recompensa-amarelo.png",
+      "webp": "assets/otimizados/recompensa-amarelo-047c2f5bbd67.webp",
+      "bytesAntes": 1824577,
+      "bytesDepois": 450536,
+      "dimensoes": [
+        1774,
+        887
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/recompensa-azul.png",
+      "webp": "assets/otimizados/recompensa-azul-78beea59a156.webp",
+      "bytesAntes": 1829828,
+      "bytesDepois": 447934,
+      "dimensoes": [
+        1774,
+        887
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/recompensa-verde.png",
+      "webp": "assets/otimizados/recompensa-verde-bcfc11003a84.webp",
+      "bytesAntes": 1859699,
+      "bytesDepois": 451376,
+      "dimensoes": [
+        1774,
+        887
+      ]
+    },
+    {
+      "original": "jogo/jornada/assets/recompensa-violeta.png",
+      "webp": "assets/otimizados/recompensa-violeta-fc5ff22c62d6.webp",
+      "bytesAntes": 1834006,
+      "bytesDepois": 446548,
+      "dimensoes": [
+        1774,
+        887
+      ]
+    },
+    {
+      "original": "tela-inicial/colar-remodelado/assets/01_progressao.png",
+      "webp": "assets/otimizados/01_progressao-5e2a3ff090d7.webp",
+      "bytesAntes": 1328083,
+      "bytesDepois": 404100,
+      "dimensoes": [
+        1774,
+        887
+      ]
+    },
+    {
+      "original": "tela-inicial/colar-remodelado/assets/02_encaixe_e_transformacao.png",
+      "webp": "assets/otimizados/02_encaixe_e_transformacao-6469a8b805d2.webp",
+      "bytesAntes": 1805726,
+      "bytesDepois": 544630,
+      "dimensoes": [
+        2172,
+        724
+      ]
+    },
+    {
+      "original": "tela-inicial/colar-remodelado/assets/03_pecas_e_base.png",
+      "webp": "assets/otimizados/03_pecas_e_base-48faad262472.webp",
+      "bytesAntes": 1714057,
+      "bytesDepois": 165602,
+      "dimensoes": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "original": "tela-inicial/colar-remodelado/assets/04_kai_recebendo_colar.png",
+      "webp": "assets/otimizados/04_kai_recebendo_colar-bfb2d7e63073.webp",
+      "bytesAntes": 1778201,
+      "bytesDepois": 466462,
+      "dimensoes": [
+        1448,
+        1086
+      ]
+    },
+    {
+      "original": "tela-inicial/colar-remodelado/assets/05_encaixes_fases_2_a_5.png",
+      "webp": "assets/otimizados/05_encaixes_fases_2_a_5-9562faab704f.webp",
+      "bytesAntes": 2327235,
+      "bytesDepois": 416456,
+      "dimensoes": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "original": "tela-inicial/jornada-viva/assets/festa-da-floresta.png",
+      "webp": "assets/otimizados/festa-da-floresta-1e920b256270.webp",
+      "bytesAntes": 2766261,
+      "bytesDepois": 486340,
+      "dimensoes": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "original": "tela-inicial/jornada-viva/assets/ilha-restaurada.png",
+      "webp": "assets/otimizados/ilha-restaurada-f89dd00d7eb4.webp",
+      "bytesAntes": 3386006,
+      "bytesDepois": 506332,
+      "dimensoes": [
+        1671,
+        941
+      ]
+    },
+    {
+      "original": "tela-inicial/jornada-viva/assets/ilha-viva.png",
+      "webp": "assets/otimizados/ilha-viva-c81b3e75bcea.webp",
+      "bytesAntes": 3513093,
+      "bytesDepois": 502628,
+      "dimensoes": [
+        1672,
+        941
+      ]
+    },
+    {
+      "original": "tela-inicial/jornada-viva/assets/kai-cuida-da-natureza.png",
+      "webp": "assets/otimizados/kai-cuida-da-natureza-8d4e0b7b1884.webp",
+      "bytesAntes": 2680703,
+      "bytesDepois": 390550,
+      "dimensoes": [
+        1672,
+        941
+      ]
+    },
+    {
+      "original": "tela-inicial/mapa-interativo/assets/01_npcs_dialogo.png",
+      "webp": "assets/otimizados/01_npcs_dialogo-107886c8fbd1.webp",
+      "bytesAntes": 1676868,
+      "bytesDepois": 456248,
+      "dimensoes": [
+        887,
+        1774
+      ]
+    },
+    {
+      "original": "tela-inicial/mapa-interativo/assets/02_kai_dialogo.png",
+      "webp": "assets/otimizados/02_kai_dialogo-9083e324ba39.webp",
+      "bytesAntes": 1331798,
+      "bytesDepois": 299814,
+      "dimensoes": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "original": "tela-inicial/mapa-interativo/assets/03_painel_sem_texto.png",
+      "webp": "assets/otimizados/03_painel_sem_texto-d49a5da375ed.webp",
+      "bytesAntes": 1824425,
+      "bytesDepois": 201414,
+      "dimensoes": [
+        1672,
+        941
+      ]
+    },
+    {
+      "original": "tela-inicial/mapa-interativo/assets/04_botoes_e_componentes.png",
+      "webp": "assets/otimizados/04_botoes_e_componentes-adea2b3accbd.webp",
+      "bytesAntes": 899391,
+      "bytesDepois": 219046,
+      "dimensoes": [
+        1086,
+        1448
+      ]
+    },
+    {
+      "original": "tela-inicial/mapa-interativo/assets/05_equipamentos_e_recompensas.png",
+      "webp": "assets/otimizados/05_equipamentos_e_recompensas-de19e7e5fa5a.webp",
+      "bytesAntes": 1516468,
+      "bytesDepois": 368650,
+      "dimensoes": [
+        2172,
+        724
+      ]
+    },
+    {
+      "original": "tela-inicial/menu-vivo/assets/flora-poses.png",
+      "webp": "assets/otimizados/flora-poses-783734c861ac.webp",
+      "bytesAntes": 2256977,
+      "bytesDepois": 338566,
+      "dimensoes": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "original": "tela-inicial/nova-versao/assets/floresta-modelo.png",
+      "webp": "assets/otimizados/floresta-modelo-ecb6a1ebe3f6.webp",
+      "bytesAntes": 2719389,
+      "bytesDepois": 361884,
+      "dimensoes": [
+        1672,
+        941
+      ]
+    },
+    {
+      "original": "tela-inicial/nova-versao/assets/folhas-sprites.png",
+      "webp": "assets/otimizados/folhas-sprites-dc0703caf7d4.webp",
+      "bytesAntes": 644384,
+      "bytesDepois": 149760,
+      "dimensoes": [
+        1774,
+        887
+      ]
+    },
+    {
+      "original": "tela-inicial/nova-versao/assets/horizonte-kai-flora.png",
+      "webp": "assets/otimizados/horizonte-kai-flora-447e88cae303.webp",
+      "bytesAntes": 2658625,
+      "bytesDepois": 320092,
+      "dimensoes": [
+        1672,
+        941
+      ]
+    },
+    {
+      "original": "tela-inicial/nova-versao/assets/titulo-guardiao.png",
+      "webp": "assets/otimizados/titulo-guardiao-0887371a904b.webp",
+      "bytesAntes": 2260033,
+      "bytesDepois": 375804,
+      "dimensoes": [
+        1774,
+        887
+      ]
+    },
+    {
+      "original": "jogo/floresta-viva/assets/kai-repouso.png",
+      "webp": "assets/otimizados/kai-repouso-1ca616974995.webp",
+      "bytesAntes": 1482124,
+      "bytesDepois": 355204,
+      "dimensoes": [
+        1774,
+        887
+      ]
+    }
+  ],
+  "bytesAntes": 126968748,
+  "bytesDepois": 25335598
+}

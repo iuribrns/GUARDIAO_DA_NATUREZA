@@ -24,7 +24,7 @@
   function load(){
     try{
       const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s?.version!==2)return;
-      itemsGiven=s.itemsGiven===true;released=itemsGiven&&s.released===true;equipped=itemsGiven&&s.equipped===true;
+      itemsGiven=s.itemsGiven===true;released=itemsGiven&&s.released===true;equipped=itemsGiven&&s.hoseDrawn===true&&s.equipped===true;
       water=released&&Number.isFinite(s.water)?Math.max(0,Math.min(100,s.water)):0;
       if(itemsGiven&&Array.isArray(s.fires)&&s.fires.length===8)fires.forEach((f,i)=>{f.life=Number.isFinite(s.fires[i])?Math.max(0,Math.min(1,s.fires[i])):1;});
       if(itemsGiven&&Number.isFinite(s.x)&&Number.isFinite(s.y)&&W.walkable(s))Object.assign(player,{x:s.x,y:s.y});
@@ -37,7 +37,7 @@
     }catch{}
   }
   function save(){
-    try{localStorage.setItem(KEY,JSON.stringify({version:2,itemsGiven,released,equipped,water,x:player.x,y:player.y,fires:fires.map(f=>f.life),animals:animals.map(a=>({id:a.id,stage:a.stage,position:{...a.position}})),completed}));dirty=false;}
+    try{localStorage.setItem(KEY,JSON.stringify({version:2,itemsGiven,released,equipped,hoseDrawn:equipped,water,x:player.x,y:player.y,fires:fires.map(f=>f.life),animals:animals.map(a=>({id:a.id,stage:a.stage,position:{...a.position}})),completed}));dirty=false;}
     catch{if(!saveWarning){saveWarning=true;toast('O navegador não permitiu salvar. Você pode continuar nesta aba.');}}
   }
   function toast(text){$('flora-talk').hidden=true;$('dica').hidden=true;$('toast').textContent=text;toastUntil=uiTime+2.8;}
@@ -69,8 +69,8 @@
     $('conversa').close();stage='entrega';handoff=1.8;lockControls();$('cinema').hidden=false;$('cinema-texto').textContent='Carlos entrega a mangueira e o kit de resgate';
   }
   function grant(){
-    itemsGiven=true;equipped=true;stage='explorando';$('cinema').hidden=true;dirty=true;
-    toast('Mangueira e kit de resgate recebidos!');save();lockControls();speak('Toque em 💧 para encontrar o registro!');soundEffect(780,.2);
+    itemsGiven=true;equipped=false;stage='explorando';$('cinema').hidden=true;dirty=true;
+    toast('Mangueira e kit de resgate recebidos!');save();lockControls();speak('Toque na missão Água para encontrar o registro!');soundEffect(780,.2);
   }
   const goalsDone=()=>released&&fires.every(f=>f.life===0)&&animals.every(a=>a.stage==='seguro');
   function getGoal(type){
@@ -91,11 +91,11 @@
     else speak('Siga a trilha. Segure ÁGUA perto do fogo.');
     route=(type==='fogo'||type==='animal')&&!point.kind?W.approach(player,point,type==='fogo'?92:49):W.route(player,point);routeGoal={...point};if(!route.length)speak('Siga pela trilha livre. Toque novamente para ver o caminho.');
   }
-  function equip(){if(!itemsGiven){speak('Carlos vai entregar os equipamentos antes da missão.');return;}equipped=true;equipping=.65;dirty=true;$('mangueira').setAttribute('aria-pressed','true');}
+  function equip(){if(!itemsGiven){speak('Carlos vai entregar os equipamentos antes da missão.');return;}if(equipped||equipping>0)return;equipping=.65;dirty=true;$('mangueira').setAttribute('aria-pressed','true');}
   function beginWater(){
-    if(locked()||!itemsGiven)return;if(!released){speak('Abra o registro primeiro. Toque em 💧.');return;}
+    if(locked()||!itemsGiven)return;if(!released){speak('Abra o registro primeiro. Toque na missão Água.');return;}
     if(water<=0){speak('Água acabou! Volte ao registro.');return;}
-    if(!equipped||player.idle>2.5)equip();spraying=true;route=[];routeGoal=null;$('mangueira').classList.add('is-held');
+    if(!equipped)equip();spraying=true;route=[];routeGoal=null;$('mangueira').classList.add('is-held');
   }
   function homeRoute(a){const points=W.route(a.position,a.home);points.push({...a.home});return points;}
   function interact(){
@@ -167,7 +167,7 @@
     }
   }
   function update(dt){
-    clock+=dt;equipping=Math.max(0,equipping-dt);
+    clock+=dt;if(equipping>0){equipping=Math.max(0,equipping-dt);if(equipping===0){equipped=true;dirty=true;save();}}
     if(stage==='entrega'){handoff=Math.max(0,handoff-dt);player.idle+=dt;if(handoff===0)grant();updateFlora(dt);return;}
     if(stage==='recompensa'){rewardTime+=dt;player.moving=false;updateFlora(dt);if(rewardTime>2)$('cinema-texto').textContent=rewardTime<4?'O fragmento da floresta é seu!':'Kai e Flora celebram a vida que voltou!';if(rewardTime>=6.5)finishReward();return;}
     let dx=stick.x+Number(keys.has('d')||keys.has('arrowright'))-Number(keys.has('a')||keys.has('arrowleft'));
@@ -227,9 +227,9 @@
     }else if(healing){index=6+Math.min(5,Math.floor((1.6-healTime)/1.6*6));name='kai-cuidados';sprites.draw(ctx,name,index,player.x,player.y,63,{flip});}
     else if(equipping>0){index=Math.min(5,Math.floor((.65-equipping)/.65*6));name='kai-cuidados';sprites.draw(ctx,name,index,player.x,player.y,63,{flip});}
     else if(player.moving&&itemsGiven){
-      name='kai-caminhada';index=player.direction*2+Math.floor(player.distance/20)%2;
+      name=equipped?'kai-caminhada':'kai-livre';index=player.direction*2+Math.floor(player.distance/20)%2;
       sprites.draw(ctx,name,index,player.x,player.y-(reduced()?0:Math.abs(Math.sin(player.distance/20*Math.PI))*1.1),63);
-    }else if(equipped&&(spraying||player.idle<2.5)){
+    }else if(equipped){
       name='kai-mangueira';index=player.direction*2+(uiTime%3.8>3.45?1:0);sprites.hose(ctx,player.direction,index%2,player.x,player.y,63+(reduced()?0:Math.sin(uiTime*2)*.35));
     }else{
       const dir=player.direction,base=dir===2?2:dir>=3&&dir<=5?4:dir===6?6:0;index=base+(!reduced()&&uiTime%4.7>4.48?1:0);
@@ -277,6 +277,7 @@
       const [dx,dy]=directions[player.direction],from={x:player.x+dx*21,y:player.y-33+dy*9},to=target?{x:target.x,y:target.y-12}:{x:from.x+dx*110,y:from.y+dy*80};
       sprites.jet(ctx,Math.floor(uiTime*12)%4,from,to,uiTime);document.body.dataset.waterFrame=String(Math.floor(uiTime*12)%4);
     }else document.body.dataset.waterFrame='none';
+    for(const a of animals){if(a.stage==='ferido'){const y=a.position.y-a.height-15;ctx.fillStyle='#fff3c5';ctx.strokeStyle='#be8b37';ctx.lineWidth=2;ctx.beginPath();ctx.arc(a.position.x,y,12,0,Math.PI*2);ctx.fill();ctx.stroke();window.GuardiaoIcones?.paint(ctx,window.GuardiaoIconesImage,'paw',a.position.x,y,18);}}
     drawFlora();
     if(stage==='entrega'){
       const progress=1-handoff/1.8;for(let i=0;i<2;i++){const t=Math.max(0,Math.min(1,progress*1.4-i*.25)),x=245+(player.x-245)*t,y=215+(player.y-40-215)*t-Math.sin(t*Math.PI)*30;sprites.item(ctx,i,x,y,20,{alpha:Math.sin(Math.min(1,progress*1.3)*Math.PI)*.65+.35});}
@@ -296,7 +297,7 @@
   function start(){if(ready&&!raf&&!document.hidden){last=0;raf=requestAnimationFrame(frame);}}
   function cropDOM(node,sheetName,index,size){
     const sheet=ATLAS.sheets[sheetName],f=sheet.frames[index],[sx,sy,sw,sh]=f.bounds,k=Math.min(size/sw,size/sh);
-    node.style.backgroundImage='url(assets/'+sheet.file+')';node.style.backgroundSize=`${sheet.width*k}px ${sheet.height*k}px`;node.style.backgroundPosition=`${(size-sw*k)/2-sx*k}px ${(size-sh*k)/2-sy*k}px`;
+    node.style.backgroundImage='url("'+(window.GuardiaoArte?.url(new URL('assets/'+sheet.file,location.href).href)||new URL('assets/'+sheet.file,location.href).href)+'")';node.style.backgroundSize=`${sheet.width*k}px ${sheet.height*k}px`;node.style.backgroundPosition=`${(size-sw*k)/2-sx*k}px ${(size-sh*k)/2-sy*k}px`;
   }
   function actionIcon(button,index){const c=document.createElement('canvas');c.width=c.height=100;const cctx=c.getContext('2d');sprites.item(cctx,index,50,50,82);$(button).prepend(c);}
   const pad=$('joystick');
@@ -324,10 +325,12 @@
     if(k==='e'&&!e.repeat)interact();if(k==='b'&&!e.repeat)openDialog('inventario');
   });
   document.addEventListener('keyup',e=>{keys.delete(e.key.toLowerCase());if(e.key===' '){spraying=false;$('mangueira').classList.remove('is-held');}if(dirty)save();});
+  window.addEventListener('guardiao:controles',()=>neutral());
   window.addEventListener('blur',()=>{neutral();if(dirty)save();});window.addEventListener('resize',resize);
   document.addEventListener('visibilitychange',()=>{neutral();if(document.hidden){cancelAnimationFrame(raf);raf=0;last=0;if(dirty)save();}else start();});
   window.addEventListener('pagehide',()=>{neutral();cancelAnimationFrame(raf);raf=0;if(dirty)save();});window.addEventListener('pageshow',start);
-  window.GuardiaoFloresta=Object.freeze({estado:()=>structuredClone({ready,clock,uiTime,player,flora,stage,itemsGiven,released,water,equipped,completed,rewardStarted,rewardTime,fires,animals,route,paused:paused(),locked:locked(),camera})});
+  window.GuardiaoFloresta=Object.freeze({estado:()=>structuredClone({ready,clock,uiTime,player,flora,stage,itemsGiven,released,water,equipped,equipping,completed,rewardStarted,rewardTime,fires,animals,route,paused:paused(),locked:locked(),camera})});
+  window.GuardiaoIcones?.load().then(im=>window.GuardiaoIconesImage=im);
   load();W.setHazards([...fires,...animals]);
   let loaded=0,loadFailed=false;const total=Object.keys(ATLAS.sheets).length+2;
   function progress(){if(loadFailed)return;loaded++;$('loading').textContent='Preparando a floresta… '+loaded+'/'+total;}
@@ -339,5 +342,5 @@
     if(!itemsGiven)showIntro();else if(completed){$('salvo').textContent='Seu fragmento vermelho está guardado. Vamos ao próximo destino?';$('vitoria').showModal();}else speak('Vamos continuar! Toque na missão para encontrar o caminho.');
     start();
   }).catch(()=>{loadFailed=true;$('loading').innerHTML='Não foi possível carregar a floresta.<br><a href="index.html">Toque para tentar novamente</a>';});
-  function image(src){const im=new Image();im.src=new URL(src,location.href).href;return im.decode().then(()=>{progress();return im;});}
+  function image(src){const im=new Image();im.src=window.GuardiaoArte?.url(new URL(src,location.href).href)||new URL(src,location.href).href;return im.decode().then(()=>{progress();return im;});}
 })();

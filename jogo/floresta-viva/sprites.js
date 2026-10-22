@@ -1,9 +1,9 @@
 'use strict';
 (() => {
-  const atlas=window.GuardiaoFlorestaAtlas;
+  const atlas=window.GuardiaoFlorestaAtlas,base=new URL("./",document.currentScript.src);
   class Sprites {
     constructor(){this.images=new Map();}
-    async load(onProgress=()=>{}){await Promise.all(Object.entries(atlas.sheets).map(async([id,s])=>{const image=new Image();image.src=new URL('assets/'+s.file,location.href).href;await image.decode();if(image.naturalWidth!==s.width||image.naturalHeight!==s.height)throw Error('Prancha inválida: '+id);this.images.set(id,image);onProgress();}));return this;}
+    async load(onProgress=()=>{},names=Object.keys(atlas.sheets)){await Promise.all(Object.entries(atlas.sheets).filter(([id])=>names.includes(id)).map(async([id,s])=>{const image=new Image();const url=new URL('assets/'+s.file,base).href;image.src=window.GuardiaoArte?.url(url)||url;await image.decode();if(image.naturalWidth!==s.width||image.naturalHeight!==s.height)throw Error('Prancha inválida: '+id);this.images.set(id,image);onProgress();}));return this;}
     draw(ctx,name,index,x,y,height,{flip=false,angle=0,alpha=1,anchor='feet',width=null}={}){
       const sheet=atlas.sheets[name],f=sheet.frames[index%sheet.frames.length],[sx,sy,sw,sh]=f.bounds;
       const scale=height/sheet.referenceHeight;

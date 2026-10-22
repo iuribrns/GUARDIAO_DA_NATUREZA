@@ -50,7 +50,7 @@ async function spray(p){
     assert.deepEqual(await p.evaluate(()=>JSON.parse(localStorage.getItem('guardiao.mapa.progresso.v1'))),{completedFirst:true,current:2});
     await p.reload();await ready(p);assert.equal((await state(p)).completed,true,'missões e água persistem');
     await p.goto(base+'aventura.html');await p.waitForFunction(()=>window.GuardiaoMapa);assert.equal(await p.locator('.map-stage [data-phase="2"]').getAttribute('data-locked'),'false');
-    await p.locator('.map-stage [data-phase="2"]').click();assert.equal(await p.locator('[data-map-action="start"]').isDisabled(),true,'fase 2 ainda não simula gameplay');
+    await p.locator('.map-stage [data-phase="2"]').click();assert.equal(await p.locator('[data-map-action="start"]').isDisabled(),false,'a campanha nova libera o rio depois de concluir a floresta');
     console.log('PASS: entrar pelo mapa, caminhar nos dois eixos, tirar mangueira da mochila, pausa, registro, oito incêndios reais, três resgates, Flora guia por trilhas, vitória e progresso persistido no mapa.');
     for(const viewport of [{width:320,height:740},{width:390,height:844},{width:844,height:390}]){
       const phone=await b.newPage({viewport,isMobile:true,hasTouch:true,reducedMotion:'reduce'});

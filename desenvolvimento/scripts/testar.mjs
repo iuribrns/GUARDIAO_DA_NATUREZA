@@ -62,7 +62,9 @@ try {
       'jogo/controles/validacao/controles.cjs',
       'jogo/personagens/kai/validacao/animacoes.cjs',
       'jogo/area-aberta/validacao/fase.cjs',
-      'jogo/floresta-viva/revisao/validacao/revisao.cjs'
+      'jogo/floresta-viva/revisao/validacao/revisao.cjs',
+      'jogo/jornada/validacao/campanha.cjs',
+      'jogo/jornada/validacao/celular.cjs'
     ];
     for (const file of suites) {
       await new Promise((resolveRun, reject) => {

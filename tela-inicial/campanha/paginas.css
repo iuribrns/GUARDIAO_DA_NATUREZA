@@ -1,0 +1,292 @@
+/* Diário e ajustes: madeira com veios suaves, folhas e leitura clara. */
+.panel-remodeled .wood-panel {
+  background: repeating-linear-gradient(
+    3deg,
+    #6b3c20 0 4px,
+    #754524 5px 8px,
+    #86532e 9px 13px,
+    #6d4025 14px 16px
+  );
+  border: 3px solid #3a2717;
+  box-shadow:
+    inset 0 0 0 3px #d19c54,
+    0 18px 45px #0b29185c;
+}
+.panel-remodeled .panel-inner {
+  background:
+    radial-gradient(ellipse at 0 0, #c8dda4a1, transparent 45%),
+    repeating-linear-gradient(80deg, #e9edcf33 0 1px, transparent 2px 8px),
+    #f5f1d8;
+  border: 1px solid #b7bf80;
+  border-radius: 15px 5px 15px 5px;
+}
+.panel-remodeled .panel-heading {
+  border-bottom: 1px solid #aabb7b;
+}
+.panel-remodeled .preference-card {
+  background: linear-gradient(125deg, #fffdf1dc, #e3edccad);
+  border-color: #b7cb98;
+  border-radius: 19px 5px 19px 5px;
+  box-shadow: 0 3px 0 #cad6ac66;
+}
+.panel-remodeled .preference-card legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #355437;
+}
+.settings-companion {
+  color: #fff4cb;
+  align-self: start;
+  padding: 30px 10px;
+  text-align: center;
+  position: sticky;
+  top: 80px;
+  text-shadow: 0 2px 3px #15351e;
+}
+.settings-companion img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 12px #193b2955);
+  animation: flora-comfort 4s ease-in-out infinite;
+}
+.settings-companion h2 {
+  font:
+    700 clamp(28px, 4vw, 49px) / 1.07 Georgia,
+    serif;
+  margin: 12px 0;
+}
+.settings-companion p {
+  max-width: 240px;
+  margin: 16px auto;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.settings-companion .nature-button {
+  display: inline-block;
+  padding: 13px 18px;
+  border-radius: 12px;
+  color: #fff4cb;
+  text-decoration: none;
+  background: #365d36;
+  border: 2px solid #d2b472;
+  font-weight: 700;
+}
+.panel-remodeled .tabs {
+  background: #dae6c6;
+  padding: 5px;
+  border-radius: 17px;
+}
+.panel-remodeled .tabs button {
+  border: 1px solid #9bb77b;
+  background: #f5f1d8;
+  box-shadow: 0 3px 0 #91aa7377;
+  min-height: 48px;
+  transition:
+    background 0.2s,
+    translate 0.2s;
+}
+.panel-remodeled .tabs button[aria-selected="true"] {
+  background: #3f6339;
+  color: #fff6cb;
+  border-color: #3f6339;
+  box-shadow: inset 0 1px 3px #173a30;
+}
+.panel-remodeled .tabs button:hover {
+  translate: 0 -2px;
+}
+.panel-remodeled .tabs button:active {
+  translate: 0 1px;
+}
+.journey-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0;
+}
+.journey-cards article {
+  border: 1px solid #bbcc9b;
+  border-radius: 18px 5px 18px 5px;
+  background: #e4edcf;
+  padding: 16px;
+}
+.journey-cards h3 {
+  font-size: 18px;
+  margin: 8px 0;
+}
+.journey-cards p {
+  font-size: 13px !important;
+  margin: 0 !important;
+}
+.nature-button:hover,
+.quiet-button:hover,
+.switch:hover {
+  filter: brightness(1.08);
+}
+.nature-button:active,
+.quiet-button:active {
+  scale: 0.97;
+}
+.panel-remodeled .setting-glyph .ui-icon {
+  width: 32px;
+  height: 32px;
+}
+.panel-remodeled .demo-water .ui-icon {
+  width: 38px;
+  height: 38px;
+}
+.panel-remodeled .how-cards .ui-icon {
+  width: 38px;
+  height: 38px;
+}
+@keyframes flora-comfort {
+  50% {
+    transform: translateY(-6px) rotate(3deg);
+  }
+}
+@media (max-width: 700px) {
+  .settings-companion {
+    position: static;
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    text-align: left;
+    gap: 2px 14px;
+    padding: 15px 5px;
+    margin-bottom: 0;
+  }
+  .settings-companion img {
+    grid-row: 1/4;
+    width: 70px;
+    height: 70px;
+  }
+  .settings-companion h2 {
+    font-size: 27px;
+    margin: 0;
+  }
+  .settings-companion h2 br {
+    display: none;
+  }
+  .settings-companion .eyebrow,
+  .settings-companion .nature-button {
+    display: none;
+  }
+  .settings-companion p {
+    font-size: 12px;
+    max-width: none;
+    margin: 4px 0;
+  }
+  .journey-cards {
+    gap: 8px;
+  }
+  .journey-cards article {
+    padding: 12px;
+  }
+  .panel-remodeled .control-mode select {
+    font-size: 14px;
+  }
+  .panel-remodeled .panel-inner {
+    padding: 24px 17px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .settings-companion img {
+    animation: none;
+  }
+  .panel-remodeled .tabs button {
+    transition: none;
+  }
+}
+.reduce-motion .settings-companion img {
+  animation: none;
+}
+.phase-meeting {
+  display: grid;
+  grid-template-columns: 85px 1fr 85px;
+  align-items: end;
+  gap: 8px;
+  padding: 14px 18px;
+  background: radial-gradient(ellipse at bottom, #9bbd68, #31563a);
+  border-bottom: 3px solid #896336;
+  min-height: 175px;
+}
+.phase-meeting svg {
+  height: 115px;
+  width: 85px;
+  overflow: hidden;
+  filter: drop-shadow(0 5px 2px #0f32294a);
+}
+.meeting-npc,
+.meeting-kai {
+  display: grid;
+  text-align: center;
+  color: #fff5cf;
+  font-size: 12px;
+  font-weight: 800;
+  gap: 4px;
+}
+.meeting-dialogue {
+  background: #fcf4d8;
+  border: 2px solid #bba56b;
+  border-radius: 18px 18px 18px 3px;
+  padding: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 3px 0 #2d412b55;
+}
+.meeting-dialogue p {
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+  color: #3e5030;
+}
+.meeting-dialogue > div {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 8px;
+}
+.meeting-dialogue .ui-icon {
+  height: 32px;
+  width: 32px;
+}
+.phase-symbol > .ui-icon {
+  width: 65px;
+  height: 65px;
+}
+.phase-panel .phase-scene {
+  min-height: 120px;
+}
+.phase-panel .phase-copy {
+  padding-top: 18px;
+}
+.phase-panel .phase-state {
+  font-size: 12px;
+}
+@media (max-width: 500px) {
+  .phase-meeting {
+    grid-template-columns: 65px 1fr 65px;
+    padding: 12px;
+    gap: 4px;
+    min-height: 150px;
+  }
+  .phase-meeting svg {
+    height: 100px;
+    width: 65px;
+  }
+  .meeting-dialogue {
+    padding: 9px;
+    margin-bottom: 10px;
+  }
+  .meeting-dialogue p {
+    font-size: 11px;
+  }
+}
+
+.settings-companion h2 {
+  color: #fff2bf;
+}
+
+.phase-meeting .ui-icon svg {
+  width: 100%;
+  height: 100%;
+}

@@ -14,7 +14,7 @@
   ];
   // Trilhas largas e clareiras reais: a travessia está na ponte, não na cisterna.
   const edges=[...original.edges.map(([a,b,w])=>[a,b,Math.max(w,38)]),['leste','cervo',32],['baixo','passaro',35],['cinza','capivara',35]];
-  const nodes={...original.nodes,cervo:[1190,240],passaro:[1140,590],capivara:[260,540],registro:[436,392],cisterna:[315,407],beira:[470,408],ponteOeste:[506,405],ponte:[575,405],ponteLeste:[647,405],alto:[900,200],norte:[995,161]};
+  const nodes={...original.nodes,cervo:[1190,240],passaro:[1120,490],capivara:[260,540],registro:[436,392],cisterna:[315,407],beira:[470,408],ponteOeste:[506,405],ponte:[575,405],ponteLeste:[647,405],alto:[900,200],norte:[995,161]};
   const zones=[...original.zones,[[290,315],[445,306],[488,355],[492,414],[423,441],[290,443]],
     [[252,260],[354,265],[365,315],[328,362],[288,407],[272,454],[218,478],[206,445],[267,344]],
     [[300,384],[343,390],[412,394],[468,376],[503,382],[507,427],[422,441],[323,443]],

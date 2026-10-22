@@ -47,3 +47,13 @@ assert.equal(Object.values(revisedAtlas).reduce((n,s)=>n+s.frames.length,0),128)
 for(const sheet of Object.values(revisedAtlas))assert.ok(existsSync(resolve(forestFolder,sheet.file)),'prancha revisada: '+sheet.file);
 for(const file of ['ilha-viva.png','ilha-restaurada.png','festa-da-floresta.png','kai-cuida-da-natureza.png'])assert.ok(existsSync(resolve(root,'tela-inicial/jornada-viva/assets',file)));
 console.log('PASS: 128 quadros remodelados, duas pinturas da floresta e nova ilha, imagens do diário e da conclusão.');
+
+const campaign=JSON.parse(readFileSync(resolve(root,'jogo/jornada/assets/atlas.json'),'utf8'));
+assert.equal(Object.values(campaign).reduce((n,s)=>n+s.frames.length,0),198);
+for(const sheet of Object.values(campaign))assert.ok(existsSync(resolve(root,'jogo/jornada',sheet.file)),'arte da campanha: '+sheet.file);
+for(const map of ['rio','fauna','plantio','cidade'])for(const suffix of ['','-restaurado'])assert.ok(existsSync(resolve(root,`jogo/jornada/assets/mapa-${map}${suffix}.png`)));
+const manifest=JSON.parse(readFileSync(resolve(root,'jogo/sistemas/arte-manifesto.js'),'utf8').replace(/^window.GuardiaoArteManifesto=/,'').replace(/;\s*$/,''));
+for(const [original,optimized] of Object.entries(manifest)){assert.ok(existsSync(resolve(root,original)));assert.ok(existsSync(resolve(root,optimized)));}
+const selection=readFileSync(resolve(root,'tela-inicial/nova-versao/aventura.html'),'utf8');assert.ok(!selection.includes('data-map-action="preview"'));
+assert.ok(selection.includes('../campanha/mapa.js'));
+console.log('PASS: campanha de cinco fases, 198 quadros compartilhados/novos, oito pinturas próprias e '+Object.keys(manifest).length+' imagens WebP, originais preservados e seleção sem prévias.');

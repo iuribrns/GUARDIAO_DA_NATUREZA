@@ -2,7 +2,7 @@
 const assert = require('node:assert/strict');
 const { chromium } = require('playwright-core');
 const base = process.env.GUARDIAO_TEST_URL || 'http://127.0.0.1:5173/tela-inicial/nova-versao/';
-const ready = page => page.waitForFunction(() => window.GuardiaoFolhas && document.querySelector('.camp-flora-sprite')?.dataset.pose === '0' && !document.querySelector('.navigation-veil'));
+const ready = page => page.waitForFunction(() => window.GuardiaoFolhas && (document.body.dataset.page==='settings'||document.querySelector('.camp-flora-sprite')?.dataset.pose === '0') && !document.querySelector('.navigation-veil'));
 (async () => {
   const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium', args:['--no-sandbox'] });
   const errors = [];
@@ -39,18 +39,11 @@ const ready = page => page.waitForFunction(() => window.GuardiaoFolhas && docume
     assert.equal(await page.locator('#musicVolume').evaluate(node=>node.style.getPropertyValue('--volume')),'27%');
     await page.locator('#fallingLeaves').uncheck(); assert.equal(await page.locator('.living-leaves').isVisible(),false);
     await page.locator('#fallingLeaves').check(); assert.equal(await page.locator('.living-leaves').isVisible(),true);
-    await page.getByRole('button',{name:'Conversar com Flora',exact:true}).click();
     await page.locator('#reduceMotion').check();
-    await page.waitForFunction(()=>document.querySelector('.camp-flora-sprite').dataset.pose === '0');
     assert.equal(await page.locator('.living-leaves').isVisible(),false);
-    assert.equal(await page.locator('.companion .actor-stage').first().evaluate(node=>getComputedStyle(node).animationName),'none');
-    assert.equal(await page.evaluate(()=>gsap.getTweensOf(document.querySelector('.camp-flora-sprite')).length),0,'redução cancela a reação que estava tocando');
-    await page.reload(); await ready(page);
-    assert.equal(await page.locator('#reduceMotion').isChecked(),true);
-    assert.equal(await page.locator('#musicVolume').inputValue(),'27');
-    await page.getByRole('button',{name:'Conversar com Kai',exact:true}).click();
-    assert.match(await page.locator('.camp-speech').textContent(),/^Kai:/);
-    assert.equal(await page.locator('.camp-kai-sprite').getAttribute('data-pose'),'0','conversa continua sem movimento');
+    assert.equal(await page.locator('.settings-companion img').evaluate(node=>getComputedStyle(node).animationName),'none');
+    assert.equal(await page.locator('[data-companion]').count(),0,'configurações contém ajustes; explicações e personagens interativos estão no diário');
+    await page.reload();await ready(page);assert.equal(await page.locator('#reduceMotion').isChecked(),true);assert.equal(await page.locator('#musicVolume').inputValue(),'27');
     await page.locator('#reset').click(); assert.equal(await page.locator('#reduceMotion').isChecked(),false);
     await page.goto(base+'sobre.html'); await ready(page);
     await page.getByRole('tab',{name:'Sua missão',exact:true}).click();
@@ -70,8 +63,7 @@ const ready = page => page.waitForFunction(() => window.GuardiaoFolhas && docume
         for (const button of await phone.locator('[data-companion]').all()) {
           const rect=await button.boundingBox(); assert.ok(rect.width>=44 && rect.height>=44,'alvo de toque confortável');
         }
-        await phone.getByRole('button',{name:'Conversar com Flora',exact:true}).tap();
-        assert.match(await phone.locator('.camp-speech').textContent(),/^Flora:/);
+        if(file!=='configuracoes'){await phone.getByRole('button',{name:'Conversar com Flora',exact:true}).tap();assert.match(await phone.locator('.camp-speech').textContent(),/^Flora:/);}
         if (file==='configuracoes') {
           await phone.locator('#largeText').check();
           assert.ok(await phone.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'texto maior sem corte');

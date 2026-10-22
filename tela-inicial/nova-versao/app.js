@@ -2,7 +2,7 @@
 (() => {
   const storageKey = 'guardiao.horizonte.preferences.v1';
   const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const defaults = { music: false, musicVolume: 40, effects: true, effectsVolume: 60, largeText: false, fallingLeaves: true, reduceMotion: false, leftHanded: false, controlSize: 0, contextHints: true };
+  const defaults = { music: false, musicVolume: 40, effects: true, effectsVolume: 60, largeText: false, fallingLeaves: true, reduceMotion: false, leftHanded: false, controlSize: 0, contextHints: true, controlMode: 'auto' };
   let preferences = { ...defaults };
   let storageAvailable = true;
   try {
@@ -14,6 +14,7 @@
       if (typeof legacy.motion === 'boolean') preferences.fallingLeaves = legacy.motion;
     }
     if (saved && typeof saved === 'object') for (const key of Object.keys(defaults)) {
+      if(key==='controlMode'&&['auto','touch','keyboard'].includes(saved[key]))preferences[key]=saved[key];
       if (typeof defaults[key] === 'boolean' && typeof saved[key] === 'boolean') preferences[key] = saved[key];
       if (typeof defaults[key] === 'number' && typeof saved[key] === 'number' && Number.isFinite(saved[key])) preferences[key] = Math.min(100, Math.max(0, saved[key]));
     }
@@ -88,13 +89,14 @@
     apply();
     try { localStorage.setItem(storageKey, JSON.stringify(preferences)); announce('Preferências salvas neste navegador.'); storageAvailable = true; }
     catch { storageAvailable = false; announce('Preferências aplicadas nesta sessão. O navegador bloqueou o armazenamento.'); }
+    window.GuardiaoControles?.refresh(preferences);
     if (media.matches) announce('Preferência do dispositivo respeitada: transições suaves, sem movimento de folhas ou círculo.');
   }
   form?.addEventListener('submit', event => event.preventDefault());
   form?.addEventListener('input', event => {
     const input = event.target;
     if (!Object.hasOwn(defaults, input.name)) return;
-    preferences[input.name] = input.type === 'checkbox' ? input.checked : Number(input.value);
+    preferences[input.name] = input.type === 'checkbox' ? input.checked : input.name==='controlMode' ? input.value : Number(input.value);
     save();
     if (input.name === 'music' || input.name === 'musicVolume') updateMusic(true);
     if (input.name === 'effects') clickSound();
@@ -142,7 +144,8 @@
   compact.addEventListener('change', createLeaves);
   apply(); createLeaves();
   if (!storageAvailable) announce('As preferências funcionam nesta sessão; o armazenamento está indisponível.');
-  if (media.matches) announce('Preferência do dispositivo respeitada: transições suaves, sem movimento de folhas ou círculo.');
+  window.GuardiaoControles?.refresh(preferences);
+    if (media.matches) announce('Preferência do dispositivo respeitada: transições suaves, sem movimento de folhas ou círculo.');
   if (!window.AudioContext && !window.webkitAudioContext && form) {
     for (const id of ['music', 'musicVolume', 'effects', 'effectsVolume', 'preview-sound']) document.getElementById(id).disabled = true;
     announce('Este navegador não oferece áudio. As demais preferências continuam disponíveis.');

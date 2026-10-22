@@ -22,7 +22,7 @@
       leaf.style.left = (-12 + index / count * 106) + '%';
       for (const [key,value] of Object.entries(properties)) leaf.style.setProperty(key,value);
       const id = 'leaf-frame-' + generation + '-' + index;
-      leaf.innerHTML = '<span class="leaf-sway"><span class="leaf-turn"><svg viewBox="' + frame.join(' ') + '" xmlns="http://www.w3.org/2000/svg" focusable="false"><defs><clipPath id="' + id + '"><rect x="' + frame[0] + '" y="' + frame[1] + '" width="' + frame[2] + '" height="' + frame[3] + '"/></clipPath></defs><image href="assets/folhas-sprites.png" width="1774" height="887" clip-path="url(#' + id + ')"/></svg></span></span>';
+      leaf.innerHTML = '<span class="leaf-sway"><span class="leaf-turn"><svg viewBox="' + frame.join(' ') + '" xmlns="http://www.w3.org/2000/svg" focusable="false"><defs><clipPath id="' + id + '"><rect x="' + frame[0] + '" y="' + frame[1] + '" width="' + frame[2] + '" height="' + frame[3] + '"/></clipPath></defs><image href="../../assets/otimizados/folhas-sprites-dc0703caf7d4.webp" width="1774" height="887" clip-path="url(#' + id + ')"/></svg></span></span>';
       fragment.append(leaf);
     }
     layer.classList.add('living-leaves'); layer.replaceChildren(fragment);

@@ -6,7 +6,7 @@
   const river=[[475,0],[535,0],[575,145],[562,220],[580,290],[610,365],[627,470],[663,570],[730,720],[650,720],[585,600],[580,520],[540,440],[512,360],[520,285],[510,220],[510,160],[475,100]];
   const bridge=[[495,378],[663,378],[663,435],[495,435]];
   const fires=[{id:0,x:727,y:222,rx:90,ry:73},{id:1,x:950,y:340,rx:105,ry:70},{id:2,x:1025,y:112,rx:110,ry:77},{id:3,x:1175,y:205,rx:100,ry:65},{id:4,x:1160,y:395,rx:110,ry:75},{id:5,x:1090,y:545,rx:100,ry:77},{id:6,x:885,y:625,rx:115,ry:74},{id:7,x:220,y:555,rx:117,ry:89}];
-  const animals=[{id:'capivara',name:'Capivara',x:260,y:540,fires:[7],height:38,home:{x:226,y:282}},{id:'cervo',name:'Cervo',x:1190,y:240,fires:[2,3],height:49,home:{x:205,y:255}},{id:'passaro',name:'Passarinho',x:1140,y:590,fires:[5,6],height:25,home:{x:250,y:294}}];
+  const animals=[{id:'capivara',name:'Capivara',x:260,y:540,fires:[7],height:38,home:{x:226,y:282}},{id:'cervo',name:'Cervo',x:1190,y:240,fires:[2,3],height:49,home:{x:205,y:255}},{id:'passaro',name:'Passarinho',x:1120,y:490,fires:[5,6],height:36,home:{x:250,y:294}}];
   const trees=[{x:88,y:465,h:160,frame:0},{x:430,y:270,h:130,frame:1},{x:690,y:155,h:142,frame:0},{x:860,y:485,h:130,frame:1},{x:1230,y:650,h:155,frame:0},{x:390,y:670,h:155,frame:1}];
   function inside(p,poly){let yes=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const [x,y]=poly[i],[xx,yy]=poly[j];if((y>p.y)!==(yy>p.y)&&p.x<(xx-x)*(p.y-y)/(yy-y)+x)yes=!yes;}return yes;}
   const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);

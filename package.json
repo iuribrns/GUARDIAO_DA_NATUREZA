@@ -15,7 +15,8 @@
     "check:tools": "node desenvolvimento/scripts/verificar-ferramentas.mjs",
     "tools:install": "python3 desenvolvimento/scripts/instalar-editores.py",
     "test:build": "node desenvolvimento/scripts/testar.mjs --production",
-    "check:site": "node desenvolvimento/scripts/verificar-site.mjs"
+    "check:site": "node desenvolvimento/scripts/verificar-site.mjs",
+    "format:campaign": "prettier --write jogo/jornada/{fases,navegacao,sprites,jornada}.js jogo/jornada/jornada.css jogo/sistemas/{arte,controles,icones,progresso}.js jogo/sistemas/controles.css tela-inicial/campanha/*.{js,css}"
   },
   "dependencies": {
     "gsap": "3.15.0",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "playwright-core": "1.64.1",
+    "prettier": "3.6.2",
     "vite": "8.3.5"
   }
 }
