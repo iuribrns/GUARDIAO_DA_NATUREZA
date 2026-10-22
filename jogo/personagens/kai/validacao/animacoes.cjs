@@ -4,10 +4,11 @@ const {readFileSync}=require('node:fs');
 const {join}=require('node:path');
 const {chromium}=require('playwright-core');
 const base=process.env.GUARDIAO_TEST_URL || 'http://127.0.0.1:5173/tela-inicial/nova-versao/';
+const trainingURL=new URL('../../desenvolvimento/modelos/legado/treino.html',base).href;
 const data=JSON.parse(readFileSync(join(__dirname,'../../../../assets/personagens/kai/animacoes/atlas.json'),'utf8'));
 const ready=page=>page.waitForFunction(()=>document.querySelector('.training-kai')?.dataset.spriteStatus==='ready');
 const state=page=>page.locator('.training-kai').getAttribute('data-animation');
-async function open(page,url=base+'sobre.html') {
+async function open(page,url=trainingURL) {
   await page.goto(url);await page.getByRole('tab',{name:'Como jogar',exact:true}).click();await ready(page);
   await page.locator('.mobile-controls').scrollIntoViewIfNeeded();
 }
@@ -75,7 +76,7 @@ async function pixels(page) {
       await phone.waitForFunction(()=>document.querySelector('.training-kai').dataset.grounded==='true');await phone.close();
     }
     const failed=await browser.newPage();collect(failed);
-    await failed.route('**/kai-caminhada.png',route=>route.abort());await failed.goto(base+'sobre.html');
+    await failed.route('**/kai-caminhada.png',route=>route.abort());await failed.goto(trainingURL);
     await failed.getByRole('tab',{name:'Como jogar',exact:true}).click();
     await failed.waitForFunction(()=>document.querySelector('.training-kai').dataset.spriteStatus==='error');
     assert.match(await failed.locator('.training-status').textContent(),/sprites animados não carregaram/);
@@ -83,7 +84,7 @@ async function pixels(page) {
     if(process.env.GUARDIAO_PRODUCTION==='true') {
       const published=await browser.newPage();collect(published);const origin=new URL(base).origin,prefix='/GUARDIAO_DA_NATUREZA';
       await published.route(origin+prefix+'/**',async route=>{const source=new URL(route.request().url());source.pathname=source.pathname.slice(prefix.length);await route.fulfill({response:await route.fetch({url:source.href})});});
-      await open(published,origin+prefix+'/tela-inicial/nova-versao/sobre.html');assert.ok((await pixels(published)).count>500);
+      await open(published,origin+prefix+'/desenvolvimento/modelos/legado/treino.html');assert.ok((await pixels(published)).count>500);
     }
     assert.deepEqual(errors,[]);
     console.log('PASS: 24 quadros finais renderizados, 12 poses de caminhada, 8 de salto, 4 de repouso, mudança real de pixels, pés alinhados, esquerda/direita, parada, pausa, movimento reduzido, toque em 320/390/844px e falha de imagem sem bloquear controles.');

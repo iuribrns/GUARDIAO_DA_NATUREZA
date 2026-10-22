@@ -54,7 +54,16 @@ try {
   await browser.close(); browser = undefined;
   console.log(`PASS: ${production ? 'build de produção' : 'Vite em desenvolvimento'}, menu, Phaser com sprite real, GSAP, pausa, movimento reduzido e celular.`);
   {
-    const suites = production ? ['tela-inicial/mapa-interativo/validacao/interacoes.cjs', 'tela-inicial/menu-vivo/validacao/menu.cjs', 'jogo/controles/validacao/controles.cjs', 'jogo/personagens/kai/validacao/animacoes.cjs', 'jogo/area-aberta/validacao/fase.cjs', 'jogo/floresta-viva/validacao/floresta.cjs'] : ['tela-inicial/nova-versao/validacao/transicoes.cjs', 'tela-inicial/selecao-fases/validacao/mapa.cjs', 'tela-inicial/mapa-interativo/validacao/interacoes.cjs', 'tela-inicial/efeitos-folhas/validacao/folhas.cjs', 'tela-inicial/menu-vivo/validacao/menu.cjs', 'jogo/controles/validacao/controles.cjs', 'jogo/personagens/kai/validacao/animacoes.cjs', 'jogo/area-aberta/validacao/fase.cjs', 'jogo/floresta-viva/validacao/floresta.cjs'];
+    // O mapa redesenhado e a exploração atual têm uma validação completa própria.
+    // Os controles de plataforma seguem testados no laboratório legado preservado.
+    const suites = [
+      ...(!production ? ['tela-inicial/nova-versao/validacao/transicoes.cjs','tela-inicial/efeitos-folhas/validacao/folhas.cjs'] : []),
+      'tela-inicial/menu-vivo/validacao/menu.cjs',
+      'jogo/controles/validacao/controles.cjs',
+      'jogo/personagens/kai/validacao/animacoes.cjs',
+      'jogo/area-aberta/validacao/fase.cjs',
+      'jogo/floresta-viva/revisao/validacao/revisao.cjs'
+    ];
     for (const file of suites) {
       await new Promise((resolveRun, reject) => {
         const child = spawn(process.execPath, [file], { cwd: root, stdio: 'inherit', env: { ...process.env, GUARDIAO_TEST_URL: `${origin}/tela-inicial/nova-versao/`, GUARDIAO_PRODUCTION: String(production) } });

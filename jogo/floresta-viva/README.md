@@ -1,5 +1,7 @@
 # Floresta Viva — nova versão da primeira fase
 
+> Versão atual: [revisão para celular](revisao/README.md), com 128 quadros remodelados, cenário ilustrado, colisões do reservatório/ponte, interface compacta e conclusão com fragmento vermelho. As artes e a documentação da primeira versão abaixo foram preservadas.
+
 Fase em **2D isométrico em uma floresta de terreno contínuo**, criada a partir da composição da versão anterior. A cabana, o abrigo, o registro e a ponte ficam em um bosque com riacho, trilhas e clareiras; esta versão não usa montanhas, penhascos ou escadas. O mapa anterior e seus arquivos continuam em `../area-aberta/`.
 
 ## Jornada

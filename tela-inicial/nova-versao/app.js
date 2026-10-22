@@ -2,7 +2,7 @@
 (() => {
   const storageKey = 'guardiao.horizonte.preferences.v1';
   const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const defaults = { music: false, musicVolume: 40, effects: true, effectsVolume: 60, largeText: false, fallingLeaves: true, reduceMotion: false };
+  const defaults = { music: false, musicVolume: 40, effects: true, effectsVolume: 60, largeText: false, fallingLeaves: true, reduceMotion: false, leftHanded: false, controlSize: 0, contextHints: true };
   let preferences = { ...defaults };
   let storageAvailable = true;
   try {

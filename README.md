@@ -1,6 +1,6 @@
 # Guardião da Natureza
 
-Jogo em HTML, CSS e JavaScript com foco em celular. O menu, o mapa de seleção e o colar usam as artes aprovadas. A área `desenvolvimento/` reúne as ferramentas para criar e animar as próximas fases.
+Jogo em HTML, CSS e JavaScript com foco em celular. O menu, a ilha de seleção e a floresta usam ilustrações e animações próprias. A área `desenvolvimento/` reúne as ferramentas para criar e animar as próximas fases.
 
 [Endereço do jogo no Pages](https://iuribrns.github.io/GUARDIAO_DA_NATUREZA/) · [Organização das pastas](docs/ESTRUTURA.md) · [Publicação](docs/PUBLICACAO.md)
 
@@ -10,13 +10,19 @@ A raiz agora contém `index.html`, que abre diretamente o menu. `jogo/` reúne a
 
 **Jogar → Floresta em Chamas → Entrar na floresta** abre a nova floresta em 2D isométrico, sem montanhas. Kai começa ao lado de Carlos, conversa com ele e recebe a mangueira e o kit. Depois, apaga oito focos, trata três animais e os acompanha pelas trilhas até Carlos. Cada área queimada volta a ficar verde. Ao retornar para Carlos, Kai recebe e ergue o fragmento do colar, e comemora com Flora.
 
-São **108 quadros novos**: Kai com mangueira em oito direções, caminhada, repouso e premiação; voo, pouso e comemoração de Flora; animais feridos, tratados e em movimento; Carlos, itens, jato, árvores e folhas. Quando Kai fica parado, Flora pousa no ombro. Os balões de natureza desaparecem após a leitura. O código e as artes ficam em [`jogo/floresta-viva/`](jogo/floresta-viva/README.md); o mapa anterior continua preservado em `jogo/area-aberta/`.
+A versão anterior tinha **108 quadros** (preservados): Kai com mangueira em oito direções, caminhada, repouso e premiação; voo, pouso e comemoração de Flora; animais feridos, tratados e em movimento; Carlos, itens, jato, árvores e folhas. Quando Kai fica parado, Flora pousa no ombro. Os balões de natureza desaparecem após a leitura. O código e as artes ficam em [`jogo/floresta-viva/`](jogo/floresta-viva/README.md); o mapa anterior continua preservado em `jogo/area-aberta/`.
 
 Controles: joystick nos dois eixos, água, mão e mochila. No computador: WASD/setas, espaço, E e B. O progresso e o fragmento são salvos neste navegador. As fases 2 a 6 continuam em desenvolvimento.
 
-## Treino de movimentos anterior
+## Revisão da aventura para celular
 
-O movimento usa **joystick**, e o botão de pulo mostra **Kai saltando**. Há um treino funcional em **Sobre o jogo → Como jogar**, onde é possível andar e pular com dois dedos ao mesmo tempo. O código reutilizável está em [`jogo/controles/`](jogo/controles/README.md). Esse treino é separado das fases da campanha.
+A floresta ganhou cenário ilustrado suave, **128 quadros remodelados**, navegação com colisão nos pés, proteção do reservatório e travessia correta da ponte. Kai e os animais usam o mesmo sistema de trilhas. A missão ocupa uma faixa compacta; toque no título para ver detalhes. As orientações são curtas e aparecem uma de cada vez.
+
+Ao terminar os resgates, Flora guia Kai de volta a Carlos. O **fragmento vermelho** tem novas poses de entrega, elevação e comemoração. A tela de conclusão mostra os resultados e leva ao próximo destino no mapa. A seleção de fases tem uma ilha nova e seis prévias de restauração que não alteram conquistas. **Somente a primeira fase é jogável**; Rio Poluído mostra o próximo desafio e permanece em desenvolvimento.
+
+Configurações inclui joystick à direita, tamanho dos controles e dicas automáticas da Flora. Sobre o jogo ensina exploração em oito direções e traz sugestões de cuidado com a natureza. O treino de pulo anterior foi preservado apenas no laboratório de desenvolvimento.
+
+Documentação: [revisão da fase](jogo/floresta-viva/revisao/README.md) e [ilha e menus](tela-inicial/jornada-viva/README.md).
 
 O workflow do Pages está em `.github/workflows/pages.yml` e publica `dist/` a cada push na `main`, depois da ativação inicial do Pages com a fonte **GitHub Actions**. Confira a execução em Actions para confirmar que a versão está no ar.
 
@@ -35,7 +41,7 @@ O laboratório fica no caminho `/desenvolvimento/laboratorio/index.html`. Ele mo
 
 ## Animações de Kai
 
-Kai tem **12 quadros de caminhada, 8 de salto e 4 de repouso**, integrados ao treino em **Sobre o jogo → Como jogar**. A caminhada acompanha a distância do joystick, e o salto usa poses de impulso, subida, queda e aterrissagem. Os movimentos para a esquerda espelham os sprites para a direita.
+O laboratório legado preserva **12 quadros de caminhada, 8 de salto e 4 de repouso**, separados da campanha atual. A caminhada acompanha a distância do joystick, e o salto usa poses de impulso, subida, queda e aterrissagem. Os movimentos para a esquerda espelham os sprites para a direita.
 
 As pranchas, os metadados e os 24 recortes individuais estão em [`assets/personagens/kai/animacoes/`](assets/personagens/kai/animacoes/README.md). O renderizador reutilizável fica em [`jogo/personagens/kai/`](jogo/personagens/kai/README.md).
 
@@ -49,9 +55,9 @@ Os arquivos novos e sua documentação estão em [tela-inicial/menu-vivo/README.
 
 ## Mapa interativo e informações das fases
 
-Em **Jogar**, toque na placa ou no terreno de uma região para conhecer sua missão. O mapa tem correntes, ondulações, fogo, fumaça e portal animados; os controles permitem ampliar e arrastar a ilha. Em pé, o celular também mostra uma lista de fases com áreas de toque maiores.
+Em **Jogar**, toque na placa de uma região para conhecer sua missão. A ilha tem correntes, ondulações, fogo, fumaça, folhas e portal animados. No celular, arraste a ilha e use Encontrar Kai para retornar ao destino atual; a lista abaixo oferece outra forma de escolher.
 
-Cada seleção abre um painel com o aliado, a situação, três objetivos, o equipamento, a recompensa e a duração estimada fornecidos em `paineis-das-fases.zip`. Os personagens alternam poses durante a leitura. As animações respeitam a configuração de movimento reduzido e pausam quando a aba fica oculta.
+Cada seleção abre um painel com o aliado, a situação, três objetivos, o equipamento, a recompensa e a duração estimada fornecidos em `paineis-das-fases.zip`. O retrato de Kai acompanha o destino atual. As animações respeitam a configuração de movimento reduzido e pausam quando a aba fica oculta.
 
 A recuperação da floresta continua disponível como prévia, separada do progresso real. A primeira missão já pode ser jogada em área aberta; as demais estão em desenvolvimento. Detalhes dos arquivos em [tela-inicial/mapa-interativo/README.md](tela-inicial/mapa-interativo/README.md).
 

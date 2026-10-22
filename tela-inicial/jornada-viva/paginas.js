@@ -1,0 +1,17 @@
+'use strict';
+(() => {
+  const tips=['Cuide de uma plantinha. Veja como ela muda a cada semana!','Reutilize uma folha de papel antes de pegar outra.','Observe um pássaro de longe. Você reconhece o canto?','Leve sua garrafinha e evite copos descartáveis.','Uma trilha bonita é aquela em que a gente não deixa lixo.'];let tip=0;
+  document.getElementById('next-nature-tip')?.addEventListener('click',()=>{document.getElementById('nature-tip').textContent=tips[++tip%tips.length];});
+  document.getElementById('tab-nature')?.addEventListener('click',()=>{const speech=document.querySelector('.camp-speech');if(speech)speech.textContent='Flora: Vamos cuidar da natureza também fora da tela!';});
+  const target=location.hash.slice(1);if(['controls','nature','mission','story'].includes(target))document.querySelector(`[aria-controls="${target}"]`)?.click();
+  if(new URLSearchParams(location.search).get('origem')==='fase'){const back=document.querySelector('.back-link');back.href='../../jogo/floresta-viva/index.html';back.setAttribute('aria-label','Voltar à floresta');back.lastChild.textContent=' Voltar à floresta';}
+  const pad=document.getElementById('demo-pad'),actor=document.getElementById('demo-kai'),water=document.getElementById('demo-water');if(!pad||!actor)return;
+  let active=null,x=0,y=0,dx=0,dy=0,frame=0,last=0;
+  function tick(time){frame=0;if(active===null||document.hidden||document.getElementById('controls').hidden)return;const dt=last?Math.min(.04,(time-last)/1000):.016;last=time;x=Math.max(-75,Math.min(75,x+dx*85*dt));y=Math.max(-40,Math.min(35,y+dy*85*dt));actor.style.translate=`${x}px ${y}px`;actor.style.scale=dx<0?'-1 1':'1';frame=requestAnimationFrame(tick);}
+  function move(e){const b=pad.getBoundingClientRect();dx=Math.max(-1,Math.min(1,(e.clientX-b.x-b.width/2)/30));dy=Math.max(-1,Math.min(1,(e.clientY-b.y-b.height/2)/30));pad.firstElementChild.style.translate=`${dx*18}px ${dy*18}px`;if(!frame){last=0;frame=requestAnimationFrame(tick);}}
+  function stop(){active=null;dx=dy=0;cancelAnimationFrame(frame);frame=0;pad.firstElementChild.style.translate='';water.closest('.open-controls-demo').classList.remove('spraying');}
+  pad.addEventListener('pointerdown',e=>{active=e.pointerId;pad.setPointerCapture(active);move(e);});pad.addEventListener('pointermove',e=>{if(e.pointerId===active)move(e);});for(const type of ['pointerup','pointercancel','lostpointercapture'])pad.addEventListener(type,stop);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});new MutationObserver(()=>{if(document.getElementById('controls').hidden)stop();}).observe(document.getElementById('controls'),{attributes:true,attributeFilter:['hidden']});
+  pad.addEventListener('keydown',e=>{const dirs={ArrowLeft:[-6,0],ArrowRight:[6,0],ArrowUp:[0,-6],ArrowDown:[0,6]};if(!dirs[e.key])return;e.preventDefault();x=Math.max(-75,Math.min(75,x+dirs[e.key][0]));y=Math.max(-40,Math.min(35,y+dirs[e.key][1]));actor.style.translate=`${x}px ${y}px`;});
+  water.addEventListener('pointerdown',e=>{water.setPointerCapture(e.pointerId);water.closest('.open-controls-demo').classList.add('spraying');});for(const type of ['pointerup','pointercancel','lostpointercapture'])water.addEventListener(type,()=>water.closest('.open-controls-demo').classList.remove('spraying'));water.addEventListener('click',e=>{if(!e.detail){water.closest('.open-controls-demo').classList.add('spraying');setTimeout(()=>water.closest('.open-controls-demo').classList.remove('spraying'),700);}});
+})();

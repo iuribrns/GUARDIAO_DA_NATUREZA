@@ -1,79 +1,8 @@
-<!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#234c36"><title>Mapa das fases · Guardião da Natureza</title><link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="../../assets/identidade-flora/favicon.ico?v=flora-1">
-<link rel="icon" type="image/png" sizes="32x32" href="../../assets/identidade-flora/flora-32.png?v=flora-1">
-<link rel="icon" type="image/png" sizes="16x16" href="../../assets/identidade-flora/flora-16.png?v=flora-1">
-<link rel="apple-touch-icon" sizes="180x180" href="../../assets/identidade-flora/flora-180.png?v=flora-1"><link rel="stylesheet" href="style.css?v=celular-1"><link rel="stylesheet" href="mobile.css?v=celular-1"><link rel="stylesheet" href="transicoes.css?v=transicoes-3"><link rel="stylesheet" href="modelo.css?v=modelo-video-1"><link rel="stylesheet" href="melhorias.css?v=folhas-1"><script src="app.js?v=menu-vivo-1" defer></script><script src="transicoes.js?v=folhas-1" defer></script><link rel="stylesheet" href="../selecao-fases/mapa.css?v=mapa-interativo-2"><link rel="stylesheet" href="../mapa-interativo/interativo.css?v=ilhas-1"><script src="../mapa-interativo/conteudo.js?v=paineis-1" defer></script><script src="../mapa-interativo/interacoes.js?v=floresta-viva-2" defer></script><script src="../selecao-fases/mapa.js?v=area-aberta-1" defer></script></head>
-<body class="map-page" data-page="missions">
-<div class="leaves" aria-hidden="true" hidden></div>
-<a class="skip-link" href="#conteudo">Pular para as fases</a>
-<main class="map-shell" id="conteudo" tabindex="-1">
-<header class="journey-heading">
-<div><p class="eyebrow">Kai e Flora · Uma jornada pela vida</p><h1>Escolha seu próximo destino</h1></div>
-<p class="journey-current"><span class="journey-dot" aria-hidden="true"></span><span id="journey-current">Floresta em Chamas</span></p>
-</header>
-<section class="map-stage" aria-label="Mapa das fases" aria-describedby="map-description">
-<img class="map-art" src="../selecao-fases/assets/mapa-inicial.png" alt="" width="1672" height="941" fetchpriority="high">
-<img class="map-art map-restored" src="../selecao-fases/assets/mapa-apos-fase-1.png" alt="" width="1672" height="941" decoding="sync">
-<svg class="map-revisit" viewBox="0 0 1672 941" aria-hidden="true" hidden>
-<defs><clipPath id="clear-river-marker"><path d="M1230 344H1363V430H1346V495H1230Z"/></clipPath><clipPath id="kai-first-region"><circle cx="1286" cy="120" r="60"/><path d="M1266 177H1308L1286 212Z"/></clipPath></defs>
-<image href="../selecao-fases/assets/mapa-inicial.png" width="1672" height="941" clip-path="url(#clear-river-marker)"/>
-<image href="../selecao-fases/assets/mapa-inicial.png" width="1672" height="941" clip-path="url(#kai-first-region)"/>
-</svg>
-<div class="map-regions" aria-label="Regiões da ilha">
-<button class="map-hotspot" data-phase="1" style="--x:85.6%;--y:27%;--w:16%" type="button" aria-haspopup="dialog" aria-label="Fase 1: Floresta em Chamas" aria-current="step"><span class="sr-only">1 · Floresta em Chamas</span></button>
-<button class="map-hotspot" data-phase="2" style="--x:87.5%;--y:49.8%;--w:15%" type="button" aria-haspopup="dialog" aria-label="Fase 2: Rio Poluído" data-locked="true"><span class="sr-only">2 · Rio Poluído</span></button>
-<button class="map-hotspot" data-phase="3" style="--x:80.8%;--y:81.4%;--w:17%" type="button" aria-haspopup="dialog" aria-label="Fase 3: Resgate da Fauna" data-locked="true"><span class="sr-only">3 · Resgate da Fauna</span></button>
-<button class="map-hotspot" data-phase="4" style="--x:22.2%;--y:81.4%;--w:20%" type="button" aria-haspopup="dialog" aria-label="Fase 4: Reflorestamento" data-locked="true"><span class="sr-only">4 · Reflorestamento</span></button>
-<button class="map-hotspot" data-phase="5" style="--x:19.8%;--y:32.8%;--w:16%" type="button" aria-haspopup="dialog" aria-label="Fase 5: Cidade Sustentável" data-locked="true"><span class="sr-only">5 · Cidade Sustentável</span></button>
-<button class="map-hotspot" data-phase="6" style="--x:49%;--y:58%;--w:17%" type="button" aria-haspopup="dialog" aria-label="Fase 6: Batalha Final" data-locked="true"><span class="sr-only">6 · Batalha Final</span></button>
-</div>
-<a class="map-hotspot map-back" href="index.html" aria-label="Voltar à tela inicial"><span class="sr-only">Voltar</span></a>
-</section>
-<div class="map-explorer" aria-label="Explorar o mapa">
-<p id="map-explorer-help">Toque nas regiões para conhecer cada missão.</p>
-<div class="map-zoom-controls"><button type="button" data-map-zoom="out" aria-label="Diminuir mapa" disabled>−</button><output id="map-zoom-level" aria-live="polite">100%</output><button type="button" data-map-zoom="in" aria-label="Ampliar mapa">+</button><button type="button" data-map-zoom="reset" class="map-fit">Ver ilha inteira</button></div>
-</div>
-<section class="map-list" id="lista-fases" aria-labelledby="map-list-title">
-<h2 id="map-list-title">Sua jornada</h2>
-<p>Toque em uma região do mapa ou escolha uma fase abaixo.</p>
-<ol><li><button data-phase="1" type="button" aria-haspopup="dialog" aria-current="step"><span class="map-phase-number" aria-hidden="true">1</span><span><strong>Floresta em Chamas</strong><small data-phase-state>Fase atual</small></span></button></li>
-<li><button data-phase="2" type="button" aria-haspopup="dialog" data-locked="true"><span class="map-phase-number" aria-hidden="true">2</span><span><strong>Rio Poluído</strong><small data-phase-state>Bloqueada</small></span></button></li>
-<li><button data-phase="3" type="button" aria-haspopup="dialog" data-locked="true"><span class="map-phase-number" aria-hidden="true">3</span><span><strong>Resgate da Fauna</strong><small data-phase-state>Bloqueada</small></span></button></li>
-<li><button data-phase="4" type="button" aria-haspopup="dialog" data-locked="true"><span class="map-phase-number" aria-hidden="true">4</span><span><strong>Reflorestamento</strong><small data-phase-state>Bloqueada</small></span></button></li>
-<li><button data-phase="5" type="button" aria-haspopup="dialog" data-locked="true"><span class="map-phase-number" aria-hidden="true">5</span><span><strong>Cidade Sustentável</strong><small data-phase-state>Bloqueada</small></span></button></li>
-<li><button data-phase="6" type="button" aria-haspopup="dialog" data-locked="true"><span class="map-phase-number" aria-hidden="true">6</span><span><strong>Batalha Final</strong><small data-phase-state>Bloqueada</small></span></button></li></ol>
-<p class="map-list-help">O retrato de Kai mostra a fase atual. As regiões seguintes são liberadas ao completar a anterior.</p>
-</section>
-<p class="sr-only" id="map-description">Uma ilha com seis regiões: floresta em chamas, rio poluído, resgate da fauna, reflorestamento, cidade sustentável e uma ruína central para a batalha final. Kai indica a fase atual.</p>
-<p class="sr-only" id="map-status" role="status" aria-live="polite"></p>
-<noscript><p class="map-error">Ative o JavaScript para selecionar uma região. <a href="index.html">Voltar ao início</a></p></noscript>
-</main>
-<dialog class="map-dialog phase-panel" id="phase-dialog" aria-labelledby="phase-title" aria-describedby="phase-objective phase-state">
-<header class="phase-heading"><div><p class="eyebrow" id="phase-number"></p><h2 id="phase-title"></h2></div><button type="button" class="map-dialog-close" data-map-action="close" aria-label="Fechar detalhes da fase">×</button></header>
-<div class="phase-body">
-<section class="phase-companions" aria-label="Kai e o aliado da missão">
-<div class="phase-scene" aria-hidden="true"><span class="scene-sun"></span><span class="scene-ground"></span>
-<svg class="kai-sprite" viewBox="0 0 627 627"><image href="../mapa-interativo/assets/02_kai_dialogo.png" width="1254" height="1254"/></svg>
-<svg class="npc-sprite" viewBox="0 0 296 312"><image href="../mapa-interativo/assets/01_npcs_dialogo.png" width="887" height="1774"/></svg>
-</div>
-<div class="phase-ally"><span class="phase-label">SEU ALIADO</span><h3 id="phase-npc"></h3><p id="phase-profession"></p></div>
-<p class="phase-kai-line">“Vamos cuidar da natureza juntos!” <span>— Kai</span></p>
-</section>
-<div class="phase-briefing">
-<section class="phase-situation"><h3>Situação</h3><p id="phase-objective"></p></section>
-<section class="phase-goals"><h3>Seus objetivos</h3><ol id="phase-goals"></ol></section>
-<div class="phase-loot">
-<section class="phase-equipment"><h3 id="phase-equipment-label">Você recebe</h3><svg class="equipment-sprite" viewBox="0 0 362 362" aria-hidden="true"><image href="../mapa-interativo/assets/05_equipamentos_e_recompensas.png" width="2172" height="724"/></svg><p id="phase-equipment"></p></section>
-<section class="phase-reward"><h3>Recompensa</h3><svg class="reward-sprite" viewBox="0 362 362 362" aria-hidden="true"><image href="../mapa-interativo/assets/05_equipamentos_e_recompensas.png" width="2172" height="724"/></svg><p id="phase-reward"></p></section>
-</div>
-<p class="phase-duration"><span aria-hidden="true">◷</span> Duração estimada <strong id="phase-duration"></strong></p>
-<p class="phase-duration-note">Estimativa de duração da missão; não é um limite de tempo.</p>
-</div>
-</div>
-<footer class="phase-footer">
-<p class="map-dialog-state" id="phase-state"></p>
-<div class="map-dialog-actions"><button type="button" class="map-secondary" data-map-action="close">← Voltar ao mapa</button><button type="button" data-map-action="preview" hidden>Ver recuperação da floresta</button><button type="button" data-map-action="exit-preview" class="map-secondary" hidden>Voltar ao progresso salvo</button><button type="button" data-map-action="start" disabled>Fase em desenvolvimento</button></div>
-<p class="map-dialog-note">A Floresta em Chamas já pode ser explorada em área aberta. A prévia demonstra a transformação do mapa e não registra uma missão como concluída.</p>
-</footer>
-</dialog>
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#153f38"><title>Ilha dos Guardiões · Mapa das fases</title><link rel="icon" href="../../assets/identidade-flora/favicon.ico"><link rel="stylesheet" href="transicoes.css?v=transicoes-3"><link rel="stylesheet" href="../jornada-viva/mapa.css?v=3"><script src="app.js?v=jornada-3" defer></script><script src="transicoes.js?v=folhas-1" defer></script><script src="../mapa-interativo/conteudo.js" defer></script><script src="../jornada-viva/mapa.js?v=3" defer></script></head>
+<body class="map-page" data-page="missions"><a class="skip-link" href="#lista-fases">Ir para a lista de fases</a><div class="leaves" hidden></div><main class="island-shell" id="conteudo"><header class="journey-heading"><a class="nature-button back" href="index.html" aria-label="Voltar à tela inicial">← <span>Início</span></a><div><p class="eyebrow">UMA JORNADA PELA VIDA</p><h1>Ilha dos Guardiões</h1></div><a href="sobre.html" class="nature-button guide" aria-label="Conhecer o jogo">?</a></header><div class="journey-summary"><span><svg viewBox="965 430 310 310" aria-hidden="true"><image href="../../jogo/floresta-viva/assets/kai-repouso.png" width="1774" height="887"/></svg> <span id="journey-current">Floresta em Chamas</span></span><span id="journey-fragments">0 / 5 fragmentos</span></div>
+<section class="map-stage" aria-label="Mapa vivo de seis regiões" aria-describedby="map-description"><div class="map-world"><img class="map-art" src="../jornada-viva/assets/ilha-viva.png" width="1672" height="941" alt="Ilha com floresta, rio, refúgio dos animais, área de plantio, cidade e santuário" fetchpriority="high"><svg class="island-life" id="island-life" viewBox="0 0 1000 563" aria-hidden="true"></svg><div class="map-regions" id="map-regions"></div><div class="kai-marker" id="kai-marker" aria-label="Kai está nesta região"><svg viewBox="965 430 310 310" aria-hidden="true"><image href="../../jogo/floresta-viva/assets/kai-repouso.png" width="1774" height="887"/></svg><span>VOCÊ ESTÁ AQUI</span></div><div class="wind-leaves" aria-hidden="true"><i>❧</i><i>❧</i><i>❧</i><i>❧</i><i>❧</i></div></div></section>
+<div class="island-caption"><p id="map-explorer-help">Arraste para explorar a ilha. Toque em um destino.</p><button class="nature-button" id="map-fit">Encontrar Kai ◎</button></div><p class="restoration-status" id="map-status" role="status" aria-live="polite"></p>
+<section class="map-list" id="lista-fases" aria-labelledby="map-list-title"><header><div><p class="eyebrow">SEU CAMINHO</p><h2 id="map-list-title">Cada cuidado transforma uma região.</h2></div><p>Escolha uma missão para conhecer seu aliado e sua recompensa.</p></header><ol id="phase-list"></ol></section><p class="beta-note">Primeira fase jogável. Os próximos destinos estão em desenvolvimento — você já pode conhecer as missões e suas transformações.</p><p id="map-description" class="sr-only">Seis regiões conectadas por trilhas. O retrato de Kai indica a fase atual. As regiões recuperadas ganham vegetação, água limpa e vida. As prévias de restauração não alteram seu progresso.</p><noscript><p>Ative JavaScript para explorar o mapa. <a href="../../jogo/floresta-viva/index.html">Entrar na floresta</a></p></noscript></main>
+<dialog id="phase-dialog" class="phase-panel" aria-labelledby="phase-title"><button class="dialog-close" data-map-action="close" aria-label="Fechar detalhes da fase">×</button><div class="phase-scene" id="phase-scene"><span class="scene-leaf">❧</span><span class="phase-symbol" id="phase-symbol">🌿</span><p class="eyebrow" id="phase-number"></p><h2 id="phase-title"></h2></div><div class="phase-copy"><p class="phase-ally">COM <strong id="phase-npc"></strong> · <span id="phase-profession"></span></p><p id="phase-objective"></p><h3>Vamos cuidar juntos</h3><ol id="phase-goals"></ol><div class="phase-loot"><div><span>NA MOCHILA</span><strong id="phase-equipment"></strong></div><div><span>SUA DESCOBERTA</span><strong id="phase-reward"></strong></div></div><p class="phase-time">◷ <span id="phase-duration"></span> · no seu ritmo</p><p id="phase-state" class="phase-state"></p><button class="nature-button primary" data-map-action="start">Entrar na floresta</button><button class="nature-button secondary" data-map-action="preview">Ver a natureza se recuperar ✨</button><button class="nature-button secondary" data-map-action="exit-preview" hidden>Voltar ao meu progresso</button></div></dialog>
+<div id="map-cutscene" class="map-cutscene" hidden aria-live="polite"><span>❧</span><p id="cutscene-text">A natureza está voltando…</p><button class="nature-button" id="skip-cutscene">Pular animação</button></div>
 </body></html>

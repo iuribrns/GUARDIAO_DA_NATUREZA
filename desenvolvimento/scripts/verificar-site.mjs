@@ -40,3 +40,10 @@ for(const sheet of Object.values(forestAtlas.sheets)){assert.ok(existsSync(resol
 assert.equal(forestFrames,108);
 for(const file of ['floresta-queimada.png','floresta-recuperada.png'])assert.ok(existsSync(resolve(forestFolder,file)));
 console.log('PASS: floresta nova com 108 quadros, cenários queimado/recuperado e entrada pelo mapa.');
+
+const revisedFolder=resolve(root,'jogo/floresta-viva/revisao');
+const revisedAtlas=JSON.parse(readFileSync(resolve(revisedFolder,'assets/atlas-revisado.json'),'utf8'));
+assert.equal(Object.values(revisedAtlas).reduce((n,s)=>n+s.frames.length,0),128);
+for(const sheet of Object.values(revisedAtlas))assert.ok(existsSync(resolve(forestFolder,sheet.file)),'prancha revisada: '+sheet.file);
+for(const file of ['ilha-viva.png','ilha-restaurada.png','festa-da-floresta.png','kai-cuida-da-natureza.png'])assert.ok(existsSync(resolve(root,'tela-inicial/jornada-viva/assets',file)));
+console.log('PASS: 128 quadros remodelados, duas pinturas da floresta e nova ilha, imagens do diário e da conclusão.');

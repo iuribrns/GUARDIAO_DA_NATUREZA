@@ -2,6 +2,8 @@
 const assert = require('node:assert/strict');
 const {chromium} = require('playwright-core');
 const base = process.env.GUARDIAO_TEST_URL || 'http://127.0.0.1:5173/tela-inicial/nova-versao/';
+// O pulo foi preservado no laboratório; a campanha atual explora áreas abertas.
+const trainingURL=new URL('../../desenvolvimento/modelos/legado/treino.html',base).href;
 const ready = page => page.waitForFunction(()=>document.querySelector('[data-guardiao-controles]')?.dataset.controlsReady === 'true' && document.querySelector('[data-control-demo]')?.dataset.demoReady === 'true' && !document.querySelector('.navigation-veil'));
 const x = page => page.locator('.training-kai').evaluate(node=>parseFloat(node.style.left));
 (async()=>{
@@ -13,7 +15,7 @@ const x = page => page.locator('.training-kai').evaluate(node=>parseFloat(node.s
   };
   try {
     const page=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true});collect(page);
-    await page.goto(base+'sobre.html');await ready(page);
+    await page.goto(trainingURL);await ready(page);
     await page.getByRole('tab',{name:'Como jogar',exact:true}).tap();
     await page.locator('.mobile-controls').scrollIntoViewIfNeeded();
     assert.ok(await page.locator('.control-jump img').evaluate(node=>node.complete && node.naturalWidth>0),'arte de Kai pulando carregada');
@@ -68,8 +70,8 @@ const x = page => page.locator('.training-kai').evaluate(node=>parseFloat(node.s
       });
       await published.goto(origin+prefix+'/');
       await published.waitForURL('**/GUARDIAO_DA_NATUREZA/tela-inicial/nova-versao/index.html');
-      await published.getByRole('link',{name:'Sobre o jogo',exact:true}).tap();
-      await published.waitForURL('**/sobre.html');await ready(published);
+      await published.goto(origin+prefix+'/desenvolvimento/modelos/legado/treino.html');
+      await published.waitForURL('**/treino.html');await ready(published);
       await published.getByRole('tab',{name:'Como jogar',exact:true}).tap();
       assert.ok(await published.locator('.control-jump img').evaluate(node=>node.complete && node.naturalWidth>0),'arte carrega sob o caminho do Pages');
       await published.getByRole('button',{name:'Pular com Kai',exact:true}).tap();
