@@ -59,6 +59,8 @@ try {
     const suites = [
       'jogo/vida-natural/validacao/fisica.cjs',
       'jogo/vida-natural/validacao/arte.cjs',
+      'jogo/sprites-integros/validacao/quadros.cjs',
+      'jogo/colar-vivo/validacao/colar.cjs',
       ...(!production ? ['tela-inicial/nova-versao/validacao/transicoes.cjs','tela-inicial/efeitos-folhas/validacao/folhas.cjs'] : []),
       'tela-inicial/menu-vivo/validacao/menu.cjs',
       'jogo/controles/validacao/controles.cjs',

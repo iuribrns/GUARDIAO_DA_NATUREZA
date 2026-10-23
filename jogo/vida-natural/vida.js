@@ -90,10 +90,10 @@
     }
     flora(ctx, flora, player, time, reduced) {
       let frame,
-        height = 35;
+        height = 42;
       if (flora.mode === "ombro") {
         frame = !reduced && time % 4.8 > 4.55 ? 13 : 12;
-        height = 24;
+        height = 30;
       } else if (flora.mode === "pousando") {
         frame =
           8 +
@@ -101,13 +101,13 @@
             3,
             Math.floor((flora.elapsed / (this.phase === 1 ? 0.45 : 0.65)) * 4),
           );
-        height = 30;
+        height = 36;
       } else if (flora.mode === "decolando") {
         frame = 11 - Math.min(3, Math.floor((flora.elapsed / 0.3) * 4));
-        height = 30 + Math.min(1, flora.elapsed / 0.3) * 5;
+        height = 36 + Math.min(1, flora.elapsed / 0.3) * 6;
       } else if (flora.mode === "comemorando") {
         frame = reduced ? 14 : 14 + (Math.floor(time * 5) % 2);
-        height = 38;
+        height = 46;
       } else frame = reduced ? 2 : Math.floor(time * 14) % 8;
       this.draw(
         ctx,

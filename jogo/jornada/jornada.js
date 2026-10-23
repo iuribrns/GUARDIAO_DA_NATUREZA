@@ -18,6 +18,7 @@
     canvas = $("cenario"),
     ctx = canvas.getContext("2d");
   const life = new window.GuardiaoVidaNatural(id);
+  const colar = new window.GuardiaoColar({ phase: id, life });
   const sprites = new window.GuardiaoCampaignSprites(),
     shared = new window.FlorestaSprites(),
     player = {
@@ -528,6 +529,7 @@
     route = [];
     stage = "reward";
     rewardTime = 0;
+    colar.begin(finishReward);
     $("cinema").hidden = false;
     $("cinema-text").textContent =
       data.npc + " entrega o fragmento " + data.colorName;
@@ -535,6 +537,7 @@
   }
   function finishReward() {
     if (stage !== "reward") return;
+    colar.complete();
     completed = true;
     stage = "completed";
     const saved = save(),
@@ -928,7 +931,7 @@
         stage === "reward"
           ? Math.min(7, Math.floor((rewardTime / 6.5) * 8))
           : 6;
-      sprites.draw(ctx, name, frame, player.x, y, 66);
+      colar.drawActor(ctx, rewardTime, player.x, y, 66, $("vitoria").open);
     } else if (action) {
       const p = Math.min(0.999, action.elapsed / action.duration);
       if (["trash", "recycle"].includes(action.kind)) {
@@ -984,6 +987,8 @@
         height + (reduced() ? 0 : Math.sin(time * 1.8) * 0.35),
       );
     }
+    if (!action && !player.swimming && stage !== "reward" && !$("vitoria").open)
+      colar.chest(ctx, player);
     document.body.dataset.kaiSprite = name + ":" + frame;
     document.body.dataset.swimming = String(player.swimming);
   }
@@ -1040,14 +1045,7 @@
     const c = $("celebration").getContext("2d");
     c.clearRect(0, 0, 420, 175);
     sprites.draw(c, "npcs", data.npcRow * 3 + 1, 105, 150, 108);
-    sprites.draw(
-      c,
-      "recompensa-" + data.reward,
-      6 + (!reduced() ? Math.floor(time * 2) % 2 : 0),
-      210,
-      153,
-      125,
-    );
+    colar.drawActor(c, 6.5, 210, 153, 125, true);
     life.draw(
       c,
       "flora",
@@ -1144,6 +1142,7 @@
         );
       }
     }
+    if (stage === "reward") colar.render(rewardTime, reduced());
     if (new URLSearchParams(location.search).has("colisoes")) {
       ctx.strokeStyle = "#ff5ca6";
       data.obstacles.forEach((o) => {
@@ -1340,7 +1339,7 @@
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       neutral();
-      if (!paused() && stage !== "reward") {
+      if (!paused()) {
         e.preventDefault();
         open("menu-pausa");
       }
@@ -1452,6 +1451,7 @@
         camera,
         paused: paused(),
         rewardTime,
+        necklace: colar.state(),
         elapsed,
       }),
     caminho: (from, to) => nav.route(from, to),
@@ -1487,15 +1487,13 @@
           ? ["kai-plantio", "kai-floresta"]
           : ["kai-rio", "kai-plantio", "kai-floresta"];
   Promise.all([
-    sprites.load(
-      ["npcs", "objetos", "recompensa-" + data.reward, ...specific],
-      progress,
-    ),
+    sprites.load(["npcs", "objetos", ...specific], progress),
     shared.load(progress, ["kai-repouso", "natureza"]),
     pictureLoad("assets/mapa-" + data.map + ".png"),
     pictureLoad("assets/mapa-" + data.map + "-restaurado.png"),
     window.GuardiaoIcones.load(),
     life.load(),
+    colar.load(),
   ])
     .then((r) => {
       ground = r[2];

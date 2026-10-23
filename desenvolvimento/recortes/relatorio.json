@@ -1,0 +1,266 @@
+[
+  {
+    "grupo": "vida",
+    "nome": "kai-andando",
+    "quadros": 32,
+    "margem": 12,
+    "bytes": 1131162,
+    "dimensoes": [
+      2240,
+      1280
+    ]
+  },
+  {
+    "grupo": "vida",
+    "nome": "kai-mangueira",
+    "quadros": 32,
+    "margem": 12,
+    "bytes": 809080,
+    "dimensoes": [
+      1856,
+      1072
+    ]
+  },
+  {
+    "grupo": "vida",
+    "nome": "fogo",
+    "quadros": 8,
+    "margem": 12,
+    "bytes": 462980,
+    "dimensoes": [
+      1664,
+      888
+    ]
+  },
+  {
+    "grupo": "vida",
+    "nome": "flora",
+    "quadros": 16,
+    "margem": 12,
+    "bytes": 660096,
+    "dimensoes": [
+      1904,
+      1504
+    ]
+  },
+  {
+    "grupo": "campanha",
+    "nome": "icones",
+    "quadros": 16,
+    "margem": 12,
+    "bytes": 648140,
+    "dimensoes": [
+      1440,
+      1200
+    ]
+  },
+  {
+    "grupo": "campanha",
+    "nome": "kai-nadando",
+    "quadros": 16,
+    "margem": 12,
+    "bytes": 706816,
+    "dimensoes": [
+      1520,
+      1184
+    ]
+  },
+  {
+    "grupo": "campanha",
+    "nome": "kai-rio",
+    "quadros": 12,
+    "margem": 12,
+    "bytes": 725906,
+    "dimensoes": [
+      1808,
+      1248
+    ]
+  },
+  {
+    "grupo": "campanha",
+    "nome": "kai-floresta",
+    "quadros": 12,
+    "margem": 12,
+    "bytes": 581744,
+    "dimensoes": [
+      1568,
+      1128
+    ]
+  },
+  {
+    "grupo": "campanha",
+    "nome": "kai-plantio",
+    "quadros": 12,
+    "margem": 12,
+    "bytes": 708366,
+    "dimensoes": [
+      1664,
+      1200
+    ]
+  },
+  {
+    "grupo": "campanha",
+    "nome": "animais-rio",
+    "quadros": 16,
+    "margem": 12,
+    "bytes": 484520,
+    "dimensoes": [
+      1520,
+      1072
+    ]
+  },
+  {
+    "grupo": "campanha",
+    "nome": "animais-fauna",
+    "quadros": 16,
+    "margem": 12,
+    "bytes": 571928,
+    "dimensoes": [
+      1568,
+      1232
+    ]
+  },
+  {
+    "grupo": "campanha",
+    "nome": "animais-fauna-andando",
+    "quadros": 16,
+    "margem": 12,
+    "bytes": 643432,
+    "dimensoes": [
+      1632,
+      1248
+    ]
+  },
+  {
+    "grupo": "campanha",
+    "nome": "objetos",
+    "quadros": 16,
+    "margem": 12,
+    "bytes": 658548,
+    "dimensoes": [
+      1424,
+      1312
+    ]
+  },
+  {
+    "grupo": "campanha",
+    "nome": "npcs",
+    "quadros": 18,
+    "margem": 12,
+    "bytes": 607084,
+    "dimensoes": [
+      2208,
+      1020
+    ]
+  },
+  {
+    "grupo": "floresta",
+    "nome": "carlos",
+    "quadros": 8,
+    "margem": 12,
+    "bytes": 400642,
+    "dimensoes": [
+      1456,
+      896
+    ]
+  },
+  {
+    "grupo": "floresta",
+    "nome": "itens",
+    "quadros": 8,
+    "margem": 12,
+    "bytes": 433692,
+    "dimensoes": [
+      1840,
+      944
+    ]
+  },
+  {
+    "grupo": "floresta",
+    "nome": "kai-mangueira",
+    "quadros": 16,
+    "margem": 12,
+    "bytes": 670570,
+    "dimensoes": [
+      1232,
+      1360
+    ]
+  },
+  {
+    "grupo": "floresta",
+    "nome": "kai-repouso",
+    "quadros": 8,
+    "margem": 12,
+    "bytes": 490998,
+    "dimensoes": [
+      1456,
+      936
+    ]
+  },
+  {
+    "grupo": "floresta",
+    "nome": "natureza",
+    "quadros": 8,
+    "margem": 12,
+    "bytes": 739594,
+    "dimensoes": [
+      1776,
+      1080
+    ]
+  },
+  {
+    "grupo": "floresta",
+    "nome": "capivara",
+    "quadros": 8,
+    "margem": 12,
+    "bytes": 384658,
+    "dimensoes": [
+      1808,
+      736
+    ]
+  },
+  {
+    "grupo": "floresta",
+    "nome": "cervo",
+    "quadros": 8,
+    "margem": 12,
+    "bytes": 471808,
+    "dimensoes": [
+      1664,
+      888
+    ]
+  },
+  {
+    "grupo": "floresta",
+    "nome": "passaro",
+    "quadros": 8,
+    "margem": 12,
+    "bytes": 365500,
+    "dimensoes": [
+      2016,
+      720
+    ]
+  },
+  {
+    "grupo": "floresta",
+    "nome": "kai-cuidados",
+    "quadros": 12,
+    "margem": 12,
+    "bytes": 578872,
+    "dimensoes": [
+      1456,
+      1140
+    ]
+  },
+  {
+    "grupo": "colar",
+    "nome": "kai-vestindo",
+    "quadros": 8,
+    "margem": 12,
+    "bytes": 458826,
+    "dimensoes": [
+      1440,
+      832
+    ]
+  }
+]

@@ -4,6 +4,7 @@
   const KEY='guardiao.floresta-viva.v2',MAP='guardiao.mapa.progresso.v1',ATLAS=window.GuardiaoFlorestaAtlas;
   const player={x:286,y:260,direction:0,distance:0,idle:0,moving:false};
   const life=new window.GuardiaoVidaNatural(1);
+  const colar=new window.GuardiaoColar({phase:1,life});
   const flora={x:259,y:190,mode:'voando',elapsed:0};
   const stick={x:0,y:0,id:null},keys=new Set(),sprites=new window.FlorestaSprites();
   const directions=[[1,0],[.707,-.707],[0,-1],[-.707,-.707],[-1,0],[-.707,.707],[0,1],[.707,.707]];
@@ -118,12 +119,13 @@
     speak('Use a mão perto de um animal ou do registro.');
   }
   function startReward(){
-    neutral();route=[];routeGoal=null;rewardStarted=true;rewardTime=0;stage='recompensa';lockControls();
+    neutral();route=[];routeGoal=null;rewardStarted=true;rewardTime=0;stage='recompensa';lockControls();colar.begin(finishReward);
     $('cinema').hidden=false;$('cinema-texto').textContent='Carlos entrega o fragmento da floresta';
     speak('Você cuidou da floresta! Este fragmento vermelho é seu.','Carlos');
   }
   function finishReward(){
-    completed=true;stage='concluido';dirty=true;save();
+    if(stage!=='recompensa')return;
+    colar.complete();completed=true;stage='concluido';dirty=true;save();
     let saved=true;try{
       const old=JSON.parse(localStorage.getItem(MAP)||'null');localStorage.setItem(MAP,JSON.stringify({...old,completedFirst:true,current:2,completed:[...new Set([...(Array.isArray(old?.completed)?old.completed:[]),1])],pendingRestoration:1}));
       const oldShards=JSON.parse(localStorage.getItem('guardiao.colar.fragmentos.v1')||'[]');const shards=Array.isArray(oldShards)?oldShards.filter(n=>Number.isInteger(n)&&n>=1&&n<=6):[];
@@ -223,7 +225,7 @@
     shadow(player.x,player.y);const flip=player.direction>=3&&player.direction<=5;
     let name='kai-repouso',index=0;
     if(stage==='recompensa'||stage==='concluido'&&$('vitoria').open){
-      index=stage==='concluido'?6:Math.min(7,Math.floor(rewardTime/6.5*8));name='kai-recompensa';sprites.draw(ctx,name,index,player.x,player.y-(index===7&&!reduced()?Math.abs(Math.sin(uiTime*6))*4:0),65);
+      index=stage==='concluido'?6:Math.min(7,Math.floor(rewardTime/6.5*8));name='kai-recompensa';colar.drawActor(ctx,rewardTime,player.x,player.y,65,stage==='concluido');
     }else if(healing){index=6+Math.min(5,Math.floor((1.6-healTime)/1.6*6));name='kai-cuidados';sprites.draw(ctx,name,index,player.x,player.y,63,{flip});}
     else if(equipping>0){index=Math.min(5,Math.floor((.65-equipping)/.65*6));name='kai-cuidados';sprites.draw(ctx,name,index,player.x,player.y,63,{flip});}
     else if(player.moving&&itemsGiven){
@@ -236,7 +238,7 @@
       sprites.draw(ctx,name,index,player.x,player.y,63+(reduced()?0:Math.sin(uiTime*1.7)*.35));
     }
     document.body.dataset.kaiSprite=name+':'+index;
-    if(completed&&name!=='kai-recompensa')sprites.item(ctx,2,player.x,player.y-35,7);
+    if(!healing&&equipping<=0&&name!=='kai-recompensa')colar.chest(ctx,player);
     if(healing){ring(player.x,player.y,'#d1f1a8',23);sprites.item(ctx,1,player.x+(flip?-20:20),player.y-26,12);}
   }
   function drawAnimal(a){
@@ -274,7 +276,7 @@
     if(stage==='entrega'){
       const progress=1-handoff/1.8;for(let i=0;i<2;i++){const t=Math.max(0,Math.min(1,progress*1.4-i*.25)),x=245+(player.x-245)*t,y=215+(player.y-40-215)*t-Math.sin(t*Math.PI)*30;sprites.item(ctx,i,x,y,20,{alpha:Math.sin(Math.min(1,progress*1.3)*Math.PI)*.65+.35});}
     }
-    if(stage==='recompensa'){environment.celebrate(ctx,player,uiTime,reduced());if(rewardTime<1.2){const t=rewardTime/1.2;sprites.item(ctx,2,245+(player.x-245)*t,205-18*Math.sin(t*Math.PI),17);}}
+    if(stage==='recompensa'){colar.render(rewardTime,reduced());environment.celebrate(ctx,player,uiTime,reduced());if(rewardTime<1.2){const t=rewardTime/1.2;sprites.item(ctx,2,245+(player.x-245)*t,205-18*Math.sin(t*Math.PI),17);}}
     if(released)ring(395,385,'#a6d99d',13);else if(itemsGiven)ring(395,385,'#84e3ed',13);
     if(new URLSearchParams(location.search).has('colisoes')){ctx.strokeStyle='#ff5e96';ctx.lineWidth=2;for(const o of W.obstacles){ctx.beginPath();if(o.ellipse){const e=o.ellipse;ctx.ellipse(e.x,e.y,e.rx,e.ry,0,0,Math.PI*2);}else{o.polygon.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();}ctx.stroke();}ctx.beginPath();ctx.ellipse(player.x,player.y,W.radius,W.radius,0,0,Math.PI*2);ctx.stroke();}
     ctx.restore();
@@ -311,7 +313,7 @@
   $('tela-cheia').addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await $('jogo').requestFullscreen();}catch{toast('Experimente virar o celular para o modo paisagem.');}});
   $('som').addEventListener('click',async()=>{sound=!sound;const Audio=window.AudioContext||window.webkitAudioContext;if(sound&&Audio){audio??=new Audio();await audio.resume();}else if(!Audio){sound=false;toast('Este navegador não oferece efeitos sonoros.');}$('som').setAttribute('aria-pressed',String(sound));$('som').setAttribute('aria-label',sound?'Desativar efeitos sonoros':'Ativar efeitos sonoros');soundEffect();});
   document.addEventListener('keydown',e=>{
-    if(e.key==='Escape'){neutral();if(!$('conversa').open&&!paused()&&stage!=='recompensa'){e.preventDefault();openDialog('menu-pausa');}return;}
+    if(e.key==='Escape'){neutral();if(!$('conversa').open&&!paused()){e.preventDefault();openDialog('menu-pausa');}return;}
     if(locked()||/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))return;const k=e.key.toLowerCase();
     if(['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright',' '].includes(k)){e.preventDefault();keys.add(k);if(k===' '&&!e.repeat)beginWater();}
     if(k==='e'&&!e.repeat)interact();if(k==='b'&&!e.repeat)openDialog('inventario');
@@ -321,12 +323,12 @@
   window.addEventListener('blur',()=>{neutral();if(dirty)save();});window.addEventListener('resize',resize);
   document.addEventListener('visibilitychange',()=>{neutral();if(document.hidden){cancelAnimationFrame(raf);raf=0;last=0;if(dirty)save();}else start();});
   window.addEventListener('pagehide',()=>{neutral();cancelAnimationFrame(raf);raf=0;if(dirty)save();});window.addEventListener('pageshow',start);
-  window.GuardiaoFloresta=Object.freeze({estado:()=>structuredClone({ready,clock,uiTime,player,flora,stage,itemsGiven,released,water,equipped,equipping,completed,rewardStarted,rewardTime,fires,animals,route,paused:paused(),locked:locked(),camera})});
+  window.GuardiaoFloresta=Object.freeze({estado:()=>structuredClone({ready,clock,uiTime,player,flora,stage,itemsGiven,released,water,equipped,equipping,completed,rewardStarted,rewardTime,fires,animals,route,necklace:colar.state(),paused:paused(),locked:locked(),camera})});
   window.GuardiaoIcones?.load().then(im=>window.GuardiaoIconesImage=im);
   load();W.setHazards([...fires,...animals]);
-  let loaded=0,loadFailed=false;const activeSheets=Object.keys(ATLAS.sheets).filter(name=>!['kai-caminhada','kai-livre','flora','fogo'].includes(name)),total=activeSheets.length+7;
+  let loaded=0,loadFailed=false;const activeSheets=Object.keys(ATLAS.sheets).filter(name=>!['kai-caminhada','kai-livre','flora','fogo','kai-recompensa'].includes(name)),total=activeSheets.length+7;
   function progress(){if(loadFailed)return;loaded++;$('loading').textContent='Preparando a floresta… '+loaded+'/'+total;}
-  Promise.all([sprites.load(progress,activeSheets),image('revisao/assets/floresta-ilustrada.png'),image('revisao/assets/floresta-restaurada.png'),life.load(progress)]).then(result=>{
+  Promise.all([sprites.load(progress,activeSheets),image('revisao/assets/floresta-ilustrada.png'),image('revisao/assets/floresta-restaurada.png'),life.load(progress),colar.load()]).then(result=>{
     environment=new window.FlorestaAmbiente(sprites,result[1],result[2]);environment.life=life;ready=true;
     document.body.dataset.gameReady='true';$('loading').hidden=true;flora.x=player.x-28;flora.y=player.y-70;resize();lockControls();updateHUD();
     cropDOM($('retrato-carlos'),'carlos',2,90);cropDOM(document.querySelector('.hose-icon'),'itens',0,54);cropDOM(document.querySelector('.kit-icon'),'itens',1,45);

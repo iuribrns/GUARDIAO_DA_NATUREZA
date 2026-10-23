@@ -57,3 +57,12 @@ for(const [original,optimized] of Object.entries(manifest)){assert.ok(existsSync
 const selection=readFileSync(resolve(root,'tela-inicial/nova-versao/aventura.html'),'utf8');assert.ok(!selection.includes('data-map-action="preview"'));
 assert.ok(selection.includes('../campanha/mapa.js'));
 console.log('PASS: campanha de cinco fases, 198 quadros compartilhados/novos, oito pinturas próprias e '+Object.keys(manifest).length+' imagens WebP, originais preservados e seleção sem prévias.');
+
+const completeSpritesFolder=resolve(root,'jogo/sprites-integros');
+const completeSprites=JSON.parse(readFileSync(resolve(completeSpritesFolder,'assets/atlas.json'),'utf8'));
+const completeSheets=[...Object.values(completeSprites.grupos).flatMap(group=>Object.values(group)),completeSprites.colar];
+assert.equal(completeSheets.length,24);
+assert.equal(completeSheets.reduce((n,s)=>n+s.frames.length,0),330);
+for(const sheet of completeSheets)assert.ok(existsSync(resolve(completeSpritesFolder,sheet.file)),'prancha completa: '+sheet.file);
+for(const file of ['colar.js','colar.css','geometria.js','assets/colar-vazio.webp'])assert.ok(existsSync(resolve(root,'jogo/colar-vivo',file)),'cutscene do colar: '+file);
+console.log('PASS: 330 quadros completos em 24 WebP, oito poses de Kai vestindo o colar e arte/estilos da cutscene publicados.');
