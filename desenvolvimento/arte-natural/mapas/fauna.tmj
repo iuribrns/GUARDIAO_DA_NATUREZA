@@ -1,0 +1,196 @@
+{
+  "type": "map",
+  "version": "1.10",
+  "tiledversion": "1.12.2",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "width": 53,
+  "height": 30,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "nextlayerid": 5,
+  "nextobjectid": 10,
+  "properties": [
+    {
+      "name": "largura-logica",
+      "type": "int",
+      "value": 1280
+    },
+    {
+      "name": "altura-logica",
+      "type": "int",
+      "value": 720
+    },
+    {
+      "name": "uso",
+      "type": "string",
+      "value": "Referência de inspeção. Runtime: movimento.js + navegação de cada fase."
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "name": "Cenário com luz",
+      "type": "imagelayer",
+      "image": "../../../jogo/vida-natural/assets/fauna-inicio.webp",
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "id": 2,
+      "name": "Sólidos nos pés",
+      "type": "objectgroup",
+      "color": "#ff6888",
+      "opacity": 0.55,
+      "visible": true,
+      "objects": [
+        {
+          "id": 1,
+          "name": "obstáculo 0",
+          "type": "solido",
+          "ellipse": true,
+          "x": 48.33125,
+          "y": 107.16944444444445,
+          "width": 360.525,
+          "height": 143.76388888888889,
+          "visible": true
+        },
+        {
+          "id": 2,
+          "name": "obstáculo 1",
+          "type": "solido",
+          "ellipse": true,
+          "x": 1127.2937499999998,
+          "y": 440.4402777777778,
+          "width": 67.925,
+          "height": 47.05,
+          "visible": true
+        },
+        {
+          "id": 3,
+          "name": "obstáculo 2",
+          "type": "solido",
+          "ellipse": true,
+          "x": 548.625,
+          "y": 831.2166666666667,
+          "width": 91.4375,
+          "height": 52.27777777777778,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Áreas caminháveis",
+      "type": "objectgroup",
+      "color": "#6ecf98",
+      "opacity": 0.2,
+      "visible": true,
+      "objects": [
+        {
+          "id": 4,
+          "name": "Limite caminhável",
+          "type": "limite",
+          "x": 0,
+          "y": 0,
+          "polygon": [
+            {
+              "x": 293.90625,
+              "y": 215.64583333333334
+            },
+            {
+              "x": 627,
+              "y": 104.55555555555556
+            },
+            {
+              "x": 1240.9375,
+              "y": 101.94166666666666
+            },
+            {
+              "x": 1456.46875,
+              "y": 261.3888888888889
+            },
+            {
+              "x": 1449.9375,
+              "y": 699.2152777777778
+            },
+            {
+              "x": 1214.8125,
+              "y": 831.2166666666667
+            },
+            {
+              "x": 653.125,
+              "y": 853.4347222222223
+            },
+            {
+              "x": 254.71874999999997,
+              "y": 729.275
+            },
+            {
+              "x": 185.48749999999998,
+              "y": 503.17361111111114
+            }
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Entrada e objetivos",
+      "type": "objectgroup",
+      "color": "#fae297",
+      "visible": true,
+      "objects": [
+        {
+          "id": 5,
+          "name": "Entrada de Kai",
+          "type": "objetivo",
+          "point": true,
+          "x": 489.84374999999994,
+          "y": 294.0625,
+          "visible": true
+        },
+        {
+          "id": 6,
+          "name": "Mico",
+          "type": "objetivo",
+          "point": true,
+          "x": 1222.6499999999999,
+          "y": 202.57638888888889,
+          "visible": true
+        },
+        {
+          "id": 7,
+          "name": "Tucano",
+          "type": "objetivo",
+          "point": true,
+          "x": 1391.15625,
+          "y": 666.5416666666666,
+          "visible": true
+        },
+        {
+          "id": 8,
+          "name": "Gatinho",
+          "type": "objetivo",
+          "point": true,
+          "x": 1222.6499999999999,
+          "y": 522.7777777777778,
+          "visible": true
+        },
+        {
+          "id": 9,
+          "name": "Azulinho",
+          "type": "objetivo",
+          "point": true,
+          "x": 397.09999999999997,
+          "y": 594.6597222222223,
+          "visible": true
+        }
+      ]
+    }
+  ]
+}

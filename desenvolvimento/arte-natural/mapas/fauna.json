@@ -1,0 +1,240 @@
+{
+  "compressionlevel": -1,
+  "height": 30,
+  "infinite": false,
+  "layers": [
+    {
+      "id": 1,
+      "image": "../../../jogo/vida-natural/assets/fauna-inicio.webp",
+      "imageheight": 941,
+      "imagewidth": 1672,
+      "name": "Cenário com luz",
+      "opacity": 1,
+      "type": "imagelayer",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#ff6888",
+      "draworder": "topdown",
+      "id": 2,
+      "name": "Sólidos nos pés",
+      "objects": [
+        {
+          "ellipse": true,
+          "height": 143.763888888889,
+          "id": 1,
+          "name": "obstáculo 0",
+          "opacity": 1,
+          "rotation": 0,
+          "type": "solido",
+          "visible": true,
+          "width": 360.525,
+          "x": 48.33125,
+          "y": 107.169444444444
+        },
+        {
+          "ellipse": true,
+          "height": 47.05,
+          "id": 2,
+          "name": "obstáculo 1",
+          "opacity": 1,
+          "rotation": 0,
+          "type": "solido",
+          "visible": true,
+          "width": 67.925,
+          "x": 1127.29375,
+          "y": 440.440277777778
+        },
+        {
+          "ellipse": true,
+          "height": 52.2777777777778,
+          "id": 3,
+          "name": "obstáculo 2",
+          "opacity": 1,
+          "rotation": 0,
+          "type": "solido",
+          "visible": true,
+          "width": 91.4375,
+          "x": 548.625,
+          "y": 831.216666666667
+        }
+      ],
+      "opacity": 0.55,
+      "type": "objectgroup",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#6ecf98",
+      "draworder": "topdown",
+      "id": 3,
+      "name": "Áreas caminháveis",
+      "objects": [
+        {
+          "height": 0,
+          "id": 4,
+          "name": "Limite caminhável",
+          "opacity": 1,
+          "polygon": [
+            {
+              "x": 293.90625,
+              "y": 215.645833333333
+            },
+            {
+              "x": 627,
+              "y": 104.555555555556
+            },
+            {
+              "x": 1240.9375,
+              "y": 101.941666666667
+            },
+            {
+              "x": 1456.46875,
+              "y": 261.388888888889
+            },
+            {
+              "x": 1449.9375,
+              "y": 699.215277777778
+            },
+            {
+              "x": 1214.8125,
+              "y": 831.216666666667
+            },
+            {
+              "x": 653.125,
+              "y": 853.434722222222
+            },
+            {
+              "x": 254.71875,
+              "y": 729.275
+            },
+            {
+              "x": 185.4875,
+              "y": 503.173611111111
+            }
+          ],
+          "rotation": 0,
+          "type": "limite",
+          "visible": true,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "opacity": 0.2,
+      "type": "objectgroup",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#fae297",
+      "draworder": "topdown",
+      "id": 4,
+      "name": "Entrada e objetivos",
+      "objects": [
+        {
+          "height": 0,
+          "id": 5,
+          "name": "Entrada de Kai",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 489.84375,
+          "y": 294.0625
+        },
+        {
+          "height": 0,
+          "id": 6,
+          "name": "Mico",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 1222.65,
+          "y": 202.576388888889
+        },
+        {
+          "height": 0,
+          "id": 7,
+          "name": "Tucano",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 1391.15625,
+          "y": 666.541666666667
+        },
+        {
+          "height": 0,
+          "id": 8,
+          "name": "Gatinho",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 1222.65,
+          "y": 522.777777777778
+        },
+        {
+          "height": 0,
+          "id": 9,
+          "name": "Azulinho",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 397.1,
+          "y": 594.659722222222
+        }
+      ],
+      "opacity": 0,
+      "type": "objectgroup",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 5,
+  "nextobjectid": 10,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "altura-logica",
+      "type": "int",
+      "value": 720
+    },
+    {
+      "name": "largura-logica",
+      "type": "int",
+      "value": 1280
+    },
+    {
+      "name": "uso",
+      "type": "string",
+      "value": "Referência de inspeção. Runtime: movimento.js + navegação de cada fase."
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.12.2",
+  "tileheight": 32,
+  "tilesets": [],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.10",
+  "width": 53
+}

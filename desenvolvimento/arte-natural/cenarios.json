@@ -1,0 +1,42 @@
+[
+  {
+    "nome": "floresta-inicio",
+    "bytes": 570136
+  },
+  {
+    "nome": "floresta-restaurado",
+    "bytes": 560108
+  },
+  {
+    "nome": "rio-inicio",
+    "bytes": 561362
+  },
+  {
+    "nome": "rio-restaurado",
+    "bytes": 561620
+  },
+  {
+    "nome": "fauna-inicio",
+    "bytes": 625418
+  },
+  {
+    "nome": "fauna-restaurado",
+    "bytes": 595748
+  },
+  {
+    "nome": "plantio-inicio",
+    "bytes": 550290
+  },
+  {
+    "nome": "plantio-restaurado",
+    "bytes": 608548
+  },
+  {
+    "nome": "cidade-inicio",
+    "bytes": 599498
+  },
+  {
+    "nome": "cidade-restaurado",
+    "bytes": 630044
+  }
+]

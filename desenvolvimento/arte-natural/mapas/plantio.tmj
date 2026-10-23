@@ -1,0 +1,221 @@
+{
+  "type": "map",
+  "version": "1.10",
+  "tiledversion": "1.12.2",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "width": 53,
+  "height": 30,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "nextlayerid": 5,
+  "nextobjectid": 13,
+  "properties": [
+    {
+      "name": "largura-logica",
+      "type": "int",
+      "value": 1280
+    },
+    {
+      "name": "altura-logica",
+      "type": "int",
+      "value": 720
+    },
+    {
+      "name": "uso",
+      "type": "string",
+      "value": "Referência de inspeção. Runtime: movimento.js + navegação de cada fase."
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "name": "Cenário com luz",
+      "type": "imagelayer",
+      "image": "../../../jogo/vida-natural/assets/plantio-inicio.webp",
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "id": 2,
+      "name": "Sólidos nos pés",
+      "type": "objectgroup",
+      "color": "#ff6888",
+      "opacity": 0.55,
+      "visible": true,
+      "objects": [
+        {
+          "id": 1,
+          "name": "obstáculo 0",
+          "type": "solido",
+          "ellipse": true,
+          "x": 57.474999999999994,
+          "y": 88.87222222222222,
+          "width": 329.17499999999995,
+          "height": 162.0611111111111,
+          "visible": true
+        },
+        {
+          "id": 2,
+          "name": "obstáculo 1",
+          "type": "solido",
+          "ellipse": true,
+          "x": 339.625,
+          "y": 369.8652777777778,
+          "width": 148.9125,
+          "height": 73.1888888888889,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Áreas caminháveis",
+      "type": "objectgroup",
+      "color": "#6ecf98",
+      "opacity": 0.2,
+      "visible": true,
+      "objects": [
+        {
+          "id": 3,
+          "name": "Limite caminhável",
+          "type": "limite",
+          "x": 0,
+          "y": 0,
+          "polygon": [
+            {
+              "x": 326.5625,
+              "y": 235.25
+            },
+            {
+              "x": 613.9375,
+              "y": 135.92222222222222
+            },
+            {
+              "x": 1286.65625,
+              "y": 120.2388888888889
+            },
+            {
+              "x": 1489.125,
+              "y": 254.85416666666666
+            },
+            {
+              "x": 1495.65625,
+              "y": 705.75
+            },
+            {
+              "x": 1240.9375,
+              "y": 839.0583333333334
+            },
+            {
+              "x": 568.21875,
+              "y": 849.5138888888889
+            },
+            {
+              "x": 209,
+              "y": 666.5416666666666
+            },
+            {
+              "x": 169.8125,
+              "y": 444.36111111111114
+            }
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Entrada e objetivos",
+      "type": "objectgroup",
+      "color": "#fae297",
+      "visible": true,
+      "objects": [
+        {
+          "id": 4,
+          "name": "Entrada de Kai",
+          "type": "objetivo",
+          "point": true,
+          "x": 489.84374999999994,
+          "y": 309.74583333333334,
+          "visible": true
+        },
+        {
+          "id": 5,
+          "name": "Canteiro 1",
+          "type": "objetivo",
+          "point": true,
+          "x": 755.0124999999999,
+          "y": 273.1513888888889,
+          "visible": true
+        },
+        {
+          "id": 6,
+          "name": "Canteiro 2",
+          "type": "objetivo",
+          "point": true,
+          "x": 1175.625,
+          "y": 206.49722222222223,
+          "visible": true
+        },
+        {
+          "id": 7,
+          "name": "Canteiro 3",
+          "type": "objetivo",
+          "point": true,
+          "x": 1365.03125,
+          "y": 433.90555555555557,
+          "visible": true
+        },
+        {
+          "id": 8,
+          "name": "Canteiro 4",
+          "type": "objetivo",
+          "point": true,
+          "x": 1103.78125,
+          "y": 666.5416666666666,
+          "visible": true
+        },
+        {
+          "id": 9,
+          "name": "Canteiro 5",
+          "type": "objetivo",
+          "point": true,
+          "x": 696.2312499999999,
+          "y": 716.2055555555555,
+          "visible": true
+        },
+        {
+          "id": 10,
+          "name": "Canteiro 6",
+          "type": "objetivo",
+          "point": true,
+          "x": 659.65625,
+          "y": 534.5402777777778,
+          "visible": true
+        },
+        {
+          "id": 11,
+          "name": "Ninho do ipê",
+          "type": "objetivo",
+          "point": true,
+          "x": 318.72499999999997,
+          "y": 558.0652777777777,
+          "visible": true
+        },
+        {
+          "id": 12,
+          "name": "Ninho do sabiá",
+          "type": "objetivo",
+          "point": true,
+          "x": 1456.46875,
+          "y": 623.4125,
+          "visible": true
+        }
+      ]
+    }
+  ]
+}

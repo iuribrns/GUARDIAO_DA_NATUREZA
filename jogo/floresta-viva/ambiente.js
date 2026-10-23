@@ -4,7 +4,8 @@
     constructor(sprites,burned,healthy,fire){this.sprites=sprites;this.burned=burned;this.healthy=healthy;this.fire=fire;this.lastRecovery=0;this.leavesEnabled=true;try{this.leavesEnabled=JSON.parse(localStorage.getItem('guardiao.horizonte.preferences.v1')||'{}').fallingLeaves!==false;}catch{}}
     ground(ctx,fires,time,reduced){
       ctx.drawImage(this.burned,0,0,1280,720);
-      for(const f of fires){
+      if(this.life)this.life.restore(ctx,this.healthy,fires.filter(f=>f.life<=0),time,reduced);
+      else for(const f of fires){
         if(f.life>0)continue;
         const progress=reduced?1:Math.min(1,(time-(f.restoredAt??-5))/3);
         // Máscara progressiva: a recuperação fica limitada à área do objetivo.
@@ -32,6 +33,7 @@
     }
     tree(ctx,tree,time,reduced){
       ctx.save();ctx.translate(tree.x,tree.y);ctx.rotate(reduced?0:Math.sin(time*.85+tree.x)*.009);
+      ctx.globalAlpha=this.life?.treeOpacity(tree,time,reduced)??1;
       this.sprites.draw(ctx,'natureza',tree.frame,0,0,tree.h);ctx.restore();
     }
     flame(ctx,f,time,reduced){
@@ -39,6 +41,7 @@
         const t=reduced?1:Math.min(1,(time-(f.restoredAt??-4))/3);
         this.sprites.draw(ctx,'natureza',2,f.x,f.y+2,34*t);this.sprites.draw(ctx,'natureza',6,f.x+25,f.y+12,17*t);return;
       }
+      if(this.life){this.life.fire(ctx,f,time,reduced);return;}
       const pose=reduced?0:(Math.floor(time*10)+f.id*3)%8,h=96*(.5+f.life*.5);
       this.sprites.draw(ctx,'fogo',pose,f.x,f.y,h);
       if(!reduced){for(let j=0;j<3;j++){const t=(time*.33+j*.33+f.id*.1)%1;ctx.fillStyle=`rgba(65,57,48,${(1-t)*.17})`;ctx.beginPath();ctx.ellipse(f.x+Math.sin(j+time)*9,f.y-30-t*60,7+t*10,9+t*7,0,0,Math.PI*2);ctx.fill();}}

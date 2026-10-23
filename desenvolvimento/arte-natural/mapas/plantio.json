@@ -1,0 +1,279 @@
+{
+  "compressionlevel": -1,
+  "height": 30,
+  "infinite": false,
+  "layers": [
+    {
+      "id": 1,
+      "image": "../../../jogo/vida-natural/assets/plantio-inicio.webp",
+      "imageheight": 941,
+      "imagewidth": 1672,
+      "name": "Cenário com luz",
+      "opacity": 1,
+      "type": "imagelayer",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#ff6888",
+      "draworder": "topdown",
+      "id": 2,
+      "name": "Sólidos nos pés",
+      "objects": [
+        {
+          "ellipse": true,
+          "height": 162.061111111111,
+          "id": 1,
+          "name": "obstáculo 0",
+          "opacity": 1,
+          "rotation": 0,
+          "type": "solido",
+          "visible": true,
+          "width": 329.175,
+          "x": 57.475,
+          "y": 88.8722222222222
+        },
+        {
+          "ellipse": true,
+          "height": 73.1888888888889,
+          "id": 2,
+          "name": "obstáculo 1",
+          "opacity": 1,
+          "rotation": 0,
+          "type": "solido",
+          "visible": true,
+          "width": 148.9125,
+          "x": 339.625,
+          "y": 369.865277777778
+        }
+      ],
+      "opacity": 0.55,
+      "type": "objectgroup",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#6ecf98",
+      "draworder": "topdown",
+      "id": 3,
+      "name": "Áreas caminháveis",
+      "objects": [
+        {
+          "height": 0,
+          "id": 3,
+          "name": "Limite caminhável",
+          "opacity": 1,
+          "polygon": [
+            {
+              "x": 326.5625,
+              "y": 235.25
+            },
+            {
+              "x": 613.9375,
+              "y": 135.922222222222
+            },
+            {
+              "x": 1286.65625,
+              "y": 120.238888888889
+            },
+            {
+              "x": 1489.125,
+              "y": 254.854166666667
+            },
+            {
+              "x": 1495.65625,
+              "y": 705.75
+            },
+            {
+              "x": 1240.9375,
+              "y": 839.058333333333
+            },
+            {
+              "x": 568.21875,
+              "y": 849.513888888889
+            },
+            {
+              "x": 209,
+              "y": 666.541666666667
+            },
+            {
+              "x": 169.8125,
+              "y": 444.361111111111
+            }
+          ],
+          "rotation": 0,
+          "type": "limite",
+          "visible": true,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "opacity": 0.2,
+      "type": "objectgroup",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#fae297",
+      "draworder": "topdown",
+      "id": 4,
+      "name": "Entrada e objetivos",
+      "objects": [
+        {
+          "height": 0,
+          "id": 4,
+          "name": "Entrada de Kai",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 489.84375,
+          "y": 309.745833333333
+        },
+        {
+          "height": 0,
+          "id": 5,
+          "name": "Canteiro 1",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 755.0125,
+          "y": 273.151388888889
+        },
+        {
+          "height": 0,
+          "id": 6,
+          "name": "Canteiro 2",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 1175.625,
+          "y": 206.497222222222
+        },
+        {
+          "height": 0,
+          "id": 7,
+          "name": "Canteiro 3",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 1365.03125,
+          "y": 433.905555555556
+        },
+        {
+          "height": 0,
+          "id": 8,
+          "name": "Canteiro 4",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 1103.78125,
+          "y": 666.541666666667
+        },
+        {
+          "height": 0,
+          "id": 9,
+          "name": "Canteiro 5",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 696.23125,
+          "y": 716.205555555556
+        },
+        {
+          "height": 0,
+          "id": 10,
+          "name": "Canteiro 6",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 659.65625,
+          "y": 534.540277777778
+        },
+        {
+          "height": 0,
+          "id": 11,
+          "name": "Ninho do ipê",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 318.725,
+          "y": 558.065277777778
+        },
+        {
+          "height": 0,
+          "id": 12,
+          "name": "Ninho do sabiá",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 1456.46875,
+          "y": 623.4125
+        }
+      ],
+      "opacity": 0,
+      "type": "objectgroup",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 5,
+  "nextobjectid": 13,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "altura-logica",
+      "type": "int",
+      "value": 720
+    },
+    {
+      "name": "largura-logica",
+      "type": "int",
+      "value": 1280
+    },
+    {
+      "name": "uso",
+      "type": "string",
+      "value": "Referência de inspeção. Runtime: movimento.js + navegação de cada fase."
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.12.2",
+  "tileheight": 32,
+  "tilesets": [],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.10",
+  "width": 53
+}

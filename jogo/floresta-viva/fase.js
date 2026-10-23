@@ -3,6 +3,7 @@
   const $=id=>document.getElementById(id),W=window.FlorestaMundo,canvas=$('cenario'),ctx=canvas.getContext('2d');
   const KEY='guardiao.floresta-viva.v2',MAP='guardiao.mapa.progresso.v1',ATLAS=window.GuardiaoFlorestaAtlas;
   const player={x:286,y:260,direction:0,distance:0,idle:0,moving:false};
+  const life=new window.GuardiaoVidaNatural(1);
   const flora={x:259,y:190,mode:'voando',elapsed:0};
   const stick={x:0,y:0,id:null},keys=new Set(),sprites=new window.FlorestaSprites();
   const directions=[[1,0],[.707,-.707],[0,-1],[-.707,-.707],[-1,0],[-.707,.707],[0,1],[.707,.707]];
@@ -134,8 +135,7 @@
   function direction(dx,dy){return (Math.round(-Math.atan2(dy,dx)/(Math.PI/4))+8)%8;}
   function canMove(p){return W.walkable(p)&&!fires.some(f=>f.life>0&&W.distance(p,f)<24)&&!animals.some(a=>['ferido','seguro'].includes(a.stage)&&W.distance(p,a.position)<19);}
   function move(dx,dy){
-    const steps=Math.max(1,Math.ceil(Math.hypot(dx,dy)/2));let moved=0;
-    for(let i=0;i<steps;i++){const old={x:player.x,y:player.y},x=player.x+dx/steps,y=player.y+dy/steps;if(canMove({x,y})){player.x=x;player.y=y;}else if(canMove({x,y:player.y}))player.x=x;else if(canMove({x:player.x,y}))player.y=y;moved+=W.distance(old,player);}
+    const moved=window.GuardiaoMovimento.move(player,dx,dy,canMove);
     if(moved>.01){player.distance+=moved;player.direction=direction(dx,dy);player.idle=0;dirty=true;}return moved;
   }
   function updateAnimals(dt){
@@ -228,7 +228,7 @@
     else if(equipping>0){index=Math.min(5,Math.floor((.65-equipping)/.65*6));name='kai-cuidados';sprites.draw(ctx,name,index,player.x,player.y,63,{flip});}
     else if(player.moving&&itemsGiven){
       name=equipped?'kai-caminhada':'kai-livre';index=player.direction*2+Math.floor(player.distance/20)%2;
-      sprites.draw(ctx,name,index,player.x,player.y-(reduced()?0:Math.abs(Math.sin(player.distance/20*Math.PI))*1.1),63);
+      life.walk(ctx,player,uiTime,reduced(),equipped);
     }else if(equipped){
       name='kai-mangueira';index=player.direction*2+(uiTime%3.8>3.45?1:0);sprites.hose(ctx,player.direction,index%2,player.x,player.y,63+(reduced()?0:Math.sin(uiTime*2)*.35));
     }else{
@@ -251,15 +251,7 @@
     if(a.stage==='voltando'&&near(p,130))label('Indo até Carlos',p.x,p.y-a.height-10);
     if(a.stage==='seguro'&&uiTime-(a.arrivedAt??-5)<3)label('Em segurança! ✓',p.x,p.y-a.height-10);
   }
-  function drawFlora(){
-    let frame,height=37;
-    if(flora.mode==='ombro'){frame=!reduced()&&uiTime%4.5>4.25?9:8;height=25;}
-    else if(flora.mode==='pousando'){frame=flora.elapsed<.23?6:7;height=31;}
-    else if(flora.mode==='comemorando'){frame=reduced()?10:10+Math.floor(uiTime*4)%2;height=39;}
-    else frame=reduced()?2:Math.floor(uiTime*9)%6;
-    sprites.draw(ctx,'flora',frame,flora.x,flora.y+(reduced()||flora.mode==='ombro'?0:Math.sin(uiTime*5)*1.5),height,{flip:player.direction>=3&&player.direction<=5});
-    document.body.dataset.floraState=flora.mode;document.body.dataset.floraFrame=String(frame);
-  }
+  function drawFlora(){life.flora(ctx,flora,player,uiTime,reduced());document.body.dataset.floraState=flora.mode;}
   function drawCarlos(){
     const receiving=animals.some(a=>a.stage==='seguro'&&uiTime-(a.arrivedAt??-5)<2);let pose;
     if(stage==='entrega')pose=3;else if(stage==='recompensa')pose=rewardTime<1.8?5:6;else if($('conversa').open)pose=introIndex===1?3:introIndex===3?7:2;else pose=receiving?6:!reduced()&&uiTime%5>4.7?1:0;
@@ -268,14 +260,14 @@
   function draw(){
     if(!ready)return;const{s,ox,oy}=view();ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.clearRect(0,0,viewport.w,viewport.h);ctx.save();ctx.translate(ox,oy);ctx.scale(s,s);
     document.body.classList.toggle('player-near-hud',viewport.w<700&&player.y*s+oy<195);
-    environment.ground(ctx,fires,uiTime,reduced());
+    environment.ground(ctx,fires,uiTime,reduced());life.ground(ctx,player,uiTime,reduced());life.recovery(ctx,fires,uiTime,reduced());
     if(route.length){ctx.strokeStyle='#f9e9a799';ctx.lineWidth=2;ctx.setLineDash([3,9]);ctx.beginPath();ctx.moveTo(player.x,player.y);route.forEach(p=>ctx.lineTo(p.x,p.y));ctx.stroke();ctx.setLineDash([]);}
     if(routeGoal)ring(routeGoal.x,routeGoal.y,'#d6eeb1',24+(reduced()?0:Math.sin(uiTime*4)*2));
     const actors=[{y:245,draw:drawCarlos},...fires.map(f=>({y:f.y,draw:()=>environment.flame(ctx,f,uiTime,reduced())})),...animals.map(a=>({y:a.position.y,draw:()=>drawAnimal(a)})),...W.trees.map(t=>({y:t.y,draw:()=>environment.tree(ctx,t,uiTime,reduced())})),{y:player.y,draw:drawPlayer}];
     actors.sort((a,b)=>a.y-b.y).forEach(a=>a.draw());
     if(spraying&&released&&water>0&&equipping===0&&!healing&&!locked()){
       const [dx,dy]=directions[player.direction],from={x:player.x+dx*21,y:player.y-33+dy*9},to=target?{x:target.x,y:target.y-12}:{x:from.x+dx*110,y:from.y+dy*80};
-      sprites.jet(ctx,Math.floor(uiTime*12)%4,from,to,uiTime);document.body.dataset.waterFrame=String(Math.floor(uiTime*12)%4);
+      life.jet(ctx,from,to,uiTime,reduced());document.body.dataset.waterFrame=String(Math.floor(uiTime*12)%4);
     }else document.body.dataset.waterFrame='none';
     for(const a of animals){if(a.stage==='ferido'){const y=a.position.y-a.height-15;ctx.fillStyle='#fff3c5';ctx.strokeStyle='#be8b37';ctx.lineWidth=2;ctx.beginPath();ctx.arc(a.position.x,y,12,0,Math.PI*2);ctx.fill();ctx.stroke();window.GuardiaoIcones?.paint(ctx,window.GuardiaoIconesImage,'paw',a.position.x,y,18);}}
     drawFlora();
@@ -332,10 +324,10 @@
   window.GuardiaoFloresta=Object.freeze({estado:()=>structuredClone({ready,clock,uiTime,player,flora,stage,itemsGiven,released,water,equipped,equipping,completed,rewardStarted,rewardTime,fires,animals,route,paused:paused(),locked:locked(),camera})});
   window.GuardiaoIcones?.load().then(im=>window.GuardiaoIconesImage=im);
   load();W.setHazards([...fires,...animals]);
-  let loaded=0,loadFailed=false;const total=Object.keys(ATLAS.sheets).length+2;
+  let loaded=0,loadFailed=false;const activeSheets=Object.keys(ATLAS.sheets).filter(name=>!['kai-caminhada','kai-livre','flora','fogo'].includes(name)),total=activeSheets.length+7;
   function progress(){if(loadFailed)return;loaded++;$('loading').textContent='Preparando a floresta… '+loaded+'/'+total;}
-  Promise.all([sprites.load(progress),image('revisao/assets/floresta-ilustrada.png'),image('revisao/assets/floresta-restaurada.png')]).then(result=>{
-    environment=new window.FlorestaAmbiente(sprites,result[1],result[2]);ready=true;
+  Promise.all([sprites.load(progress,activeSheets),image('revisao/assets/floresta-ilustrada.png'),image('revisao/assets/floresta-restaurada.png'),life.load(progress)]).then(result=>{
+    environment=new window.FlorestaAmbiente(sprites,result[1],result[2]);environment.life=life;ready=true;
     document.body.dataset.gameReady='true';$('loading').hidden=true;flora.x=player.x-28;flora.y=player.y-70;resize();lockControls();updateHUD();
     cropDOM($('retrato-carlos'),'carlos',2,90);cropDOM(document.querySelector('.hose-icon'),'itens',0,54);cropDOM(document.querySelector('.kit-icon'),'itens',1,45);
     $('mangueira').querySelector('svg').remove();actionIcon('mangueira',0);actionIcon('mochila',3);

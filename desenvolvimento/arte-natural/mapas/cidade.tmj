@@ -1,0 +1,276 @@
+{
+  "type": "map",
+  "version": "1.10",
+  "tiledversion": "1.12.2",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "width": 53,
+  "height": 30,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "nextlayerid": 5,
+  "nextobjectid": 18,
+  "properties": [
+    {
+      "name": "largura-logica",
+      "type": "int",
+      "value": 1280
+    },
+    {
+      "name": "altura-logica",
+      "type": "int",
+      "value": 720
+    },
+    {
+      "name": "uso",
+      "type": "string",
+      "value": "Referência de inspeção. Runtime: movimento.js + navegação de cada fase."
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "name": "Cenário com luz",
+      "type": "imagelayer",
+      "image": "../../../jogo/vida-natural/assets/cidade-inicio.webp",
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "id": 2,
+      "name": "Sólidos nos pés",
+      "type": "objectgroup",
+      "color": "#ff6888",
+      "opacity": 0.55,
+      "visible": true,
+      "objects": [
+        {
+          "id": 1,
+          "name": "obstáculo 0",
+          "type": "solido",
+          "ellipse": true,
+          "x": 43.106249999999996,
+          "y": 71.88194444444444,
+          "width": 365.75,
+          "height": 235.25,
+          "visible": true
+        },
+        {
+          "id": 2,
+          "name": "obstáculo 1",
+          "type": "solido",
+          "ellipse": true,
+          "x": 1012.3437499999999,
+          "y": 66.65416666666667,
+          "width": 334.4,
+          "height": 224.79444444444445,
+          "visible": true
+        },
+        {
+          "id": 3,
+          "name": "obstáculo 2",
+          "type": "solido",
+          "ellipse": true,
+          "x": 1259.225,
+          "y": 245.70555555555555,
+          "width": 295.2125,
+          "height": 190.8138888888889,
+          "visible": true
+        },
+        {
+          "id": 4,
+          "name": "obstáculo 3",
+          "type": "solido",
+          "ellipse": true,
+          "x": 596.95625,
+          "y": 382.9347222222222,
+          "width": 99.27499999999999,
+          "height": 47.05,
+          "visible": true
+        },
+        {
+          "id": 5,
+          "name": "obstáculo 4",
+          "type": "solido",
+          "ellipse": true,
+          "x": 1320.6187499999999,
+          "y": 789.3944444444445,
+          "width": 91.4375,
+          "height": 54.891666666666666,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Áreas caminháveis",
+      "type": "objectgroup",
+      "color": "#6ecf98",
+      "opacity": 0.2,
+      "visible": true,
+      "objects": [
+        {
+          "id": 6,
+          "name": "Limite caminhável",
+          "type": "limite",
+          "x": 0,
+          "y": 0,
+          "polygon": [
+            {
+              "x": 235.12499999999997,
+              "y": 326.73611111111114
+            },
+            {
+              "x": 483.31249999999994,
+              "y": 222.18055555555557
+            },
+            {
+              "x": 836,
+              "y": 182.97222222222223
+            },
+            {
+              "x": 1306.25,
+              "y": 261.3888888888889
+            },
+            {
+              "x": 1449.9375,
+              "y": 431.2916666666667
+            },
+            {
+              "x": 1423.8125,
+              "y": 699.2152777777778
+            },
+            {
+              "x": 1235.7124999999999,
+              "y": 823.375
+            },
+            {
+              "x": 685.78125,
+              "y": 856.0486111111111
+            },
+            {
+              "x": 293.90625,
+              "y": 758.0277777777778
+            },
+            {
+              "x": 169.8125,
+              "y": 548.9166666666666
+            }
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Entrada e objetivos",
+      "type": "objectgroup",
+      "color": "#fae297",
+      "visible": true,
+      "objects": [
+        {
+          "id": 7,
+          "name": "Entrada de Kai",
+          "type": "objetivo",
+          "point": true,
+          "x": 483.31249999999994,
+          "y": 368.55833333333334,
+          "visible": true
+        },
+        {
+          "id": 8,
+          "name": "Garrafa plástica",
+          "type": "objetivo",
+          "point": true,
+          "x": 548.625,
+          "y": 367.25138888888887,
+          "visible": true
+        },
+        {
+          "id": 9,
+          "name": "Papel",
+          "type": "objetivo",
+          "point": true,
+          "x": 901.3124999999999,
+          "y": 283.6069444444444,
+          "visible": true
+        },
+        {
+          "id": 10,
+          "name": "Latinha",
+          "type": "objetivo",
+          "point": true,
+          "x": 1237.01875,
+          "y": 479.6486111111111,
+          "visible": true
+        },
+        {
+          "id": 11,
+          "name": "Casca de fruta",
+          "type": "objetivo",
+          "point": true,
+          "x": 1025.40625,
+          "y": 565.9069444444444,
+          "visible": true
+        },
+        {
+          "id": 12,
+          "name": "Papel",
+          "type": "objetivo",
+          "point": true,
+          "x": 812.4875,
+          "y": 724.0472222222222,
+          "visible": true
+        },
+        {
+          "id": 13,
+          "name": "Garrafa plástica",
+          "type": "objetivo",
+          "point": true,
+          "x": 471.55625,
+          "y": 748.8791666666667,
+          "visible": true
+        },
+        {
+          "id": 14,
+          "name": "Painel da escola",
+          "type": "objetivo",
+          "point": true,
+          "x": 1112.925,
+          "y": 317.5875,
+          "visible": true
+        },
+        {
+          "id": 15,
+          "name": "Painel da biblioteca",
+          "type": "objetivo",
+          "point": true,
+          "x": 1358.5,
+          "y": 504.48055555555555,
+          "visible": true
+        },
+        {
+          "id": 16,
+          "name": "Jardim da praça",
+          "type": "objetivo",
+          "point": true,
+          "x": 825.55,
+          "y": 623.4125,
+          "visible": true
+        },
+        {
+          "id": 17,
+          "name": "Jardim das flores",
+          "type": "objetivo",
+          "point": true,
+          "x": 1133.8249999999998,
+          "y": 627.3333333333334,
+          "visible": true
+        }
+      ]
+    }
+  ]
+}

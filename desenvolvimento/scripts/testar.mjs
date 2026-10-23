@@ -57,6 +57,8 @@ try {
     // O mapa redesenhado e a exploração atual têm uma validação completa própria.
     // Os controles de plataforma seguem testados no laboratório legado preservado.
     const suites = [
+      'jogo/vida-natural/validacao/fisica.cjs',
+      'jogo/vida-natural/validacao/arte.cjs',
       ...(!production ? ['tela-inicial/nova-versao/validacao/transicoes.cjs','tela-inicial/efeitos-folhas/validacao/folhas.cjs'] : []),
       'tela-inicial/menu-vivo/validacao/menu.cjs',
       'jogo/controles/validacao/controles.cjs',

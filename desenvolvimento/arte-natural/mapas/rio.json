@@ -1,0 +1,339 @@
+{
+  "compressionlevel": -1,
+  "height": 30,
+  "infinite": false,
+  "layers": [
+    {
+      "id": 1,
+      "image": "../../../jogo/vida-natural/assets/rio-inicio.webp",
+      "imageheight": 941,
+      "imagewidth": 1672,
+      "name": "Cenário com luz",
+      "opacity": 1,
+      "type": "imagelayer",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#ff6888",
+      "draworder": "topdown",
+      "id": 2,
+      "name": "Sólidos nos pés",
+      "objects": [
+        {
+          "ellipse": true,
+          "height": 138.536111111111,
+          "id": 1,
+          "name": "obstáculo 0",
+          "opacity": 1,
+          "rotation": 0,
+          "type": "solido",
+          "visible": true,
+          "width": 295.2125,
+          "x": 74.45625,
+          "y": 94.1
+        },
+        {
+          "ellipse": true,
+          "height": 60.1194444444444,
+          "id": 2,
+          "name": "obstáculo 1",
+          "opacity": 1,
+          "rotation": 0,
+          "type": "solido",
+          "visible": true,
+          "width": 99.275,
+          "x": 548.625,
+          "y": 487.490277777778
+        },
+        {
+          "ellipse": true,
+          "height": 52.2777777777778,
+          "id": 3,
+          "name": "obstáculo 2",
+          "opacity": 1,
+          "rotation": 0,
+          "type": "solido",
+          "visible": true,
+          "width": 117.5625,
+          "x": 1004.50625,
+          "y": 614.263888888889
+        }
+      ],
+      "opacity": 0.55,
+      "type": "objectgroup",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#6ecf98",
+      "draworder": "topdown",
+      "id": 3,
+      "name": "Áreas caminháveis",
+      "objects": [
+        {
+          "height": 0,
+          "id": 4,
+          "name": "Limite caminhável",
+          "opacity": 1,
+          "polygon": [
+            {
+              "x": 163.28125,
+              "y": 228.715277777778
+            },
+            {
+              "x": 418,
+              "y": 143.763888888889
+            },
+            {
+              "x": 587.8125,
+              "y": 117.625
+            },
+            {
+              "x": 783.75,
+              "y": 58.8125
+            },
+            {
+              "x": 1280.125,
+              "y": 104.555555555556
+            },
+            {
+              "x": 1476.0625,
+              "y": 235.25
+            },
+            {
+              "x": 1502.1875,
+              "y": 666.541666666667
+            },
+            {
+              "x": 1306.25,
+              "y": 836.444444444444
+            },
+            {
+              "x": 901.3125,
+              "y": 890.029166666667
+            },
+            {
+              "x": 470.25,
+              "y": 829.909722222222
+            },
+            {
+              "x": 209,
+              "y": 679.611111111111
+            }
+          ],
+          "rotation": 0,
+          "type": "limite",
+          "visible": true,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "opacity": 0.2,
+      "type": "objectgroup",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#fae297",
+      "draworder": "topdown",
+      "id": 4,
+      "name": "Entrada e objetivos",
+      "objects": [
+        {
+          "height": 0,
+          "id": 5,
+          "name": "Entrada de Kai",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 437.59375,
+          "y": 278.379166666667
+        },
+        {
+          "height": 0,
+          "id": 6,
+          "name": "Garrafa",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 640.0625,
+          "y": 352.875
+        },
+        {
+          "height": 0,
+          "id": 7,
+          "name": "Papel",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 855.59375,
+          "y": 373.786111111111
+        },
+        {
+          "height": 0,
+          "id": 8,
+          "name": "Latinha",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 718.4375,
+          "y": 499.252777777778
+        },
+        {
+          "height": 0,
+          "id": 9,
+          "name": "Casca de fruta",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 940.5,
+          "y": 528.005555555556
+        },
+        {
+          "height": 0,
+          "id": 10,
+          "name": "Garrafa",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 855.59375,
+          "y": 628.640277777778
+        },
+        {
+          "height": 0,
+          "id": 11,
+          "name": "Papel",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 982.3,
+          "y": 700.522222222222
+        },
+        {
+          "height": 0,
+          "id": 12,
+          "name": "Latinha",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 816.40625,
+          "y": 756.720833333333
+        },
+        {
+          "height": 0,
+          "id": 13,
+          "name": "Casca de fruta",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 1162.5625,
+          "y": 643.016666666667
+        },
+        {
+          "height": 0,
+          "id": 14,
+          "name": "Peixinhos",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 705.375,
+          "y": 607.729166666667
+        },
+        {
+          "height": 0,
+          "id": 15,
+          "name": "Peixes do rio",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 953.5625,
+          "y": 792.008333333333
+        },
+        {
+          "height": 0,
+          "id": 16,
+          "name": "Tartaruga",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 1254,
+          "y": 561.986111111111
+        }
+      ],
+      "opacity": 0,
+      "type": "objectgroup",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 5,
+  "nextobjectid": 17,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "altura-logica",
+      "type": "int",
+      "value": 720
+    },
+    {
+      "name": "largura-logica",
+      "type": "int",
+      "value": 1280
+    },
+    {
+      "name": "uso",
+      "type": "string",
+      "value": "Referência de inspeção. Runtime: movimento.js + navegação de cada fase."
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.12.2",
+  "tileheight": 32,
+  "tilesets": [],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.10",
+  "width": 53
+}

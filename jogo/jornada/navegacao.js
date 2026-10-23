@@ -46,13 +46,13 @@
       );
     }
     walkable(p, r = 7) {
-      if (!this.floor(p)) return false;
-      for (let i = 0; i < 8; i++) {
-        const a = (i * Math.PI) / 4;
-        if (!this.floor({ x: p.x + Math.cos(a) * r, y: p.y + Math.sin(a) * r }))
-          return false;
-      }
-      return true;
+      const geometry = window.GuardiaoMovimento;
+      return (
+        inside(p, this.data.floor) &&
+        geometry.polygonMargin(p, this.data.floor) > r &&
+        !this.dynamic.some((o) => distance(p, o) < 16 + r) &&
+        !this.data.obstacles.some((o) => geometry.touchesEllipse(p, o, r))
+      );
     }
     visible(a, b) {
       const n = Math.ceil(distance(a, b) / 5);
@@ -143,7 +143,11 @@
             (dx &&
               dy &&
               (!this.grid[y * this.cols + xx] ||
-                !this.grid[yy * this.cols + x]))
+                !this.grid[yy * this.cols + x] ||
+                !this.walkable({
+                  x: (this.point(id).x + this.point(n).x) / 2,
+                  y: (this.point(id).y + this.point(n).y) / 2,
+                })))
           )
             continue;
           const c = cost.get(id) + Math.hypot(dx, dy) * this.cell;
@@ -159,13 +163,15 @@
     }
     approach(from, target, range = 55) {
       const options = [];
-      for (let i = 0; i < 24; i++) {
-        const a = (i * Math.PI) / 12,
-          p = {
-            x: target.x + Math.cos(a) * range,
-            y: target.y + Math.sin(a) * range,
+      for (const radius of [range, range * 0.72, range * 0.48]) {
+        for (let i = 0; i < 24; i++) {
+          const a = (i * Math.PI) / 12;
+          const p = {
+            x: target.x + Math.cos(a) * radius,
+            y: target.y + Math.sin(a) * radius,
           };
-        if (this.walkable(p)) options.push(p);
+          if (this.walkable(p)) options.push(p);
+        }
       }
       options.sort((a, b) => distance(from, a) - distance(from, b));
       for (const p of options) {

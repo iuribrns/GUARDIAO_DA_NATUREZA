@@ -1,0 +1,348 @@
+{
+  "compressionlevel": -1,
+  "height": 30,
+  "infinite": false,
+  "layers": [
+    {
+      "id": 1,
+      "image": "../../../jogo/vida-natural/assets/cidade-inicio.webp",
+      "imageheight": 941,
+      "imagewidth": 1672,
+      "name": "Cenário com luz",
+      "opacity": 1,
+      "type": "imagelayer",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#ff6888",
+      "draworder": "topdown",
+      "id": 2,
+      "name": "Sólidos nos pés",
+      "objects": [
+        {
+          "ellipse": true,
+          "height": 235.25,
+          "id": 1,
+          "name": "obstáculo 0",
+          "opacity": 1,
+          "rotation": 0,
+          "type": "solido",
+          "visible": true,
+          "width": 365.75,
+          "x": 43.10625,
+          "y": 71.8819444444444
+        },
+        {
+          "ellipse": true,
+          "height": 224.794444444444,
+          "id": 2,
+          "name": "obstáculo 1",
+          "opacity": 1,
+          "rotation": 0,
+          "type": "solido",
+          "visible": true,
+          "width": 334.4,
+          "x": 1012.34375,
+          "y": 66.6541666666667
+        },
+        {
+          "ellipse": true,
+          "height": 190.813888888889,
+          "id": 3,
+          "name": "obstáculo 2",
+          "opacity": 1,
+          "rotation": 0,
+          "type": "solido",
+          "visible": true,
+          "width": 295.2125,
+          "x": 1259.225,
+          "y": 245.705555555556
+        },
+        {
+          "ellipse": true,
+          "height": 47.05,
+          "id": 4,
+          "name": "obstáculo 3",
+          "opacity": 1,
+          "rotation": 0,
+          "type": "solido",
+          "visible": true,
+          "width": 99.275,
+          "x": 596.95625,
+          "y": 382.934722222222
+        },
+        {
+          "ellipse": true,
+          "height": 54.8916666666667,
+          "id": 5,
+          "name": "obstáculo 4",
+          "opacity": 1,
+          "rotation": 0,
+          "type": "solido",
+          "visible": true,
+          "width": 91.4375,
+          "x": 1320.61875,
+          "y": 789.394444444445
+        }
+      ],
+      "opacity": 0.55,
+      "type": "objectgroup",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#6ecf98",
+      "draworder": "topdown",
+      "id": 3,
+      "name": "Áreas caminháveis",
+      "objects": [
+        {
+          "height": 0,
+          "id": 6,
+          "name": "Limite caminhável",
+          "opacity": 1,
+          "polygon": [
+            {
+              "x": 235.125,
+              "y": 326.736111111111
+            },
+            {
+              "x": 483.3125,
+              "y": 222.180555555556
+            },
+            {
+              "x": 836,
+              "y": 182.972222222222
+            },
+            {
+              "x": 1306.25,
+              "y": 261.388888888889
+            },
+            {
+              "x": 1449.9375,
+              "y": 431.291666666667
+            },
+            {
+              "x": 1423.8125,
+              "y": 699.215277777778
+            },
+            {
+              "x": 1235.7125,
+              "y": 823.375
+            },
+            {
+              "x": 685.78125,
+              "y": 856.048611111111
+            },
+            {
+              "x": 293.90625,
+              "y": 758.027777777778
+            },
+            {
+              "x": 169.8125,
+              "y": 548.916666666667
+            }
+          ],
+          "rotation": 0,
+          "type": "limite",
+          "visible": true,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "opacity": 0.2,
+      "type": "objectgroup",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "color": "#fae297",
+      "draworder": "topdown",
+      "id": 4,
+      "name": "Entrada e objetivos",
+      "objects": [
+        {
+          "height": 0,
+          "id": 7,
+          "name": "Entrada de Kai",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 483.3125,
+          "y": 368.558333333333
+        },
+        {
+          "height": 0,
+          "id": 8,
+          "name": "Garrafa plástica",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 548.625,
+          "y": 367.251388888889
+        },
+        {
+          "height": 0,
+          "id": 9,
+          "name": "Papel",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 901.3125,
+          "y": 283.606944444444
+        },
+        {
+          "height": 0,
+          "id": 10,
+          "name": "Latinha",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 1237.01875,
+          "y": 479.648611111111
+        },
+        {
+          "height": 0,
+          "id": 11,
+          "name": "Casca de fruta",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 1025.40625,
+          "y": 565.906944444444
+        },
+        {
+          "height": 0,
+          "id": 12,
+          "name": "Papel",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 812.4875,
+          "y": 724.047222222222
+        },
+        {
+          "height": 0,
+          "id": 13,
+          "name": "Garrafa plástica",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 471.55625,
+          "y": 748.879166666667
+        },
+        {
+          "height": 0,
+          "id": 14,
+          "name": "Painel da escola",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 1112.925,
+          "y": 317.5875
+        },
+        {
+          "height": 0,
+          "id": 15,
+          "name": "Painel da biblioteca",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 1358.5,
+          "y": 504.480555555556
+        },
+        {
+          "height": 0,
+          "id": 16,
+          "name": "Jardim da praça",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 825.55,
+          "y": 623.4125
+        },
+        {
+          "height": 0,
+          "id": 17,
+          "name": "Jardim das flores",
+          "opacity": 1,
+          "point": true,
+          "rotation": 0,
+          "type": "objetivo",
+          "visible": true,
+          "width": 0,
+          "x": 1133.825,
+          "y": 627.333333333333
+        }
+      ],
+      "opacity": 0,
+      "type": "objectgroup",
+      "visible": true,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "nextlayerid": 5,
+  "nextobjectid": 18,
+  "orientation": "orthogonal",
+  "properties": [
+    {
+      "name": "altura-logica",
+      "type": "int",
+      "value": 720
+    },
+    {
+      "name": "largura-logica",
+      "type": "int",
+      "value": 1280
+    },
+    {
+      "name": "uso",
+      "type": "string",
+      "value": "Referência de inspeção. Runtime: movimento.js + navegação de cada fase."
+    }
+  ],
+  "renderorder": "right-down",
+  "tiledversion": "1.12.2",
+  "tileheight": 32,
+  "tilesets": [],
+  "tilewidth": 32,
+  "type": "map",
+  "version": "1.10",
+  "width": 53
+}

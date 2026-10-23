@@ -17,6 +17,7 @@
     }),
     canvas = $("cenario"),
     ctx = canvas.getContext("2d");
+  const life = new window.GuardiaoVidaNatural(id);
   const sprites = new window.GuardiaoCampaignSprites(),
     shared = new window.FlorestaSprites(),
     player = {
@@ -578,16 +579,7 @@
     );
   }
   function move(dx, dy) {
-    let moved = 0;
-    const n = Math.max(1, Math.ceil(Math.hypot(dx, dy) / 2));
-    for (let i = 0; i < n; i++) {
-      const old = { x: player.x, y: player.y },
-        p = { x: player.x + dx / n, y: player.y + dy / n };
-      if (canMove(p)) Object.assign(player, p);
-      else if (canMove({ x: p.x, y: player.y })) player.x = p.x;
-      else if (canMove({ x: player.x, y: p.y })) player.y = p.y;
-      moved += distance(old, player);
-    }
+    const moved = window.GuardiaoMovimento.move(player, dx, dy, canMove);
     if (moved > 0.02) {
       player.distance += moved;
       player.direction =
@@ -783,29 +775,14 @@
     if (completed) {
       ctx.drawImage(healed, 0, 0, 1280, 720);
     } else {
-      for (const t of finishedTasks) {
-        const p = Math.min(1, (elapsed - (t.restoredAt ?? -3)) / 2);
-        ctx.save();
-        ctx.beginPath();
-        ctx.ellipse(
-          t.x,
-          t.y - 20,
-          95 * Math.max(0.01, p),
-          85 * Math.max(0.01, p),
-          0,
-          0,
-          Math.PI * 2,
-        );
-        ctx.clip();
-        ctx.drawImage(healed, 0, 0, 1280, 720);
-        ctx.restore();
-      }
+      life.restore(ctx, healed, finishedTasks, elapsed, reduced());
     }
     if (!reduced()) {
       if (id === 2) {
         for (let i = 0; i < 16; i++) {
           const x = 570 + Math.sin(i * 2.7 + time * 0.18) * 100,
             y = 220 + ((i * 33 + time * 13) % 430);
+          if (!nav.swimming({ x, y })) continue;
           ctx.strokeStyle = "#dcfbff88";
           ctx.lineWidth = 1;
           ctx.beginPath();
@@ -993,17 +970,7 @@
     } else if (player.moving) {
       name = "kai-livre";
       frame = player.direction * 2 + (Math.floor(player.distance / 18) % 2);
-      sprites.draw(
-        ctx,
-        name,
-        frame,
-        player.x,
-        y -
-          (reduced()
-            ? 0
-            : Math.abs(Math.sin((player.distance / 18) * Math.PI))),
-        height,
-      );
+      life.walk(ctx, player, time, reduced(), false, height);
     } else {
       const d = player.direction,
         base = d === 2 ? 2 : d >= 3 && d <= 5 ? 4 : d === 6 ? 6 : 0;
@@ -1066,27 +1033,7 @@
       );
   }
   function drawFlora() {
-    let frame = 2,
-      height = 35;
-    if (flora.mode === "ombro") {
-      frame = time % 4 > 3.7 ? 9 : 8;
-      height = 24;
-    } else if (flora.mode === "pousando") {
-      frame = flora.elapsed < 0.3 ? 6 : 7;
-      height = 29;
-    } else if (flora.mode === "comemorando")
-      frame = 10 + (reduced() ? 0 : Math.floor(time * 5) % 2);
-    else frame = reduced() ? 2 : Math.floor(time * 9) % 6;
-    shared.draw(
-      ctx,
-      "flora",
-      frame,
-      flora.x,
-      flora.y +
-        (reduced() || flora.mode === "ombro" ? 0 : Math.sin(time * 5) * 2),
-      height,
-      { flip: player.direction >= 3 && player.direction <= 5 },
-    );
+    life.flora(ctx, flora, player, time, reduced());
     document.body.dataset.floraState = flora.mode;
   }
   function drawCelebration() {
@@ -1101,10 +1048,10 @@
       153,
       125,
     );
-    shared.draw(
+    life.draw(
       c,
       "flora",
-      10 + (!reduced() ? Math.floor(time * 4) % 2 : 0),
+      14 + (!reduced() ? Math.floor(time * 4) % 2 : 0),
       295,
       90,
       61,
@@ -1133,6 +1080,8 @@
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = "high";
     drawGround();
+    life.ground(ctx, player, time, reduced(), player.swimming);
+    life.recovery(ctx, tasks, elapsed, reduced());
     const actors = tasks.map((t) => ({
       y: t.position.y,
       draw: () => drawTask(t),
@@ -1539,19 +1488,14 @@
           : ["kai-rio", "kai-plantio", "kai-floresta"];
   Promise.all([
     sprites.load(
-      [
-        "kai-livre",
-        "npcs",
-        "objetos",
-        "recompensa-" + data.reward,
-        ...specific,
-      ],
+      ["npcs", "objetos", "recompensa-" + data.reward, ...specific],
       progress,
     ),
-    shared.load(progress, ["kai-repouso", "flora", "natureza"]),
+    shared.load(progress, ["kai-repouso", "natureza"]),
     pictureLoad("assets/mapa-" + data.map + ".png"),
     pictureLoad("assets/mapa-" + data.map + "-restaurado.png"),
     window.GuardiaoIcones.load(),
+    life.load(),
   ])
     .then((r) => {
       ground = r[2];

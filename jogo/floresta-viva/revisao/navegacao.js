@@ -3,6 +3,7 @@
 (() => {
   const original = window.FlorestaMundo;
   const radius = 8;
+  const geometry = window.GuardiaoMovimento;
   const reservoir = {x:377,y:356,rx:43,ry:28};
   const obstacles = [
     {name:'reservatório',ellipse:reservoir},{name:'Carlos',ellipse:{x:245,y:245,rx:12,ry:9}},
@@ -22,9 +23,8 @@
   ];
   const distance=original.distance,inside=original.inside;
   function segment(p,a,b){const dx=b[0]-a[0],dy=b[1]-a[1],d=dx*dx+dy*dy,t=d?Math.max(0,Math.min(1,((p.x-a[0])*dx+(p.y-a[1])*dy)/d)):0;return Math.hypot(p.x-a[0]-t*dx,p.y-a[1]-t*dy);}
-  function solid(p){return obstacles.some(o=>o.ellipse?((p.x-o.ellipse.x)/o.ellipse.rx)**2+((p.y-o.ellipse.y)/o.ellipse.ry)**2<=1:inside(p,o.polygon));}
-  function floor(p){return p.x>20&&p.x<1255&&p.y>45&&p.y<692&&(!inside(p,original.river)||inside(p,original.bridge))&&(zones.some(z=>inside(p,z))||edges.some(([a,b,w])=>segment(p,nodes[a],nodes[b])<w))&&!solid(p);}
-  function walkable(p,r=radius){if(!floor(p))return false;for(let i=0;i<8;i++){const a=i*Math.PI/4;if(!floor({x:p.x+Math.cos(a)*r,y:p.y+Math.sin(a)*r}))return false;}return true;}
+  function floor(p){return p.x>20&&p.x<1255&&p.y>45&&p.y<692&&(!inside(p,original.river)||inside(p,original.bridge))&&(zones.some(z=>inside(p,z))||edges.some(([a,b,w])=>segment(p,nodes[a],nodes[b])<w));}
+  function walkable(p,r=radius){if(!geometry.fitsFloor(p,r,floor))return false;return !obstacles.some(o=>o.ellipse?geometry.touchesEllipse(p,o.ellipse,r):inside(p,o.polygon)||geometry.polygonMargin(p,o.polygon)<=r);}
   let hazards=[];const clear=p=>!hazards.some(h=>(h.life>0||['ferido','seguro'].includes(h.stage))&&distance(p,h.position||h)<(h.stage?19:27));
   function visible(a,b){const n=Math.max(1,Math.ceil(distance(a,b)/4));for(let i=0;i<=n;i++)if(!walkable({x:a.x+(b.x-a.x)*i/n,y:a.y+(b.y-a.y)*i/n})||!clear({x:a.x+(b.x-a.x)*i/n,y:a.y+(b.y-a.y)*i/n}))return false;return true;}
   // Grade de 8 px compartilhada por Kai e animais; diagonais não cortam quinas.
