@@ -232,7 +232,7 @@
       name=equipped?'kai-caminhada':'kai-livre';index=player.direction*2+Math.floor(player.distance/20)%2;
       life.walk(ctx,player,uiTime,reduced(),equipped);
     }else if(equipped){
-      name='kai-mangueira';index=player.direction*2+(uiTime%3.8>3.45?1:0);sprites.hose(ctx,player.direction,index%2,player.x,player.y,63+(reduced()?0:Math.sin(uiTime*2)*.35));
+      name='kai-mangueira';index=player.direction*2+(!reduced()&&uiTime%3.8>3.45?1:0);sprites.hose(ctx,player.direction,index%2,player.x,player.y,63+(reduced()?0:Math.sin(uiTime*2)*.35));
     }else{
       const dir=player.direction,base=dir===2?2:dir>=3&&dir<=5?4:dir===6?6:0;index=base+(!reduced()&&uiTime%4.7>4.48?1:0);
       sprites.draw(ctx,name,index,player.x,player.y,63+(reduced()?0:Math.sin(uiTime*1.7)*.35));
@@ -268,9 +268,9 @@
     const actors=[{y:245,draw:drawCarlos},...fires.map(f=>({y:f.y,draw:()=>environment.flame(ctx,f,uiTime,reduced())})),...animals.map(a=>({y:a.position.y,draw:()=>drawAnimal(a)})),...W.trees.map(t=>({y:t.y,draw:()=>environment.tree(ctx,t,uiTime,reduced())})),{y:player.y,draw:drawPlayer}];
     actors.sort((a,b)=>a.y-b.y).forEach(a=>a.draw());
     if(spraying&&released&&water>0&&equipping===0&&!healing&&!locked()){
-      const [dx,dy]=directions[player.direction],from={x:player.x+dx*21,y:player.y-33+dy*9},to=target?{x:target.x,y:target.y-12}:{x:from.x+dx*110,y:from.y+dy*80};
-      life.jet(ctx,from,to,uiTime,reduced());document.body.dataset.waterFrame=String(Math.floor(uiTime*12)%4);
-    }else document.body.dataset.waterFrame='none';
+      const [dx,dy]=directions[player.direction],from=life.water.nozzle(player,uiTime,reduced()),to=target?{x:target.x,y:target.y-12}:{x:from.x+dx*110,y:from.y+dy*80};
+      document.body.dataset.waterFrame=String(life.jet(ctx,from,to,uiTime,reduced(),{contact:!!target}));
+    }else{life.water.stop();document.body.dataset.waterFrame='none';}
     for(const a of animals){if(a.stage==='ferido'){const y=a.position.y-a.height-15;ctx.fillStyle='#fff3c5';ctx.strokeStyle='#be8b37';ctx.lineWidth=2;ctx.beginPath();ctx.arc(a.position.x,y,12,0,Math.PI*2);ctx.fill();ctx.stroke();window.GuardiaoIcones?.paint(ctx,window.GuardiaoIconesImage,'paw',a.position.x,y,18);}}
     drawFlora();
     if(stage==='entrega'){
@@ -323,7 +323,7 @@
   window.addEventListener('blur',()=>{neutral();if(dirty)save();});window.addEventListener('resize',resize);
   document.addEventListener('visibilitychange',()=>{neutral();if(document.hidden){cancelAnimationFrame(raf);raf=0;last=0;if(dirty)save();}else start();});
   window.addEventListener('pagehide',()=>{neutral();cancelAnimationFrame(raf);raf=0;if(dirty)save();});window.addEventListener('pageshow',start);
-  window.GuardiaoFloresta=Object.freeze({estado:()=>structuredClone({ready,clock,uiTime,player,flora,stage,itemsGiven,released,water,equipped,equipping,completed,rewardStarted,rewardTime,fires,animals,route,necklace:colar.state(),paused:paused(),locked:locked(),camera})});
+  window.GuardiaoFloresta=Object.freeze({estado:()=>structuredClone({ready,clock,uiTime,player,flora,stage,itemsGiven,released,water,equipped,equipping,completed,rewardStarted,rewardTime,fires,animals,route,necklace:colar.state(),waterEffect:life.water.state(),paused:paused(),locked:locked(),camera})});
   window.GuardiaoIcones?.load().then(im=>window.GuardiaoIconesImage=im);
   load();W.setHazards([...fires,...animals]);
   let loaded=0,loadFailed=false;const activeSheets=Object.keys(ATLAS.sheets).filter(name=>!['kai-caminhada','kai-livre','flora','fogo','kai-recompensa'].includes(name)),total=activeSheets.length+7;

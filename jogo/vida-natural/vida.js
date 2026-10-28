@@ -22,6 +22,7 @@
   class NatureLife {
     constructor(phase) {
       this.phase = phase;
+      this.water = phase === 1 && window.GuardiaoAgua ? new window.GuardiaoAgua() : null;
       this.images = new Map();
       this.trails = [];
       this.lastStep = 0;
@@ -46,6 +47,7 @@
           onProgress();
         }),
       );
+      if (this.water) await this.water.load();
       this.canopyShadow = new Image();
       this.canopyShadow.src = new URL("sombra-copa.svg", base).href;
       await this.canopyShadow.decode();
@@ -232,45 +234,8 @@
         ctx.fill();
       }
     }
-    jet(ctx, from, to, time, reduced) {
-      const dx = to.x - from.x,
-        dy = to.y - from.y,
-        length = Math.hypot(dx, dy);
-      if (length < 1) return;
-      ctx.save();
-      ctx.lineCap = "round";
-      for (let j = -1; j <= 1; j++) {
-        ctx.strokeStyle = j ? "#7ce6ffbd" : "#e3fbff";
-        ctx.lineWidth = j ? 2 : 3;
-        ctx.beginPath();
-        ctx.moveTo(from.x, from.y);
-        ctx.quadraticCurveTo(
-          from.x + dx * 0.5 - (dy / length) * j * 4,
-          from.y + dy * 0.5 + (dx / length) * j * 4 - 5,
-          to.x - (dy / length) * j * 7,
-          to.y + (dx / length) * j * 7,
-        );
-        ctx.stroke();
-      }
-      if (!reduced)
-        for (let i = 0; i < 10; i++) {
-          const t = (time * 2.1 + i / 10) % 1;
-          const spread = Math.sin(i * 5.4) * t * 7;
-          ctx.fillStyle = i % 2 ? "#e5fcff" : "#63d7f5";
-          ctx.beginPath();
-          ctx.arc(
-            from.x + dx * t - (dy / length) * spread,
-            from.y +
-              dy * t +
-              (dx / length) * spread -
-              Math.sin(t * Math.PI) * 4,
-            1 + t,
-            0,
-            Math.PI * 2,
-          );
-          ctx.fill();
-        }
-      ctx.restore();
+    jet(ctx, from, to, time, reduced, options) {
+      return this.water?.draw(ctx, from, to, time, reduced, options) ?? -1;
     }
     recovery(ctx, objectives, time, reduced) {
       if (reduced) return;

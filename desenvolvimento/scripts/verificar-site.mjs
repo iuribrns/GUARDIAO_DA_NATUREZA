@@ -66,3 +66,12 @@ assert.equal(completeSheets.reduce((n,s)=>n+s.frames.length,0),330);
 for(const sheet of completeSheets)assert.ok(existsSync(resolve(completeSpritesFolder,sheet.file)),'prancha completa: '+sheet.file);
 for(const file of ['colar.js','colar.css','geometria.js','assets/colar-vazio.webp'])assert.ok(existsSync(resolve(root,'jogo/colar-vivo',file)),'cutscene do colar: '+file);
 console.log('PASS: 330 quadros completos em 24 WebP, oito poses de Kai vestindo o colar e arte/estilos da cutscene publicados.');
+
+const waterFolder=resolve(root,'jogo/agua-viva');
+const waterAtlas=JSON.parse(readFileSync(resolve(waterFolder,'assets/atlas.json'),'utf8'));
+assert.equal(waterAtlas.streams.length,8);
+assert.equal(waterAtlas.splashes.length,8);
+assert.equal(waterAtlas.anchors.idle.length,16);
+assert.equal(waterAtlas.anchors.walk.length,32);
+assert.ok(existsSync(resolve(waterFolder,waterAtlas.file)));
+console.log('PASS: água da mangueira com oito jatos, oito impactos e 48 engates de bico publicados.');
