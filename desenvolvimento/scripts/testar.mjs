@@ -57,6 +57,7 @@ try {
     // O mapa redesenhado e a exploração atual têm uma validação completa própria.
     // Os controles de plataforma seguem testados no laboratório legado preservado.
     const suites = [
+      'tela-inicial/equipe-2d/validacao/equipe.cjs',
       'tela-inicial/renascimento/validacao/renascimento.cjs',
       'jogo/vida-natural/validacao/fisica.cjs',
       'jogo/vida-natural/validacao/arte.cjs',

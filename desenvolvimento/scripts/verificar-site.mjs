@@ -99,3 +99,9 @@ for(const file of ['mapa.js','creditos.html','creditos.js','atores.js','equipe.j
 assert.ok(selection.includes('id="map-credits"'));assert.ok(!selection.includes('seis regiões'));
 assert.match(readFileSync(resolve(root,'tela-inicial/nova-versao/sobre.html'),'utf8'),/Iuri Barroso Nascimento/);
 console.log('PASS: cinco cenários devastados, ilha integral antes/depois, 12 expressões da equipe, quatro árvores queimadas e encerramento com créditos presentes.');
+
+const team2d=JSON.parse(readFileSync(resolve(root,'tela-inicial/equipe-2d/assets/atlas.json'),'utf8'));
+assert.equal(team2d.frames.length,8);
+assert.ok(existsSync(resolve(root,'tela-inicial/equipe-2d',team2d.file)));
+assert.ok(readFileSync(resolve(root,'tela-inicial/nova-versao/sobre.html'),'utf8').includes('../equipe-2d/equipe.js'));
+console.log('PASS: oito sprites 2D completos dos estudantes, arte em WebP e composição horizontal de Sobre Nós presentes.');

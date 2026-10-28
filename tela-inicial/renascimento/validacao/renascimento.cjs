@@ -240,14 +240,10 @@ const base =
       c.height = 330;
       let signatures = [];
       for (const name of ["iuri", "hicham", "peterson"]) {
-        GuardiaoAtores.portrait(c, name, 0, false);
+        const draw=(time)=>name==='peterson'?GuardiaoAtores.portrait(c,name,time,false):GuardiaoEquipe2D.draw(c,name,time,false);
+        draw(0);
         const first = c.toDataURL();
-        GuardiaoAtores.portrait(
-          c,
-          name,
-          4.45 - { iuri: 1, hicham: 0, peterson: 2 }[name] * 0.91,
-          false,
-        );
+        draw(4.45 - { iuri: 1, hicham: 0, peterson: 2 }[name] * .91);
         signatures.push(first !== c.toDataURL());
       }
       return signatures;

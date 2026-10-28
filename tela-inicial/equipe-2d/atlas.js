@@ -1,0 +1,17 @@
+window.GuardiaoEquipe2DAtlas = {
+  file: "assets/equipe-corpo-inteiro.webp",
+  width: 1184,
+  height: 1136,
+  referenceHeight: 535.0,
+  frames: [
+    { bounds: [42, 12, 211, 544], pivot: [132.875, 556] },
+    { bounds: [338, 12, 211, 544], pivot: [431.375, 556] },
+    { bounds: [626, 12, 229, 544], pivot: [735.875, 556] },
+    { bounds: [910, 13, 251, 543], pivot: [1019.375, 556] },
+    { bounds: [37, 599, 222, 525], pivot: [142.375, 1124] },
+    { bounds: [331, 599, 226, 525], pivot: [437.375, 1124] },
+    { bounds: [619, 597, 242, 527], pivot: [740.875, 1124] },
+    { bounds: [902, 599, 269, 525], pivot: [1026.875, 1124] },
+  ],
+  people: { iuri: { first: 0, count: 4 }, hicham: { first: 4, count: 4 } },
+};
