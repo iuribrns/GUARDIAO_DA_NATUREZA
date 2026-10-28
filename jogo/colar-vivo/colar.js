@@ -168,6 +168,7 @@
       );
       const stage = landed ? "encaixado" : "vazio";
       if (stage !== this.messageStage) {
+        if (landed) window.GuardiaoAudio?.effect("restaurar", { gain: 0.65 });
         this.messageStage = stage;
         this.caption.textContent = landed
           ? `A pedra ${gem.name === "amarelo" ? "amarela" : gem.name === "vermelho" ? "vermelha" : gem.name === "azul" ? "azul" : gem.name === "verde" ? "verde" : "violeta"} encontrou seu lugar!`

@@ -61,6 +61,7 @@ try {
       'jogo/vida-natural/validacao/arte.cjs',
       'jogo/sprites-integros/validacao/quadros.cjs',
       'jogo/agua-viva/validacao/agua.cjs',
+      'jogo/sons-da-natureza/validacao/audio.cjs',
       'jogo/colar-vivo/validacao/colar.cjs',
       ...(!production ? ['tela-inicial/nova-versao/validacao/transicoes.cjs','tela-inicial/efeitos-folhas/validacao/folhas.cjs'] : []),
       'tela-inicial/menu-vivo/validacao/menu.cjs',

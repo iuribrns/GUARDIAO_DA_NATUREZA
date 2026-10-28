@@ -2,7 +2,7 @@
 (() => {
   const storageKey = 'guardiao.horizonte.preferences.v1';
   const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const defaults = { music: false, musicVolume: 40, effects: true, effectsVolume: 60, largeText: false, fallingLeaves: true, reduceMotion: false, leftHanded: false, controlSize: 0, contextHints: true, controlMode: 'auto' };
+  const defaults = { music: true, musicVolume: 40, effects: true, effectsVolume: 60, largeText: false, fallingLeaves: true, reduceMotion: false, leftHanded: false, controlSize: 0, contextHints: true, controlMode: 'auto' };
   let preferences = { ...defaults };
   let storageAvailable = true;
   try {
@@ -21,53 +21,17 @@
   } catch { storageAvailable = false; }
   const status = document.getElementById('save-status');
   const form = document.getElementById('preferences');
-  let audioContext;
-  let musicGain;
-  let musicTimer;
-  let musicStep = 0;
-  const melody = [293.66, 392, 440, 392, 329.63, 293.66, 261.63, 329.63, 392, 523.25, 440, 392];
   function announce(text) { if (status) status.textContent = text; }
-  function getAudio() {
-    const Audio = window.AudioContext || window.webkitAudioContext;
-    if (!Audio) return null;
-    try {
-      if (!audioContext) { audioContext = new Audio(); musicGain = audioContext.createGain(); musicGain.gain.value = 0; musicGain.connect(audioContext.destination); }
-      audioContext.resume().catch(() => announce('O navegador não liberou o áudio. Toque novamente em um controle.'));
-      return audioContext;
-    } catch { announce('O áudio não está disponível neste navegador.'); return null; }
-  }
-  function note(frequency, duration, volume, destination, offset = 0) {
-    const now = audioContext.currentTime + offset;
-    const oscillator = audioContext.createOscillator();
-    const envelope = audioContext.createGain();
-    oscillator.type = 'sine'; oscillator.frequency.value = frequency;
-    envelope.gain.setValueAtTime(0.0001, now);
-    envelope.gain.exponentialRampToValueAtTime(Math.max(0.0001, volume), now + 0.035);
-    envelope.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-    oscillator.connect(envelope); envelope.connect(destination);
-    oscillator.start(now); oscillator.stop(now + duration + 0.02);
-    oscillator.onended = () => { oscillator.disconnect(); envelope.disconnect(); };
-  }
-  function clickSound(force = false) {
-    if ((!preferences.effects && !force) || preferences.effectsVolume === 0) return;
-    if (!getAudio()) return;
-    const volume = preferences.effectsVolume / 100 * 0.08;
-    note(659.25, 0.16, volume, audioContext.destination);
-    note(987.77, 0.2, volume * 0.6, audioContext.destination, 0.07);
-  }
-  function stopMusic() {
-    clearInterval(musicTimer); musicTimer = null;
-    if (musicGain) musicGain.gain.setTargetAtTime(0, audioContext.currentTime, 0.07);
-  }
-  function updateMusic(fromGesture = false) {
-    if (!preferences.music || document.hidden) { stopMusic(); return; }
-    if (!audioContext && !fromGesture) return;
-    if (!getAudio()) return;
-    musicGain.gain.setTargetAtTime(preferences.musicVolume / 100 * 0.3, audioContext.currentTime, 0.15);
-    if (musicTimer) return;
-    const tick = () => { const pitch = melody[musicStep % melody.length]; note(pitch, 1.35, 0.24, musicGain); if (musicStep % 4 === 0) note(146.83, 2.1, 0.08, musicGain); musicStep++; };
-    tick(); musicTimer = setInterval(tick, 740);
-  }
+  function clickSound(force = false) { window.GuardiaoAudio?.effect('toque', {preview:force}); }
+  function updateMusic(fromGesture = false) { window.GuardiaoAudio?.update(preferences); if(fromGesture) window.GuardiaoAudio?.unlock(); }
+  window.addEventListener('guardiao:audio-preferences', event => {
+    Object.assign(preferences,event.detail);
+    if(form) for(const key of ['music','musicVolume','effects','effectsVolume']) {
+      const input=document.getElementById(key);if(!input)continue;
+      if(input.type==='checkbox')input.checked=preferences[key];
+      else {input.value=preferences[key];const output=document.getElementById(key+'Value');if(output)output.value=preferences[key]+'%';}
+    }
+  });
   function apply() {
     document.documentElement.classList.toggle('large-text', preferences.largeText);
     document.body.classList.toggle('reduce-motion', preferences.reduceMotion || media.matches);
@@ -103,7 +67,7 @@
   });
   document.getElementById('preview-sound')?.addEventListener('click', () => clickSound(true));
   document.getElementById('reset')?.addEventListener('click', () => { preferences = { ...defaults }; save(); });
-  document.addEventListener('click', event => { if (event.target.closest('a, [role="tab"], [data-companion], [data-react="necklace"]')) clickSound(); updateMusic(true); });
+  document.addEventListener('click', () => updateMusic(true));
   const unlock = () => updateMusic(true);
   document.addEventListener('pointerdown', unlock, { once: true });
   document.addEventListener('keydown', unlock, { once: true });

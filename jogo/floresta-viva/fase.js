@@ -12,11 +12,9 @@
   let ready=false,uiTime=0,clock=0,last=0,raf=0,itemsGiven=false,released=false,water=0,equipped=false,equipping=0;
   let completed=false,stage='abertura',introIndex=0,introDeadline=0,handoff=0,rewardTime=0,rewardStarted=false;
   let route=[],routeGoal=null,spraying=false,waterPointer=null,target=null,healing=null,healTime=0;
-  let environment,dirty=false,saveWarning=false,sound=false,audio=null,lastSound=0;
+  let environment,dirty=false,saveWarning=false;
   let messageUntil=0,hintUntil=0,toastUntil=0,lastHint='',viewport={w:innerWidth,h:innerHeight},camera={x:640,y:360,scale:1};
   let preferences={};try{const p=JSON.parse(localStorage.getItem('guardiao.horizonte.preferences.v1')||'{}');if(p&&typeof p==='object')preferences=p;}catch{}
-  sound=preferences.effects!==false;$('som').setAttribute('aria-pressed',String(sound));$('som').setAttribute('aria-label',sound?'Desativar efeitos sonoros':'Ativar efeitos sonoros');
-  const unlockAudio=async()=>{const Audio=window.AudioContext||window.webkitAudioContext;if(sound&&Audio){audio??=new Audio();try{await audio.resume();}catch{}}};document.addEventListener('pointerdown',unlockAudio,{once:true});document.addEventListener('keydown',unlockAudio,{once:true});
   const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches||preferences.reduceMotion===true;
   document.documentElement.classList.toggle('large-text',preferences.largeText===true);document.body.classList.toggle('reduce-motion',reduced());matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',()=>document.body.classList.toggle('reduce-motion',reduced()));
   const intro=[
@@ -48,14 +46,14 @@
     messageUntil=uiTime+Math.max(3,Math.min(5,text.length/24+1));
   }
   function hint(text,force=false){if(!text){$('dica').hidden=true;return;}if(!preferences.contextHints&&preferences.contextHints!==undefined&&!force)return;if(!$('flora-talk').hidden||$('toast').textContent)return;if(text!==lastHint||force){lastHint=text;$('dica').textContent=text;$('dica').hidden=false;hintUntil=uiTime+3;}}
-  function soundEffect(freq=650,duration=.12){
-    if(!sound||!audio)return;const volume=Number.isFinite(preferences.effectsVolume)?Math.max(0,Math.min(100,preferences.effectsVolume))/100:.6;if(!volume)return;
-    const o=audio.createOscillator(),g=audio.createGain();o.frequency.value=freq;g.gain.setValueAtTime(volume*.04,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+duration);o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+duration);
+  function soundEffect(freq=650){
+    const name=freq>=950?'vitoria':freq>=820?'resgate':freq===780?'receber':freq===760?'restaurar':freq===740?'agua-liberada':'toque';
+    window.GuardiaoAudio?.effect(name);
   }
   const distance=p=>W.distance(player,p),near=(p,r)=>distance(p)<r;
   const paused=()=>document.hidden||['inventario','menu-pausa','vitoria'].some(id=>$(id).open);
   const locked=()=>!ready||paused()||$('conversa').open||stage==='entrega'||stage==='recompensa';
-  function neutral(){keys.clear();stick.x=stick.y=0;stick.id=null;spraying=false;waterPointer=null;$('stick').style.transform='';$('mangueira').classList.remove('is-held');}
+  function neutral(){window.GuardiaoAudio?.water(false);keys.clear();stick.x=stick.y=0;stick.id=null;spraying=false;waterPointer=null;$('stick').style.transform='';$('mangueira').classList.remove('is-held');}
   function openDialog(id){if(dirty)save();neutral();route=[];routeGoal=null;$(id).showModal();}
   function lockControls(){document.body.dataset.stage=stage;document.querySelectorAll('.goal,.actions button,#ajuda').forEach(b=>{b.disabled=!itemsGiven||stage==='entrega'||stage==='recompensa';});}
   function showIntro(){
@@ -138,7 +136,7 @@
   function canMove(p){return W.walkable(p)&&!fires.some(f=>f.life>0&&W.distance(p,f)<24)&&!animals.some(a=>['ferido','seguro'].includes(a.stage)&&W.distance(p,a.position)<19);}
   function move(dx,dy){
     const moved=window.GuardiaoMovimento.move(player,dx,dy,canMove);
-    if(moved>.01){player.distance+=moved;player.direction=direction(dx,dy);player.idle=0;dirty=true;}return moved;
+    if(moved>.01){if(Math.floor((player.distance+moved)/28)>Math.floor(player.distance/28))window.GuardiaoAudio?.effect('passo',{gain:.22});player.distance+=moved;player.direction=direction(dx,dy);player.idle=0;dirty=true;}return moved;
   }
   function updateAnimals(dt){
     for(const a of animals){
@@ -184,7 +182,7 @@
       target=fires.filter(f=>f.life>0&&near(f,155)).sort((a,b)=>distance(a)-distance(b))[0]||null;
       water=Math.max(0,water-4*dt);dirty=true;
       if(target){player.direction=direction(target.x-player.x,target.y-player.y);target.life=Math.max(0,target.life-.36*dt);if(target.life===0){target.restoredAt=uiTime;save();toast('Fogo apagado! + natureza 🌱');soundEffect(760,.16);}}
-      if(uiTime-lastSound>.2){lastSound=uiTime;soundEffect(1200+Math.sin(uiTime*15)*170,.035);}
+
     }
     if(healing){healTime=Math.max(0,healTime-dt);if(healTime===0){healing.stage='voltando';healing.route=homeRoute(healing);toast(healing.name+' está melhor! ♥');healing=null;dirty=true;save();}}
     updateAnimals(dt);updateFlora(dt);updateHUD();contextHint();if(goalsDone()&&!completed&&!rewardStarted&&!route.length&&near({x:245,y:245},87))startReward();
@@ -269,8 +267,8 @@
     actors.sort((a,b)=>a.y-b.y).forEach(a=>a.draw());
     if(spraying&&released&&water>0&&equipping===0&&!healing&&!locked()){
       const [dx,dy]=directions[player.direction],from=life.water.nozzle(player,uiTime,reduced()),to=target?{x:target.x,y:target.y-12}:{x:from.x+dx*110,y:from.y+dy*80};
-      document.body.dataset.waterFrame=String(life.jet(ctx,from,to,uiTime,reduced(),{contact:!!target}));
-    }else{life.water.stop();document.body.dataset.waterFrame='none';}
+      window.GuardiaoAudio?.water(true);document.body.dataset.waterFrame=String(life.jet(ctx,from,to,uiTime,reduced(),{contact:!!target}));
+    }else{window.GuardiaoAudio?.water(false);life.water.stop();document.body.dataset.waterFrame='none';}
     for(const a of animals){if(a.stage==='ferido'){const y=a.position.y-a.height-15;ctx.fillStyle='#fff3c5';ctx.strokeStyle='#be8b37';ctx.lineWidth=2;ctx.beginPath();ctx.arc(a.position.x,y,12,0,Math.PI*2);ctx.fill();ctx.stroke();window.GuardiaoIcones?.paint(ctx,window.GuardiaoIconesImage,'paw',a.position.x,y,18);}}
     drawFlora();
     if(stage==='entrega'){
@@ -311,7 +309,6 @@
   document.querySelectorAll('[data-goal]').forEach(b=>b.addEventListener('click',()=>guide(b.dataset.goal)));
   $('recomecar').addEventListener('click',()=>{try{localStorage.removeItem(KEY);}catch{}location.reload();});
   $('tela-cheia').addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await $('jogo').requestFullscreen();}catch{toast('Experimente virar o celular para o modo paisagem.');}});
-  $('som').addEventListener('click',async()=>{sound=!sound;const Audio=window.AudioContext||window.webkitAudioContext;if(sound&&Audio){audio??=new Audio();await audio.resume();}else if(!Audio){sound=false;toast('Este navegador não oferece efeitos sonoros.');}$('som').setAttribute('aria-pressed',String(sound));$('som').setAttribute('aria-label',sound?'Desativar efeitos sonoros':'Ativar efeitos sonoros');soundEffect();});
   document.addEventListener('keydown',e=>{
     if(e.key==='Escape'){neutral();if(!$('conversa').open&&!paused()){e.preventDefault();openDialog('menu-pausa');}return;}
     if(locked()||/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))return;const k=e.key.toLowerCase();

@@ -75,3 +75,17 @@ assert.equal(waterAtlas.anchors.idle.length,16);
 assert.equal(waterAtlas.anchors.walk.length,32);
 assert.ok(existsSync(resolve(waterFolder,waterAtlas.file)));
 console.log('PASS: água da mangueira com oito jatos, oito impactos e 48 engates de bico publicados.');
+
+const audioFolder=resolve(root,'jogo/sons-da-natureza');
+const audioManifest=JSON.parse(readFileSync(resolve(audioFolder,'assets/manifesto.json'),'utf8'));
+assert.equal(Object.keys(audioManifest.music).length,6);
+assert.equal(Object.keys(audioManifest.effects).length,12);
+for(const [type,entries]of Object.entries(audioManifest)){
+  if(!['music','effects'].includes(type))continue;
+  for(const song of Object.values(entries)){
+    assert.ok(existsSync(resolve(audioFolder,'assets',song.file)),'áudio publicado: '+song.file);
+    assert.ok(song.peak<=.75&&song.peak>0,'áudio sem saturação na fonte');
+    if(type==='music')assert.ok(song.duration>=95&&song.duration<=120,'trilha de duração completa');
+  }
+}
+console.log('PASS: seis trilhas lo-fi originais, 12 efeitos e catálogo de áudio presentes no site.');

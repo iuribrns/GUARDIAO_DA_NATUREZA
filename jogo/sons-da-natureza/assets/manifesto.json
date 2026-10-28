@@ -1,0 +1,163 @@
+{
+  "sampleRate": 24000,
+  "music": {
+    "menu": {
+      "file": "menu.mp3",
+      "title": "Brisa de boas-vindas",
+      "duration": 109.714,
+      "peak": 0.57901,
+      "rms": 0.07699,
+      "bytes": 1317640,
+      "bpm": 70,
+      "transpose": 0
+    },
+    "floresta": {
+      "file": "floresta.mp3",
+      "title": "Clareira tranquila",
+      "duration": 106.667,
+      "peak": 0.59035,
+      "rms": 0.07699,
+      "bytes": 1280962,
+      "bpm": 72,
+      "transpose": -2
+    },
+    "rio": {
+      "file": "rio.mp3",
+      "title": "Águas de cristal",
+      "duration": 112.941,
+      "peak": 0.60516,
+      "rms": 0.07699,
+      "bytes": 1356194,
+      "bpm": 68,
+      "transpose": 2
+    },
+    "fauna": {
+      "file": "fauna.mp3",
+      "title": "Amigos da mata",
+      "duration": 103.784,
+      "peak": 0.57019,
+      "rms": 0.07699,
+      "bytes": 1246163,
+      "bpm": 74,
+      "transpose": 5
+    },
+    "plantio": {
+      "file": "plantio.mp3",
+      "title": "Sementes ao sol",
+      "duration": 116.364,
+      "peak": 0.64465,
+      "rms": 0.07699,
+      "bytes": 1397257,
+      "bpm": 66,
+      "transpose": -3
+    },
+    "cidade": {
+      "file": "cidade.mp3",
+      "title": "Um amanhã mais verde",
+      "duration": 101.053,
+      "peak": 0.57376,
+      "rms": 0.07699,
+      "bytes": 1213570,
+      "bpm": 76,
+      "transpose": 7
+    }
+  },
+  "effects": {
+    "toque": {
+      "file": "toque.mp3",
+      "title": "Toque de madeira",
+      "duration": 0.18,
+      "peak": 0.5,
+      "rms": 0.19126,
+      "bytes": 2004
+    },
+    "receber": {
+      "file": "receber.mp3",
+      "title": "Itens recebidos",
+      "duration": 0.75,
+      "peak": 0.5,
+      "rms": 0.14663,
+      "bytes": 6601
+    },
+    "agua-liberada": {
+      "file": "agua-liberada.mp3",
+      "title": "Água liberada",
+      "duration": 0.6,
+      "peak": 0.5,
+      "rms": 0.12858,
+      "bytes": 5346
+    },
+    "mangueira": {
+      "file": "mangueira.mp3",
+      "title": "Fluxo suave de água",
+      "duration": 3.0,
+      "peak": 0.275,
+      "rms": 0.05739,
+      "bytes": 24578
+    },
+    "restaurar": {
+      "file": "restaurar.mp3",
+      "title": "A natureza renasce",
+      "duration": 1.15,
+      "peak": 0.5,
+      "rms": 0.13965,
+      "bytes": 9948
+    },
+    "resgate": {
+      "file": "resgate.mp3",
+      "title": "Amigo em segurança",
+      "duration": 1.2,
+      "peak": 0.5,
+      "rms": 0.15598,
+      "bytes": 10158
+    },
+    "coletar": {
+      "file": "coletar.mp3",
+      "title": "Coleta cuidadosa",
+      "duration": 0.4,
+      "peak": 0.5,
+      "rms": 0.1634,
+      "bytes": 3885
+    },
+    "tentar": {
+      "file": "tentar.mp3",
+      "title": "Vamos tentar outra vez",
+      "duration": 0.3,
+      "peak": 0.5,
+      "rms": 0.16219,
+      "bytes": 3055
+    },
+    "vitoria": {
+      "file": "vitoria.mp3",
+      "title": "Um cuidado que virou luz",
+      "duration": 2.4,
+      "peak": 0.5,
+      "rms": 0.10357,
+      "bytes": 19776
+    },
+    "passo": {
+      "file": "passo.mp3",
+      "title": "Passo na trilha",
+      "duration": 0.12,
+      "peak": 0.17402,
+      "rms": 0.03193,
+      "bytes": 1585
+    },
+    "nadar": {
+      "file": "nadar.mp3",
+      "title": "Movimento na água",
+      "duration": 0.22,
+      "peak": 0.25182,
+      "rms": 0.03156,
+      "bytes": 2424
+    },
+    "plantar": {
+      "file": "plantar.mp3",
+      "title": "Semente na terra",
+      "duration": 0.5,
+      "peak": 0.5,
+      "rms": 0.20487,
+      "bytes": 4721
+    }
+  }
+}

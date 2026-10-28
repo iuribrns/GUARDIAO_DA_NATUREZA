@@ -65,9 +65,7 @@
     keys = new Set(),
     stick = { x: 0, y: 0, id: null },
     heldTool = false,
-    toolPointer = null,
-    sound = false,
-    audio = null;
+    toolPointer = null;
   try {
     preferences = JSON.parse(localStorage.getItem(PREF) || "{}") || {};
   } catch {}
@@ -148,6 +146,7 @@
     }
   }
   function neutral() {
+    window.GuardiaoAudio?.water(false);
     keys.clear();
     stick = { x: 0, y: 0, id: null };
     heldTool = false;
@@ -204,6 +203,7 @@
     $("cinema").hidden = true;
     dirty = true;
     save();
+    window.GuardiaoAudio?.effect("receber");
     message(data.hint);
     updateHUD();
   }
@@ -331,7 +331,13 @@
     dirty = true;
     save();
     updateHUD();
-    tone(780);
+    window.GuardiaoAudio?.effect(
+      animal(t)
+        ? "resgate"
+        : ["seed", "water", "garden", "nest"].includes(a.kind)
+          ? "plantar"
+          : "coletar",
+    );
   }
   const picture = {
     banana:
@@ -584,6 +590,13 @@
   function move(dx, dy) {
     const moved = window.GuardiaoMovimento.move(player, dx, dy, canMove);
     if (moved > 0.02) {
+      if (
+        Math.floor((player.distance + moved) / 28) >
+        Math.floor(player.distance / 28)
+      )
+        window.GuardiaoAudio?.effect(player.swimming ? "nadar" : "passo", {
+          gain: 0.22,
+        });
       player.distance += moved;
       player.direction =
         (Math.round(-Math.atan2(dy, dx) / (Math.PI / 4)) + 8) % 8;
@@ -1069,6 +1082,7 @@
       );
   }
   function draw() {
+    window.GuardiaoAudio?.water(!paused() && action?.kind === "water");
     if (!ready) return;
     const { s, ox, oy } = transform();
     ctx.clearRect(0, 0, view.w, view.h);
@@ -1182,28 +1196,17 @@
     }
   }
   function tone(freq) {
-    if (!sound || !audio) return;
-    const o = audio.createOscillator(),
-      g = audio.createGain(),
-      v = Number.isFinite(preferences.effectsVolume)
-        ? preferences.effectsVolume / 100
-        : 0.6;
-    o.frequency.value = freq;
-    g.gain.setValueAtTime(Math.max(0.001, v * 0.05), audio.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 0.2);
-    o.connect(g);
-    g.connect(audio.destination);
-    o.start();
-    o.stop(audio.currentTime + 0.2);
-  }
-  async function unlockAudio() {
-    if (!sound) return;
-    const C = window.AudioContext || window.webkitAudioContext;
-    if (!C) return;
-    audio ??= new C();
-    try {
-      await audio.resume();
-    } catch {}
+    window.GuardiaoAudio?.effect(
+      freq >= 1000
+        ? "vitoria"
+        : freq === 330
+          ? "tentar"
+          : freq >= 850
+            ? "restaurar"
+            : freq >= 750
+              ? "coletar"
+              : "toque",
+    );
   }
   function syncControls(e) {
     neutral();
@@ -1326,16 +1329,6 @@
       message("Experimente virar seu celular para o lado.", "Dica");
     }
   });
-  $("som").addEventListener("click", () => {
-    sound = !sound;
-    unlockAudio();
-    $("som").setAttribute("aria-pressed", String(sound));
-    $("som").setAttribute(
-      "aria-label",
-      sound ? "Desativar efeitos sonoros" : "Ativar efeitos sonoros",
-    );
-    tone(659);
-  });
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       neutral();
@@ -1396,18 +1389,10 @@
     if (dirty) save();
   });
   window.addEventListener("pageshow", start);
-  document.addEventListener("pointerdown", unlockAudio, { once: true });
-  document.addEventListener("keydown", unlockAudio, { once: true });
   $("phase-name").textContent = data.name;
   document.title = data.name + " · Guardião da Natureza";
   $("settings-link").href += "&fase=" + id;
   document.body.dataset.phase = id;
-  sound = preferences.effects !== false;
-  $("som").setAttribute("aria-pressed", String(sound));
-  $("som").setAttribute(
-    "aria-label",
-    sound ? "Desativar efeitos sonoros" : "Ativar efeitos sonoros",
-  );
   syncControls();
   $("goals").innerHTML =
     data.goals
