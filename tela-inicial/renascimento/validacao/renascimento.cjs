@@ -32,9 +32,9 @@ const base =
     assert.equal(await p.evaluate(() => GuardiaoFases.length), 5);
     assert.equal(await p.locator(".map-hotspot").count(), 5);
     assert.equal(await p.locator('[data-phase="6"]').count(), 0);
-    assert.equal(await p.locator("#map-credits").isDisabled(), true);
+    assert.equal(await p.locator("#map-credits").count(), 0);
     assert.ok(
-      !requests.some((u) => u.includes("ilha-curada")),
+      !requests.some((u) => /ilha-curada|mapa(?:-celular)?-verde/.test(u)),
       "sem revelar/download da ilha recuperada antes da conquista",
     );
     await assert.rejects(() =>
@@ -174,13 +174,13 @@ const base =
       await p.evaluate(() => GuardiaoMapa.obterProgresso().current),
       5,
     );
-    assert.equal(await p.locator("#map-credits").isDisabled(), false);
+    assert.equal(await p.locator("#map-final-replay").isVisible(), true);
     assert.equal(await p.locator("image.healed").count(), 5);
     await p.goto(new URL("tela-inicial/renascimento/creditos.html", root).href);
     await p.waitForFunction(() => document.body.dataset.endingReady === "true");
     assert.equal(await p.locator("[data-ending-gem]").count(), 5);
     const before = await p.evaluate((key) => localStorage.getItem(key), MAP);
-    await p.clock.runFor(11500);
+    await p.clock.runFor(13500);
     assert.equal(
       await p.locator("body").getAttribute("data-ending-state"),
       "celebrando",
@@ -265,19 +265,14 @@ const base =
     await p.waitForFunction(
       () => document.body.dataset.menuCharactersReady === "true",
     );
-    const homeFrame = await p.locator("#home-kai").getAttribute("data-frame");
-    assert.ok(["6", "7"].includes(homeFrame));
+    const homeFrame = await p.locator("#horizon-duo").getAttribute("data-frame");
+    assert.ok(["0", "1", "2", "3"].includes(homeFrame));
     await p
       .getByRole("button", { name: "Conversar com Flora", exact: true })
       .click();
     await p.clock.runFor(150);
-    assert.equal(
-      await p.locator("#home-flora").getAttribute("data-mode"),
-      "voando",
-    );
-    assert.ok(
-      Number(await p.locator("#home-flora").getAttribute("data-frame")) < 8,
-    );
+    assert.equal(await p.locator('#horizon-duo').getAttribute('data-flora'),'ombro');
+    assert.equal(await p.locator('#horizon-duo').getAttribute('data-frame'),'3');
     await p.clock.runFor(4500);
     assert.equal(await p.locator(".camp-speech").isVisible(), false);
     // Um acesso direto não revela o final a uma aventura nova.
@@ -292,7 +287,7 @@ const base =
       () => document.body.dataset.endingState === "locked",
     );
     assert.equal(await locked.locator("#ending").isVisible(), false);
-    assert.ok(!hiddenRequests.some((u) => /inicio-curado|colar-vazio/.test(u)));
+    assert.ok(!hiddenRequests.some((u) => /campo\.webp|colar-vazio/.test(u)));
     await locked.close();
     assert.deepEqual(errors, []);
     console.log(

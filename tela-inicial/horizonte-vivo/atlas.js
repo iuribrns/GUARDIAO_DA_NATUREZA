@@ -1,0 +1,12 @@
+window.GuardiaoHorizonteAtlas = {
+  file: "assets/horizonte-dupla.webp",
+  width: 1632,
+  height: 736,
+  referenceHeight: 703.0,
+  frames: [
+    { bounds: [14, 25, 380, 699], pivot: [204.0, 724] },
+    { bounds: [422, 26, 381, 698], pivot: [612.5, 724] },
+    { bounds: [830, 12, 380, 712], pivot: [1020.0, 724] },
+    { bounds: [1237, 17, 382, 707], pivot: [1428.0, 724] },
+  ],
+};

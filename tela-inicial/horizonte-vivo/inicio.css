@@ -1,0 +1,229 @@
+html:has(.horizon-home) {
+  overflow: hidden;
+}
+.horizon-home {
+  height: 100dvh;
+  overflow: hidden;
+}
+.horizon-home .world {
+  background: #75b7c3 url("assets/vista.webp") center/cover no-repeat;
+}
+.horizon-home .world::after {
+  background: linear-gradient(90deg, #164c3910, transparent 60%);
+}
+#horizon-fire {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+.horizon-home .home-layout {
+  height: 100dvh;
+  min-height: 0;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  align-items: flex-start;
+  padding: 7dvh 5.5vw 110px;
+}
+.horizon-home .landing-menu {
+  pointer-events: auto;
+  width: min(590px, 47vw);
+}
+.horizon-home .reference-brand img {
+  max-height: 33dvh;
+  object-fit: contain;
+}
+.horizon-home .home-actions {
+  margin-top: 7px;
+  width: 90%;
+  gap: 20px;
+}
+.horizon-home .forest-button.wood-card {
+  height: clamp(130px, 13.5vw, 190px);
+}
+.horizon-home .home-horizon-actors {
+  position: fixed;
+  z-index: 1;
+  right: 8.3vw;
+  left: auto;
+  bottom: 12.5dvh;
+  width: min(30vw, 430px);
+  height: 58dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  display: block;
+  overflow: visible;
+  pointer-events: none;
+}
+.home-horizon-actors > canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 4px #26432b4d);
+}
+.horizon-home .home-horizon-actors .companion {
+  position: absolute;
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  min-height: 44px;
+  min-width: 44px;
+  pointer-events: auto;
+  border-radius: 35%;
+}
+.horizon-home .home-horizon-actors .companion-kai {
+  left: 4%;
+  bottom: 2%;
+  width: 65%;
+  height: 96%;
+  z-index: 1;
+}
+.horizon-home .home-horizon-actors .companion-flora {
+  left: 57%;
+  top: 17%;
+  width: 32%;
+  height: 23%;
+  z-index: 2;
+}
+.horizon-home .companion:focus-visible {
+  outline: 3px dashed #fff3a5;
+  outline-offset: 3px;
+}
+.horizon-home .companion:hover {
+  filter: none;
+  transform: none;
+}
+.horizon-home .camp-speech {
+  position: fixed;
+  right: 8vw;
+  bottom: 5dvh;
+  left: auto;
+  width: min(370px, 75vw);
+  font-size: 13px;
+  line-height: 1.5;
+  color: #3d5a30;
+  background: #fff4d3;
+  border: 2px solid #91a65b;
+  padding: 12px 17px;
+  border-radius: 17px 4px 17px 17px;
+  margin: 0;
+  box-shadow: 0 6px 20px #19392333;
+  pointer-events: none;
+  z-index: 6;
+}
+.horizon-home .camp-speech::before {
+  display: none;
+}
+.horizon-home .settings-dock {
+  z-index: 5;
+}
+.horizon-home .leaves {
+  z-index: 3;
+  pointer-events: none;
+}
+@media (max-width: 700px) {
+  .horizon-home .home-layout {
+    padding: calc(23px + env(safe-area-inset-top)) 14px 100px;
+  }
+  .horizon-home .landing-menu {
+    width: min(440px, 100%);
+    margin: auto;
+  }
+  .horizon-home .reference-brand img {
+    max-height: 26dvh;
+  }
+  .horizon-home .home-actions {
+    width: 88%;
+    gap: 14px;
+    margin-top: 3px;
+  }
+  .horizon-home .forest-button.wood-card {
+    height: clamp(100px, 15dvh, 135px);
+  }
+  .horizon-home .home-horizon-actors {
+    right: 3vw;
+    bottom: 11dvh;
+    width: 56vw;
+    height: 44dvh;
+  }
+  .horizon-home .world {
+    background-position: 72% center;
+  }
+  .horizon-home .camp-speech {
+    right: 4vw;
+    bottom: 4dvh;
+    width: calc(100% - 100px);
+    font-size: 11px;
+    padding: 10px 12px;
+  }
+  .horizon-home .settings-dock {
+    width: 64px;
+    height: 64px;
+    right: 16px;
+    bottom: 17px;
+  }
+}
+@media (max-height: 500px) and (min-aspect-ratio: 4/3) {
+  .horizon-home .home-layout {
+    padding: 3dvh 4vw 55px;
+  }
+  .horizon-home .landing-menu {
+    width: 47vw;
+    margin: 0;
+  }
+  .horizon-home .reference-brand img {
+    max-height: 42dvh;
+  }
+  .horizon-home .forest-button.wood-card {
+    height: 110px;
+  }
+  .horizon-home .home-actions {
+    gap: 14px;
+    margin-top: 0;
+  }
+  .horizon-home .home-horizon-actors {
+    height: 72dvh;
+    width: 31vw;
+    right: 10vw;
+    bottom: 6dvh;
+  }
+  .horizon-home .camp-speech {
+    bottom: 10px;
+    font-size: 10px;
+    width: 330px;
+    right: 20vw;
+    padding: 7px 13px;
+  }
+  .horizon-home .settings-dock {
+    width: 58px;
+    height: 58px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .horizon-home .reference-brand,
+  .horizon-home .forest-button,
+  .horizon-home .settings-dock {
+    animation: none !important;
+  }
+}
+.horizon-home .home-horizon-actors {
+  top: auto;
+}
+/* The fixed settings link is inside the decorative layout. Keep its touch target active. */
+.horizon-home .settings-dock {
+  pointer-events: auto;
+}
+.horizon-home .world {
+  pointer-events: none;
+}

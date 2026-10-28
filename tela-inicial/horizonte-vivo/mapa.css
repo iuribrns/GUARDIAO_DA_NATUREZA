@@ -1,0 +1,589 @@
+html:has(.world-map),
+body.world-map {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #229fbc;
+}
+.world-map .island-shell {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+.world-map .map-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+  background: #208ea6;
+}
+.world-map .map-world {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  min-width: 0 !important;
+  aspect-ratio: auto;
+  isolation: isolate;
+}
+.world-map .map-world picture {
+  position: absolute;
+  inset: 0;
+}
+.world-map .map-art {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+.world-map .island-life {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.world-map .journey-heading {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  min-height: 0;
+  height: auto;
+  padding: max(18px, env(safe-area-inset-top))
+    max(22px, env(safe-area-inset-right)) 0 max(22px, env(safe-area-inset-left));
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  pointer-events: none;
+  gap: 10px;
+}
+.world-map .journey-heading > * {
+  pointer-events: auto;
+}
+.world-map .journey-heading > div:not(.map-corner-actions) {
+  position: relative;
+  width: min(480px, 57vw);
+  padding: 0;
+  flex: 0 1 auto;
+}
+.world-map .journey-heading h1 {
+  font-size: clamp(24px, 3vw, 41px);
+  line-height: 1.15;
+  padding: 21px 43px 21px 30px;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  background: url("assets/placa.svg") center/100% 100% no-repeat;
+  color: #4d2d13;
+  text-shadow: 0 1px #fff5cd;
+  white-space: nowrap;
+  filter: drop-shadow(0 5px 4px #154e4f66);
+}
+.world-map .title-leaf {
+  font-size: 34px;
+  color: #638d36;
+  top: 15px;
+  z-index: 1;
+  text-shadow: none;
+}
+.world-map .leaf-left {
+  left: -7px;
+}
+.world-map .leaf-right {
+  right: -4px;
+}
+.world-map .map-flora {
+  right: 9px;
+  top: -18px;
+  width: 72px;
+  height: 66px;
+  z-index: 5;
+}
+.world-map .flora-map-speech {
+  top: 76px;
+  right: 3px;
+  width: 245px;
+  font-size: 12px;
+  box-shadow: 0 5px 15px #173c4d55;
+}
+.world-map .map-corner-actions {
+  display: flex;
+  gap: 8px;
+  padding: 0;
+  width: auto;
+}
+.world-map .journey-heading .nature-button {
+  min-height: 47px;
+  background: transparent url("assets/placa.svg") center/100% 100% no-repeat !important;
+  color: #54351c !important;
+  text-shadow: none;
+  box-shadow: 0 4px 7px #21565e44;
+  font-size: 14px;
+  padding: 10px 20px;
+}
+.world-map .journey-heading .guide,
+.world-map #map-fullscreen {
+  width: 48px;
+  padding: 0;
+  font-size: 24px;
+}
+.world-map .back span {
+  display: inline;
+}
+.world-map .map-hotspot {
+  width: clamp(135px, 15vw, 220px) !important;
+  height: auto !important;
+  min-height: 66px !important;
+  padding: 12px 13px !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: transparent url("assets/placa.svg") center/100% 100% no-repeat !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 4px 4px #193b3755);
+  display: grid;
+  text-align: center;
+  justify-items: center;
+  color: #4e2e15 !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 3;
+}
+.world-map .map-hotspot > .number {
+  position: absolute;
+  left: -6px;
+  top: -7px;
+  display: grid;
+  place-items: center;
+  background: #5a6f35 !important;
+  border: 2px solid #f4d993 !important;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font: 22px/1 Lilita;
+  color: #fff3bf !important;
+  box-shadow: 0 3px 5px #32473055 !important;
+}
+.world-map .map-hotspot > span:last-child {
+  display: block;
+}
+.world-map .map-hotspot strong {
+  font: 400 clamp(13px, 1.4vw, 19px) / 1.12 Lilita;
+  color: #4b2a13;
+  max-width: 100%;
+  text-shadow: none;
+}
+.world-map .map-hotspot small {
+  display: none;
+}
+.world-map .map-hotspot[data-locked="true"] {
+  opacity: 1;
+  background: transparent url("assets/placa.svg") center/100% 100% no-repeat !important;
+  filter: saturate(0.8) drop-shadow(0 4px 4px #193b3755);
+}
+.world-map .map-hotspot[data-locked="true"] .number {
+  background: #7e6541 !important;
+}
+.world-map .map-hotspot[aria-current="step"] {
+  outline: 3px solid #fff1aa;
+  outline-offset: 4px;
+}
+.world-map .map-hotspot.is-complete::after {
+  right: -7px;
+  bottom: 0;
+  background: #3e7640;
+  color: #fff0b4;
+  line-height: 22px;
+  width: 22px;
+  height: 22px;
+  font-size: 15px;
+}
+.world-map .map-hotspot:hover {
+  scale: 1.045;
+}
+.world-map .map-hotspot:active {
+  scale: 0.97;
+}
+.world-map .kai-marker {
+  height: 50px !important;
+  width: 50px !important;
+  z-index: 5;
+}
+.world-map .kai-marker svg {
+  width: 50px;
+  height: 50px;
+  border-width: 3px;
+  background: #d7c17d;
+}
+.world-map .kai-marker::after {
+  left: 17px;
+}
+.world-map .wind-leaves {
+  filter: none;
+}
+.world-map .map-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 8;
+  padding: 35px max(25px, env(safe-area-inset-right))
+    max(11px, env(safe-area-inset-bottom)) max(25px, env(safe-area-inset-left));
+  background: linear-gradient(transparent, #124c5cdd 30%, #103b49f5);
+  color: #fff1ca;
+}
+.world-map .journey-summary {
+  position: static;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto 8px;
+  font-size: 12px;
+  gap: 10px;
+}
+.world-map #journey-portrait svg {
+  display: block;
+  width: 29px;
+  height: 29px;
+}
+.world-map .journey-summary > span:last-child {
+  color: #fff2bd;
+  border-color: #c7d89a77;
+}
+.world-map .map-list {
+  position: static;
+  max-width: 1280px;
+  padding: 0;
+  margin: auto;
+  width: 100%;
+  border: 0;
+  background: none;
+}
+.world-map .map-list ol {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+.world-map .map-list li button {
+  min-height: 48px;
+  width: 100%;
+  border: 1px solid #c2cc9566;
+  background: #1d5c62aa;
+  box-shadow: none;
+  color: #fff0c3;
+  padding: 6px 9px;
+  border-radius: 13px 4px;
+  gap: 8px;
+}
+.world-map .map-list li button[aria-current="step"] {
+  background: #e9d499;
+  color: #314b30;
+  border-color: #ffedb7;
+}
+.world-map .map-list li button strong {
+  font-size: 11px;
+  line-height: 1.2;
+}
+.world-map .map-list li button small {
+  font-size: 9px;
+  color: #d1ddc7;
+}
+.world-map .map-list li button[aria-current="step"] small {
+  color: #536949;
+}
+.world-map .map-list li button .number {
+  font-size: 15px;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  line-height: 24px;
+  background: #123d43;
+  color: #f4dfa2;
+}
+.world-map .island-caption {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin: 7px auto 0;
+  gap: 12px;
+}
+.world-map .island-caption p {
+  font-size: 10px;
+  max-width: none;
+  margin: 0;
+  color: #e2ead2;
+}
+.world-map .map-text-button {
+  font: 10px system-ui;
+  padding: 5px;
+  color: #fff0c4;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  min-height: 25px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.world-map #map-status {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  translate: -50% 0;
+  width: max-content;
+  max-width: 90vw;
+  font-size: 12px;
+  color: #f9f6c4;
+  text-shadow: 0 2px 4px #203e27;
+  background: #295542e8;
+  padding: 7px 16px;
+  border-radius: 13px;
+}
+.world-map #map-status:empty {
+  display: none;
+}
+.world-map .map-cutscene {
+  bottom: 185px;
+  max-width: 360px;
+}
+.world-map .phase-panel {
+  z-index: 30;
+}
+.world-map .phase-scene {
+  background: linear-gradient(125deg, #537443, #243b2a);
+}
+@media (max-width: 700px) {
+  .world-map .journey-heading {
+    padding: 15px 10px 0;
+    gap: 5px;
+  }
+  .world-map .journey-heading > div:not(.map-corner-actions) {
+    width: calc(100% - 105px);
+    max-width: 340px;
+  }
+  .world-map .journey-heading h1 {
+    font-size: clamp(19px, 5vw, 29px);
+    padding: 20px 24px 18px 17px;
+  }
+  .world-map .map-flora {
+    width: 57px;
+    height: 52px;
+    right: 0;
+    top: -9px;
+  }
+  .world-map .title-leaf {
+    font-size: 25px;
+    top: 19px;
+  }
+  .world-map .journey-heading .back {
+    width: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    font-size: 19px;
+  }
+  .world-map .back span {
+    display: none;
+  }
+  .world-map .map-corner-actions {
+    gap: 0;
+  }
+  .world-map #map-fullscreen {
+    display: none;
+  }
+  .world-map .journey-heading .guide {
+    min-width: 44px;
+    width: 44px;
+    min-height: 44px;
+    font-size: 20px;
+  }
+  .world-map .flora-map-speech {
+    right: -23px;
+    top: 68px;
+    width: 220px;
+    font-size: 11px;
+  }
+  .world-map .map-hotspot {
+    width: clamp(114px, 31vw, 155px) !important;
+    min-height: 58px !important;
+    padding: 11px 8px !important;
+  }
+  .world-map .map-hotspot strong {
+    font-size: clamp(12px, 3.2vw, 15px);
+  }
+  .world-map .map-hotspot > .number {
+    width: 24px;
+    height: 24px;
+    font-size: 17px;
+    min-width: 0 !important;
+  }
+  .world-map .kai-marker,
+  .world-map .kai-marker svg {
+    width: 41px !important;
+    height: 41px !important;
+  }
+  .world-map .kai-marker::after {
+    left: 12px;
+  }
+  .world-map .map-bottom {
+    padding: 25px 10px max(8px, env(safe-area-inset-bottom));
+  }
+  .world-map .journey-summary {
+    font-size: 10px;
+    margin-bottom: 6px;
+  }
+  .world-map .journey-summary > span:last-child {
+    font-size: 9px;
+    padding: 5px 8px;
+  }
+  .world-map .map-list {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .world-map .map-list ol {
+    display: flex;
+    gap: 6px;
+  }
+  .world-map .map-list li {
+    flex: 0 0 120px;
+  }
+  .world-map .map-list li:last-child {
+    grid-column: auto;
+  }
+  .world-map .map-list li button {
+    min-height: 46px;
+    padding: 5px 6px;
+    gap: 5px;
+  }
+  .world-map .map-list li button strong {
+    font-size: 10px;
+  }
+  .world-map .map-list li button small {
+    display: none;
+  }
+  .world-map .map-list li button .number {
+    min-width: 20px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+  }
+  .world-map .island-caption {
+    gap: 7px;
+    margin-top: 4px;
+  }
+  .world-map .island-caption p {
+    font-size: 9px;
+    max-width: 70%;
+  }
+  .world-map .map-text-button {
+    font-size: 9px;
+    padding: 3px;
+    min-height: 25px;
+  }
+  .world-map #map-fit {
+    display: none;
+  }
+  .world-map .map-cutscene {
+    bottom: 160px;
+    width: calc(100% - 30px);
+  }
+}
+@media (max-height: 500px) and (min-aspect-ratio: 4/3) {
+  .world-map .journey-heading {
+    padding: 8px 13px 0;
+  }
+  .world-map .journey-heading > div:not(.map-corner-actions) {
+    width: 340px;
+  }
+  .world-map .journey-heading h1 {
+    font-size: 26px;
+    padding: 15px 35px 14px 25px;
+  }
+  .world-map .map-flora {
+    height: 53px;
+    width: 60px;
+    top: -7px;
+  }
+  .world-map .journey-heading .nature-button {
+    min-height: 44px;
+  }
+  .world-map .map-hotspot {
+    min-height: 48px !important;
+    width: 142px !important;
+    padding: 10px !important;
+  }
+  .world-map .map-hotspot strong {
+    font-size: 13px;
+  }
+  .world-map .kai-marker,
+  .world-map .kai-marker svg {
+    height: 33px !important;
+    width: 33px !important;
+  }
+  .world-map .kai-marker::after {
+    left: 9px;
+  }
+  .world-map .map-bottom {
+    padding: 22px 15px 6px;
+  }
+  .world-map .journey-summary {
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+  .world-map .journey-summary > span:last-child {
+    padding: 4px 10px;
+  }
+  .world-map .journey-summary svg {
+    display: none !important;
+  }
+  .world-map .map-list li button {
+    min-height: 41px;
+  }
+  .world-map .map-list li button small {
+    display: none;
+  }
+  .world-map .island-caption {
+    margin-top: 1px;
+  }
+  .world-map .island-caption p {
+    font-size: 9px;
+  }
+  .world-map .map-cutscene {
+    bottom: 115px;
+  }
+}
+.world-map .map-hotspot {
+  top: min(var(--y), calc(100dvh - 205px));
+}
+@media (max-width: 700px) {
+  .world-map .map-hotspot {
+    top: min(var(--y), calc(100dvh - 165px));
+  }
+}
+@media (max-height: 500px) and (min-aspect-ratio: 4/3) {
+  .world-map .map-hotspot {
+    top: min(var(--y), calc(100dvh - 145px));
+  }
+}
+/* Corner-button leaves stay in the viewport without clipping Flora's speech vertically. */
+.world-map .journey-heading {
+  overflow-x: clip;
+}
+
+@media (max-height: 500px) and (min-aspect-ratio: 4/3) {
+  .world-map .map-hotspot[data-phase="2"] {
+    top: 45%;
+  }
+}

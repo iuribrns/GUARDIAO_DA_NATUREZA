@@ -28,8 +28,8 @@
     <script src="../nova-versao/app.js" defer></script>
     <script src="../nova-versao/transicoes.js" defer></script>
     <script src="interacoes.js" defer></script>
-    <script src="creditos.js?v=renascer-1" defer></script>
-  <link rel="stylesheet" href="transicao-folhas.css?v=renascer-1"></head>
+    <script src="../horizonte-vivo/final.js?v=horizonte-1" defer></script>
+  <link rel="stylesheet" href="transicao-folhas.css?v=renascer-1"><link rel="stylesheet" href="../horizonte-vivo/final.css?v=horizonte-1"></head>
   <body class="renascimento" data-page="credits">
     <a class="skip-link" href="#credit-roll">Ir para os créditos</a>
     <main id="ending" hidden aria-labelledby="ending-title">
@@ -40,21 +40,21 @@
       <div class="ending-light" aria-hidden="true"></div>
       <header class="ending-heading">
         <p>CINCO CUIDADOS. UM NOVO COMEÇO.</p>
-        <h1 id="ending-title">A natureza renasce</h1>
+        <h1 id="ending-title">Juntos, a natureza renasce!</h1>
         <p id="ending-caption" role="status" aria-live="polite">
           O colar guarda cada gesto de carinho.
         </p>
       </header>
       <section
         class="ending-art"
-        aria-label="Kai e Flora celebram a recuperação da natureza"
+        aria-label="Kai, Flora, Carlos, Antônio, Marina, Rafael, Luciana e os animais comemoram no campo"
       >
         <canvas
           id="ending-actors"
           width="960"
           height="800"
           role="img"
-          aria-label="Kai levanta o colar completo e Flora comemora enquanto a floresta renasce"
+          aria-label="Kai ergue o colar e restaura o campo, enquanto Flora, os cinco aliados e os animais comemoram"
         ></canvas>
         <div
           class="ending-necklace"
@@ -64,7 +64,17 @@
         ></div>
         <div class="ending-petals" aria-hidden="true"></div>
       </section>
-      <section
+      <nav class="ending-actions" aria-label="Controles do encerramento">
+        <button class="nature-button" id="ending-pause" aria-pressed="false">
+          Pausar animação</button
+        ><button class="nature-button" id="ending-replay">
+          Rever celebração</button
+        ><button class="nature-button" id="ending-open-credits">Ver créditos</button><a class="nature-button" href="../nova-versao/aventura.html"
+          >Voltar à ilha</a
+        >
+      </nav>
+    </main>
+    <dialog id="ending-credits" aria-label="Agradecimentos da aventura"><button id="ending-close-credits" aria-label="Fechar créditos e voltar à comemoração">×</button>      <section
         class="credit-window"
         id="credit-roll"
         tabindex="0"
@@ -102,16 +112,7 @@
           <span class="credit-divider" aria-hidden="true">❧</span>
         </div>
       </section>
-      <nav class="ending-actions" aria-label="Controles do encerramento">
-        <button class="nature-button" id="ending-pause" aria-pressed="false">
-          Pausar animação</button
-        ><button class="nature-button" id="ending-replay">
-          Rever celebração</button
-        ><a class="nature-button" href="../nova-versao/aventura.html"
-          >Voltar à ilha</a
-        >
-      </nav>
-    </main>
+</dialog>
     <section id="ending-locked" class="ending-message" hidden>
       <p class="credit-divider" aria-hidden="true">❧</p>
       <h1>Uma história para completar</h1>

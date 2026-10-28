@@ -55,7 +55,7 @@ for(const map of ['rio','fauna','plantio','cidade'])for(const suffix of ['','-re
 const manifest=JSON.parse(readFileSync(resolve(root,'jogo/sistemas/arte-manifesto.js'),'utf8').replace(/^window.GuardiaoArteManifesto=/,'').replace(/;\s*$/,''));
 for(const [original,optimized] of Object.entries(manifest)){assert.ok(existsSync(resolve(root,original)));assert.ok(existsSync(resolve(root,optimized)));}
 const selection=readFileSync(resolve(root,'tela-inicial/nova-versao/aventura.html'),'utf8');assert.ok(!selection.includes('data-map-action="preview"'));
-assert.ok(selection.includes('../renascimento/mapa.js'));
+assert.ok(selection.includes('../horizonte-vivo/mapa.js'));
 console.log('PASS: campanha de cinco fases, 198 quadros compartilhados/novos, oito pinturas próprias e '+Object.keys(manifest).length+' imagens WebP, originais preservados e seleção sem prévias.');
 
 const completeSpritesFolder=resolve(root,'jogo/sprites-integros');
@@ -96,7 +96,7 @@ for(const sheet of Object.values(rebirth))assert.ok(existsSync(resolve(root,shee
 for(const name of ['floresta','rio','fauna','plantio','cidade'])assert.ok(existsSync(resolve(root,'jogo/renascimento/assets/'+name+'.webp')));
 for(const name of ['inicio-cinzas','inicio-curado','ilha-cinzas','ilha-curada','rowlet','decidueye'])assert.ok(existsSync(resolve(root,'tela-inicial/renascimento/assets/'+name+'.webp')));
 for(const file of ['mapa.js','creditos.html','creditos.js','atores.js','equipe.js'])assert.ok(existsSync(resolve(root,'tela-inicial/renascimento',file)));
-assert.ok(selection.includes('id="map-credits"'));assert.ok(!selection.includes('seis regiões'));
+assert.ok(!selection.includes('id="map-credits"'));assert.ok(!selection.includes('seis regiões'));
 assert.match(readFileSync(resolve(root,'tela-inicial/nova-versao/sobre.html'),'utf8'),/Iuri Barroso Nascimento/);
 console.log('PASS: cinco cenários devastados, ilha integral antes/depois, 12 expressões da equipe, quatro árvores queimadas e encerramento com créditos presentes.');
 
@@ -105,3 +105,5 @@ assert.equal(team2d.frames.length,8);
 assert.ok(existsSync(resolve(root,'tela-inicial/equipe-2d',team2d.file)));
 assert.ok(readFileSync(resolve(root,'tela-inicial/nova-versao/sobre.html'),'utf8').includes('../equipe-2d/equipe.js'));
 console.log('PASS: oito sprites 2D completos dos estudantes, arte em WebP e composição horizontal de Sobre Nós presentes.');
+
+const horizon=JSON.parse(readFileSync(resolve(root,'tela-inicial/horizonte-vivo/assets/atlas.json'),'utf8'));assert.equal(horizon.frames.length,4);for(const image of ['vista','campo','mapa','mapa-verde','mapa-celular','mapa-celular-verde'])assert.ok(existsSync(resolve(root,'tela-inicial/horizonte-vivo/assets/'+image+'.webp')));assert.ok(existsSync(resolve(root,'tela-inicial/horizonte-vivo',horizon.file)));console.log('PASS: dupla no horizonte, mapas para tela inteira em retrato/paisagem, campo da comemoração e ausência de créditos no centro do mapa.');
