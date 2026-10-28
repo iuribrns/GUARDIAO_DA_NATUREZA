@@ -17,7 +17,7 @@
           ...p,
           completed: [...new Set(completed)],
           current: Number.isInteger(p.current)
-            ? Math.max(1, Math.min(6, p.current))
+            ? Math.max(1, Math.min(5, p.current))
             : 1,
         };
       }
@@ -26,16 +26,18 @@
   }
   function unlocked(id) {
     const s = read();
-    return id === 1 || (id >= 2 && id <= 6 && s.completed.includes(id - 1));
+    return id === 1 || (id >= 2 && id <= 5 && s.completed.includes(id - 1));
   }
   function finish(id) {
+    if (!Number.isInteger(id) || id < 1 || id > 5)
+      throw new RangeError("Escolha uma das cinco fases.");
     const old = read(),
       completed = [...new Set([...old.completed, id])].sort(),
       next = {
         ...old,
         completed,
         completedFirst: completed.includes(1),
-        current: Math.min(6, id + 1),
+        current: Math.min(5, id + 1),
         pendingRestoration: id,
       };
     memory = next;

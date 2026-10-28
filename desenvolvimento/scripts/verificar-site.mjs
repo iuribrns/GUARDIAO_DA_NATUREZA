@@ -55,7 +55,7 @@ for(const map of ['rio','fauna','plantio','cidade'])for(const suffix of ['','-re
 const manifest=JSON.parse(readFileSync(resolve(root,'jogo/sistemas/arte-manifesto.js'),'utf8').replace(/^window.GuardiaoArteManifesto=/,'').replace(/;\s*$/,''));
 for(const [original,optimized] of Object.entries(manifest)){assert.ok(existsSync(resolve(root,original)));assert.ok(existsSync(resolve(root,optimized)));}
 const selection=readFileSync(resolve(root,'tela-inicial/nova-versao/aventura.html'),'utf8');assert.ok(!selection.includes('data-map-action="preview"'));
-assert.ok(selection.includes('../campanha/mapa.js'));
+assert.ok(selection.includes('../renascimento/mapa.js'));
 console.log('PASS: campanha de cinco fases, 198 quadros compartilhados/novos, oito pinturas próprias e '+Object.keys(manifest).length+' imagens WebP, originais preservados e seleção sem prévias.');
 
 const completeSpritesFolder=resolve(root,'jogo/sprites-integros');
@@ -89,3 +89,13 @@ for(const [type,entries]of Object.entries(audioManifest)){
   }
 }
 console.log('PASS: seis trilhas lo-fi originais, 12 efeitos e catálogo de áudio presentes no site.');
+
+const rebirth=JSON.parse(readFileSync(resolve(root,'tela-inicial/renascimento/assets/atlas.json'),'utf8'));
+assert.equal(rebirth.equipe.frames.length,12);assert.equal(rebirth.arvores.frames.length,4);
+for(const sheet of Object.values(rebirth))assert.ok(existsSync(resolve(root,sheet.file)));
+for(const name of ['floresta','rio','fauna','plantio','cidade'])assert.ok(existsSync(resolve(root,'jogo/renascimento/assets/'+name+'.webp')));
+for(const name of ['inicio-cinzas','inicio-curado','ilha-cinzas','ilha-curada','rowlet','decidueye'])assert.ok(existsSync(resolve(root,'tela-inicial/renascimento/assets/'+name+'.webp')));
+for(const file of ['mapa.js','creditos.html','creditos.js','atores.js','equipe.js'])assert.ok(existsSync(resolve(root,'tela-inicial/renascimento',file)));
+assert.ok(selection.includes('id="map-credits"'));assert.ok(!selection.includes('seis regiões'));
+assert.match(readFileSync(resolve(root,'tela-inicial/nova-versao/sobre.html'),'utf8'),/Iuri Barroso Nascimento/);
+console.log('PASS: cinco cenários devastados, ilha integral antes/depois, 12 expressões da equipe, quatro árvores queimadas e encerramento com créditos presentes.');

@@ -571,9 +571,9 @@
       "../../tela-inicial/nova-versao/aventura.html?restaurar=" +
       id +
       "&destino=" +
-      Math.min(6, id + 1);
+      (id < 5 ? id + 1 : "creditos");
     $("next-phase").textContent =
-      id === 5 ? "Voltar à ilha →" : "Próxima aventura →";
+      id === 5 ? "Ver encerramento →" : "Próxima aventura →";
     $("vitoria").showModal();
   }
   function canMove(p) {
@@ -789,7 +789,8 @@
       (t) => finished(t) || t.status === "returning",
     );
     if (completed) {
-      ctx.drawImage(healed, 0, 0, 1280, 720);
+      if (life.rebirth) life.rebirth.full(ctx, healed, reduced(), true);
+      else ctx.drawImage(healed, 0, 0, 1280, 720);
     } else {
       life.restore(ctx, healed, finishedTasks, elapsed, reduced());
     }
@@ -806,14 +807,19 @@
           ctx.stroke();
         }
       }
+      ctx.save();
+      const ashen = !completed && !finishedTasks.length && life.rebirth;
       for (let i = 0; i < 12; i++) {
         const x = (i * 123 + time * 18) % 1280,
           y = (i * 77 + time * 11) % 720;
-        shared.draw(ctx, "natureza", i % 2 ? 4 : 5, x, y, 9, {
-          angle: Math.sin(time + i) * 0.7,
-          alpha: 0.7,
-        });
+        if (ashen) life.rebirth.ashLeaf(ctx, x, y, 9, Math.sin(time + i) * 0.7);
+        else
+          shared.draw(ctx, "natureza", i % 2 ? 4 : 5, x, y, 9, {
+            angle: Math.sin(time + i) * 0.7,
+            alpha: 0.7,
+          });
       }
+      ctx.restore();
     }
     if (route.length) {
       ctx.strokeStyle = "#fff1bf99";
@@ -1019,7 +1025,7 @@
     ctx.ellipse(0, 0, c.rx, c.ry, 0, 0, Math.PI * 2);
     ctx.clip();
     ctx.drawImage(
-      ground,
+      completed ? healed : ground,
       (c.x - c.rx) * kx,
       (c.y - c.ry) * ky,
       c.rx * 2 * kx,

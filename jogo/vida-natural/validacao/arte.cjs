@@ -125,7 +125,7 @@ const game = new URL("../../jogo/floresta-viva/index.html", base).href;
     );
     assert.ok(
       requests.some((u) =>
-        u.includes("/vida-natural/assets/floresta-inicio.webp"),
+        u.includes("/renascimento/assets/floresta.webp"),
       ),
       "a pintura com luz está no jogo",
     );

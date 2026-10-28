@@ -1,0 +1,5 @@
+.transition-leaf-layer { position:fixed; inset:0; z-index:10001; overflow:hidden; pointer-events:none; }
+.navigation-veil .transition-message { z-index:3; }
+.transition-burst { position:absolute; left:50%; top:50%; width:var(--burst-size); height:var(--burst-size); margin:calc(var(--burst-size) / -2) 0 0 calc(var(--burst-size) / -2); z-index:2; pointer-events:none; background:url('../../assets/otimizados/folhas-sprites-dc0703caf7d4.webp') var(--sprite-x) var(--sprite-y)/400% 200%; filter:brightness(1.25) saturate(1.2) drop-shadow(0 3px 4px #0a2a1480); animation:leaf-burst 1300ms cubic-bezier(.2,.7,.3,1) both; }
+@keyframes leaf-burst { 0% { opacity:0; transform:translate(0,0) scale(.2); } 12% { opacity:1; } 70% { opacity:1; } 100% { opacity:0; transform:translate(var(--burst-x),var(--burst-y)) rotate(var(--burst-turn)) scale(1); } }
+body.reduce-motion .transition-burst{display:none}body.page-hidden .transition-burst{animation-play-state:paused}@media(prefers-reduced-motion:reduce){.transition-burst{display:none}}

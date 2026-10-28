@@ -1,0 +1,399 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  color: #fff0ce;
+  background: #34251f;
+  font-family: system-ui, sans-serif;
+}
+html {
+  color-scheme: dark;
+}
+body.living-menu {
+  height: 100dvh;
+  overflow: hidden;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+}
+a {
+  color: inherit;
+}
+.svg-library,
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: -90px;
+  z-index: 100;
+}
+.skip-link:focus {
+  top: 12px;
+  background: #3d2c20;
+  padding: 14px;
+}
+.world {
+  position: fixed;
+  inset: 0;
+  background: #574337 url("assets/inicio-cinzas.webp") center/cover no-repeat;
+}
+.world::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #30201816, #251b1a1a 55%, #21170f55);
+}
+.leaves {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.forest-glow {
+  position: absolute;
+  width: var(--glow-size);
+  height: var(--glow-size);
+  border-radius: 50%;
+  background: #ffd79f;
+  opacity: 0.35;
+  box-shadow: 0 0 14px #f3b76a;
+  animation: ember-glow var(--glow-time) ease-in-out infinite;
+  animation-delay: var(--glow-delay);
+}
+@keyframes ember-glow {
+  50% {
+    transform: translate(12px, -28px);
+    opacity: 0.1;
+  }
+}
+.home-layout {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  z-index: 4;
+  pointer-events: none;
+}
+.landing-menu {
+  position: absolute;
+  left: 47%;
+  top: 6%;
+  width: min(49vw, 630px);
+  text-align: center;
+  pointer-events: auto;
+}
+.reference-brand {
+  margin: 0 auto 1vh;
+  line-height: 0;
+}
+.reference-brand img {
+  width: 100%;
+  height: auto;
+  max-height: 36dvh;
+  object-fit: contain;
+  filter: drop-shadow(0 9px 5px #26150f80);
+}
+.home-actions {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+}
+.forest-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 108px;
+  width: 230px;
+  padding: 18px 25px;
+  text-decoration: none;
+  font-size: 29px;
+  line-height: 1.1;
+  text-align: center;
+}
+.card-label {
+  display: block;
+}
+.card-icon {
+  height: 23px;
+  width: 23px;
+  flex-shrink: 0;
+  margin-left: 10px;
+  color: #c5d782;
+}
+.settings-dock {
+  position: fixed;
+  right: max(22px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  pointer-events: auto;
+  z-index: 8;
+  transition: transform 0.2s;
+}
+.settings-dock svg {
+  width: 36px;
+  height: 36px;
+  color: #ffe3a4;
+}
+.settings-dock:hover {
+  transform: rotate(10deg) scale(1.05);
+}
+.settings-dock:active {
+  transform: scale(0.95);
+}
+.companions-camp {
+  position: fixed;
+  left: 8vw;
+  bottom: 5dvh;
+  width: min(34vw, 420px);
+  height: min(70dvh, 640px);
+  z-index: 3;
+}
+.camp-characters {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.companion {
+  position: absolute;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
+}
+.companion-kai {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.companion-kai canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 5px #29170f66);
+}
+.companion-flora {
+  right: -18%;
+  top: 6%;
+  width: 66%;
+  height: 40%;
+}
+.companion-flora canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 3px #29170f66);
+}
+.actor-name {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.camp-speech {
+  position: fixed;
+  left: 50%;
+  bottom: 8dvh;
+  transform: translateX(-50%);
+  width: min(400px, 70vw);
+  padding: 14px 19px;
+  border: 2px solid #a67c46;
+  border-radius: 17px 5px;
+  background: #fff4d8;
+  color: #3d4930;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+  box-shadow: 0 5px 20px #1d130c55;
+  z-index: 9;
+  margin: 0;
+}
+.camp-speech[hidden] {
+  display: none;
+}
+.page-footer {
+  position: fixed;
+  left: 0;
+  right: 100px;
+  bottom: 10px;
+  z-index: 4;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.6px;
+  color: #fff0c3;
+  text-shadow: 0 1px 4px #281a12;
+  pointer-events: none;
+}
+.page-footer svg {
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  color: #c3d681;
+}
+.page-footer i {
+  padding: 0 9px;
+}
+.still-leaves .leaves {
+  display: none;
+}
+.reduce-motion .forest-glow {
+  animation: none;
+}
+.large-text .camp-speech {
+  font-size: 16px;
+}
+@media (max-width: 700px) {
+  .world {
+    background-position: 47% center;
+  }
+  .world::after {
+    background: linear-gradient(#231c1b20, #35201822 50%, #24191055);
+  }
+  .landing-menu {
+    left: 5%;
+    top: max(22px, env(safe-area-inset-top));
+    width: 90%;
+  }
+  .reference-brand img {
+    max-height: 26dvh;
+  }
+  .home-actions {
+    position: fixed;
+    right: 3vw;
+    top: 49dvh;
+    flex-direction: column;
+    gap: 8px;
+    width: 51vw;
+  }
+  .forest-button {
+    width: 100%;
+    min-height: 82px;
+    padding: 17px 18px;
+    font-size: 24px;
+  }
+  .card-icon {
+    display: none;
+  }
+  .companions-camp {
+    left: -3vw;
+    bottom: 13dvh;
+    width: 57vw;
+    height: 49dvh;
+  }
+  .companion-flora {
+    right: -20%;
+    top: -8%;
+    width: 78%;
+    height: 39%;
+  }
+  .settings-dock {
+    width: 62px;
+    height: 62px;
+    bottom: 23px;
+    right: 18px;
+  }
+  .settings-dock svg {
+    width: 29px;
+    height: 29px;
+  }
+  .page-footer {
+    right: 80px;
+    bottom: 17px;
+    left: 12px;
+    font-size: 8px;
+    text-align: left;
+  }
+  .camp-speech {
+    bottom: auto;
+    top: 33dvh;
+    width: 88vw;
+    font-size: 12px;
+    padding: 11px 14px;
+  }
+}
+@media (max-height: 500px) and (min-width: 701px) {
+  .landing-menu {
+    top: 1%;
+    left: 43%;
+    width: 53%;
+  }
+  .reference-brand img {
+    max-height: 39dvh;
+  }
+  .forest-button {
+    min-height: 76px;
+    width: 190px;
+    font-size: 22px;
+  }
+  .home-actions {
+    gap: 10px;
+  }
+  .companions-camp {
+    left: 6%;
+    height: 86dvh;
+    width: 32vw;
+    bottom: 3dvh;
+  }
+  .companion-flora {
+    top: -1%;
+    right: -12%;
+  }
+  .camp-speech {
+    bottom: 10px;
+    font-size: 11px;
+    width: 350px;
+  }
+  .settings-dock {
+    width: 54px;
+    height: 54px;
+    bottom: 15px;
+  }
+  .settings-dock svg {
+    width: 27px;
+    height: 27px;
+  }
+  .page-footer {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.leaves {
+  overflow: hidden;
+}
+html:has(body.living-menu) {
+  overflow-x: clip;
+}

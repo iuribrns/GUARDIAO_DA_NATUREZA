@@ -1,0 +1,334 @@
+.tabs {
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+}
+.tabs button {
+  min-width: 0;
+  padding-inline: 6px !important;
+  font-size: 12px !important;
+}
+.team-intro {
+  font-size: 15px;
+  line-height: 1.7;
+}
+.team-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 25px 0;
+}
+.team-card {
+  position: relative;
+  text-align: center;
+  padding: 8px 9px 15px;
+  border: 1px solid #ac8c50;
+  border-radius: 25px 5px;
+  background: linear-gradient(#d2dda8, #f4e5bd 75%);
+  box-shadow: 0 4px 0 #73552b22;
+  overflow: hidden;
+}
+.portrait-frame {
+  position: relative;
+  background: radial-gradient(
+    ellipse at 50% 60%,
+    #f6edcb,
+    #bbc88d 72%,
+    transparent 73%
+  );
+  border-radius: 50% 50% 8px 8px;
+  isolation: isolate;
+}
+.portrait-frame canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: portrait-breathe 4s ease-in-out infinite;
+  transform-origin: bottom;
+}
+.team-card:nth-child(2) canvas {
+  animation-delay: -1.2s;
+}
+.team-card:nth-child(3) canvas {
+  animation-delay: -2.6s;
+}
+.team-leaf {
+  position: absolute;
+  bottom: 0;
+  right: 3px;
+  font-size: 30px;
+  color: #527638;
+  rotate: -20deg;
+  text-shadow: 1px 1px #fce1a6;
+}
+.team-card .team-role {
+  font-size: 8px;
+  letter-spacing: 1px;
+  margin: 12px 0 4px;
+  color: #5e6544;
+  line-height: 1.4;
+  font-weight: 750;
+}
+.team-card h3 {
+  font-size: 22px;
+  margin: 5px 0;
+  color: #345533;
+  line-height: 1.1;
+}
+.team-card .full-name {
+  font-size: 11px;
+  line-height: 1.4;
+  margin: 7px 0 0;
+  color: #645239;
+}
+.team-inspirations {
+  padding: 20px;
+  background: #dfd8a9;
+  border: 1px solid #b5b27a;
+  border-radius: 6px 28px 6px 28px;
+}
+.team-inspirations .eyebrow {
+  color: #64724b;
+  letter-spacing: 1.3px;
+  font-size: 9px;
+}
+.team-inspirations h3 {
+  font-size: 27px;
+  margin: 7px 0 12px;
+}
+.inspiration-figures {
+  display: grid;
+  grid-template-columns: 1fr 20px 1fr 1.1fr;
+  align-items: end;
+  gap: 8px;
+}
+.inspiration-figures figure {
+  margin: 0;
+  text-align: center;
+}
+.inspiration-figures img,
+.inspiration-figures canvas {
+  width: 100%;
+  height: 145px;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 3px #53452933);
+}
+.inspiration-figures img {
+  animation: reference-float 4.5s ease-in-out infinite;
+}
+.decidueye-reference img {
+  height: 165px;
+  animation-delay: -2s;
+}
+.inspiration-figures figcaption {
+  font-size: 16px;
+  font-weight: bold;
+  color: #3b5935;
+}
+.inspiration-figures figcaption span {
+  display: block;
+  font-size: 9px;
+  font-weight: normal;
+  margin: 4px 0;
+}
+.inspiration-arrow {
+  align-self: center;
+  font-size: 26px;
+  color: #47733b;
+}
+.team-inspirations > p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.team-inspirations .art-credit {
+  font-size: 10px;
+  color: #665b42;
+  margin-bottom: 0;
+}
+.team-card:hover {
+  box-shadow: 0 5px 15px #614f3544;
+}
+.team-card:hover .team-leaf {
+  animation: reference-float 1s ease-in-out infinite;
+}
+.team-cards canvas:focus-visible {
+  outline: 3px solid #53803d;
+}
+@keyframes portrait-breathe {
+  50% {
+    scale: 1.012 1.006;
+    translate: 0 -1px;
+  }
+}
+@keyframes reference-float {
+  50% {
+    translate: 0 -5px;
+    rotate: 1deg;
+  }
+}
+@media (max-width: 600px) {
+  .tabs {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .tabs button {
+    flex: 1 1 29%;
+    min-height: 45px;
+  }
+  .team-cards {
+    gap: 6px;
+    margin: 20px 0;
+  }
+  .team-card {
+    padding: 5px 5px 12px;
+    border-radius: 14px 3px;
+  }
+  .team-card h3 {
+    font-size: 18px;
+  }
+  .team-card .team-role {
+    font-size: 7px;
+    letter-spacing: 0;
+    min-height: 20px;
+  }
+  .team-card .full-name {
+    font-size: 10px;
+  }
+  .team-leaf {
+    font-size: 23px;
+    right: 0;
+  }
+  .inspiration-figures img,
+  .inspiration-figures canvas {
+    height: 94px;
+  }
+  .decidueye-reference img {
+    height: 115px;
+  }
+  .inspiration-figures figcaption {
+    font-size: 12px;
+  }
+  .inspiration-figures figcaption span {
+    font-size: 8px;
+  }
+  .team-inspirations {
+    padding: 15px 10px;
+  }
+  .team-inspirations h3 {
+    font-size: 23px;
+  }
+  .inspiration-figures {
+    grid-template-columns: 1fr 12px 1fr 1.1fr;
+    gap: 3px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .team-cards canvas,
+  .inspiration-figures img,
+  .team-leaf {
+    animation: none !important;
+  }
+}
+.reduce-motion .team-cards canvas,
+.reduce-motion .inspiration-figures img,
+.reduce-motion .team-leaf {
+  animation: none !important;
+}
+
+#team .team-card .team-role {
+  font-size: 8px;
+  letter-spacing: 1px;
+  line-height: 1.4;
+  margin: 12px 0 5px;
+}
+#team .team-card .full-name {
+  font-size: 11px;
+  line-height: 1.5;
+}
+#team .team-inspirations > p {
+  font-size: 13px;
+  line-height: 1.7;
+}
+#team .team-inspirations .art-credit {
+  font-size: 10px;
+}
+.panel-layout ~ .page-footer {
+  position: relative;
+}
+#team:focus:not(:focus-visible) {
+  outline: none;
+}
+@media (max-width: 600px) {
+  .team-cards {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .team-card {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    text-align: left;
+    align-items: center;
+    column-gap: 12px;
+    padding: 8px 12px;
+  }
+  .portrait-frame {
+    grid-column: 1;
+    grid-row: 1/4;
+  }
+  .team-card h3,
+  .team-card .full-name,
+  .team-card .team-role {
+    grid-column: 2;
+    margin: 0 !important;
+  }
+  #team .team-card .team-role {
+    font-size: 8px;
+    min-height: 0;
+  }
+  #team .team-card .full-name {
+    font-size: 11px;
+  }
+  .team-card h3 {
+    font-size: 22px;
+  }
+}
+@media (max-width: 350px) {
+  .team-card {
+    grid-template-columns: 90px 1fr;
+    column-gap: 8px;
+    padding: 6px;
+  }
+  .team-card h3 {
+    font-size: 20px;
+  }
+}
+
+.portrait-frame:has(.team-reference-friend) canvas {
+  width: 73%;
+  translate: -7px 0;
+}
+.team-reference-friend {
+  position: absolute;
+  right: -4px;
+  bottom: 0;
+  width: 55%;
+  height: 80%;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 2px #51432833);
+  animation: reference-float 4.5s ease-in-out infinite;
+}
+.team-card:has(.team-reference-friend) .team-leaf {
+  display: none;
+}
+@media (max-width: 600px) {
+  .portrait-frame:has(.team-reference-friend) canvas {
+    width: 75%;
+    translate: -2px 0;
+  }
+  .team-reference-friend {
+    right: -6px;
+    width: 53%;
+    height: 78%;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){.team-reference-friend{animation:none!important}}.reduce-motion .team-reference-friend{animation:none!important}

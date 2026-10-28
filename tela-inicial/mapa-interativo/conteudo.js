@@ -106,4 +106,4 @@ window.GuardiaoFases = Object.freeze(({
     }
   ]
 }
-).fases.map(fase => Object.freeze(fase)));
+).fases.filter(fase => fase.id <= 5).map(fase => Object.freeze(fase)));

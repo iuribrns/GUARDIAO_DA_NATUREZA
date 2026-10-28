@@ -2,7 +2,7 @@
 (() => {
   class Ambiente {
     constructor(sprites,burned,healthy,fire){this.sprites=sprites;this.burned=burned;this.healthy=healthy;this.fire=fire;this.lastRecovery=0;this.leavesEnabled=true;try{this.leavesEnabled=JSON.parse(localStorage.getItem('guardiao.horizonte.preferences.v1')||'{}').fallingLeaves!==false;}catch{}}
-    ground(ctx,fires,time,reduced){
+    ground(ctx,fires,time,reduced,completed=false){
       ctx.drawImage(this.burned,0,0,1280,720);
       if(this.life)this.life.restore(ctx,this.healthy,fires.filter(f=>f.life<=0),time,reduced);
       else for(const f of fires){
@@ -12,6 +12,7 @@
         ctx.save();ctx.beginPath();ctx.ellipse(f.x,f.y-15,f.rx*progress,f.ry*progress,0,0,Math.PI*2);ctx.clip();
         ctx.globalAlpha=progress;ctx.drawImage(this.healthy,0,0,1280,720);ctx.restore();
       }
+      this.life?.rebirth?.full(ctx,this.healthy,reduced,completed);
       this.water(ctx,time,reduced);
       if(!reduced&&this.leavesEnabled)this.leaves(ctx,time);
     }
@@ -26,15 +27,17 @@
       }ctx.restore();
     }
     leaves(ctx,time){
+      ctx.save();const ashen=this.life?.rebirth&&!this.life.rebirth.objectives.length&&!this.life.rebirth.complete;
       for(let j=0;j<21;j++){
         const t=(time*.035+j*.071)%1,x=(j*193+Math.sin(t*8+j)*50+time*8)%1340-30,y=t*760-30;
-        this.sprites.draw(ctx,'natureza',4+j%2,x,y,8+j%3*2,{anchor:'center',angle:time*.6+j,alpha:.65});
+        if(ashen)this.life.rebirth.ashLeaf(ctx,x,y,8+j%3*2,time*.6+j);else this.sprites.draw(ctx,'natureza',4+j%2,x,y,8+j%3*2,{anchor:'center',angle:time*.6+j,alpha:.65});
       }
+      ctx.restore();
     }
     tree(ctx,tree,time,reduced){
       ctx.save();ctx.translate(tree.x,tree.y);ctx.rotate(reduced?0:Math.sin(time*.85+tree.x)*.009);
       ctx.globalAlpha=this.life?.treeOpacity(tree,time,reduced)??1;
-      this.sprites.draw(ctx,'natureza',tree.frame,0,0,tree.h);ctx.restore();
+      const growth=this.life?.rebirth?.recovery(tree,time,reduced)??1;if(growth<1){ctx.save();ctx.globalAlpha*=1-growth;this.life?.rebirth?.drawDead(ctx,tree);ctx.restore();}if(growth>0){ctx.globalAlpha*=growth;this.sprites.draw(ctx,'natureza',tree.frame,0,0,tree.h);}ctx.restore();
     }
     flame(ctx,f,time,reduced){
       if(f.life<=0){

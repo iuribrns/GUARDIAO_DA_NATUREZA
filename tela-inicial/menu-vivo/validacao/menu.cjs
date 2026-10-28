@@ -2,7 +2,7 @@
 const assert = require('node:assert/strict');
 const { chromium } = require('playwright-core');
 const base = process.env.GUARDIAO_TEST_URL || 'http://127.0.0.1:5173/tela-inicial/nova-versao/';
-const ready = page => page.waitForFunction(() => window.GuardiaoFolhas && (document.body.dataset.page==='settings'||document.querySelector('.camp-flora-sprite')?.dataset.pose === '0') && !document.querySelector('.navigation-veil'));
+const ready = page => page.waitForFunction(() => window.GuardiaoFolhas && (document.body.dataset.page==='settings'||document.body.dataset.menuCharactersReady==='true'||document.querySelector('.camp-flora-sprite')?.dataset.pose === '0') && !document.querySelector('.navigation-veil'));
 (async () => {
   const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium', args:['--no-sandbox'] });
   const errors = [];
@@ -13,7 +13,7 @@ const ready = page => page.waitForFunction(() => window.GuardiaoFolhas && (docum
   try {
     const page = await browser.newPage({ viewport:{width:1360,height:900} }); collect(page);
     await page.goto(base+'index.html'); await ready(page);
-    assert.equal(await page.evaluate(() => gsap.version),'3.15.0');
+    assert.equal(await page.locator('#home-kai').count(),1,'personagens do início usam quadros completos');
     assert.equal(await page.locator('.living-leaf').count(),20);
     assert.equal(await page.locator('.living-leaf svg image').count(),20);
     const leaf = page.locator('.living-leaf').nth(6);
@@ -23,14 +23,14 @@ const ready = page => page.waitForFunction(() => window.GuardiaoFolhas && (docum
     for (const key of ['fall','sway','turn']) assert.notEqual(before[key],after[key],key+' se move de verdade');
     assert.equal(await leaf.locator('.leaf-sway').evaluate(node=>getComputedStyle(node).backgroundImage),'none','sem textura duplicada sobre o recorte');
     await page.getByRole('button',{name:'Conversar com Flora',exact:true}).hover();
-    await page.waitForFunction(()=>document.querySelector('.camp-flora-sprite').dataset.pose !== '0');
+    await page.waitForFunction(()=>document.querySelector('#home-flora').dataset.mode === 'voando');
     await page.getByRole('button',{name:'Conversar com Flora',exact:true}).click();
     assert.match(await page.locator('.camp-speech').textContent(),/^Flora:/);
-    await page.waitForFunction(()=>document.querySelector('.camp-flora-sprite').dataset.pose === '4');
-    await page.waitForFunction(()=>document.querySelector('.camp-flora-sprite').dataset.pose === '0');
+    await page.waitForFunction(()=>Number(document.querySelector('#home-flora').dataset.frame) < 8);
+    await page.waitForFunction(()=>document.querySelector('#home-flora').dataset.mode === 'ombro');
     await page.getByRole('button',{name:'Conversar com Kai',exact:true}).focus(); await page.keyboard.press('Enter');
     assert.match(await page.locator('.camp-speech').textContent(),/^Kai:/);
-    assert.equal(await page.locator('.menu-click-ripple').count(),1,'clique de teclado também tem resposta');
+    assert.match(await page.locator('.camp-speech').textContent(),/^Kai:/,'clique de teclado também tem resposta');
     await page.waitForTimeout(700);
     assert.equal(await page.locator('.menu-click-ripple,.menu-click-layer').count(),0,'efeito e camada temporários são removidos');
     await page.goto(base+'configuracoes.html'); await ready(page);

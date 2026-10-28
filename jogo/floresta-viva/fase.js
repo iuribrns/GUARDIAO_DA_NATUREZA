@@ -175,7 +175,12 @@
     if(dx||dy){route=[];routeGoal=null;}else if(route.length){while(route.length&&W.distance(player,route[0])<4)route.shift();if(route.length){const d=W.distance(player,route[0]);dx=(route[0].x-player.x)/d;dy=(route[0].y-player.y)/d;}else{routeGoal=null;toast('Chegamos!');}}
     const len=Math.hypot(dx,dy);if(len>1){dx/=len;dy/=len;}
     const travelled=healing||equipping>0?0:move(dx*116*dt,dy*116*dt);player.moving=travelled>.01;
-    if(!player.moving)player.idle+=dt;if(route.length&&!travelled&&len>0){route=[];routeGoal=null;}
+    if(!player.moving)player.idle+=dt;
+    if(route.length&&!travelled&&len>0&&!healing&&equipping===0){
+      // Um animal pode chegar ao abrigo depois que a trilha foi calculada.
+      // Recalcule o caminho até o mesmo destino, respeitando os obstáculos atuais.
+      const destination=route.at(-1);route=W.route(player,destination);if(!route.length)routeGoal=null;
+    }
     if(released&&near({x:395,y:385},73)&&water<100){water=Math.min(100,water+35*dt);dirty=true;}
     target=null;
     if(spraying&&itemsGiven&&released&&equipped&&water>0&&equipping===0&&!healing){
@@ -260,7 +265,7 @@
   function draw(){
     if(!ready)return;const{s,ox,oy}=view();ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.clearRect(0,0,viewport.w,viewport.h);ctx.save();ctx.translate(ox,oy);ctx.scale(s,s);
     document.body.classList.toggle('player-near-hud',viewport.w<700&&player.y*s+oy<195);
-    environment.ground(ctx,fires,uiTime,reduced());life.ground(ctx,player,uiTime,reduced());life.recovery(ctx,fires,uiTime,reduced());
+    environment.ground(ctx,fires,uiTime,reduced(),completed);life.ground(ctx,player,uiTime,reduced());life.recovery(ctx,fires,uiTime,reduced());
     if(route.length){ctx.strokeStyle='#f9e9a799';ctx.lineWidth=2;ctx.setLineDash([3,9]);ctx.beginPath();ctx.moveTo(player.x,player.y);route.forEach(p=>ctx.lineTo(p.x,p.y));ctx.stroke();ctx.setLineDash([]);}
     if(routeGoal)ring(routeGoal.x,routeGoal.y,'#d6eeb1',24+(reduced()?0:Math.sin(uiTime*4)*2));
     const actors=[{y:245,draw:drawCarlos},...fires.map(f=>({y:f.y,draw:()=>environment.flame(ctx,f,uiTime,reduced())})),...animals.map(a=>({y:a.position.y,draw:()=>drawAnimal(a)})),...W.trees.map(t=>({y:t.y,draw:()=>environment.tree(ctx,t,uiTime,reduced())})),{y:player.y,draw:drawPlayer}];

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#284b30" />
+    <title>O renascimento · Guardião da Natureza</title>
+    <link rel="icon" href="../../assets/identidade-flora/favicon.ico" />
+    <link rel="stylesheet" href="creditos.css?v=renascer-1" />
+    <link rel="stylesheet" href="rustico.css?v=renascer-1" />
+    <link rel="stylesheet" href="../nova-versao/transicoes.css" />
+    <script src="../../jogo/sistemas/progresso.js" defer></script>
+    <script src="../../jogo/sistemas/arte-manifesto.js" defer></script>
+    <script src="../../jogo/sistemas/arte.js" defer></script>
+    <script src="../../jogo/vida-natural/atlas.js" defer></script>
+    <script src="../../jogo/floresta-viva/assets/atlas.js" defer></script>
+    <script src="../../jogo/floresta-viva/revisao/atlas.js" defer></script>
+    <script src="../../jogo/jornada/atlas.js" defer></script>
+    <script src="../../jogo/sprites-integros/atlas.js" defer></script>
+    <script src="../../jogo/colar-vivo/geometria.js" defer></script>
+    <script src="atlas.js" defer></script>
+    <script src="atores.js" defer></script>
+    <script src="../../jogo/sons-da-natureza/catalogo.js" defer></script>
+    <script src="../../jogo/sons-da-natureza/audio.js" defer></script>
+    <script src="../nova-versao/app.js" defer></script>
+    <script src="../nova-versao/transicoes.js" defer></script>
+    <script src="interacoes.js" defer></script>
+    <script src="creditos.js?v=renascer-1" defer></script>
+  <link rel="stylesheet" href="transicao-folhas.css?v=renascer-1"></head>
+  <body class="renascimento" data-page="credits">
+    <a class="skip-link" href="#credit-roll">Ir para os créditos</a>
+    <main id="ending" hidden aria-labelledby="ending-title">
+      <div class="ending-landscape" aria-hidden="true">
+        <div id="land-burned"></div>
+        <div id="land-restored"></div>
+      </div>
+      <div class="ending-light" aria-hidden="true"></div>
+      <header class="ending-heading">
+        <p>CINCO CUIDADOS. UM NOVO COMEÇO.</p>
+        <h1 id="ending-title">A natureza renasce</h1>
+        <p id="ending-caption" role="status" aria-live="polite">
+          O colar guarda cada gesto de carinho.
+        </p>
+      </header>
+      <section
+        class="ending-art"
+        aria-label="Kai e Flora celebram a recuperação da natureza"
+      >
+        <canvas
+          id="ending-actors"
+          width="960"
+          height="800"
+          role="img"
+          aria-label="Kai levanta o colar completo e Flora comemora enquanto a floresta renasce"
+        ></canvas>
+        <div
+          class="ending-necklace"
+          id="ending-necklace"
+          role="img"
+          aria-label="Colar do Guardião com cinco cristais: vermelho, azul, amarelo, verde e violeta"
+        ></div>
+        <div class="ending-petals" aria-hidden="true"></div>
+      </section>
+      <section
+        class="credit-window"
+        id="credit-roll"
+        tabindex="0"
+        aria-label="Créditos da equipe; role para ler"
+      >
+        <div class="credit-paper">
+          <p class="credit-eyebrow">UM PROJETO FEITO COM CUIDADO</p>
+          <h2>Guardião<br />da Natureza</h2>
+          <p class="credit-subtitle">Jornada de Kai</p>
+          <span class="credit-divider" aria-hidden="true">❧</span>
+          <h3>Criação do projeto</h3>
+          <p>Iuri Barroso Nascimento</p>
+          <p>Hicham Mohamed El Attar</p>
+          <h3>Apoio e ensino</h3>
+          <p>Professor Peterson Lobato</p>
+          <h3>Universidade do Estado da Bahia</h3>
+          <p>UNEB · Disciplina Web 1</p>
+          <span class="credit-divider" aria-hidden="true">❧</span>
+          <h3>Uma aventura pela vida</h3>
+          <p>
+            Floresta em Chamas<br />Rio Poluído<br />Resgate da Fauna<br />Reflorestamento<br />Cidade
+            Sustentável
+          </p>
+          <h3>Inspirações visuais</h3>
+          <p>Flora: Rowlet<br />Referência: Decidueye</p>
+          <p class="credit-small">
+            Pokémon © Nintendo / Creatures / GAME FREAK.<br />Referências
+            apresentadas no diário do projeto.
+          </p>
+          <h3>Para todos os pequenos guardiões</h3>
+          <p>
+            Obrigado por devolver a esperança<br />a cada pedacinho da ilha.
+          </p>
+          <p class="credit-final">O próximo cuidado<br />começa com você.</p>
+          <span class="credit-divider" aria-hidden="true">❧</span>
+        </div>
+      </section>
+      <nav class="ending-actions" aria-label="Controles do encerramento">
+        <button class="nature-button" id="ending-pause" aria-pressed="false">
+          Pausar animação</button
+        ><button class="nature-button" id="ending-replay">
+          Rever celebração</button
+        ><a class="nature-button" href="../nova-versao/aventura.html"
+          >Voltar à ilha</a
+        >
+      </nav>
+    </main>
+    <section id="ending-locked" class="ending-message" hidden>
+      <p class="credit-divider" aria-hidden="true">❧</p>
+      <h1>Uma história para completar</h1>
+      <p>
+        Cuide das cinco regiões e reúna os cristais para descobrir o
+        encerramento.
+      </p>
+      <a class="nature-button" href="../nova-versao/aventura.html"
+        >Continuar a aventura</a
+      >
+    </section>
+    <p id="ending-loading" class="ending-message" role="status">
+      Preparando nossa celebração…
+    </p>
+  </body>
+</html>

@@ -3,7 +3,7 @@
   const tips=['Cuide de uma plantinha. Veja como ela muda a cada semana!','Reutilize uma folha de papel antes de pegar outra.','Observe um pássaro de longe. Você reconhece o canto?','Leve sua garrafinha e evite copos descartáveis.','Uma trilha bonita é aquela em que a gente não deixa lixo.'];let tip=0;
   document.getElementById('next-nature-tip')?.addEventListener('click',()=>{document.getElementById('nature-tip').textContent=tips[++tip%tips.length];});
   document.getElementById('tab-nature')?.addEventListener('click',()=>{const speech=document.querySelector('.camp-speech');if(speech)speech.textContent='Flora: Vamos cuidar da natureza também fora da tela!';});
-  const target=location.hash.slice(1);if(['controls','nature','mission','story'].includes(target))document.querySelector(`[aria-controls="${target}"]`)?.click();
+  const target=location.hash.slice(1);if(['controls','nature','mission','story','team'].includes(target))document.querySelector(`[aria-controls="${target}"]`)?.click();
   if(new URLSearchParams(location.search).get('origem')==='fase'){const back=document.querySelector('.back-link');const fase=Number(new URLSearchParams(location.search).get('fase'));back.href=fase>=2&&fase<=5?'../../jogo/jornada/index.html?fase='+fase:'../../jogo/floresta-viva/index.html';const label=fase>=2&&fase<=5?'Voltar à aventura':'Voltar à floresta';back.setAttribute('aria-label',label);back.lastChild.textContent=' '+label;}
   const pad=document.getElementById('demo-pad'),actor=document.getElementById('demo-kai'),water=document.getElementById('demo-water');if(!pad||!actor)return;
   let active=null,x=0,y=0,dx=0,dy=0,frame=0,last=0;

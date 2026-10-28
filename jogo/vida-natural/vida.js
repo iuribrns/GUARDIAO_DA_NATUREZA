@@ -22,7 +22,11 @@
   class NatureLife {
     constructor(phase) {
       this.phase = phase;
-      this.water = phase === 1 && window.GuardiaoAgua ? new window.GuardiaoAgua() : null;
+      this.rebirth = window.GuardiaoRenascimento
+        ? new window.GuardiaoRenascimento(phase)
+        : null;
+      this.water =
+        phase === 1 && window.GuardiaoAgua ? new window.GuardiaoAgua() : null;
       this.images = new Map();
       this.trails = [];
       this.lastStep = 0;
@@ -48,6 +52,7 @@
         }),
       );
       if (this.water) await this.water.load();
+      if (this.rebirth) await this.rebirth.load();
       this.canopyShadow = new Image();
       this.canopyShadow.src = new URL("sombra-copa.svg", base).href;
       await this.canopyShadow.decode();
@@ -276,6 +281,7 @@
       }
     }
     restore(ctx, healthy, objectives, time, reduced) {
+      this.rebirth?.update(objectives);
       for (const p of objectives) {
         const key = p.x + ":" + p.y;
         const rx = p.rx || 95,
