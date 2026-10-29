@@ -7,7 +7,7 @@
       content="width=device-width,initial-scale=1,viewport-fit=cover"
     />
     <meta name="theme-color" content="#284b30" />
-    <title>O renascimento · Guardião da Natureza</title>
+    <title>Um Novo Amanhã · Epílogo · Guardião da Natureza</title>
     <link rel="icon" href="../../assets/identidade-flora/favicon.ico" />
     <link rel="stylesheet" href="creditos.css?v=renascer-1" />
     <link rel="stylesheet" href="rustico.css?v=renascer-1" />
@@ -28,8 +28,8 @@
     <script src="../nova-versao/app.js" defer></script>
     <script src="../nova-versao/transicoes.js" defer></script>
     <script src="interacoes.js" defer></script>
-    <script src="../horizonte-vivo/final.js?v=horizonte-1" defer></script>
-  <link rel="stylesheet" href="transicao-folhas.css?v=renascer-1"><link rel="stylesheet" href="../horizonte-vivo/final.css?v=horizonte-1"></head>
+    <script src="../../jogo/novo-amanha/icones.js?v=amanha-1" defer></script><script src="../../jogo/novo-amanha/progresso.js?v=amanha-1" defer></script><script src="../../jogo/novo-amanha/atlas.js?v=amanha-1" defer></script><script src="../../jogo/novo-amanha/arte.js?v=amanha-1" defer></script><script src="../../jogo/novo-amanha/epilogo.js?v=amanha-1" defer></script>
+  <link rel="stylesheet" href="transicao-folhas.css?v=renascer-1"><link rel="stylesheet" href="../horizonte-vivo/final.css?v=horizonte-1"><link rel="stylesheet" href="../../jogo/novo-amanha/interface.css?v=amanha-1"><link rel="stylesheet" href="../../jogo/novo-amanha/epilogo.css?v=amanha-1"></head>
   <body class="renascimento" data-page="credits">
     <a class="skip-link" href="#credit-roll">Ir para os créditos</a>
     <main id="ending" hidden aria-labelledby="ending-title">
@@ -38,8 +38,8 @@
         <div id="land-restored"></div>
       </div>
       <div class="ending-light" aria-hidden="true"></div>
-      <header class="ending-heading">
-        <p>CINCO CUIDADOS. UM NOVO COMEÇO.</p>
+      <span id="epilogue-counter" aria-label="Cena do epílogo">1 / 6</span><button id="epilogue-next" aria-label="Próxima cena do epílogo">→</button><header class="ending-heading">
+        <p>UM NOVO AMANHÃ · EPÍLOGO</p>
         <h1 id="ending-title">Juntos, a natureza renasce!</h1>
         <p id="ending-caption" role="status" aria-live="polite">
           O colar guarda cada gesto de carinho.
@@ -68,7 +68,7 @@
         <button class="nature-button" id="ending-pause" aria-pressed="false">
           Pausar animação</button
         ><button class="nature-button" id="ending-replay">
-          Rever celebração</button
+          Rever história</button
         ><button class="nature-button" id="ending-open-credits">Ver créditos</button><a class="nature-button" href="../nova-versao/aventura.html"
           >Voltar à ilha</a
         >

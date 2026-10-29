@@ -1,0 +1,73 @@
+{
+  "origem": "Guardiao_da_Natureza_Plano_Completo_de_Melhorias.docx",
+  "base": "3bebaa3",
+  "itens": [
+    {
+      "id": 1,
+      "tema": "Telas e educação",
+      "estado": "implementado e verificado"
+    },
+    {
+      "id": 2,
+      "tema": "Correções compartilhadas e testes",
+      "estado": "implementado e verificado"
+    },
+    {
+      "id": 3,
+      "tema": "Amazônia em Chamas",
+      "estado": "implementado e verificado"
+    },
+    {
+      "id": 4,
+      "tema": "Rio e traje obrigatório",
+      "estado": "implementado e verificado"
+    },
+    {
+      "id": 5,
+      "tema": "Fauna e perguntas",
+      "estado": "implementado e verificado"
+    },
+    {
+      "id": 6,
+      "tema": "Solo, sementes e plantio",
+      "estado": "implementado e verificado"
+    },
+    {
+      "id": 7,
+      "tema": "Cidade e mobilidade",
+      "estado": "implementado e verificado"
+    },
+    {
+      "id": 8,
+      "tema": "Moradores e colaboração",
+      "estado": "implementado e verificado"
+    },
+    {
+      "id": 9,
+      "tema": "Progresso e consequências",
+      "estado": "implementado e verificado"
+    },
+    {
+      "id": 10,
+      "tema": "Mochila de três abas",
+      "estado": "implementado e verificado"
+    },
+    {
+      "id": 11,
+      "tema": "Epílogo Um Novo Amanhã",
+      "estado": "implementado e verificado"
+    },
+    {
+      "id": 12,
+      "tema": "História e amuleto",
+      "estado": "implementado e verificado"
+    },
+    {
+      "id": 13,
+      "tema": "Polimento e controles",
+      "estado": "implementado e verificado"
+    }
+  ],
+  "data": "2026-10-29",
+  "validacao": "validacao.md"
+}

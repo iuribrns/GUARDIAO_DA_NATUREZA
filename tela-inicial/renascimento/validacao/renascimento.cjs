@@ -87,7 +87,13 @@ const base =
     await p.clock.runFor(4500);
     assert.equal(await p.locator("#flora-map-speech").isVisible(), false);
     await p.locator('.map-hotspot[data-phase="1"]').click();
-    assert.equal(await p.getByRole('button',{name:'Vamos cuidar!',exact:true}).count(),1,'folhas decorativas não alteram o nome acessível do botão');
+    assert.equal(
+      await p
+        .getByRole("button", { name: "Vamos cuidar!", exact: true })
+        .count(),
+      1,
+      "folhas decorativas não alteram o nome acessível do botão",
+    );
     await p.locator('[data-map-action="close"]').click();
     // Conquista real: o verde se espalha gradualmente e só na região concluída.
     await p.evaluate((key) => {
@@ -180,7 +186,8 @@ const base =
     await p.waitForFunction(() => document.body.dataset.endingReady === "true");
     assert.equal(await p.locator("[data-ending-gem]").count(), 5);
     const before = await p.evaluate((key) => localStorage.getItem(key), MAP);
-    await p.clock.runFor(13500);
+    for (let i = 0; i < 5; i++) await p.locator("#epilogue-next").click();
+    await p.clock.runFor(100);
     assert.equal(
       await p.locator("body").getAttribute("data-ending-state"),
       "celebrando",
@@ -206,7 +213,7 @@ const base =
     await p.clock.runFor(100);
     assert.equal(
       await p.locator("body").getAttribute("data-ending-state"),
-      "colar",
+      "memorias",
     );
     assert.equal(
       await p.evaluate((key) => localStorage.getItem(key), MAP),
@@ -214,6 +221,7 @@ const base =
       "rever créditos não muda a conquista",
     );
     await p.emulateMedia({ reducedMotion: "reduce" });
+    for (let i = 0; i < 5; i++) await p.locator("#epilogue-next").click();
     await p.clock.runFor(100);
     assert.equal(
       await p.locator("body").getAttribute("data-ending-state"),
@@ -240,10 +248,13 @@ const base =
       c.height = 330;
       let signatures = [];
       for (const name of ["iuri", "hicham", "peterson"]) {
-        const draw=(time)=>name==='peterson'?GuardiaoAtores.portrait(c,name,time,false):GuardiaoEquipe2D.draw(c,name,time,false);
+        const draw = (time) =>
+          name === "peterson"
+            ? GuardiaoAtores.portrait(c, name, time, false)
+            : GuardiaoEquipe2D.draw(c, name, time, false);
         draw(0);
         const first = c.toDataURL();
-        draw(4.45 - { iuri: 1, hicham: 0, peterson: 2 }[name] * .91);
+        draw(4.45 - { iuri: 1, hicham: 0, peterson: 2 }[name] * 0.91);
         signatures.push(first !== c.toDataURL());
       }
       return signatures;
@@ -265,14 +276,22 @@ const base =
     await p.waitForFunction(
       () => document.body.dataset.menuCharactersReady === "true",
     );
-    const homeFrame = await p.locator("#horizon-duo").getAttribute("data-frame");
+    const homeFrame = await p
+      .locator("#horizon-duo")
+      .getAttribute("data-frame");
     assert.ok(["0", "1", "2", "3"].includes(homeFrame));
     await p
       .getByRole("button", { name: "Conversar com Flora", exact: true })
       .click();
     await p.clock.runFor(150);
-    assert.equal(await p.locator('#horizon-duo').getAttribute('data-flora'),'ombro');
-    assert.equal(await p.locator('#horizon-duo').getAttribute('data-frame'),'3');
+    assert.equal(
+      await p.locator("#horizon-duo").getAttribute("data-flora"),
+      "ombro",
+    );
+    assert.equal(
+      await p.locator("#horizon-duo").getAttribute("data-frame"),
+      "3",
+    );
     await p.clock.runFor(4500);
     assert.equal(await p.locator(".camp-speech").isVisible(), false);
     // Um acesso direto não revela o final a uma aventura nova.

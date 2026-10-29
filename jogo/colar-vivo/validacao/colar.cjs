@@ -5,9 +5,13 @@ const { runInNewContext } = require("node:vm");
 const { resolve } = require("node:path");
 const { chromium } = require("playwright-core");
 const ROOT = resolve(__dirname, "../../..");
-const sandbox = { window: {} };
+const sandbox = { window: {}, structuredClone };
 runInNewContext(
   readFileSync(resolve(ROOT, "jogo/jornada/fases.js"), "utf8"),
+  sandbox,
+);
+runInNewContext(
+  readFileSync(resolve(ROOT, "jogo/novo-amanha/conteudo.js"), "utf8"),
   sandbox,
 );
 const phases = JSON.parse(JSON.stringify(sandbox.window.GuardiaoFasesJogaveis));
@@ -62,7 +66,9 @@ function fixture(id) {
       player: data.start,
       tasks: data.tasks.map((t) => ({
         id: t.id,
-        status: ["fish", "turtle", "cage", "kitten", "bird"].includes(t.type)
+        status: ["fish", "turtle", "cage", "kitten", "bird", "care"].includes(
+          t.type,
+        )
           ? "safe"
           : "done",
         progress: 1,

@@ -1,0 +1,222 @@
+GUARDIÃO DA NATUREZA
+Documento consolidado de melhorias, mecânicas e história
+Versão de planejamento para discussão e desenvolvimento
+Objetivo: reunir as ideias levantadas para aprimorar o jogo, corrigir problemas técnicos, definir melhorias para as seis fases e organizar as prioridades de implementação.
+Resumo executivo
+Priorizar a correção dos textos duplicados e sprites quebradas que aparecem ao abrir as missões.
+Melhorar as sprites e animações da fase 2, incluindo traje de proteção e interações dentro da água.
+Deixar os mapas degradados mais devastados e tornar as mudanças da restauração mais perceptíveis.
+Desenvolver as mecânicas educativas das fases 3, 4 e 5.
+Adicionar uma mochila com abas de Itens, Cristais/Amuleto e Uniformes.
+Fazer as ações do jogador alterarem os cenários e o comportamento dos moradores.
+Criar uma fase 6 em formato de epílogo/cutscene, sem vilão nem batalha, reunindo personagens, animais e moradores.
+1. Melhorias gerais das telas
+Tela inicial e identidade visual
+Preservar a estrutura atual da tela inicial e ajustar apenas o que realmente precisar de melhoria.
+Manter uma identidade visual consistente entre menus, personagens, mapas e fases.
+Tela “Sobre o jogo”
+Melhorar a seção “Como jogar”, deixando as instruções mais claras, organizadas e visuais.
+Separar os controles de celular e computador.
+Explicar movimentação, pulo, interação com NPCs, uso de itens e ações das missões.
+Utilizar imagens ou pequenas demonstrações dos controles.
+A seção de missões dessa tela não precisa de alterações por enquanto.
+Seção “Na natureza”
+Melhorar a apresentação e a organização visual.
+Tornar o conteúdo mais interessante e educativo.
+Incluir curiosidades sobre biomas, animais brasileiros, poluição, reflorestamento e sustentabilidade.
+Seção “Sobre nós”
+Melhorar os avatares dos dois criadores.
+Manter o avatar do professor, que já está bom.
+Avaliar se vale a pena manter os elementos/avatares relacionados ao Raul e à IA.
+Manter um estilo visual consistente entre os avatares.
+Tela “Ver missões”
+Preservar a organização atual, que está bonita e bem-feita.
+Não refazer a tela sem necessidade.
+Reduzir a predominância excessiva de verde nos mapas que representam ambientes degradados.
+Adicionar sinais de degradação adequados a cada região: árvores queimadas, troncos caídos, vegetação morta, solo seco e áreas contaminadas.
+Diferenciar visualmente as regiões e mostrar com clareza quais fases estão bloqueadas, disponíveis ou concluídas.
+2. Correções técnicas e testes
+Prioridade máxima antes de expandir o conteúdo.
+Bug ao abrir as missões
+Corrigir a grande quantidade de textos que aparece ao abrir as fases.
+Corrigir sprites e imagens de personagens que aparecem quebradas, duplicadas ou sobrepostas.
+Investigar possíveis duplicações de elementos de interface, diálogos ou rotinas de desenho.
+Verificar o carregamento de imagens, funções de renderização e sistemas de diálogo.
+Como o problema ocorre em todas as fases, investigar primeiro códigos e componentes compartilhados.
+Testar todas as fases após a correção.
+Testes gerais
+Verificar movimentação, colisões, pulos, interações e animações.
+Conferir os controles em celular e computador.
+Testar coleta e uso de itens, inventário, diálogos e transições.
+Confirmar que os objetivos são atualizados corretamente.
+Testar o jogo completo do início ao fim, especialmente em celular.
+3. Fase 1 — Amazônia em Chamas
+Cenário inicial
+Intensificar a aparência de devastação da floresta: árvores queimadas, troncos caídos, áreas de vegetação morta e marcas de queimadas.
+Distribuir melhor os elementos do cenário e manter caminhos jogáveis e obstáculos coerentes.
+Fazer a fase parecer extensa e interessante sem prejudicar a leitura do caminho.
+Jogabilidade e restauração
+Manter o objetivo de encontrar a mangueira e apagar os focos de incêndio.
+Deixar claro como pegar e utilizar a mangueira.
+Garantir que os focos de fogo desapareçam e que os objetivos sejam atualizados.
+Mostrar mudanças visuais perceptíveis depois de concluir as tarefas.
+4. Fase 2 — Rio Poluído
+Traje de proteção
+Criar um traje adequado para o Kai entrar na água contaminada.
+Mostrar o personagem vestindo o traje antes das atividades que exigem proteção.
+Se o traje for obrigatório pela lógica da missão, não tratá-lo apenas como uma opção estética.
+Sprites dentro da água
+Criar sprites específicas do Kai dentro do rio, usando o traje de proteção.
+Ajustar a posição do personagem em relação à superfície e à profundidade da água.
+Evitar que o Kai pareça caminhar ou ficar em pé sobre a água.
+Ajustar a ordem de renderização: partes da água podem aparecer à frente das pernas ou de outras partes do corpo, conforme a perspectiva.
+Organizar os arquivos das novas sprites na pasta de assets da fase 2 e implementar as animações no código.
+Recolhimento do lixo
+Criar animação específica para o Kai recolher resíduos dentro da água.
+Mostrar aproximação, movimento de coleta e remoção do objeto.
+Fazer o lixo desaparecer ou ser contabilizado após a coleta.
+Corrigir posicionamento e colisões para evitar movimentos estranhos.
+Resgate e tratamento dos peixes
+Criar sprites e animações para retirar os peixes da água e prestar os cuidados necessários.
+Separar, se necessário, as animações de aproximação, resgate e tratamento.
+Evitar sobreposição incorreta entre Kai, peixes e água.
+Garantir que o personagem pareça estar realmente dentro do rio e não flutuando.
+Recuperação do rio
+Mostrar a água ficando mais limpa conforme os objetivos são concluídos.
+Fazer os animais retornarem gradualmente ao ambiente recuperado.
+Deixar clara a diferença entre o rio poluído e o rio restaurado.
+5. Fase 3 — Resgate da Fauna
+Diversidade de animais
+Adicionar animais brasileiros, como tucanos, micos-leões-dourados, capivaras e outras espécies.
+Representar os animais em ambientes adequados.
+Criar sprites e animações próprias para os animais mais importantes.
+Evitar que todos os resgates aconteçam da mesma forma.
+Desafios de resgate
+Colocar alguns animais em locais de risco, como cercados, armadilhas ou áreas bloqueadas, de acordo com o contexto.
+Criar desafios que exijam encontrar uma chave, localizar um item ou resolver um pequeno enigma.
+Variar as necessidades dos animais: alimentação, tratamento veterinário ou ajuda para sair de um local perigoso.
+Manter os desafios acessíveis e compreensíveis.
+Perguntas educativas
+Antes de liberar determinados animais, pedir que o jogador responda perguntas sobre fauna, preservação ou cuidados com a espécie.
+Apresentar alternativas e indicar acertos e erros.
+Explicar brevemente a resposta correta.
+Permitir novas tentativas para que o jogador não fique preso na missão.
+Variar as perguntas de acordo com o animal.
+Consequências
+Mostrar os animais resgatados retornando a ambientes adequados.
+Fazer os animais importantes reaparecerem no epílogo.
+Usar os resgates para ensinar sobre biodiversidade e proteção de habitats.
+6. Fase 4 — Reflorestamento
+Preparação e plantio
+Criar áreas que precisam ser preparadas antes do plantio.
+Permitir retirar resíduos e preparar o solo quando necessário.
+Incluir diferentes espécies de sementes e mudas nativas.
+Criar uma sequência de ações: preparar o local, cavar, colocar a muda/semente e regar.
+Fazer as ferramentas e os itens serem utilizados de maneira coerente.
+Cuidados e recuperação visual
+Fazer algumas mudas precisarem de água ou proteção para crescer.
+Mostrar o crescimento gradual da vegetação conforme o jogador avança.
+Criar pequenos desafios relacionados às condições do terreno.
+Começar com um ambiente seco e degradado e terminar com plantas, árvores e maior diversidade de vegetação.
+Registrar os resultados para que apareçam também no epílogo.
+7. Fase 5 — Cidade Sustentável
+Missões urbanas
+Incluir coleta seletiva e separação correta de resíduos.
+Permitir limpar ruas, praças e espaços públicos.
+Criar tarefas relacionadas à recuperação de áreas verdes.
+Incluir moradores que precisam de ajuda para melhorar a comunidade.
+Sustentabilidade e transformação
+Mostrar ciclovias, bicicletas e transporte público como alternativas sustentáveis.
+Incluir painéis solares ou outras soluções de energia limpa.
+Incentivar a arborização e a recuperação de praças.
+Fazer a cidade ficar progressivamente mais limpa, organizada, arborizada e agradável.
+Mostrar moradores utilizando os espaços recuperados.
+8. Pessoas e mudanças sociais
+No início das fases, mostrar moradores preocupados ou desanimados com os problemas ambientais.
+Conforme as tarefas avançam, alterar expressões, falas e atividades dos NPCs.
+Fazer moradores agradecerem ao Kai ou começarem a colaborar com a recuperação.
+Mostrar crianças brincando, moradores cuidando de plantas e pessoas aproveitando espaços públicos recuperados.
+Ao concluir cada fase, mostrar uma transformação perceptível do ambiente e da comunidade.
+Evitar que as pessoas sejam apenas personagens parados: suas atividades devem refletir as melhorias.
+9. Sistema de progresso e consequências visuais
+Registrar quais objetivos foram concluídos em cada fase.
+Fazer o rio aparecer limpo depois de sua recuperação.
+Fazer os animais resgatados reaparecerem em locais adequados.
+Mostrar as plantas e árvores que cresceram durante o reflorestamento.
+Fazer a cidade refletir as melhorias realizadas.
+Utilizar esses resultados na cutscene final.
+Criar uma tela de resumo ao terminar cada fase, mostrando ações e conquistas.
+10. Sistema de mochila
+Adicionar um botão de mochila à tela do mapa das fases. Ao abrir, o jogador verá três abas: Itens, Cristais/Amuleto e Uniformes.
+Aba 1 — Itens
+Mostrar imagem, nome e descrição de cada item encontrado ou desbloqueado.
+Explicar para que serve e como Kai o utiliza na aventura.
+Desbloquear itens progressivamente conforme o jogador avança.
+Mostrar itens ainda não encontrados como bloqueados ou silhuetas.
+Exibir uma notificação quando um novo item importante for desbloqueado.
+Permitir equipar ou usar itens quando a mecânica da fase permitir.
+Exemplos: mangueira, luvas, saco de lixo, kit veterinário, sementes, mudas e regador.
+Aba 2 — Cristais e amuleto
+Mostrar os cristais encontrados, com nome, imagem e descrição.
+Indicar cristais obtidos e ainda bloqueados.
+Mostrar o progresso da coleção e a relação dos cristais com a história.
+Exibir o amuleto e sua evolução conforme os cristais são reunidos.
+Aba 3 — Uniformes
+Adicionar uniformes que possam ser desbloqueados ao longo da jornada.
+Exemplos: uniforme de explorador, traje de proteção, uniforme de resgate, roupa de reflorestamento e uniforme de voluntário ambiental.
+Mostrar quais uniformes estão disponíveis e quais ainda estão bloqueados.
+Permitir selecionar uniformes e atualizar as sprites do Kai quando houver sprites compatíveis.
+Manter obrigatórios os trajes necessários para determinadas atividades, como a proteção na água contaminada.
+Funcionamento da mochila
+Permitir alternar entre as três abas sem perder o progresso.
+Permitir fechar a mochila e voltar ao mapa sem reiniciar a fase.
+Salvar os itens, cristais e uniformes desbloqueados.
+Adaptar a interface a celulares e computadores.
+Conferir os equipamentos necessários antes de iniciar uma missão, quando aplicável.
+11. Fase 6 — Um Novo Amanhã
+A fase 6 será um epílogo em formato de cutscene. Não terá vilão, batalha ou nova missão obrigatória. O objetivo será mostrar o resultado da jornada e agradecer ao jogador.
+Sequência sugerida
+Cena 1 — Mostrar rapidamente os ambientes degradados do início e fazer a transição para os mesmos lugares recuperados.
+Cena 2 — Reunir Kai, Carlos, a coruja narradora, NPCs e personagens importantes. Mostrar reencontros, sorrisos e abraços.
+Cena 3 — Mostrar os animais livres em habitats adequados, incluindo animais resgatados durante a campanha.
+Cena 4 — Mostrar crianças brincando, moradores cuidando de plantas e pessoas aproveitando os espaços públicos recuperados.
+Cena 5 — Kai observa o amuleto, que emite uma luz suave como símbolo de equilíbrio e esperança.
+Cena 6 — Todos aparecem reunidos diante de um ambiente recuperado; entram a mensagem final e os créditos.
+Diálogos e mensagem
+Usar falas curtas e próprias para cada personagem, evitando diálogos longos e repetitivos.
+Mostrar que Kai não conseguiu tudo sozinho e reconhecer a colaboração das pessoas.
+Fazer a cena refletir os objetivos realmente concluídos pelo jogador.
+Mensagem sugerida: “O mundo não precisa de um único herói. Precisa de pessoas dispostas a cuidar dele.”
+12. História, amuleto e personagens
+Definir a origem do amuleto e a relação entre os cristais e as etapas da jornada.
+Dar significado ao amuleto durante a história, não apenas no confronto final.
+Definir seu destino após a conclusão da aventura: Kai pode continuar usando-o como símbolo de responsabilidade, ou outra solução pode ser escolhida.
+Manter o epílogo sem novo vilão ou batalha.
+Fazer os NPCs reaparecerem quando houver uma relação importante com as ações do jogador.
+Mostrar o que Kai aprendeu com as pessoas e com a natureza.
+A mensagem central deve reforçar que o amuleto não resolve tudo sozinho: a recuperação depende das ações, da colaboração e da regeneração da natureza.
+13. Polimento da experiência do jogador
+Garantir que o jogador saiba qual é o objetivo atual.
+Mostrar feedback visual e sonoro quando uma tarefa é concluída.
+Deixar claro quando um item foi coletado ou utilizado.
+Melhorar a legibilidade dos diálogos e das instruções.
+Evitar excesso de texto durante a exploração.
+Garantir que controles não cubram o personagem nem os objetivos.
+Fazer as transições entre menus, fases e cutscenes funcionarem corretamente.
+Permitir novas tentativas em desafios educativos.
+Testar a experiência completa em celular e computador.
+14. Ordem sugerida de desenvolvimento
+Corrigir os bugs de textos e sprites em todas as fases.
+Testar controles, colisões, inventário, diálogos e transições.
+Melhorar a devastação inicial dos cenários.
+Refazer as sprites e animações da fase 2: traje de proteção, Kai dentro da água, recolhimento do lixo e resgate dos peixes.
+Desenvolver os animais, as perguntas e os desafios de resgate da fase 3.
+Definir e implementar as mecânicas de preparação do terreno e plantio da fase 4.
+Definir e implementar as missões e transformações da cidade na fase 5.
+Implementar a mochila com as abas de Itens, Cristais/Amuleto e Uniformes.
+Implementar o registro de progresso e as mudanças visuais e comportamentais dos moradores.
+Produzir a cutscene da fase 6, com reencontros, animais, moradores, amuleto e créditos.
+Finalizar os ajustes das telas “Como jogar”, “Na natureza” e “Sobre nós”.
+Realizar testes completos e corrigir os problemas encontrados.
+Objetivo final
+O Guardião da Natureza deve ser mais do que um jogo de coletar itens e completar missões. Cada fase deve ter identidade própria, desafios interessantes, interações naturais e um propósito educativo. O jogador precisa perceber que suas ações ajudam a recuperar os ambientes, proteger os animais e melhorar a vida das pessoas. O final deve mostrar o resultado de tudo o que foi feito, reunir os personagens que fizeram parte da jornada e encerrar a história com uma mensagem de esperança e responsabilidade ambiental.

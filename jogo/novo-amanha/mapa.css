@@ -1,0 +1,84 @@
+.world-map .journey-summary {
+  align-items: center;
+}
+.map-pack-summary {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
+.world-map #journey-fragments {
+  font-size: 10px;
+  padding: 5px 10px;
+  border: 1px solid #bdd09b99;
+  border-radius: 22px;
+  white-space: nowrap;
+}
+.world-map #map-pack {
+  flex: 0 0 44px;
+  min-width: 44px;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  margin: 0;
+  padding: 7px;
+  color: #4f3e24;
+  background: transparent
+    url("../../tela-inicial/horizonte-vivo/assets/placa.svg") center/100% 100%
+    no-repeat !important;
+}
+.world-map #map-pack .ui-icon {
+  --icon-size: 27px;
+}
+.world-map .map-hotspot[data-locked="true"]::before {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  right: 4px;
+  top: 3px;
+  background: url("assets/cadeado.svg") center/contain no-repeat;
+}
+.world-map .map-list li button[data-locked="true"] {
+  border-style: dashed;
+  opacity: 0.87;
+}
+.world-map .map-list li button.is-complete {
+  border-color: #c2e3a5;
+  background: #426a4c;
+}
+.world-map .map-hotspot.is-complete > .number {
+  background: #3b814d !important;
+}
+@media (max-width: 700px) {
+  .world-map #journey-fragments {
+    font-size: 9px;
+    padding: 4px 7px;
+  }
+  .map-pack-summary {
+    gap: 5px;
+  }
+  .world-map .journey-summary {
+    margin-bottom: 4px;
+  }
+}
+@media (max-height: 500px) and (min-aspect-ratio: 4/3) {
+  .world-map .map-bottom {
+    padding-top: 15px;
+  }
+  .world-map .map-list li button {
+    min-height: 37px;
+  }
+  .world-map .map-hotspot {
+    top: min(var(--y), calc(100dvh - 159px));
+  }
+  .world-map .map-hotspot[data-phase="2"] {
+    top: 42%;
+  }
+}
+/* A folha do botão da mochila é recortada na borda da tela, sem criar rolagem. */
+.world-map .map-bottom {
+  overflow-x: clip;
+}
+.world-map .map-world {
+  overflow: hidden;
+}

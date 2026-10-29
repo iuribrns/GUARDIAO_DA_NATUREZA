@@ -131,7 +131,7 @@ const base =
       assert.ok(inside, "título e informações dentro do cenário");
       const asset = await p.locator(".map-art").evaluate((e) => e.currentSrc);
       assert.equal(
-        asset.includes("mapa-celular.webp"),
+        asset.includes("ilha-degradada-celular.webp"),
         v.width / v.height < 0.75,
         "arte adaptada à orientação",
       );
@@ -198,50 +198,49 @@ const base =
     for (const name of ["Carlos", "Antônio", "Marina", "Rafael", "Luciana"])
       assert.ok(names.includes(name));
     assert.equal(await p.locator("[data-ending-gem]").count(), 5);
-    await p.clock.runFor(3500);
     assert.equal(
-      await p.locator("body").getAttribute("data-ending-state"),
-      "restaurando",
+      await p.locator("body").getAttribute("data-epilogue-scene"),
+      "memorias",
+    );
+    for (let i = 0; i < 4; i++) await p.locator("#epilogue-next").click();
+    await p.clock.runFor(2200);
+    assert.equal(
+      await p.locator("body").getAttribute("data-epilogue-scene"),
+      "amuleto",
     );
     assert.equal(
       await p.locator("#ending-actors").getAttribute("data-pose"),
       "4",
-      "Kai segura o colar erguido enquanto restaura",
     );
-    await p.clock.runFor(10000);
+    await p.locator("#epilogue-next").click();
     assert.equal(
       await p.locator("#ending-actors").getAttribute("data-pose"),
       "7",
     );
     assert.equal(await p.locator("#ending-credits").isVisible(), false);
     await p.locator("#ending-pause").click();
-    const pose = await p.locator("#ending-actors").getAttribute("data-pose");
+    const stopped = await p.evaluate(() => GuardiaoEpilogo.estado().time);
     await p.clock.runFor(2000);
     assert.equal(
-      await p.locator("#ending-actors").getAttribute("data-pose"),
-      pose,
+      await p.evaluate(() => GuardiaoEpilogo.estado().time),
+      stopped,
     );
     await p.locator("#ending-pause").click();
-    await p.clock.runFor(4500);
-    assert.equal(
-      await p.locator("#ending-credits").isVisible(),
-      true,
-      "agradecimentos aparecem depois da celebração no campo",
-    );
+    await p.clock.runFor(10000);
+    assert.equal(await p.locator("#ending-credits").isVisible(), true);
     await p.locator("#ending-close-credits").click();
     const save = await p.evaluate((key) => localStorage.getItem(key), KEY);
     await p.locator("#ending-replay").click();
-    await p.clock.runFor(100);
     assert.equal(
-      await p.locator("body").getAttribute("data-ending-state"),
-      "colar",
+      await p.locator("body").getAttribute("data-epilogue-scene"),
+      "memorias",
     );
     assert.equal(
       await p.evaluate((key) => localStorage.getItem(key), KEY),
       save,
-      "rever final preserva a conquista",
     );
     await p.emulateMedia({ reducedMotion: "reduce" });
+    for (let i = 0; i < 5; i++) await p.locator("#epilogue-next").click();
     await p.clock.runFor(100);
     assert.equal(
       await p.locator("#ending-actors").getAttribute("data-pose"),

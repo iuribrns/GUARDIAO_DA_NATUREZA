@@ -57,6 +57,9 @@ try {
     // O mapa redesenhado e a exploração atual têm uma validação completa própria.
     // Os controles de plataforma seguem testados no laboratório legado preservado.
     const suites = [
+      'jogo/novo-amanha/validacao/interface.cjs',
+      'jogo/novo-amanha/validacao/rio.cjs',
+      'jogo/novo-amanha/validacao/campanha.cjs',
       'tela-inicial/horizonte-vivo/validacao/horizonte.cjs',
       'tela-inicial/equipe-2d/validacao/equipe.cjs',
       'tela-inicial/renascimento/validacao/renascimento.cjs',
@@ -72,7 +75,6 @@ try {
       'jogo/personagens/kai/validacao/animacoes.cjs',
       'jogo/area-aberta/validacao/fase.cjs',
       'jogo/floresta-viva/revisao/validacao/revisao.cjs',
-      'jogo/jornada/validacao/campanha.cjs',
       'jogo/jornada/validacao/celular.cjs'
     ];
     for (const file of suites) {

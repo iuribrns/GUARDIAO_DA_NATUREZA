@@ -1,0 +1,71 @@
+#epilogue-next {
+  position: absolute;
+  right: 12px;
+  top: max(12px, env(safe-area-inset-top));
+  z-index: 5;
+  min-width: 44px;
+  min-height: 44px;
+  background: #ead69c;
+  color: #465d35;
+  border: 1px solid #8c9f66;
+  border-radius: 50%;
+  font-size: 25px;
+  cursor: pointer;
+}
+#epilogue-counter {
+  position: absolute;
+  top: max(15px, env(safe-area-inset-top));
+  left: 14px;
+  padding: 6px 10px;
+  background: #315b3bbd;
+  color: #fff0c4;
+  border: 1px solid #a9c58988;
+  border-radius: 16px;
+  font: 600 10px system-ui;
+  z-index: 4;
+}
+.ending-heading p:last-child {
+  max-width: 660px;
+  line-height: 1.5;
+  text-wrap: balance;
+}
+body[data-epilogue-scene="memorias"] .ending-light,
+body[data-epilogue-scene="animais"] .ending-light,
+body[data-epilogue-scene="comunidade"] .ending-light {
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    #203c2b88,
+    transparent 36%,
+    transparent 78%,
+    #203c2b77
+  );
+}
+.ending-heading {
+  pointer-events: none;
+  z-index: 3;
+}
+@media (max-width: 700px) {
+  .ending-heading {
+    left: 12%;
+    right: 12%;
+  }
+  .ending-heading h1 {
+    font-size: 27px;
+  }
+  .ending-heading p:last-child {
+    font-size: 11px;
+  }
+  .ending-heading > p:first-child {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  #epilogue-counter {
+    left: 9px;
+    font-size: 8px;
+    padding: 7px;
+  }
+  #epilogue-next {
+    right: 8px;
+  }
+}

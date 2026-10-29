@@ -1,0 +1,182 @@
+.help-device-picker {
+  display: flex;
+  gap: 8px;
+  margin: 22px 0;
+}
+.help-device-picker button,
+.biome-picker button,
+.nature-mini-quiz button {
+  min-height: 44px;
+  padding: 10px 15px;
+  background: #f1ebd2;
+  border: 1px solid #a6b177;
+  border-radius: 13px 4px;
+  font: 600 12px system-ui;
+  color: #415b36;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.help-device-picker button[aria-pressed="true"],
+.biome-picker button[aria-pressed="true"] {
+  background: #446b43;
+  color: #fff1c7;
+}
+.help-control-grid,
+.nature-learning-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 18px 0 23px;
+}
+.help-control-grid article,
+.nature-learning-grid article {
+  padding: 17px;
+  background: #eff0d5;
+  border: 1px solid #c3c89c;
+  border-radius: 18px 5px;
+}
+.help-control-grid h4,
+.nature-learning-grid h3 {
+  font: 700 14px/1.3 system-ui;
+  color: #415d37;
+  margin: 9px 0;
+}
+.help-control-grid p,
+.nature-learning-grid p {
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0;
+  color: #5d6b4b;
+}
+.help-control-grid .ui-icon,
+.nature-learning-grid .ui-icon {
+  --icon-size: 32px;
+}
+.help-keys kbd {
+  font: 700 12px system-ui;
+  display: inline-block;
+  padding: 5px 7px;
+  border: 1px solid #a5b182;
+  border-bottom-width: 3px;
+  background: #f8f3e1;
+  border-radius: 6px;
+  color: #41603b;
+}
+.help-keys dt {
+  min-width: 130px;
+}
+.help-journey-steps {
+  padding: 16px 20px;
+  background: #ece9ce;
+  border-left: 3px solid #88a166;
+  border-radius: 0 16px 16px 0;
+  margin: 20px 0;
+}
+.help-journey-steps h3 {
+  font-size: 20px;
+  color: #3f6034;
+}
+.help-journey-steps li {
+  font-size: 12px;
+  line-height: 1.65;
+  padding: 4px 0;
+}
+.demo-clearing #demo-kai {
+  position: absolute;
+  width: 64px;
+  height: 85px;
+  left: calc(50% - 32px);
+  top: calc(50% - 42px);
+  object-fit: contain;
+}
+.biome-picker {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 20px 0 13px;
+}
+.biome-picker button {
+  font-size: 10px;
+  padding: 8px 11px;
+}
+.biome-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 22px;
+  background: linear-gradient(120deg, #dfe9bc, #f8edce);
+  border: 1px solid #a5b477;
+  border-radius: 20px 6px;
+}
+.biome-card > .ui-icon {
+  --icon-size: 43px;
+}
+.biome-card h3 {
+  color: #405d35;
+  margin: 0 0 10px;
+  font-size: 24px;
+}
+.biome-card p {
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 5px 0;
+}
+#biome-friend {
+  color: #6b744f;
+  font-weight: 600;
+}
+.nature-mini-quiz {
+  padding: 20px;
+  background: #eadfba;
+  border: 1px solid #c8b889;
+  border-radius: 18px 6px;
+  margin: 20px 0;
+}
+.nature-mini-quiz h3 {
+  color: #4a6237;
+  font-size: 22px;
+  margin: 0 0 8px;
+}
+.nature-mini-quiz > div {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+#nature-feedback {
+  color: #4e6e3c;
+  min-height: 1.5em;
+  font-size: 12px;
+}
+.student-actor {
+  filter: drop-shadow(0 5px 4px #4a693022);
+}
+.team-duo-scene {
+  background: radial-gradient(ellipse at 46% 84%, #a8c87e44, transparent 60%);
+}
+@media (max-width: 480px) {
+  .help-control-grid,
+  .nature-learning-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .help-control-grid article,
+  .nature-learning-grid article {
+    padding: 14px;
+  }
+  .help-keys dt {
+    min-width: 105px;
+  }
+  .biome-card {
+    padding: 16px;
+    gap: 11px;
+  }
+  .biome-card > .ui-icon {
+    --icon-size: 30px;
+  }
+  .biome-picker {
+    gap: 5px;
+  }
+  .help-device-picker button {
+    flex: 1;
+  }
+}
