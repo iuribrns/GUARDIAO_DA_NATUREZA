@@ -14,6 +14,7 @@ runInNewContext(
   readFileSync(resolve(ROOT, "jogo/novo-amanha/conteudo.js"), "utf8"),
   sandbox,
 );
+runInNewContext(readFileSync(resolve(ROOT,"jogo/vida-em-equilibrio/conteudo.js"),"utf8"),sandbox);
 const phases = JSON.parse(JSON.stringify(sandbox.window.GuardiaoFasesJogaveis));
 const base = new URL(
   "../../",

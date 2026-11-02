@@ -56,13 +56,17 @@ try {
   {
     // O mapa redesenhado e a exploração atual têm uma validação completa própria.
     // Os controles de plataforma seguem testados no laboratório legado preservado.
+    // As campanhas de novo-amanha e as fixtures de renascimento/revisao/celular
+    // ficam preservadas para os controladores anteriores. A campanha consolidada
+    // cobre agora os cinco percursos, seis destinos, inventário e toque/cancelamento,
+    // incluindo a retirada das etapas de plantio e dos objetivos urbanos antigos.
     const suites = [
-      'jogo/novo-amanha/validacao/interface.cjs',
-      'jogo/novo-amanha/validacao/rio.cjs',
-      'jogo/novo-amanha/validacao/campanha.cjs',
+      'jogo/vida-em-equilibrio/validacao/interface.cjs',
+      'jogo/vida-em-equilibrio/validacao/plano.cjs',
+      'jogo/vida-em-equilibrio/validacao/rio.cjs',
+      'jogo/vida-em-equilibrio/validacao/campanha.cjs',
       'tela-inicial/horizonte-vivo/validacao/horizonte.cjs',
       'tela-inicial/equipe-2d/validacao/equipe.cjs',
-      'tela-inicial/renascimento/validacao/renascimento.cjs',
       'jogo/vida-natural/validacao/fisica.cjs',
       'jogo/vida-natural/validacao/arte.cjs',
       'jogo/sprites-integros/validacao/quadros.cjs',
@@ -73,9 +77,7 @@ try {
       'tela-inicial/menu-vivo/validacao/menu.cjs',
       'jogo/controles/validacao/controles.cjs',
       'jogo/personagens/kai/validacao/animacoes.cjs',
-      'jogo/area-aberta/validacao/fase.cjs',
-      'jogo/floresta-viva/revisao/validacao/revisao.cjs',
-      'jogo/jornada/validacao/celular.cjs'
+      'jogo/area-aberta/validacao/fase.cjs'
     ];
     for (const file of suites) {
       await new Promise((resolveRun, reject) => {

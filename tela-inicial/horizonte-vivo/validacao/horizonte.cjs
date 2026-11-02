@@ -100,7 +100,7 @@ const base =
           window.GuardiaoMapa && document.body.dataset.floraMapReady === "true",
       );
       assert.equal(await p.locator("#map-credits").count(), 0);
-      assert.equal(await p.locator('[data-phase="6"]').count(), 0);
+      assert.equal(await p.locator('.map-hotspot[data-phase="6"]').count(), 1);
       const rect = await p.locator(".map-stage").boundingBox();
       assert.ok(
         rect.x === 0 &&
@@ -131,7 +131,7 @@ const base =
       assert.ok(inside, "título e informações dentro do cenário");
       const asset = await p.locator(".map-art").evaluate((e) => e.currentSrc);
       assert.equal(
-        asset.includes("ilha-degradada-celular.webp"),
+        asset.includes("mapa-celular.webp"),
         v.width / v.height < 0.75,
         "arte adaptada à orientação",
       );
@@ -151,7 +151,7 @@ const base =
       assert.equal(
         overlaps,
         false,
-        "as cinco placas têm áreas separadas em " + v.width,
+        "as seis placas têm áreas separadas em " + v.width,
       );
       for (const id of [1, 2, 3, 4, 5]) {
         await p.locator('.map-hotspot[data-phase="' + id + '"]').click();
@@ -163,7 +163,7 @@ const base =
         await p.locator("[data-map-action=close]").click();
       }
     }
-    // A última restauração leva à comemoração; o mapa nunca vira uma sexta fase.
+    // A última restauração libera o sexto destino, que abre o epílogo por escolha do jogador.
     await p.evaluate((key) => {
       localStorage.setItem(
         key,
@@ -183,6 +183,8 @@ const base =
       () => document.querySelector("#map-cutscene")?.hidden === false,
     );
     await p.clock.runFor(3100);
+    assert.equal(await p.locator("#phase-title").textContent(), "Um Novo Amanhã");
+    await p.locator("[data-map-action=start]").click();
     await p.waitForURL("**/renascimento/creditos.html");
     await p.waitForFunction(() => document.body.dataset.endingReady === "true");
     assert.equal(
@@ -263,7 +265,7 @@ const base =
     await fresh.close();
     assert.deepEqual(errors, []);
     console.log(
-      "PASS: início recuperado, Kai e Flora no horizonte com piscadas, fogo animado, mapa realmente em tela inteira, cinco placas alcançáveis, arte móvel, informações dentro do mapa, final após cinco fases e comemoração no campo com todos os aliados.",
+      "PASS: início recuperado, Kai e Flora no horizonte com piscadas, fogo animado, mapa realmente em tela inteira, seis destinos alcançáveis, arte móvel, informações dentro do mapa, final após cinco fases e comemoração no campo com todos os aliados.",
     );
   } finally {
     await b.close();

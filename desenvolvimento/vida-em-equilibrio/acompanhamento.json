@@ -1,0 +1,19 @@
+{
+  "base": "df61260",
+  "documento": "Plano_Consolidado_Melhorias_Guardiao_da_Natureza.docx",
+  "data": "2026-11-02",
+  "estado": "implementado e verificado",
+  "areas": [
+    "apresentação e toque",
+    "sexto destino e restauração central",
+    "mochila e uniformes por fase",
+    "reserva da mangueira",
+    "animais do rio e nado frontal",
+    "fauna brasileira e visibilidade",
+    "plantio simplificado",
+    "três atividades da cidade",
+    "evolução dos moradores",
+    "epílogo sem combate"
+  ],
+  "validacao": "validacao.md"
+}

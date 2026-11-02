@@ -1,0 +1,171 @@
+GUARDIÃO DA NATUREZA
+Jornada de Kai
+PLANO CONSOLIDADO DE MELHORIAS
+Documento de referência para implementação e divisão de tarefas
+
+ObjetivoReunir as melhorias definidas para o jogo, mantendo o escopo controlado. A prioridade é aprimorar a experiência no celular, a qualidade visual, a coerência das fases e a sensação de que as ações do jogador realmente recuperam o mundo.
+
+
+Visão geral
+Este documento reúne as decisões mais recentes sobre as melhorias do Guardião da Natureza — Jornada de Kai. As propostas abaixo representam o escopo aprovado para esta etapa. Ideias descartadas ou simplificadas não devem ser adicionadas novamente sem uma nova decisão da equipe.
+Priorizar a versão para celular.
+Manter as cinco fases principais e o epílogo da Fase 6.
+Evitar mecânicas desnecessariamente complexas.
+Dar identidade visual própria aos personagens, animais, itens e cristais.
+Mostrar visualmente a recuperação dos ambientes e a mudança de humor dos NPCs.
+1. Tela inicial, configurações e apresentação
+Tela inicial
+Manter a tela inicial como está, sem alterações.
+Configurações
+Melhorar a detecção de dispositivos.
+Priorizar a experiência em celulares, deixando controles, informações e opções bem visíveis.
+Não priorizar a adaptação para computador nesta etapa, pois a versão atual apresenta problemas.
+Sobre o jogo
+História: melhorar a apresentação, organização e clareza do conteúdo.
+Como jogar: melhorar a apresentação dos sprites que demonstram a jogabilidade, ajustando tamanho, posicionamento e organização das imagens.
+Missões: manter a apresentação atual, que foi aprovada.
+Na natureza: reduzir um pouco a seção e resumir as informações sem perder o conteúdo educativo.
+Sobre nós: melhorar o design dos perfis/avatares de Hicham, Richard e Yuri, mantendo uma identidade visual consistente.
+2. Mapa das fases e desbloqueio da Fase 6
+Manter as cinco fases principais e a Fase 6 no mapa.
+No início, a região da Fase 6 deve aparecer destruída/degradada, como as demais regiões.
+Depois de concluir as cinco primeiras fases, a região da Fase 6 deve ficar restaurada, bonita e colorida.
+Após o desbloqueio, permitir que o jogador entre na Fase 6 para assistir à cutscene de encerramento.
+A Fase 6 será um epílogo, sem combate, vilão ou novas missões.
+3. Mochila
+Itens e cristais
+Melhorar o design dos itens, deixando os ícones mais detalhados e bem acabados.
+Melhorar o visual dos cinco cristais: Fogo, Água, Fauna, Floresta e Cidade.
+Cada cristal deve ter cores, detalhes e identidade visual próprios, relacionados à sua fase.
+Uniformes
+Manter a seção de uniformes visível na mochila para consulta.
+Permitir visualizar os trajes e conhecer suas funções, mas não selecioná-los livremente.
+Cada uniforme deve ser utilizado somente na fase/situação correspondente.
+4. Fase 1 — Floresta em Chamas
+StatusO restante da fase está aprovado. A única mudança solicitada nesta etapa é o ajuste da duração da água.
+
+Diminuir a duração da água disponível na mangueira.
+Fazer com que a água acabe antes de apagar todos os focos de incêndio.
+O jogador deverá voltar ao registro/fonte de água pelo menos uma vez para reabastecer.
+Após reabastecer, poderá continuar apagando os focos restantes.
+Não alterar as demais mecânicas da fase.
+5. Fase 2 — Rio Poluído
+Animais
+Melhorar o design dos animais antes do resgate: devem parecer debilitados, doentes ou afetados pela poluição.
+Depois do tratamento, os animais devem ficar saudáveis, bonitos e felizes.
+Criar uma diferença visual clara entre o estado anterior e posterior ao tratamento.
+Animações de Kai
+Manter as animações de natação para os lados e para cima.
+Criar o sprite e a animação de Kai nadando para baixo.
+Integrar a nova animação corretamente aos controles.
+Não realizar outras alterações na fase neste momento.
+6. Fase 3 — Resgate da Fauna
+Animais brasileiros
+Retirar o gato, pois a animação atual está ruim.
+Retirar animais que não correspondam à fauna brasileira.
+Manter tucano, mico-leão-dourado e capivara.
+Acrescentar outras espécies brasileiras, por exemplo: onça-pintada, arara-azul, tamanduá-bandeira, anta e bicho-preguiça.
+Sprites e animações
+Manter as sprites do passarinho que já existem.
+Criar sprites próprias para os demais animais e animações específicas para cada espécie.
+Representar os animais durante a exploração, aproximação, resgate e recuperação.
+Não reutilizar a mesma representação visual para espécies diferentes.
+Árvore que esconde o caminho
+Corrigir a árvore localizada entre o macaco e a capivara.
+Quando Kai passar atrás dela, a árvore deverá ficar parcialmente transparente para que o jogador consiga enxergar Kai e o caminho.
+Perguntas educativas
+Adicionar perguntas relevantes na hora de desbloquear/resgatar os animais.
+Abordar espécies, habitat, alimentação, ameaças e preservação.
+Mostrar feedback para respostas certas e erradas, permitir novas tentativas e explicar brevemente as respostas corretas.
+7. Fase 4 — Reflorestamento
+Escolha das plantas
+Mostrar imagens das plantas disponíveis; cada opção deve ter sua própria imagem.
+Permitir que o jogador escolha livremente qual planta deseja utilizar, sem direcionar ou obrigar a escolha de uma espécie específica.
+Jogabilidade simplificada
+Plantar: escolher uma planta e realizar o plantio.
+Regar: utilizar o regador para cuidar da planta.
+Retirar as outras mecânicas e etapas adicionais.
+Após regar, mostrar uma animação de crescimento da planta.
+Doninha
+Manter a doninha como está, sem alterações.
+8. Fase 5 — Cidade Sustentável
+Estrutura simplificadaA fase terá três atividades jogáveis e uma transformação ambiental automática. Não criar uma missão independente para as fábricas.
+
+1. Limpeza e reciclagem
+Aumentar o tamanho das lixeiras e deixá-las bem identificadas.
+Kai deverá recolher resíduos espalhados pela cidade.
+Separar o lixo em três categorias: recicláveis, orgânicos e rejeitos.
+Após concluir a atividade, a rua deverá ficar limpa.
+2. Energia solar
+Manter a mecânica dos painéis solares.
+Melhorar a sprite e a animação de Kai ajustando o painel.
+Mostrar claramente a interação com o equipamento e, após a ação, os painéis deverão começar a funcionar.
+3. Recuperação dos jardins
+Criar pequenos jardins abandonados.
+Permitir que Kai ajude a recuperar a vegetação.
+Mostrar flores, plantas e árvores voltando a crescer, sem adicionar mecânicas complexas.
+4. Indústrias — transformação ambiental
+Mostrar fábricas soltando fumaça na paisagem inicial.
+Não criar uma missão independente para as fábricas.
+Após concluir as atividades da cidade, diminuir a fumaça e mostrar sinais de recuperação.
+A transformação deve acontecer visualmente, sem adicionar outra mecânica.
+Resultado esperado: uma cidade inicialmente cinzenta, poluída e pouco cuidada, que termina limpa, verde, arborizada e sustentável.
+9. NPCs — presença em todas as fases
+Garantir que existam NPCs espalhados pelos cenários das cinco fases principais.
+Manter os diálogos que já existem; não é necessário criar novas falas ou mecânicas complexas.
+Alterar principalmente as expressões visuais dos personagens conforme o ambiente melhora.
+Progresso da fase
+Aparência dos NPCs
+Início
+Tristes e preocupados
+Durante a recuperação
+Mais esperançosos
+Após a recuperação
+Felizes e animados
+A mudança deve acompanhar o progresso do jogador em todas as fases.
+10. Fase 6 — Encerramento e cutscene
+Cenário e personagens
+Mostrar as cinco regiões recuperadas: floresta verde, rio limpo, animais livres, árvores crescendo e cidade sustentável.
+Reunir Kai, Flora, Carlos, NPCs e personagens importantes.
+Mostrar os animais resgatados durante a jornada.
+Criar momentos de felicidade, reencontros e abraços.
+Mostrar os moradores aproveitando os ambientes recuperados.
+Orientação dos NPCs
+Corrigir a orientação dos personagens: não deixar todos olhando para a mesma direção.
+Ajustar poses, rostos e corpos para que estejam olhando para Kai.
+Amuleto e encerramento
+Mostrar os cinco cristais reunidos e o amuleto brilhando suavemente.
+Reforçar o amuleto como símbolo de esperança, equilíbrio e responsabilidade.
+Criar uma cutscene emocionante, sem batalhas, vilões ou novas missões.
+Finalizar com uma mensagem sobre a importância de cuidar da natureza.
+“O mundo não precisa de um único herói. Precisa de pessoas dispostas a cuidar dele.”
+11. Regras gerais de qualidade e funcionamento
+Todas as fases devem funcionar corretamente no celular.
+Os sprites devem manter consistência de estilo, tamanho e proporção.
+As animações devem corresponder às ações realizadas por Kai.
+Os cenários devem apresentar diferenças visuais claras entre o estado degradado e o recuperado.
+O progresso de cada fase deve refletir as transformações do mundo.
+Os animais e NPCs resgatados devem aparecer no encerramento.
+Corrigir problemas de sobreposição, transparência e visibilidade de personagens.
+12. Ordem recomendada de implementação
+Etapa
+Trabalho
+1º
+Corrigir sprites, animações e problemas de funcionamento.
+2º
+Implementar as melhorias das Fases 1, 2 e 3.
+3º
+Simplificar e finalizar a Fase 4.
+4º
+Simplificar e desenvolver a Fase 5.
+5º
+Implementar a evolução visual dos NPCs.
+6º
+Melhorar mochila, cristais e interfaces.
+7º
+Desenvolver o mapa restaurado e a cutscene da Fase 6.
+8º
+Testar todas as fases e corrigir problemas finais.
+Resultado esperado
+O objetivo é entregar um jogo com identidade visual consistente, mecânicas simples e divertidas, educação ambiental integrada à aventura, animais brasileiros bem representados, NPCs que demonstrem a recuperação do mundo e um encerramento que recompense emocionalmente o jogador.
+Diretriz para a equipeNão acrescentar novas mecânicas neste momento. Implementar primeiro as decisões deste documento, testar o jogo e só depois avaliar se existe alguma necessidade adicional. É melhor entregar cinco fases bem acabadas do que cinco fases cheias de recursos, mas com problemas de acabamento.
