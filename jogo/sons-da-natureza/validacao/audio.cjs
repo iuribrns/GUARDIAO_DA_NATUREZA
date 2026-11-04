@@ -206,10 +206,13 @@ const waitMusic = (p) =>
     );
     await p.keyboard.up(" ");
     await p.getByRole("button", { name: "Continuar", exact: true }).click();
+    await p.locator("#pausa").click();
+    await p.locator(".pause-more summary").click();
     await p.locator("#som").click();
     assert.equal((await state(p)).preferences.effects, false);
     await p.locator("#som").click();
     assert.equal((await state(p)).preferences.effects, true);
+    await p.getByRole("button", { name: "Continuar", exact: true }).click();
     await p.evaluate(() =>
       GuardiaoAudio.update({ musicVolume: 28 }, { persist: true }),
     );
