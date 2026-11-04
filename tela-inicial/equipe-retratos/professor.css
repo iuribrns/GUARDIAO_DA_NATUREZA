@@ -1,0 +1,173 @@
+body.team-open .panel-layout {
+  display: block;
+  width: min(1080px, 100%);
+  padding: calc(90px + env(safe-area-inset-top))
+    max(24px, env(safe-area-inset-right)) 60px
+    max(24px, env(safe-area-inset-left));
+  margin: auto;
+}
+body.team-open .companions-camp,
+body.team-open .panel-inner > .intro {
+  display: none;
+}
+body.team-open .wood-panel {
+  width: 100%;
+  max-width: none;
+}
+body.team-open .panel-inner {
+  padding: 30px;
+}
+body.team-open .about-content {
+  min-height: 0;
+}
+#team .team-profile-heading {
+  margin: 28px 0 18px;
+}
+#team .team-profile-heading .eyebrow {
+  color: #506c3b;
+  letter-spacing: 1.3px;
+  font-size: 10px;
+  margin: 0 0 7px;
+}
+#team .team-profile-heading h3 {
+  margin: 0;
+  font-size: clamp(23px, 3vw, 30px);
+  color: #345333;
+}
+#team .professor-card {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  text-align: left;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 28px;
+  margin: 0 0 24px;
+  border: 3px solid #a47c45;
+  border-radius: 30px 8px;
+  background:
+    repeating-linear-gradient(4deg, transparent 0 16px, #ffffff03 17px 18px),
+    radial-gradient(ellipse at 0 0, #72915d44, transparent 65%),
+    linear-gradient(115deg, #31573f, #203c2e);
+  box-shadow:
+    inset 0 0 0 2px #d5b97466,
+    0 7px 0 #7b63332b;
+  transform: none;
+}
+#team .professor-card > * {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+#team .professor-card .portrait-frame {
+  margin: 0;
+  padding: 12px 8px 0;
+  border: 1px solid #d6c48a;
+  border-radius: 80px 80px 16px 16px;
+  background:
+    radial-gradient(ellipse at 50% 45%, #e4e8c2, #8da76d 75%), #9eaf7e;
+  box-shadow: 0 4px 10px #102b2644;
+  overflow: hidden;
+}
+#team .portrait-frame canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  animation: none;
+}
+#team .portrait-frame figcaption {
+  margin: 0 -8px;
+  padding: 8px 6px;
+  background: #d5bd86;
+  color: #473b23;
+  text-align: center;
+  font: 800 10px/1.3 system-ui;
+  letter-spacing: 1.6px;
+}
+#team .professor-card .team-role {
+  margin: 0 0 9px;
+  color: #dce6bb;
+  font: 700 10px/1.4 system-ui;
+  letter-spacing: 1.8px;
+}
+#team .professor-card h3 {
+  color: #fff2cc;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.15;
+  margin: 0 0 8px;
+  overflow-wrap: break-word;
+}
+#team .professor-card .full-name {
+  font: 700 14px/1.5 system-ui;
+  color: #e1e8c5;
+  margin: 0;
+}
+#team .professor-card .professor-note {
+  color: #f1ecd5;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 16px 0 0;
+  max-width: 480px;
+}
+#team .professor-card .mentor-message {
+  color: #f9e5b0;
+  border-left: 2px solid #b4c787;
+  padding-left: 12px;
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+#team .professor-card .profile-leaf {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  width: 70px;
+  height: 90px;
+  opacity: 0.55;
+  transform-origin: 20% 90%;
+}
+#team .profile-leaf svg {
+  width: 100%;
+  height: 100%;
+}
+#team .profile-leaf-top {
+  right: -10px;
+  top: -20px;
+  rotate: 80deg;
+}
+#team .profile-leaf-bottom {
+  right: 3px;
+  bottom: -30px;
+  rotate: -35deg;
+}
+@media (max-width: 780px) {
+  body.team-open .panel-layout {
+    padding-inline: 14px;
+  }
+  body.team-open .panel-inner {
+    padding: 22px 18px;
+  }
+  #team .professor-card {
+    grid-template-columns: 140px minmax(0, 1fr);
+    gap: 20px;
+    padding: 20px;
+  }
+  #team .professor-card h3 {
+    font-size: 25px;
+  }
+  #team .professor-card .professor-note {
+    font-size: 13px;
+  }
+}
+@media (max-width: 520px) {
+  #team .professor-card {
+    grid-template-columns: 110px minmax(0, 1fr);
+    gap: 14px;
+    padding: 16px;
+  }
+  #team .professor-card h3 {
+    font-size: 21px;
+  }
+}

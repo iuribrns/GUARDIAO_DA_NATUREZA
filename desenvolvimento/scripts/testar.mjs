@@ -67,7 +67,7 @@ try {
       'jogo/vida-em-equilibrio/validacao/rio.cjs',
       'jogo/revisao-paisagem/validacao/campanha.cjs',
       'tela-inicial/horizonte-vivo/validacao/horizonte.cjs',
-      'tela-inicial/equipe-2d/validacao/equipe.cjs',
+      'tela-inicial/equipe-retratos/validacao/professor.cjs',
       'jogo/vida-natural/validacao/fisica.cjs',
       'jogo/vida-natural/validacao/arte.cjs',
       'jogo/sprites-integros/validacao/quadros.cjs',
