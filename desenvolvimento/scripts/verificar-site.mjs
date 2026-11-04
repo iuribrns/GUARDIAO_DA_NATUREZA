@@ -141,3 +141,11 @@ assert.equal(meetings.scenes.length,6);assert.equal(meetings.crystals.frames.len
 for(const scene of meetings.scenes)for(const key of ['normal','blink'])assert.ok(existsSync(resolve(meetingsFolder,scene[key])));
 for(const file of [meetings.crystals.file,meetings.mount.file,'assets/madeira.svg','assets/folhas.svg','assets/papel.svg','relicario.js','olhares.js','colar.js','epilogo.js','interface.css'])assert.ok(existsSync(resolve(meetingsFolder,file)));
 console.log('PASS: seis encontros com contato visual e duas poses, cinco cristais com encaixes próprios, montura pintada, olhares nas fases e materiais sem deformação.');
+
+for (const file of ['controles.js', 'controles.css']) assert.ok(existsSync(resolve(root, 'jogo/nova-jornada', file)), 'nova jornada publicada: ' + file);
+for (const page of ['tela-inicial/nova-versao/index.html', 'tela-inicial/nova-versao/aventura.html', 'tela-inicial/nova-versao/configuracoes.html', 'tela-inicial/nova-versao/sobre.html', 'tela-inicial/renascimento/creditos.html', 'jogo/floresta-viva/index.html', 'jogo/jornada/index.html']) {
+  const html = readFileSync(resolve(root, page), 'utf8');
+  assert.ok(html.includes('nova-jornada/controles.js'), page + ' carrega os controles de tela e recomeço');
+  assert.ok(html.includes('nova-jornada/controles.css'), page + ' carrega a aparência dos controles');
+}
+console.log('PASS: nova jornada e tela cheia integradas nas sete entradas ativas, com caminhos relativos para Pages.');

@@ -61,7 +61,8 @@ try {
     // cobre agora os cinco percursos, seis destinos, inventário e toque/cancelamento,
     // incluindo a retirada das etapas de plantio e dos objetivos urbanos antigos.
     const suites = [
-      'jogo/encontros-da-floresta/validacao/interface.cjs',
+      'jogo/nova-jornada/validacao/interface.cjs',
+      'jogo/nova-jornada/validacao/controles.cjs',
       'jogo/encontros-da-floresta/validacao/arte.cjs',
       'jogo/encanto-natural/validacao/flora.cjs',
       'jogo/encanto-natural/validacao/destinos.cjs',
