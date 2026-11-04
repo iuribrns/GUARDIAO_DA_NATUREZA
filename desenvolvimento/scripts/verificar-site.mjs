@@ -88,7 +88,19 @@ for(const [type,entries]of Object.entries(audioManifest)){
     if(type==='music')assert.ok(song.duration>=95&&song.duration<=120,'trilha de duração completa');
   }
 }
-console.log('PASS: seis trilhas lo-fi originais, 12 efeitos e catálogo de áudio presentes no site.');
+console.log('PASS: catálogo anterior de áudio preservado no arquivo histórico.');
+const encantoAudio=JSON.parse(readFileSync(resolve(root,'jogo/encanto-natural/assets/manifesto.json'),'utf8'));
+assert.equal(new Set(Object.values(encantoAudio.music).map(s=>s.file)).size,1,'só uma música ativa');
+assert.equal(Object.keys(encantoAudio.effects).length,12);
+for(const entry of [...Object.values(encantoAudio.music),...Object.values(encantoAudio.effects)]){
+  assert.ok(existsSync(resolve(root,'jogo/encanto-natural/assets',entry.file)),'áudio novo publicado: '+entry.file);
+  assert.ok(entry.peak>0&&entry.peak<=.65,'margem de volume no áudio novo');
+}
+const encantoFlora=JSON.parse(readFileSync(resolve(root,'jogo/encanto-natural/assets/flora-atlas.json'),'utf8'));
+assert.equal(encantoFlora.frames.length,16);
+assert.ok(existsSync(resolve(root,'jogo/vida-natural/assets',encantoFlora.file)));
+for(const name of ['placa-verde','titulo','ramo','pergaminho','flora-retrato'])assert.ok(existsSync(resolve(root,'jogo/encanto-natural/assets',name+'.webp')));
+console.log('PASS: uma trilha acústica de aventura, 12 efeitos novos, 16 poses da Flora e quatro molduras pintadas.');
 
 const rebirth=JSON.parse(readFileSync(resolve(root,'tela-inicial/renascimento/assets/atlas.json'),'utf8'));
 assert.equal(rebirth.equipe.frames.length,12);assert.equal(rebirth.arvores.frames.length,4);

@@ -61,7 +61,9 @@ try {
     // cobre agora os cinco percursos, seis destinos, inventário e toque/cancelamento,
     // incluindo a retirada das etapas de plantio e dos objetivos urbanos antigos.
     const suites = [
-      'jogo/interface-viva/validacao/interface.cjs',
+      'jogo/encanto-natural/validacao/interface.cjs',
+      'jogo/encanto-natural/validacao/flora.cjs',
+      'jogo/encanto-natural/validacao/destinos.cjs',
       'jogo/revisao-paisagem/validacao/colisoes.cjs',
       'jogo/revisao-paisagem/validacao/plano.cjs',
       'jogo/vida-em-equilibrio/validacao/rio.cjs',
@@ -72,7 +74,7 @@ try {
       'jogo/vida-natural/validacao/arte.cjs',
       'jogo/sprites-integros/validacao/quadros.cjs',
       'jogo/agua-viva/validacao/agua.cjs',
-      'jogo/sons-da-natureza/validacao/audio.cjs',
+      'jogo/encanto-natural/validacao/audio.cjs',
       'jogo/colar-vivo/validacao/colar.cjs',
       ...(!production ? ['tela-inicial/nova-versao/validacao/transicoes.cjs','tela-inicial/efeitos-folhas/validacao/folhas.cjs'] : []),
       'tela-inicial/menu-vivo/validacao/menu.cjs',
