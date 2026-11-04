@@ -61,10 +61,11 @@ try {
     // cobre agora os cinco percursos, seis destinos, inventário e toque/cancelamento,
     // incluindo a retirada das etapas de plantio e dos objetivos urbanos antigos.
     const suites = [
-      'jogo/vida-em-equilibrio/validacao/interface.cjs',
-      'jogo/vida-em-equilibrio/validacao/plano.cjs',
+      'jogo/revisao-paisagem/validacao/interface.cjs',
+      'jogo/revisao-paisagem/validacao/colisoes.cjs',
+      'jogo/revisao-paisagem/validacao/plano.cjs',
       'jogo/vida-em-equilibrio/validacao/rio.cjs',
-      'jogo/vida-em-equilibrio/validacao/campanha.cjs',
+      'jogo/revisao-paisagem/validacao/campanha.cjs',
       'tela-inicial/horizonte-vivo/validacao/horizonte.cjs',
       'tela-inicial/equipe-2d/validacao/equipe.cjs',
       'jogo/vida-natural/validacao/fisica.cjs',

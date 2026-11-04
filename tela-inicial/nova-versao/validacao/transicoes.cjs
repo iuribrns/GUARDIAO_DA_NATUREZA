@@ -12,7 +12,7 @@ const fading = (page, phase) => page.waitForFunction(phase => {
   const opacity = Number(style.opacity);
   return opacity > .03 && opacity < .97 && style.animationName.startsWith('veil-fade-');
 }, phase);
-const options = { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true };
+const options = { viewport: { width: 844, height: 390 }, isMobile: true, hasTouch: true };
 
 (async () => {
   const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium', args: ['--no-sandbox'] });
@@ -103,7 +103,7 @@ const options = { viewport: { width: 390, height: 844 }, isMobile: true, hasTouc
 
   // O CSS principal também tem animation:none!important sob esta preferência.
   // Verifica opacidade intermediária real, não apenas a existência do elemento.
-  for (const viewport of [{ width: 390, height: 844 }, { width: 1280, height: 720 }]) {
+  for (const viewport of [{ width: 844, height: 390 }, { width: 1280, height: 720 }]) {
     const reduced = await browser.newPage({ ...options, viewport, reducedMotion: 'reduce' });
     reduced.on('pageerror', error => errors.push(error.message));
     await reduced.goto(home);
@@ -169,7 +169,7 @@ const options = { viewport: { width: 390, height: 844 }, isMobile: true, hasTouc
   await repeated.waitForTimeout(700);
   assert.ok(repeated.url().endsWith('aventura.html'));
 
-  for (const viewport of [{ width: 320, height: 740 }, { width: 667, height: 375 }, { width: 1280, height: 720 }]) {
+  for (const viewport of [{ width: 740, height: 320 }, { width: 667, height: 375 }, { width: 1280, height: 720 }]) {
     await page.setViewportSize(viewport);
     for (const file of ['index', 'configuracoes', 'sobre', 'aventura']) {
       await page.goto(`${base}${file}.html`);

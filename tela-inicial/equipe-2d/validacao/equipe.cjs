@@ -110,8 +110,8 @@ const base =
     for (const v of [
       { width: 1280, height: 900 },
       { width: 844, height: 390 },
-      { width: 390, height: 844 },
-      { width: 320, height: 740 },
+      { width: 667, height: 375 },
+      { width: 740, height: 320 },
     ]) {
       await p.setViewportSize(v);
       await p.clock.runFor(100);
@@ -263,7 +263,7 @@ const base =
       "corpo-inteiro-2d",
     );
     const phone = await b.newPage({
-      viewport: { width: 390, height: 844 },
+      viewport: { width: 667, height: 375 },
       isMobile: true,
       hasTouch: true,
     });
@@ -299,7 +299,7 @@ const base =
     await phone.close();
     assert.deepEqual(errors, []);
     console.log(
-      "PASS: oito sprites 2D completos, quatro poses reais por estudante, referências Pokémon ao lado, galeria horizontal em 320/390/844/1280px, toque/teclado, cumprimento, piscadas, mensagens temporárias, professor preservado e movimento reduzido.",
+      "PASS: oito sprites 2D completos, quatro poses reais por estudante, referências Pokémon ao lado, galeria horizontal em 667/740/844/1280px, toque/teclado, cumprimento, piscadas, mensagens temporárias, professor preservado e movimento reduzido.",
     );
   } finally {
     await b.close();

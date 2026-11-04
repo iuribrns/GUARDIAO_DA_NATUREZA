@@ -15,6 +15,7 @@ runInNewContext(
   sandbox,
 );
 runInNewContext(readFileSync(resolve(ROOT,"jogo/vida-em-equilibrio/conteudo.js"),"utf8"),sandbox);
+runInNewContext(readFileSync(resolve(ROOT,"jogo/revisao-paisagem/elenco.js"),"utf8"),sandbox);sandbox.GuardiaoElenco=sandbox.window.GuardiaoElenco;sandbox.GuardiaoFasesJogaveis=sandbox.window.GuardiaoFasesJogaveis;runInNewContext(readFileSync(resolve(ROOT,"jogo/revisao-paisagem/geometria.js"),"utf8"),sandbox);
 const phases = JSON.parse(JSON.stringify(sandbox.window.GuardiaoFasesJogaveis));
 const base = new URL(
   "../../",
@@ -88,11 +89,11 @@ function fixture(id) {
     // These isolated saves exercise the cutscene. Existing campaign tests earn every objective by playing.
     for (const test of [
       { id: 1, w: 1280, h: 720 },
-      { id: 2, w: 320, h: 740 },
-      { id: 3, w: 390, h: 844 },
+      { id: 2, w: 740, h: 320 },
+      { id: 3, w: 844, h: 390 },
       { id: 4, w: 844, h: 390, reduced: true },
       { id: 5, w: 1280, h: 720 },
-      { id: 2, w: 390, h: 844, skip: true },
+      { id: 2, w: 844, h: 390, skip: true },
     ]) {
       const { id, w, h, reduced = false, skip = false } = test,
         context = await browser.newContext({

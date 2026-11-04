@@ -186,7 +186,7 @@ async function guideFire(p) {
     await p.keyboard.up(" ");
     await p.close();
     for (const viewport of [
-      { width: 320, height: 740 },
+      { width: 740, height: 320 },
       { width: 844, height: 390 },
     ]) {
       const phone = await browser.newPage({

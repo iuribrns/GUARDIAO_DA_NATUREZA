@@ -55,7 +55,7 @@ const ready = page => page.waitForFunction(() => window.GuardiaoFolhas && (docum
     assert.equal(await page.locator('.living-leaves').isVisible(),false);
     assert.equal(await page.evaluate(()=>localStorage.getItem('guardiao.mapa.progresso.v1')),null,'interações do menu não inventam progresso');
 
-    for (const viewport of [{width:320,height:740},{width:390,height:844},{width:844,height:390}]) {
+    for (const viewport of [{width: 740, height: 320},{width: 844, height: 390},{width:844,height:390}]) {
       const phone = await browser.newPage({viewport,isMobile:true,hasTouch:true}); collect(phone);
       for (const file of ['index','configuracoes','sobre']) {
         await phone.goto(base+file+'.html'); await ready(phone);

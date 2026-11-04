@@ -244,7 +244,7 @@ const waitMusic = (p) =>
     }
     // Touch activation and saved mute settings on mobile.
     const phone = await browser.newPage({
-      viewport: { width: 390, height: 844 },
+      viewport: { width: 844, height: 390 },
       isMobile: true,
       hasTouch: true,
     });
@@ -263,7 +263,7 @@ const waitMusic = (p) =>
       KEY,
     );
     await phone.goto(new URL("configuracoes.html", base).href);
-    await phone.locator("h1").tap();
+    await phone.locator("#page-title").tap();
     assert.equal((await state(phone)).context, "none");
     assert.equal(await phone.locator("#music").isChecked(), false);
     await phone.locator("#music").tap();

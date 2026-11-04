@@ -71,9 +71,9 @@ const base =
     await p.waitForURL("**/configuracoes.html");
     for (const v of [
       { width: 1280, height: 720 },
-      { width: 390, height: 844 },
-      { width: 320, height: 740 },
       { width: 844, height: 390 },
+      { width: 740, height: 320 },
+      { width: 1024, height: 768 },
       { width: 667, height: 375 },
     ]) {
       await p.setViewportSize(v);

@@ -9,7 +9,7 @@ const ready = page => page.waitForFunction(() => !document.querySelector('.navig
   const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium', args: ['--no-sandbox'] });
   try {
     const errors = [];
-    for (const viewport of [{ width: 1280, height: 720 }, { width: 390, height: 844 }]) {
+    for (const viewport of [{ width: 1280, height: 720 }, { width: 568, height: 320 }]) {
       const mobile = viewport.width < 651;
       const page = await browser.newPage({ viewport, isMobile: mobile, hasTouch: mobile });
       page.on('pageerror', error => errors.push(error.message));
