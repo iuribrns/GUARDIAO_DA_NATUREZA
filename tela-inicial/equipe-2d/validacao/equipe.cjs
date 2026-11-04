@@ -131,18 +131,15 @@ const base =
           scrolls:
             document.getElementById("team-gallery").scrollWidth >
             document.getElementById("team-gallery").clientWidth + 5,
-          pairs: [...document.querySelectorAll(".student-card")].map((card) => {
-            const actor = card
+          portraitsFit: [...document.querySelectorAll(".student-card")].every(
+            (card) => {
+              const a = card
                 .querySelector(".student-actor")
-                .getBoundingClientRect(),
-              ref = card
-                .querySelector(".pokemon-partner")
                 .getBoundingClientRect();
-            return {
-              side: ref.x >= actor.right - 2,
-              visible: ref.width > 65 && actor.width > 85,
-            };
-          }),
+              const r = card.getBoundingClientRect();
+              return a.width > 85 && a.left >= r.left && a.right <= r.right;
+            },
+          ),
         };
       });
       assert.ok(
@@ -150,8 +147,8 @@ const base =
         "estudantes na horizontal em " + v.width,
       );
       assert.ok(
-        layout.pairs.every((p) => p.side && p.visible),
-        "referências grandes ao lado dos bonecos em " + v.width,
+        layout.portraitsFit,
+        "retratos contidos nos cartões em " + v.width,
       );
       assert.equal(layout.scrolls, v.width < 781);
       if (v.width < 781) {
@@ -195,22 +192,6 @@ const base =
     await p.clock.runFor(3600);
     assert.equal(await p.locator("#team-greeting").isVisible(), false);
     await p
-      .getByRole("button", {
-        name: "Ver referência Decidueye ao lado de Hicham",
-        exact: true,
-      })
-      .click();
-    await p.clock.runFor(100);
-    assert.equal(
-      await p.locator('[data-person="hicham"]').getAttribute("data-frame"),
-      "6",
-    );
-    assert.ok(
-      (await p.locator("#team-greeting").textContent()).includes(
-        "referências visuais",
-      ),
-    );
-    await p
       .getByRole("button", { name: "Cumprimentar Hicham", exact: true })
       .focus();
     await p.keyboard.press("Enter");
@@ -229,12 +210,10 @@ const base =
       await p.locator('[data-person="hicham"]').getAttribute("data-frame"),
       "4",
     );
-    assert.equal(
-      await p
-        .locator(".pokemon-partner img")
-        .first()
-        .evaluate((e) => getComputedStyle(e).animationName),
-      "none",
+    assert.equal(await p.locator(".pokemon-partner").count(), 0);
+    assert.doesNotMatch(
+      await p.locator("#team").textContent(),
+      /Rowlet|Decidueye|Pokémon/i,
     );
     assert.equal(
       await p.locator('[data-person="peterson"]').getAttribute("data-frame"),
@@ -299,7 +278,7 @@ const base =
     await phone.close();
     assert.deepEqual(errors, []);
     console.log(
-      "PASS: oito sprites 2D completos, quatro poses reais por estudante, referências Pokémon ao lado, galeria horizontal em 667/740/844/1280px, toque/teclado, cumprimento, piscadas, mensagens temporárias, professor preservado e movimento reduzido.",
+      "PASS: oito sprites 2D completos, quatro poses reais por estudante, seção sem referências Pokémon, galeria horizontal em 667/740/844/1280px, toque/teclado, cumprimento, piscadas, mensagens temporárias, professor preservado e movimento reduzido.",
     );
   } finally {
     await b.close();
