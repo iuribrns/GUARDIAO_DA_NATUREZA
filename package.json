@@ -11,11 +11,11 @@
     "dev": "vite --config desenvolvimento/vite.config.mjs",
     "build": "vite build --config desenvolvimento/vite.config.mjs",
     "preview": "vite preview --config desenvolvimento/vite.config.mjs",
-    "test": "node desenvolvimento/scripts/testar.mjs",
+    "test": "node desenvolvimento/raizes/testar.mjs",
     "check:tools": "node desenvolvimento/scripts/verificar-ferramentas.mjs",
     "tools:install": "python3 desenvolvimento/scripts/instalar-editores.py",
-    "test:build": "node desenvolvimento/scripts/testar.mjs --production",
-    "check:site": "node desenvolvimento/scripts/verificar-site.mjs",
+    "test:build": "node desenvolvimento/raizes/testar.mjs --production",
+    "check:site": "node desenvolvimento/raizes/verificar-site.mjs",
     "format:campaign": "prettier --write jogo/jornada/{fases,navegacao,sprites,jornada}.js jogo/jornada/jornada.css jogo/sistemas/{arte,controles,icones,progresso}.js jogo/sistemas/controles.css tela-inicial/campanha/*.{js,css}"
   },
   "dependencies": {

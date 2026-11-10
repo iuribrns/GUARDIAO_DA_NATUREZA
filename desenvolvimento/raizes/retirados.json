@@ -1,0 +1,1083 @@
+{
+  "previousCommit": "7153220fdb16630b062c1114359d2fe0cd1c165b",
+  "reason": "Arquivos binários históricos fora do fluxo publicado e substituídos pelas artes usadas nas cinco fases. Código e fontes de criação preservados.",
+  "files": [
+    {
+      "file": "assets/identidade-flora/flora-16.png",
+      "bytes": 1236
+    },
+    {
+      "file": "assets/identidade-flora/flora-180.png",
+      "bytes": 48341
+    },
+    {
+      "file": "assets/identidade-flora/flora-48.png",
+      "bytes": 5864
+    },
+    {
+      "file": "assets/identidade-flora/flora-original.png",
+      "bytes": 1399574
+    },
+    {
+      "file": "assets/itens-remodelados/itens/01_icones.png",
+      "bytes": 1569226
+    },
+    {
+      "file": "assets/itens-remodelados/kai/02_kit_medico.png",
+      "bytes": 1631594
+    },
+    {
+      "file": "assets/itens-remodelados/kai/03_sementes.png",
+      "bytes": 1645081
+    },
+    {
+      "file": "assets/itens-remodelados/kai/04_regador.png",
+      "bytes": 1700789
+    },
+    {
+      "file": "assets/itens-remodelados/kai/05_sacola.png",
+      "bytes": 1722165
+    },
+    {
+      "file": "assets/itens-remodelados/kai/06_luvas.png",
+      "bytes": 1714216
+    },
+    {
+      "file": "assets/itens-remodelados/kai/07_racao.png",
+      "bytes": 1641380
+    },
+    {
+      "file": "assets/itens-remodelados/kai/08_rede.png",
+      "bytes": 1818564
+    },
+    {
+      "file": "assets/itens-remodelados/mochila/01_estados.png",
+      "bytes": 1673750
+    },
+    {
+      "file": "assets/otimizados/01_npcs_dialogo-107886c8fbd1.webp",
+      "bytes": 456248
+    },
+    {
+      "file": "assets/otimizados/01_progressao-5e2a3ff090d7.webp",
+      "bytes": 404100
+    },
+    {
+      "file": "assets/otimizados/02_encaixe_e_transformacao-6469a8b805d2.webp",
+      "bytes": 544630
+    },
+    {
+      "file": "assets/otimizados/02_kai_dialogo-9083e324ba39.webp",
+      "bytes": 299814
+    },
+    {
+      "file": "assets/otimizados/03_painel_sem_texto-d49a5da375ed.webp",
+      "bytes": 201414
+    },
+    {
+      "file": "assets/otimizados/03_pecas_e_base-48faad262472.webp",
+      "bytes": 165602
+    },
+    {
+      "file": "assets/otimizados/04_botoes_e_componentes-adea2b3accbd.webp",
+      "bytes": 219046
+    },
+    {
+      "file": "assets/otimizados/04_kai_recebendo_colar-bfb2d7e63073.webp",
+      "bytes": 466462
+    },
+    {
+      "file": "assets/otimizados/05_encaixes_fases_2_a_5-9562faab704f.webp",
+      "bytes": 416456
+    },
+    {
+      "file": "assets/otimizados/05_equipamentos_e_recompensas-de19e7e5fa5a.webp",
+      "bytes": 368650
+    },
+    {
+      "file": "assets/otimizados/animais-fauna-andando-30ad0a98eda3.webp",
+      "bytes": 536028
+    },
+    {
+      "file": "assets/otimizados/animais-fauna-b6580d117a40.webp",
+      "bytes": 471688
+    },
+    {
+      "file": "assets/otimizados/animais-rio-0d1f8f89e369.webp",
+      "bytes": 324142
+    },
+    {
+      "file": "assets/otimizados/capivara-suave-844a858538c3.webp",
+      "bytes": 279370
+    },
+    {
+      "file": "assets/otimizados/carlos-vermelho-bc809df1aa4a.webp",
+      "bytes": 277936
+    },
+    {
+      "file": "assets/otimizados/cervo-suave-25ad3fb1170f.webp",
+      "bytes": 399532
+    },
+    {
+      "file": "assets/otimizados/festa-da-floresta-1e920b256270.webp",
+      "bytes": 486340
+    },
+    {
+      "file": "assets/otimizados/flora-16-97574bec9a16.webp",
+      "bytes": 536
+    },
+    {
+      "file": "assets/otimizados/flora-32-f491243a1f37.webp",
+      "bytes": 1302
+    },
+    {
+      "file": "assets/otimizados/flora-48-42205eed98d6.webp",
+      "bytes": 2222
+    },
+    {
+      "file": "assets/otimizados/flora-original-7302e6715183.webp",
+      "bytes": 167912
+    },
+    {
+      "file": "assets/otimizados/flora-poses-783734c861ac.webp",
+      "bytes": 338566
+    },
+    {
+      "file": "assets/otimizados/flora-suave-dd67f11afef6.webp",
+      "bytes": 393162
+    },
+    {
+      "file": "assets/otimizados/floresta-ilustrada-ca31cffff4a3.webp",
+      "bytes": 563766
+    },
+    {
+      "file": "assets/otimizados/floresta-modelo-ecb6a1ebe3f6.webp",
+      "bytes": 361884
+    },
+    {
+      "file": "assets/otimizados/floresta-restaurada-60ff764a4b71.webp",
+      "bytes": 544592
+    },
+    {
+      "file": "assets/otimizados/fogo-suave-ee27995891b8.webp",
+      "bytes": 391630
+    },
+    {
+      "file": "assets/otimizados/folhas-sprites-dc0703caf7d4.webp",
+      "bytes": 149760
+    },
+    {
+      "file": "assets/otimizados/horizonte-kai-flora-447e88cae303.webp",
+      "bytes": 320092
+    },
+    {
+      "file": "assets/otimizados/icones-b06650070bb8.webp",
+      "bytes": 504964
+    },
+    {
+      "file": "assets/otimizados/ilha-restaurada-f89dd00d7eb4.webp",
+      "bytes": 506332
+    },
+    {
+      "file": "assets/otimizados/ilha-viva-c81b3e75bcea.webp",
+      "bytes": 502628
+    },
+    {
+      "file": "assets/otimizados/itens-vermelhos-bbb77e54a6b6.webp",
+      "bytes": 344084
+    },
+    {
+      "file": "assets/otimizados/kai-caminhada-suave-e5a8badc5a4d.webp",
+      "bytes": 507142
+    },
+    {
+      "file": "assets/otimizados/kai-cuida-da-natureza-8d4e0b7b1884.webp",
+      "bytes": 390550
+    },
+    {
+      "file": "assets/otimizados/kai-cuidados-suave-b56ebc07daff.webp",
+      "bytes": 400780
+    },
+    {
+      "file": "assets/otimizados/kai-floresta-cadc96bcf122.webp",
+      "bytes": 515328
+    },
+    {
+      "file": "assets/otimizados/kai-livre-2a780e2ee1c6.webp",
+      "bytes": 505188
+    },
+    {
+      "file": "assets/otimizados/kai-mangueira-suave-6c1802681685.webp",
+      "bytes": 511292
+    },
+    {
+      "file": "assets/otimizados/kai-nadando-c16c95e3a7c0.webp",
+      "bytes": 647690
+    },
+    {
+      "file": "assets/otimizados/kai-plantio-2f09fe7cf245.webp",
+      "bytes": 539208
+    },
+    {
+      "file": "assets/otimizados/kai-recompensa-vermelha-2ebe7f054d33.webp",
+      "bytes": 452204
+    },
+    {
+      "file": "assets/otimizados/kai-repouso-1ca616974995.webp",
+      "bytes": 355204
+    },
+    {
+      "file": "assets/otimizados/kai-repouso-suave-09f210bdbf02.webp",
+      "bytes": 368806
+    },
+    {
+      "file": "assets/otimizados/kai-rio-3455cd21178c.webp",
+      "bytes": 555222
+    },
+    {
+      "file": "assets/otimizados/mapa-cidade-f4c69f61fa04.webp",
+      "bytes": 598256
+    },
+    {
+      "file": "assets/otimizados/mapa-cidade-restaurado-1e6b5a1bc37f.webp",
+      "bytes": 623096
+    },
+    {
+      "file": "assets/otimizados/mapa-fauna-64cf0f512e24.webp",
+      "bytes": 617300
+    },
+    {
+      "file": "assets/otimizados/mapa-fauna-restaurado-c4ca2389304e.webp",
+      "bytes": 586856
+    },
+    {
+      "file": "assets/otimizados/mapa-plantio-d39478f86701.webp",
+      "bytes": 552198
+    },
+    {
+      "file": "assets/otimizados/mapa-plantio-restaurado-a1e026f0c23f.webp",
+      "bytes": 602184
+    },
+    {
+      "file": "assets/otimizados/mapa-rio-f0a5c324fce7.webp",
+      "bytes": 551750
+    },
+    {
+      "file": "assets/otimizados/mapa-rio-restaurado-008e1d91eace.webp",
+      "bytes": 551558
+    },
+    {
+      "file": "assets/otimizados/natureza-suave-6c6e1f007ff1.webp",
+      "bytes": 526894
+    },
+    {
+      "file": "assets/otimizados/objetos-98df3395e246.webp",
+      "bytes": 516068
+    },
+    {
+      "file": "assets/otimizados/passaro-suave-20523a4338eb.webp",
+      "bytes": 264558
+    },
+    {
+      "file": "assets/otimizados/recompensa-amarelo-047c2f5bbd67.webp",
+      "bytes": 450536
+    },
+    {
+      "file": "assets/otimizados/recompensa-azul-78beea59a156.webp",
+      "bytes": 447934
+    },
+    {
+      "file": "assets/otimizados/recompensa-verde-bcfc11003a84.webp",
+      "bytes": 451376
+    },
+    {
+      "file": "assets/otimizados/recompensa-violeta-fc5ff22c62d6.webp",
+      "bytes": 446548
+    },
+    {
+      "file": "assets/otimizados/titulo-guardiao-0887371a904b.webp",
+      "bytes": 375804
+    },
+    {
+      "file": "assets/personagens/kai/animacoes/kai-acoes.png",
+      "bytes": 2514946
+    },
+    {
+      "file": "assets/personagens/kai/animacoes/kai-caminhada.png",
+      "bytes": 2258913
+    },
+    {
+      "file": "jogo/area-aberta/assets/escadaria.png",
+      "bytes": 1713286
+    },
+    {
+      "file": "jogo/area-aberta/assets/floresta.png",
+      "bytes": 3547190
+    },
+    {
+      "file": "jogo/area-aberta/assets/fogo.png",
+      "bytes": 2403069
+    },
+    {
+      "file": "jogo/area-aberta/assets/habitantes.png",
+      "bytes": 1092016
+    },
+    {
+      "file": "jogo/area-aberta/assets/kai-direcoes.png",
+      "bytes": 2306777
+    },
+    {
+      "file": "jogo/colar-vivo/assets/colar-vazio.webp",
+      "bytes": 237888
+    },
+    {
+      "file": "jogo/encontros-da-floresta/assets/encontro-1-olhar.webp",
+      "bytes": 90410
+    },
+    {
+      "file": "jogo/encontros-da-floresta/assets/encontro-1-piscada.webp",
+      "bytes": 86182
+    },
+    {
+      "file": "jogo/encontros-da-floresta/assets/encontro-2-olhar.webp",
+      "bytes": 96846
+    },
+    {
+      "file": "jogo/encontros-da-floresta/assets/encontro-2-piscada.webp",
+      "bytes": 89282
+    },
+    {
+      "file": "jogo/encontros-da-floresta/assets/encontro-3-olhar.webp",
+      "bytes": 93758
+    },
+    {
+      "file": "jogo/encontros-da-floresta/assets/encontro-3-piscada.webp",
+      "bytes": 90284
+    },
+    {
+      "file": "jogo/encontros-da-floresta/assets/encontro-4-olhar.webp",
+      "bytes": 104254
+    },
+    {
+      "file": "jogo/encontros-da-floresta/assets/encontro-4-piscada.webp",
+      "bytes": 99832
+    },
+    {
+      "file": "jogo/encontros-da-floresta/assets/encontro-5-olhar.webp",
+      "bytes": 93782
+    },
+    {
+      "file": "jogo/encontros-da-floresta/assets/encontro-5-piscada.webp",
+      "bytes": 89282
+    },
+    {
+      "file": "jogo/encontros-da-floresta/assets/encontro-6-olhar.webp",
+      "bytes": 73648
+    },
+    {
+      "file": "jogo/encontros-da-floresta/assets/encontro-6-piscada.webp",
+      "bytes": 69990
+    },
+    {
+      "file": "jogo/floresta-viva/assets/capivara.png",
+      "bytes": 1234828
+    },
+    {
+      "file": "jogo/floresta-viva/assets/carlos.png",
+      "bytes": 1235497
+    },
+    {
+      "file": "jogo/floresta-viva/assets/cervo.png",
+      "bytes": 1260229
+    },
+    {
+      "file": "jogo/floresta-viva/assets/flora.png",
+      "bytes": 1512179
+    },
+    {
+      "file": "jogo/floresta-viva/assets/floresta-queimada.png",
+      "bytes": 4125305
+    },
+    {
+      "file": "jogo/floresta-viva/assets/floresta-recuperada.png",
+      "bytes": 3935564
+    },
+    {
+      "file": "jogo/floresta-viva/assets/itens.png",
+      "bytes": 1255053
+    },
+    {
+      "file": "jogo/floresta-viva/assets/kai-caminhada.png",
+      "bytes": 1820025
+    },
+    {
+      "file": "jogo/floresta-viva/assets/kai-mangueira.png",
+      "bytes": 1803443
+    },
+    {
+      "file": "jogo/floresta-viva/assets/kai-recompensa.png",
+      "bytes": 1784513
+    },
+    {
+      "file": "jogo/floresta-viva/assets/kai-repouso.png",
+      "bytes": 1482124
+    },
+    {
+      "file": "jogo/floresta-viva/assets/natureza.png",
+      "bytes": 2483678
+    },
+    {
+      "file": "jogo/floresta-viva/assets/passaro.png",
+      "bytes": 992854
+    },
+    {
+      "file": "jogo/floresta-viva/revisao/assets/capivara-suave.png",
+      "bytes": 1374928
+    },
+    {
+      "file": "jogo/floresta-viva/revisao/assets/carlos-vermelho.png",
+      "bytes": 1274604
+    },
+    {
+      "file": "jogo/floresta-viva/revisao/assets/cervo-suave.png",
+      "bytes": 1411784
+    },
+    {
+      "file": "jogo/floresta-viva/revisao/assets/flora-suave.png",
+      "bytes": 1669167
+    },
+    {
+      "file": "jogo/floresta-viva/revisao/assets/floresta-ilustrada.png",
+      "bytes": 3606950
+    },
+    {
+      "file": "jogo/floresta-viva/revisao/assets/floresta-restaurada.png",
+      "bytes": 3489224
+    },
+    {
+      "file": "jogo/floresta-viva/revisao/assets/fogo-suave.png",
+      "bytes": 1116593
+    },
+    {
+      "file": "jogo/floresta-viva/revisao/assets/itens-vermelhos.png",
+      "bytes": 1311123
+    },
+    {
+      "file": "jogo/floresta-viva/revisao/assets/kai-caminhada-suave.png",
+      "bytes": 1939681
+    },
+    {
+      "file": "jogo/floresta-viva/revisao/assets/kai-cuidados-suave.png",
+      "bytes": 2395847
+    },
+    {
+      "file": "jogo/floresta-viva/revisao/assets/kai-mangueira-suave.png",
+      "bytes": 1976579
+    },
+    {
+      "file": "jogo/floresta-viva/revisao/assets/kai-recompensa-vermelha.png",
+      "bytes": 1851010
+    },
+    {
+      "file": "jogo/floresta-viva/revisao/assets/kai-repouso-suave.png",
+      "bytes": 1564719
+    },
+    {
+      "file": "jogo/floresta-viva/revisao/assets/natureza-suave.png",
+      "bytes": 2688474
+    },
+    {
+      "file": "jogo/floresta-viva/revisao/assets/passaro-suave.png",
+      "bytes": 1169119
+    },
+    {
+      "file": "jogo/jornada/assets/animais-fauna-andando.png",
+      "bytes": 1827319
+    },
+    {
+      "file": "jogo/jornada/assets/animais-fauna.png",
+      "bytes": 1695889
+    },
+    {
+      "file": "jogo/jornada/assets/animais-rio.png",
+      "bytes": 2184776
+    },
+    {
+      "file": "jogo/jornada/assets/icones.png",
+      "bytes": 1915844
+    },
+    {
+      "file": "jogo/jornada/assets/kai-floresta.png",
+      "bytes": 2004253
+    },
+    {
+      "file": "jogo/jornada/assets/kai-livre.png",
+      "bytes": 1881241
+    },
+    {
+      "file": "jogo/jornada/assets/kai-nadando.png",
+      "bytes": 2211829
+    },
+    {
+      "file": "jogo/jornada/assets/kai-plantio.png",
+      "bytes": 2097911
+    },
+    {
+      "file": "jogo/jornada/assets/kai-rio.png",
+      "bytes": 2152456
+    },
+    {
+      "file": "jogo/jornada/assets/mapa-cidade-restaurado.png",
+      "bytes": 3729615
+    },
+    {
+      "file": "jogo/jornada/assets/mapa-cidade.png",
+      "bytes": 3714704
+    },
+    {
+      "file": "jogo/jornada/assets/mapa-fauna-restaurado.png",
+      "bytes": 3557779
+    },
+    {
+      "file": "jogo/jornada/assets/mapa-fauna.png",
+      "bytes": 3714952
+    },
+    {
+      "file": "jogo/jornada/assets/mapa-plantio-restaurado.png",
+      "bytes": 3606404
+    },
+    {
+      "file": "jogo/jornada/assets/mapa-plantio.png",
+      "bytes": 3522595
+    },
+    {
+      "file": "jogo/jornada/assets/mapa-rio-restaurado.png",
+      "bytes": 3490110
+    },
+    {
+      "file": "jogo/jornada/assets/mapa-rio.png",
+      "bytes": 3539941
+    },
+    {
+      "file": "jogo/jornada/assets/objetos.png",
+      "bytes": 1905173
+    },
+    {
+      "file": "jogo/jornada/assets/recompensa-amarelo.png",
+      "bytes": 1824577
+    },
+    {
+      "file": "jogo/jornada/assets/recompensa-azul.png",
+      "bytes": 1829828
+    },
+    {
+      "file": "jogo/jornada/assets/recompensa-verde.png",
+      "bytes": 1859699
+    },
+    {
+      "file": "jogo/jornada/assets/recompensa-violeta.png",
+      "bytes": 1834006
+    },
+    {
+      "file": "jogo/novo-amanha/assets/amanha-equipe-2d.webp",
+      "bytes": 483440
+    },
+    {
+      "file": "jogo/novo-amanha/assets/amanha-fauna-brasileira.webp",
+      "bytes": 563688
+    },
+    {
+      "file": "jogo/novo-amanha/assets/amanha-moradores.webp",
+      "bytes": 609860
+    },
+    {
+      "file": "jogo/novo-amanha/assets/amanha-reencontros.webp",
+      "bytes": 644668
+    },
+    {
+      "file": "jogo/novo-amanha/assets/amanha-traje-acoes.webp",
+      "bytes": 666042
+    },
+    {
+      "file": "jogo/novo-amanha/assets/amanha-traje-andar.webp",
+      "bytes": 574768
+    },
+    {
+      "file": "jogo/novo-amanha/assets/amanha-traje-nadar.webp",
+      "bytes": 624260
+    },
+    {
+      "file": "jogo/novo-amanha/assets/amanha-uniforme-plantio.webp",
+      "bytes": 526154
+    },
+    {
+      "file": "jogo/novo-amanha/assets/amanha-uniforme-resgate.webp",
+      "bytes": 597626
+    },
+    {
+      "file": "jogo/novo-amanha/assets/amanha-uniforme-voluntario.webp",
+      "bytes": 536412
+    },
+    {
+      "file": "jogo/novo-amanha/assets/ilha-degradada-celular.webp",
+      "bytes": 618794
+    },
+    {
+      "file": "jogo/novo-amanha/assets/ilha-degradada.webp",
+      "bytes": 598624
+    },
+    {
+      "file": "jogo/renascimento/assets/cidade.webp",
+      "bytes": 696842
+    },
+    {
+      "file": "jogo/renascimento/assets/fauna.webp",
+      "bytes": 683484
+    },
+    {
+      "file": "jogo/renascimento/assets/floresta.webp",
+      "bytes": 624910
+    },
+    {
+      "file": "jogo/renascimento/assets/plantio.webp",
+      "bytes": 664200
+    },
+    {
+      "file": "jogo/renascimento/assets/renascimento-arvores.webp",
+      "bytes": 595824
+    },
+    {
+      "file": "jogo/renascimento/assets/rio.webp",
+      "bytes": 620338
+    },
+    {
+      "file": "jogo/revisao-paisagem/assets/paisagem-plantas.webp",
+      "bytes": 776566
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/agua-liberada.mp3",
+      "bytes": 5346
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/cidade.mp3",
+      "bytes": 1213570
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/coletar.mp3",
+      "bytes": 3885
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/fauna.mp3",
+      "bytes": 1246163
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/floresta.mp3",
+      "bytes": 1280962
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/mangueira.mp3",
+      "bytes": 24578
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/menu.mp3",
+      "bytes": 1317640
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/nadar.mp3",
+      "bytes": 2424
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/passo.mp3",
+      "bytes": 1585
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/plantar.mp3",
+      "bytes": 4721
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/plantio.mp3",
+      "bytes": 1397257
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/receber.mp3",
+      "bytes": 6601
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/resgate.mp3",
+      "bytes": 10158
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/restaurar.mp3",
+      "bytes": 9948
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/rio.mp3",
+      "bytes": 1356194
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/tentar.mp3",
+      "bytes": 3055
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/toque.mp3",
+      "bytes": 2004
+    },
+    {
+      "file": "jogo/sons-da-natureza/assets/vitoria.mp3",
+      "bytes": 19776
+    },
+    {
+      "file": "jogo/sprites-integros/assets/campanha-animais-fauna-andando.webp",
+      "bytes": 643432
+    },
+    {
+      "file": "jogo/sprites-integros/assets/campanha-animais-fauna.webp",
+      "bytes": 571928
+    },
+    {
+      "file": "jogo/sprites-integros/assets/campanha-animais-rio.webp",
+      "bytes": 484520
+    },
+    {
+      "file": "jogo/sprites-integros/assets/campanha-kai-floresta.webp",
+      "bytes": 581744
+    },
+    {
+      "file": "jogo/sprites-integros/assets/campanha-kai-nadando.webp",
+      "bytes": 706816
+    },
+    {
+      "file": "jogo/sprites-integros/assets/campanha-kai-plantio.webp",
+      "bytes": 708366
+    },
+    {
+      "file": "jogo/sprites-integros/assets/campanha-kai-rio.webp",
+      "bytes": 725906
+    },
+    {
+      "file": "jogo/sprites-integros/assets/campanha-npcs.webp",
+      "bytes": 607084
+    },
+    {
+      "file": "jogo/sprites-integros/assets/campanha-objetos.webp",
+      "bytes": 658548
+    },
+    {
+      "file": "jogo/sprites-integros/assets/colar-kai-vestindo.webp",
+      "bytes": 458826
+    },
+    {
+      "file": "jogo/sprites-integros/assets/floresta-capivara.webp",
+      "bytes": 384658
+    },
+    {
+      "file": "jogo/sprites-integros/assets/floresta-carlos.webp",
+      "bytes": 400642
+    },
+    {
+      "file": "jogo/sprites-integros/assets/floresta-cervo.webp",
+      "bytes": 471808
+    },
+    {
+      "file": "jogo/sprites-integros/assets/floresta-itens.webp",
+      "bytes": 433692
+    },
+    {
+      "file": "jogo/sprites-integros/assets/floresta-kai-cuidados.webp",
+      "bytes": 578872
+    },
+    {
+      "file": "jogo/sprites-integros/assets/floresta-kai-mangueira.webp",
+      "bytes": 670570
+    },
+    {
+      "file": "jogo/sprites-integros/assets/floresta-kai-repouso.webp",
+      "bytes": 490998
+    },
+    {
+      "file": "jogo/sprites-integros/assets/floresta-natureza.webp",
+      "bytes": 739594
+    },
+    {
+      "file": "jogo/sprites-integros/assets/floresta-passaro.webp",
+      "bytes": 365500
+    },
+    {
+      "file": "jogo/sprites-integros/assets/vida-flora.webp",
+      "bytes": 660096
+    },
+    {
+      "file": "jogo/sprites-integros/assets/vida-fogo.webp",
+      "bytes": 462980
+    },
+    {
+      "file": "jogo/sprites-integros/assets/vida-kai-andando.webp",
+      "bytes": 1131162
+    },
+    {
+      "file": "jogo/sprites-integros/assets/vida-kai-mangueira.webp",
+      "bytes": 809080
+    },
+    {
+      "file": "jogo/vida-em-equilibrio/assets/equilibrio-fauna-copa.webp",
+      "bytes": 478588
+    },
+    {
+      "file": "jogo/vida-em-equilibrio/assets/equilibrio-fauna-grande.webp",
+      "bytes": 545174
+    },
+    {
+      "file": "jogo/vida-em-equilibrio/assets/equilibrio-kai-acoes.webp",
+      "bytes": 550614
+    },
+    {
+      "file": "jogo/vida-em-equilibrio/assets/equilibrio-vida-rio.webp",
+      "bytes": 540714
+    },
+    {
+      "file": "jogo/vida-em-equilibrio/assets/mapa-celular.webp",
+      "bytes": 586878
+    },
+    {
+      "file": "jogo/vida-em-equilibrio/assets/mapa.webp",
+      "bytes": 527242
+    },
+    {
+      "file": "jogo/vida-natural/assets/cidade-inicio.webp",
+      "bytes": 599498
+    },
+    {
+      "file": "jogo/vida-natural/assets/cidade-restaurado.webp",
+      "bytes": 630044
+    },
+    {
+      "file": "jogo/vida-natural/assets/fauna-inicio.webp",
+      "bytes": 625418
+    },
+    {
+      "file": "jogo/vida-natural/assets/fauna-restaurado.webp",
+      "bytes": 595748
+    },
+    {
+      "file": "jogo/vida-natural/assets/flora.webp",
+      "bytes": 480982
+    },
+    {
+      "file": "jogo/vida-natural/assets/floresta-inicio.webp",
+      "bytes": 570136
+    },
+    {
+      "file": "jogo/vida-natural/assets/floresta-restaurado.webp",
+      "bytes": 560108
+    },
+    {
+      "file": "jogo/vida-natural/assets/fogo.webp",
+      "bytes": 405620
+    },
+    {
+      "file": "jogo/vida-natural/assets/kai-andando.webp",
+      "bytes": 690290
+    },
+    {
+      "file": "jogo/vida-natural/assets/kai-mangueira.webp",
+      "bytes": 664404
+    },
+    {
+      "file": "jogo/vida-natural/assets/plantio-inicio.webp",
+      "bytes": 550290
+    },
+    {
+      "file": "jogo/vida-natural/assets/plantio-restaurado.webp",
+      "bytes": 608548
+    },
+    {
+      "file": "jogo/vida-natural/assets/rio-inicio.webp",
+      "bytes": 561362
+    },
+    {
+      "file": "jogo/vida-natural/assets/rio-restaurado.webp",
+      "bytes": 561620
+    },
+    {
+      "file": "tela-inicial/assets/floresta-animada.mp4",
+      "bytes": 1482840
+    },
+    {
+      "file": "tela-inicial/assets/floresta-menu.png",
+      "bytes": 2723014
+    },
+    {
+      "file": "tela-inicial/assets/floresta-poster.jpg",
+      "bytes": 237877
+    },
+    {
+      "file": "tela-inicial/assets/folhas-sprites.png",
+      "bytes": 644384
+    },
+    {
+      "file": "tela-inicial/assets/lilita-one.ttf",
+      "bytes": 28092
+    },
+    {
+      "file": "tela-inicial/colar-remodelado/assets/01_progressao.png",
+      "bytes": 1328083
+    },
+    {
+      "file": "tela-inicial/colar-remodelado/assets/02_encaixe_e_transformacao.png",
+      "bytes": 1805726
+    },
+    {
+      "file": "tela-inicial/colar-remodelado/assets/03_pecas_e_base.png",
+      "bytes": 1714057
+    },
+    {
+      "file": "tela-inicial/colar-remodelado/assets/04_kai_recebendo_colar.png",
+      "bytes": 1778201
+    },
+    {
+      "file": "tela-inicial/colar-remodelado/assets/05_encaixes_fases_2_a_5.png",
+      "bytes": 2327235
+    },
+    {
+      "file": "tela-inicial/equipe-2d/assets/equipe-corpo-inteiro.webp",
+      "bytes": 435714
+    },
+    {
+      "file": "tela-inicial/horizonte-vivo/assets/campo.webp",
+      "bytes": 480842
+    },
+    {
+      "file": "tela-inicial/horizonte-vivo/assets/horizonte-dupla.webp",
+      "bytes": 460674
+    },
+    {
+      "file": "tela-inicial/horizonte-vivo/assets/mapa-celular-verde.webp",
+      "bytes": 662402
+    },
+    {
+      "file": "tela-inicial/horizonte-vivo/assets/mapa-celular.webp",
+      "bytes": 671160
+    },
+    {
+      "file": "tela-inicial/horizonte-vivo/assets/mapa-verde.webp",
+      "bytes": 603136
+    },
+    {
+      "file": "tela-inicial/horizonte-vivo/assets/mapa.webp",
+      "bytes": 579784
+    },
+    {
+      "file": "tela-inicial/horizonte-vivo/assets/vista.webp",
+      "bytes": 442180
+    },
+    {
+      "file": "tela-inicial/jornada-viva/assets/ilha-restaurada.png",
+      "bytes": 3386006
+    },
+    {
+      "file": "tela-inicial/jornada-viva/assets/ilha-viva.png",
+      "bytes": 3513093
+    },
+    {
+      "file": "tela-inicial/jornada-viva/assets/kai-cuida-da-natureza.png",
+      "bytes": 2680703
+    },
+    {
+      "file": "tela-inicial/mapa-interativo/assets/01_npcs_dialogo.png",
+      "bytes": 1676868
+    },
+    {
+      "file": "tela-inicial/mapa-interativo/assets/02_kai_dialogo.png",
+      "bytes": 1331798
+    },
+    {
+      "file": "tela-inicial/mapa-interativo/assets/03_painel_sem_texto.png",
+      "bytes": 1824425
+    },
+    {
+      "file": "tela-inicial/mapa-interativo/assets/04_botoes_e_componentes.png",
+      "bytes": 899391
+    },
+    {
+      "file": "tela-inicial/mapa-interativo/assets/05_equipamentos_e_recompensas.png",
+      "bytes": 1516468
+    },
+    {
+      "file": "tela-inicial/menu-vivo/assets/flora-poses.png",
+      "bytes": 2256977
+    },
+    {
+      "file": "tela-inicial/nova-versao/assets/claude/gear.webp",
+      "bytes": 8086
+    },
+    {
+      "file": "tela-inicial/nova-versao/assets/claude/jogar.webp",
+      "bytes": 20322
+    },
+    {
+      "file": "tela-inicial/nova-versao/assets/claude/sobre.webp",
+      "bytes": 21628
+    },
+    {
+      "file": "tela-inicial/nova-versao/assets/floresta-modelo.png",
+      "bytes": 2719389
+    },
+    {
+      "file": "tela-inicial/nova-versao/assets/folhas-sprites.png",
+      "bytes": 644384
+    },
+    {
+      "file": "tela-inicial/nova-versao/assets/horizonte-kai-flora.png",
+      "bytes": 2658625
+    },
+    {
+      "file": "tela-inicial/nova-versao/assets/titulo-guardiao.png",
+      "bytes": 2260033
+    },
+    {
+      "file": "tela-inicial/renascimento/assets/decidueye.webp",
+      "bytes": 32732
+    },
+    {
+      "file": "tela-inicial/renascimento/assets/ilha-cinzas.webp",
+      "bytes": 664690
+    },
+    {
+      "file": "tela-inicial/renascimento/assets/ilha-curada.webp",
+      "bytes": 686792
+    },
+    {
+      "file": "tela-inicial/renascimento/assets/inicio-cinzas.webp",
+      "bytes": 386352
+    },
+    {
+      "file": "tela-inicial/renascimento/assets/inicio-curado.webp",
+      "bytes": 605968
+    },
+    {
+      "file": "tela-inicial/renascimento/assets/renascimento-equipe.webp",
+      "bytes": 518624
+    },
+    {
+      "file": "tela-inicial/renascimento/assets/rowlet.webp",
+      "bytes": 27376
+    },
+    {
+      "file": "tela-inicial/selecao-fases/assets/mapa-apos-fase-1.png",
+      "bytes": 3265616
+    },
+    {
+      "file": "tela-inicial/selecao-fases/assets/mapa-inicial.png",
+      "bytes": 3426481
+    },
+    {
+      "file": "tela-inicial/selecao-fases/assets/transicao-fase-1.gif",
+      "bytes": 2531726
+    },
+    {
+      "file": "tela-inicial/selecao-fases/assets/transicao-fase-1.mp4",
+      "bytes": 1369838
+    }
+  ],
+  "bytes": 272944089
+}

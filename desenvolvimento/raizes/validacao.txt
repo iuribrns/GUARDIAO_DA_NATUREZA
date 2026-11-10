@@ -1,0 +1,79 @@
+Validação da campanha em produção (teclado e toque)
+
+> guardiao-da-natureza@0.1.0 test:build
+> node desenvolvimento/raizes/testar.mjs --production
+
+PASS: contato oblíquo, círculo e elipse completos, parede fina, deslizamento, entradas inválidas, objetivos das quatro fases, reservatório, ponte e rio.
+PASS: quina real do resgate da capivara, rota executável sem travamento, reservatório, ponte, rochas, píer, cercas, portões, fonte, moradores e canal urbano; todos os objetivos alcançáveis.
+PASS interface paisagem 1280×720
+PASS interface paisagem 844×390
+PASS interface paisagem 667×375
+PASS interface paisagem 740×320
+PASS interface paisagem 932×430
+PASS ajustes e mochila sobre a fase, sem navegação, sem perder posição, controles aplicados imediatamente
+PASS reinício completo preserva preferências e invalida partida aberta em outra aba
+PASS vídeo MP4 toca, créditos só no final, reinício confirma e restaura a ilha
+PASS orientação e entrada/saída de tela cheia
+Iniciando campanha PC
+Fogo 1
+Fogo 2
+Fogo 3
+Fogo 4
+Fogo 5
+Fogo 6
+Fogo 7
+Fogo 8
+Resgate Amazônia 1
+Resgate Amazônia 2
+Resgate Amazônia 3
+PC fase 2
+PASS PC fase 2 concluída com ações, tarefas e conquista reais.
+PC fase 3
+PASS PC fase 3 concluída com ações, tarefas e conquista reais.
+PC fase 4
+PASS PC fase 4 concluída com ações, tarefas e conquista reais.
+PC fase 5
+PASS PC fase 5 concluída com ações, tarefas e conquista reais.
+PASS campanha inteira computador e restauração da Árvore Guardiã, sem sexta fase.
+Iniciando campanha CELULAR
+Fogo 1
+Fogo 2
+Fogo 3
+Fogo 4
+Fogo 5
+Fogo 6
+Fogo 7
+Fogo 8
+Resgate Amazônia 1
+Resgate Amazônia 2
+Resgate Amazônia 3
+CELULAR fase 2
+PASS celular fase 2 concluída com ações, tarefas e conquista reais.
+CELULAR fase 3
+PASS celular fase 3 concluída com ações, tarefas e conquista reais.
+CELULAR fase 4
+PASS celular fase 4 concluída com ações, tarefas e conquista reais.
+CELULAR fase 5
+PASS celular fase 5 concluída com ações, tarefas e conquista reais.
+PASS campanha inteira celular e restauração da Árvore Guardiã, sem sexta fase.
+PASS fluxo atual: colisões, interface, configurações na fase, reinício, vídeo e cinco fases com teclado e toque.
+
+
+Conferência final da interface após o acabamento dos símbolos
+PASS interface paisagem 1280×720
+PASS interface paisagem 844×390
+PASS interface paisagem 667×375
+PASS interface paisagem 740×320
+PASS interface paisagem 932×430
+PASS ajustes e mochila sobre a fase, sem navegação, sem perder posição, controles aplicados imediatamente
+PASS reinício completo preserva preferências e invalida partida aberta em outra aba
+PASS vídeo MP4 toca, créditos só no final, reinício confirma e restaura a ilha
+PASS orientação e entrada/saída de tela cheia
+PASS Pages em subpasta: entrada, menu, arte, primeira fase, conversa e ajustes sem 404.
+
+
+Verificação da publicação
+
+> node desenvolvimento/raizes/verificar-site.mjs
+
+PASS: 224 arquivos publicados, 44.21 MiB; caminhos relativos, artes e quadros válidos, sem pastas privadas.

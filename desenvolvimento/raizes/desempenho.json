@@ -1,0 +1,46 @@
+{
+  "baseline": [
+    {
+      "phase": 2,
+      "paths": 44,
+      "ms": 1189.7
+    },
+    {
+      "phase": 3,
+      "paths": 40,
+      "ms": 98.1
+    },
+    {
+      "phase": 4,
+      "paths": 24,
+      "ms": 55.7
+    },
+    {
+      "phase": 5,
+      "paths": 40,
+      "ms": 4988.6
+    }
+  ],
+  "raizes": [
+    {
+      "phase": 2,
+      "paths": 44,
+      "ms": 390.9
+    },
+    {
+      "phase": 3,
+      "paths": 40,
+      "ms": 99.5
+    },
+    {
+      "phase": 4,
+      "paths": 24,
+      "ms": 60.3
+    },
+    {
+      "phase": 5,
+      "paths": 40,
+      "ms": 1048.1
+    }
+  ]
+}
