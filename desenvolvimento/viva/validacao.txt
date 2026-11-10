@@ -1,0 +1,74 @@
+Validação da revisão Viva — 10/11/2026
+Ambiente: Chromium Linux / Playwright; teste de toque emulado, em paisagem.
+Não representa uma medição em aparelhos Android ou iOS físicos.
+
+== Campanha com teclado ==
+Iniciando campanha PC
+Fogo 1
+Fogo 2
+Fogo 3
+Fogo 4
+Fogo 5
+Fogo 6
+Fogo 7
+Fogo 8
+Resgate Amazônia 1
+Resgate Amazônia 2
+Resgate Amazônia 3
+PC fase 2
+PASS PC fase 2 concluída com ações, tarefas e conquista reais.
+PC fase 3
+PASS PC fase 3 concluída com ações, tarefas e conquista reais.
+PC fase 4
+PASS PC fase 4 concluída com ações, tarefas e conquista reais.
+PC fase 5
+PASS PC fase 5 concluída com ações, tarefas e conquista reais.
+PASS campanha inteira computador e restauração da Árvore Guardiã, sem sexta fase.
+
+== Campanha com toque ==
+Iniciando campanha CELULAR
+Fogo 1
+Fogo 2
+Fogo 3
+Fogo 4
+Fogo 5
+Fogo 6
+Fogo 7
+Fogo 8
+Resgate Amazônia 1
+Resgate Amazônia 2
+Resgate Amazônia 3
+CELULAR fase 2
+PASS celular fase 2 concluída com ações, tarefas e conquista reais.
+CELULAR fase 3
+PASS celular fase 3 concluída com ações, tarefas e conquista reais.
+CELULAR fase 4
+PASS celular fase 4 concluída com ações, tarefas e conquista reais.
+CELULAR fase 5
+PASS celular fase 5 concluída com ações, tarefas e conquista reais.
+PASS campanha inteira celular e restauração da Árvore Guardiã, sem sexta fase.
+
+== Interface final e encerramento ==
+PASS interface, ilha inteira, retrato e quatro abas 1280x720
+PASS interface, ilha inteira, retrato e quatro abas 844x390
+PASS interface, ilha inteira, retrato e quatro abas 740x320
+PASS interface, ilha inteira, retrato e quatro abas 667x375
+PASS interface, ilha inteira, retrato e quatro abas 932x430
+PASS sem moradores; atores maiores; ajustes sem sair da fase; reset preserva preferências
+PASS encerramento no próprio mapa, caminho, restauração, créditos e nova jornada
+
+== Colisões e publicação ==
+PASS geometria: contato oblíquo, quinas, círculo/elipse, parede fina, deslizamento e entradas inválidas.
+PASS percursos: reservatório bloqueado, ponte transitável, resgate da capivara sem travamento, píer, cercas, portões e canais.
+PASS todos os objetivos alcançáveis; elenco adicional ausente da renderização e da geometria.
+PASS Pages em subpasta: raiz, abertura, imagens, fase 1, conversa e ajustes sem erros 404.
+PASS build estático, referências relativas, atlas medido e sintaxe dos 17 módulos atuais.
+PASS UI: 1280×720, 844×390, 740×320, 667×375 e 932×430.
+PASS nova jornada apaga as fases e o encerramento, preservando as preferências.
+A mudança final de posição do nome dos NPCs foi conferida na interface após as duas campanhas completas; não altera a simulação ou as colisões.
+
+== Transferência ==
+Abertura em contexto novo, sem cache: 1096338 bytes em 32 recursos (aproximadamente 1,05 MiB).
+Publicação completa: 34765324 bytes / 232 arquivos (aproximadamente 33,15 MiB).
+Sem requisição de vídeo na abertura; o final é desenhado no próprio mapa.
+Os valores de transferência são locais e não prometem FPS ou tempo de carga numa conexão específica.

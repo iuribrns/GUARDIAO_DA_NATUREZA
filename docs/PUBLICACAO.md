@@ -16,7 +16,7 @@ https://github.com/iuribrns/GUARDIAO_DA_NATUREZA/settings/pages
 
 O workflow `.github/workflows/pages.yml` publica cada atualização da `main`. Se a configuração for ativada depois do commit, execute **Actions → Publicar jogo no GitHub Pages → Run workflow** uma vez. Depois disso, os próximos pushes são publicados automaticamente.
 
-O fluxo instala as versões fixadas por `npm ci`, executa `npm run build` e `npm run check:site`, envia `dist/` como artefato e publica no ambiente `github-pages`. Não usa chave pessoal gravada no código. A URL da publicação aparece na execução do workflow e no ambiente do GitHub.
+O fluxo instala as versões fixadas por `npm ci`, copia o manifesto estático de `desenvolvimento/viva/publicacao.json` com `npm run build` e verifica os caminhos com `npm run check:site`, envia `dist/` como artefato e publica no ambiente `github-pages`. Não usa chave pessoal gravada no código. A URL da publicação aparece na execução do workflow e no ambiente do GitHub.
 
 ## Conferência local
 

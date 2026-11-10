@@ -985,6 +985,7 @@
     labelQueue.push([text, x, y]);
   }
   function paintLabel(text, x, y) {
+    if(window.VivaMundo)return VivaMundo.label(ctx,text,x,y,transform(),view.w,view.h);
     ctx.font = "bold 10px system-ui";
     ctx.textAlign = "center";
     const w = ctx.measureText(text).width + 14;

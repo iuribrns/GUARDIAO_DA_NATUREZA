@@ -10,7 +10,7 @@
   const player = {
     x: 286,
     y: 260,
-    direction: 0,
+    direction: 4,
     distance: 0,
     idle: 0,
     moving: false,
@@ -928,6 +928,7 @@
     labelQueue.push([text, x, y]);
   }
   function paintLabel(text, x, y) {
+    if(window.VivaMundo)return VivaMundo.label(ctx,text,x,y,view(),viewport.w,viewport.h);
     ctx.font = "bold 11px system-ui";
     ctx.textAlign = "center";
     const w = ctx.measureText(text).width + 15;

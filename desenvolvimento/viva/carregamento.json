@@ -1,0 +1,135 @@
+{
+  "initialAssets": 32,
+  "encodedBytes": 1096338,
+  "videoRequested": false,
+  "resources": [
+    {
+      "file": "/jogo/viva/ui.css",
+      "bytes": 7699
+    },
+    {
+      "file": "/jogo/raizes/orientacao.css",
+      "bytes": 755
+    },
+    {
+      "file": "/jogo/viva/acabamento.css",
+      "bytes": 6533
+    },
+    {
+      "file": "/jogo/encanto-natural/audio.js",
+      "bytes": 3908
+    },
+    {
+      "file": "/jogo/sistemas/progresso.js",
+      "bytes": 742
+    },
+    {
+      "file": "/jogo/novo-amanha/conteudo.js",
+      "bytes": 2210
+    },
+    {
+      "file": "/jogo/jornada/fases.js",
+      "bytes": 2757
+    },
+    {
+      "file": "/jogo/encanto-natural/catalogo.js",
+      "bytes": 714
+    },
+    {
+      "file": "/jogo/vida-em-equilibrio/conteudo.js",
+      "bytes": 1720
+    },
+    {
+      "file": "/jogo/encontros-da-floresta/atlas.js",
+      "bytes": 517
+    },
+    {
+      "file": "/jogo/cuidado-acessivel/otimizados.js",
+      "bytes": 1320
+    },
+    {
+      "file": "/jogo/raizes/atlas.js",
+      "bytes": 1542
+    },
+    {
+      "file": "/jogo/encontros-da-floresta/relicario.js",
+      "bytes": 1742
+    },
+    {
+      "file": "/jogo/raizes/personagens.js",
+      "bytes": 1016
+    },
+    {
+      "file": "/jogo/viva/comum.js",
+      "bytes": 5779
+    },
+    {
+      "file": "/jogo/viva/arte.js",
+      "bytes": 1372
+    },
+    {
+      "file": "/jogo/viva/simbolos.js",
+      "bytes": 2330
+    },
+    {
+      "file": "/jogo/viva/atlas.js",
+      "bytes": 581
+    },
+    {
+      "file": "/jogo/viva/transicoes.js",
+      "bytes": 962
+    },
+    {
+      "file": "/jogo/viva/folhas.js",
+      "bytes": 990
+    },
+    {
+      "file": "/jogo/raizes/assets/titulo.webp",
+      "bytes": 197432
+    },
+    {
+      "file": "/jogo/viva/app.js",
+      "bytes": 8309
+    },
+    {
+      "file": "/jogo/viva/final.js",
+      "bytes": 2673
+    },
+    {
+      "file": "/jogo/revisao-paisagem/orientacao.js",
+      "bytes": 1640
+    },
+    {
+      "file": "/jogo/viva/assets/inicio.webp",
+      "bytes": 374918
+    },
+    {
+      "file": "/jogo/encontros-da-floresta/assets/madeira.svg",
+      "bytes": 873
+    },
+    {
+      "file": "/jogo/viva/assets/botao.webp",
+      "bytes": 59456
+    },
+    {
+      "file": "/tela-inicial/nova-versao/assets/lilita-one.ttf",
+      "bytes": 28092
+    },
+    {
+      "file": "/jogo/viva/assets/folhas.webp",
+      "bytes": 52764
+    },
+    {
+      "file": "/jogo/encontros-da-floresta/assets/relicario-cristais.webp",
+      "bytes": 53498
+    },
+    {
+      "file": "/jogo/encontros-da-floresta/assets/montura.webp",
+      "bytes": 256408
+    },
+    {
+      "file": "/assets/identidade-flora/favicon.ico",
+      "bytes": 15086
+    }
+  ]
+}

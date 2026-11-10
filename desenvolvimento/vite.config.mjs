@@ -29,7 +29,7 @@ export default defineConfig({
       configureServer(server) {
         server.middlewares.use((request, response, next) => {
           if (request.url?.split("?")[0] !== "/") return next();
-          response.writeHead(302, { Location: "/jogo/raizes/index.html" });
+          response.writeHead(302, { Location: "/jogo/viva/index.html" });
           response.end();
         });
       },
