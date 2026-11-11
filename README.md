@@ -2,7 +2,7 @@
 
 Aventura de exploração em HTML, CSS e JavaScript para crianças de 5 a 10 anos. Kai e Flora cuidam de cinco regiões de uma ilha e devolvem força à Árvore Guardiã. O jogo funciona em **paisagem**, com teclado ou controles de toque.
 
-[Jogar](https://iuribrns.github.io/GUARDIAO_DA_NATUREZA/) · [Código atual](jogo/viva/) · [Estrutura](docs/ESTRUTURA.md) · [Publicação](docs/PUBLICACAO.md) · [Revisão e testes](desenvolvimento/viva/README.md)
+[Jogar](https://iuribrns.github.io/GUARDIAO_DA_NATUREZA/) · [Código atual](jogo/viva/) · [Estrutura](docs/ESTRUTURA.md) · [Publicação](docs/PUBLICACAO.md) · [Revisão e testes](desenvolvimento/brisa/README.md)
 
 | Região             | Cuidado                                                        | Aliado  | Cristal  |
 | ------------------ | -------------------------------------------------------------- | ------- | -------- |
@@ -18,7 +18,8 @@ A seleção mostra somente as cinco regiões. A paisagem recuperada aparece depo
 
 - **WASD / setas:** mover. **Enter:** conversar e cuidar; segure perto do fogo para usar a mangueira. **Espaço:** equipamento. **B:** mochila. **Esc:** pausa.
 - No celular: joystick, equipamento e cuidado. A mochila fica no canto superior, junto de pausa e tela cheia.
-- **Ajustes e mochila abrem sobre a fase**, sem trocar de página ou reiniciar a aventura. O modo Computador oculta o joystick e os botões de toque; o modo Celular os mostra.
+- **Ajustes e mochila abrem sobre a fase**, sem trocar de página ou reiniciar a aventura. O modo Computador oculta o joystick e os botões de toque; o modo Celular os mostra. Passeio tranquilo deixa Kai 18% mais lento e pode ser desligado.
+- A mochila também pode ser aberta no mapa; ferramentas e trajes não descobertos aparecem em silhueta.
 - Configurações tem abas Áudio, Conforto, Controles e Imagem. Sobre o jogo reúne História, Como jogar, Missão, Na natureza e Sobre Nós, com rolagem restrita ao conteúdo.
 
 ## Desenvolver
@@ -37,7 +38,7 @@ npm run test:build
 
 ## Arte e arquivos
 
-A entrada atual é `jogo/viva/index.html`. As entradas anteriores redirecionam para ela, mantendo os favoritos. O fluxo atual usa WebP e carrega os sprites quando a tela ou fase precisa deles. Na medição local em Chromium, a abertura solicitou 1,05 MiB; o site completo ocupa 33,15 MiB. Não há download de vídeo nem do laboratório no jogo publicado. `desenvolvimento/viva/publicacao.json` define os arquivos que vão para o Pages.
+A entrada atual é `jogo/viva/index.html`. As entradas anteriores redirecionam para ela, mantendo os favoritos. O fluxo atual usa WebP e carrega os sprites quando a tela ou fase precisa deles. Na medição local em Chromium, a abertura solicitou 1,20 MiB; o site completo ocupa 33,76 MiB. Não há download de vídeo nem do laboratório no jogo publicado. `desenvolvimento/viva/publicacao.json` define os arquivos que vão para o Pages.
 
 Esta revisão preserva as pastas e artes anteriores. Os arquivos que deixaram de ser usados ficam fora da publicação. A limpeza feita em uma revisão anterior está documentada em `desenvolvimento/raizes/retirados.json`. Os testes históricos não são a suíte da campanha atual.
 

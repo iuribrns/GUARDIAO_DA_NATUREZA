@@ -9,6 +9,19 @@
     "jogo/agua-viva/assets/agua.webp",
     "jogo/agua-viva/atlas.js",
     "jogo/area-aberta/fase.css",
+    "jogo/brisa/ajustes.js",
+    "jogo/brisa/artes.js",
+    "jogo/brisa/assets/atlas.json",
+    "jogo/brisa/assets/botanica.webp",
+    "jogo/brisa/assets/comandos.webp",
+    "jogo/brisa/assets/interface.webp",
+    "jogo/brisa/atlas.js",
+    "jogo/brisa/brisa.css",
+    "jogo/brisa/folhas.js",
+    "jogo/brisa/interacoes.js",
+    "jogo/brisa/mochila.js",
+    "jogo/brisa/painel-jogo.js",
+    "jogo/brisa/transicoes.js",
     "jogo/colar-vivo/colar.css",
     "jogo/colar-vivo/colar.js",
     "jogo/colar-vivo/geometria.js",
@@ -234,5 +247,5 @@
     "tela-inicial/renascimento/interacoes.js",
     "tela-inicial/renascimento/rustico.css"
   ],
-  "bytes": 34765324
+  "bytes": 35401797
 }

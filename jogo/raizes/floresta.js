@@ -727,12 +727,12 @@
         : move(
             dx *
               Math.min(
-                116 * dt,
+                116 * (window.BrisaRitmo?.speed || 1) * dt,
                 route.length ? W.distance(player, route[0]) : Infinity,
               ),
             dy *
               Math.min(
-                116 * dt,
+                116 * (window.BrisaRitmo?.speed || 1) * dt,
                 route.length ? W.distance(player, route[0]) : Infinity,
               ),
           );

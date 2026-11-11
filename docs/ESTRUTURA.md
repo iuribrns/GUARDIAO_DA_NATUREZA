@@ -3,6 +3,7 @@
 | Local                                        | Responsabilidade                                                                           |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | `index.html`                                 | Entrada e redirecionamento para o jogo                                                     |
+| `jogo/brisa/`                                | Artes dos comandos, botânica, transições suaves, inventário e pausa atuais                 |
 | `jogo/viva/`                                 | Entrada atual, composição visual, símbolos, folhas, ajustes e encerramento ao vivo no mapa |
 | `jogo/raizes/`                               | Controladores compartilhados, atlas e animações reutilizados                               |
 | `jogo/viva/assets/`                          | Nova abertura, moldura, cenários de conversa, folhas e sprites WebP medidos                |
@@ -13,6 +14,7 @@
 | `jogo/sistemas/`, `jogo/vida-em-equilibrio/` | Progresso, controles, memória dos itens e conteúdo das fases                               |
 | `jogo/encanto-natural/`                      | Uma trilha e os efeitos sonoros atuais                                                     |
 | `tela-inicial/nova-versao/`                  | Compatibilidade dos endereços anteriores                                                   |
+| `desenvolvimento/brisa/`                     | Conversão das novas artes, teste das interações e medição de abertura                      |
 | `desenvolvimento/viva/`                      | Compilação estática, manifesto, medições e relatório da revisão atual                      |
 | `desenvolvimento/raizes/`                    | Histórico da revisão anterior                                                              |
 | `jogo/viva/validacao/`                       | Interface e campanha real com teclado/toque; geometria e percursos                         |

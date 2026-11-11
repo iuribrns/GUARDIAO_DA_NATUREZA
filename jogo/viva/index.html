@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="ui.css?v=viva-1" />
     <link rel="stylesheet" href="../raizes/orientacao.css?v=raizes-1" />
     <link rel="stylesheet" href="acabamento.css?v=viva-1" />
+    <link rel="stylesheet" href="../brisa/brisa.css?v=brisa-1" />
     <script src="../encanto-natural/catalogo.js" defer></script>
     <script src="../encanto-natural/audio.js" defer></script>
     <script src="../sistemas/progresso.js" defer></script>
@@ -26,10 +27,17 @@
     <script src="comum.js" defer></script>
     <script src="atlas.js" defer></script>
     <script src="arte.js" defer></script>
+    <script src="../vida-em-equilibrio/progresso.js" defer></script>
+    <script src="../vida-em-equilibrio/colecao.js" defer></script>
     <script src="simbolos.js" defer></script>
-    <script src="transicoes.js" defer></script>
-    <script src="folhas.js" defer></script>
+    <script src="../brisa/atlas.js?v=brisa-1" defer></script>
+    <script src="../brisa/artes.js?v=brisa-1" defer></script>
+    <script src="../brisa/ajustes.js?v=brisa-1" defer></script>
+    <script src="../brisa/mochila.js?v=brisa-1" defer></script>
+    <script src="../brisa/transicoes.js?v=brisa-1" defer></script>
+    <script src="../brisa/folhas.js?v=brisa-1" defer></script>
     <script src="app.js" defer></script>
+    <script src="../brisa/interacoes.js?v=brisa-1" defer></script>
     <script src="final.js" defer></script>
     <script src="../revisao-paisagem/orientacao.js" defer></script>
   </head>
@@ -127,6 +135,13 @@
           </div>
           <p id="flora-map-line" class="flora-line" role="status" hidden></p>
         </header>
+        <button
+          type="button"
+          id="map-backpack"
+          class="brisa-map-pack"
+          aria-label="Mochila de Kai"
+          aria-haspopup="dialog"
+        ></button>
         <footer class="map-footer">
           <p id="map-current"></p>
           <p id="map-fragments"></p>

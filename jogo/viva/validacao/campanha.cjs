@@ -91,7 +91,7 @@ const done = (t) => ["done", "safe"].includes(t.status);
       assert.equal(await p.locator("#map-credits").count(), 0);
       await p.locator('.map-hotspot[data-phase="1"]').click();
       await p.locator("#start-phase").click();
-      await advance(p, 0.8);
+      await advance(p, 2.2);
       await p.waitForURL("**/floresta-viva/index.html");
       await p.waitForFunction(() => document.body.dataset.gameReady === "true");
       for (let i = 0; i < 2; i++) await p.locator("#conversa-avancar").click();
@@ -139,7 +139,7 @@ const done = (t) => ["done", "safe"].includes(t.status);
         await p.evaluate(() => GuardiaoMemoria.read().phases[1].completed),
       );
       await p.locator("#vitoria a.primary").click();
-      await advance(p, 0.8);
+      await advance(p, 2.2);
       await p.waitForURL("**/viva/index.html?**#mapa");
       await p.waitForFunction(() => window.RaizesApp);
       await advance(p, 4);
@@ -147,7 +147,7 @@ const done = (t) => ["done", "safe"].includes(t.status);
         console.log((mobile ? "CELULAR" : "PC") + " fase " + id);
         await p.locator('.map-hotspot[data-phase="' + id + '"]').click();
         await p.locator("#start-phase").click();
-        await advance(p, 0.8);
+        await advance(p, 2.2);
         await p.waitForURL("**/jornada/index.html?fase=" + id);
         await p.waitForFunction(
           () => document.body.dataset.gameReady === "true",
@@ -465,7 +465,7 @@ const done = (t) => ["done", "safe"].includes(t.status);
         );
         assert.ok(save.completed.includes(id));
         await p.locator("#next-phase").click();
-        await advance(p, 0.8);
+        await advance(p, 2.2);
         await p.waitForFunction(() => window.RaizesApp);
         await advance(p, 4);
         console.log(

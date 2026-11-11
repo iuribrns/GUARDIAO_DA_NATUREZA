@@ -38,6 +38,7 @@ try {
     "jogo/vida-natural/validacao/fisica.cjs",
     "jogo/viva/validacao/colisoes.cjs",
     "jogo/viva/validacao/interface.cjs",
+    "desenvolvimento/brisa/interface.cjs",
     ...(production ? ["jogo/viva/validacao/subpasta.cjs"] : []),
     "jogo/viva/validacao/campanha.cjs",
   ])

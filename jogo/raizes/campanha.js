@@ -850,7 +850,7 @@
       }
       player.swimming = id === 2 && nav.swimming(player);
       const step = Math.min(
-        data.speed * (player.swimming ? 0.8 : 1) * dt,
+        data.speed * (window.BrisaRitmo?.speed || 1) * (player.swimming ? 0.8 : 1) * dt,
         route.length ? distance(player, route[0]) : Infinity,
       );
       const travelled = move(dx * step, dy * step);

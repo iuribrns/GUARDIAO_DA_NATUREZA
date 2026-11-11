@@ -33,7 +33,12 @@ function add(f) {
   if (!omit.has(f) && existsSync(f) && statSync(f).isFile()) keep.add(f);
 }
 old.files.forEach(add);
-for (const dir of ["jogo/viva", "jogo/viva/assets"])
+for (const dir of [
+  "jogo/viva",
+  "jogo/viva/assets",
+  "jogo/brisa",
+  "jogo/brisa/assets",
+])
   for (const f of readdirSync(dir))
     if (/\.(html|js|css|webp|json)$/.test(f)) add(dir + "/" + f);
 const seen = new Set();
