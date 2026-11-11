@@ -1,0 +1,10 @@
+{
+  "name": "guardiao-laboratorio-historico",
+  "private": true,
+  "type": "module",
+  "description": "Dependências opcionais do laboratório histórico, fora do jogo atual.",
+  "dependencies": {
+    "gsap": "3.15.0",
+    "phaser": "3.90.0"
+  }
+}

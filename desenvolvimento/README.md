@@ -1,52 +1,41 @@
-# Ferramentas de desenvolvimento
+# Desenvolvimento
 
-Esta pasta permite instalar, testar e iniciar o trabalho nas fases sem reescrever as telas já aprovadas.
+O jogo atual é HTML, CSS e JavaScript. O servidor abre diretamente o menu; a compilação publica somente o fluxo atual e seus recursos.
 
-## Organização
-
-- `vite.config.mjs`: servidor e compilação. A raiz redireciona ao menu existente. A compilação gera `dist/`, copia as pastas públicas e compila somente o laboratório com suas dependências.
-- `laboratorio/`: teste de Phaser e GSAP usando a folha original de Kai com a mangueira. Não representa uma nova fase e não grava progresso.
-- `modelos/mapa-base.tmj`: mapa inicial do Tiled, com grade 32×32 e pontos de entrada/saída. Acrescente tilesets e os elementos da fase antes de usá-lo no gameplay.
-- `editores.json`: versões, URLs oficiais e SHA-256 publicados dos dois editores.
-- `scripts/instalar-editores.py`: instalação verificável sem sudo.
-- `scripts/executar-editor.py`: execução com configuração gravável e display virtual quando necessário.
-- `scripts/verificar-ferramentas.mjs`: verificação das ferramentas.
-- `scripts/testar.mjs`: inicializa um servidor próprio para os testes, verifica o laboratório e executa as três suítes já existentes. Encerra apenas o servidor que ele próprio criou.
-- `ambiente/`: instalação e instruções reutilizáveis para a nuvem.
-
-## Fluxo
+| Local                        | Responsabilidade                                                                               |
+| ---------------------------- | ---------------------------------------------------------------------------------------------- |
+| `organizacao/`               | Catálogo de recursos, grafo dos scripts/estilos, entrada da compilação e auditoria da mudança. |
+| `viva/`                      | Cópia do site, manifesto gerado, verificação e executor da suíte atual.                        |
+| `trilhas-vivas/`             | Testes e medições da revisão atual; exportação dos arquivos JavaScript.                        |
+| `scripts/` e `editores.json` | Instalação e verificação dos editores opcionais.                                               |
+| `ambiente/`                  | Instruções da nuvem.                                                                           |
+| `vite.config.mjs`            | Servidor de desenvolvimento e prévia do site compilado.                                        |
 
 ```sh
 npm ci
-npm run tools:install
-npm run check:tools
 npm run dev
-```
-
-Abra o menu pelo acesso ao servidor e o laboratório pelo caminho `/desenvolvimento/laboratorio/index.html`. O servidor escuta na rede local para permitir testes por celular. `npm run dev -- --host 127.0.0.1` restringe o acesso ao próprio computador quando desejado.
-
-Para compilar e validar:
-
-```sh
 npm run build
+npm run check:site
+npm run audit:files
 npm run test:build
-npm test
 ```
 
-O laboratório carrega o motor Phaser, que tem um arquivo JavaScript maior do que o limite de aviso padrão do Vite. Esse arquivo pertence apenas ao laboratório e não é acrescentado às telas existentes. O aviso de tamanho não indica falha de compilação.
+Use Node.js 24 LTS. Os testes de navegador usam Chromium/Chrome, indicado por `CHROMIUM_PATH` quando necessário. `npm test` usa o servidor de desenvolvimento; `npm run test:build` usa a publicação em `dist/`.
 
-## Editores no ambiente da nuvem
+A compilação lê as entradas e os recursos de `organizacao/recursos.json`, percorre os scripts e estilos referenciados e gera `viva/publicacao.json`. Ao adicionar uma imagem, um som ou um atlas dinâmico, registre o recurso no catálogo e compile novamente. Não acrescente pastas históricas ao manifesto.
 
-Os executáveis ficam em `/workspace/.tools/guardiao/bin/tiled` e `/workspace/.tools/guardiao/bin/libresprite`. `GUARDIAO_TOOLS_DIR` permite escolher outro diretório. Com uma sessão gráfica disponível, os editores usam o display existente. Sem monitor, o Tiled inicia um Xvfb temporário; o LibreSprite usa o modo SDL apropriado para exportação em lote. O processo de display criado pelo comando é encerrado ao final.
+Os editores instalados continuam disponíveis por `npm run tools:install` e `npm run check:tools`. Phaser e GSAP ficam somente no pacote opcional de `arquivo/desenvolvimento/laboratorio/package.json`; a instalação normal não os baixa. Para experimentar o laboratório, instale suas dependências dentro daquela pasta. O site atual não carrega o laboratório nem os pacotes do `node_modules`.
 
-Exemplos de exportação, a partir da raiz:
+Os materiais de revisões anteriores estão em [`arquivo/desenvolvimento/`](../arquivo/desenvolvimento/). Eles são referências históricas, não comandos de validação da versão atual.
+
+## Baixar uma cópia menor
+
+O GitHub Pages recebe somente o site compilado. Para trabalhar sem baixar as artes históricas, também é possível criar um checkout seletivo:
 
 ```sh
-mkdir -p .cache/exportacoes
-/workspace/.tools/guardiao/bin/tiled --export-map json desenvolvimento/modelos/mapa-base.tmj .cache/exportacoes/mapa.json
-/workspace/.tools/guardiao/bin/libresprite --batch assets/itens-remodelados/kai/01_mangueira.png --save-as .cache/exportacoes/kai.aseprite
+git clone --depth 1 --filter=blob:none --sparse https://github.com/iuribrns/GUARDIAO_DA_NATUREZA.git
+cd GUARDIAO_DA_NATUREZA
+git sparse-checkout set .github assets desenvolvimento docs entregas jogo tela-inicial
 ```
 
-Os AppImages são verificados antes de executar ou extrair. O Xvfb do Debian é baixado por APT usando índices assinados e chaves oficiais, extraído em uma pasta própria, sem instalar pacotes no sistema. Os PNGs originais permanecem intactos.
-
-Os testes de navegador em outro sistema precisam de Chromium/Chrome compatível, indicado por `CHROMIUM_PATH`, ou do Chromium instalado pelo Playwright. Os editores de desktop para Windows e macOS podem ser obtidos nos sites oficiais; o instalador em lote deste projeto é destinado ao Linux.
+Essa cópia compila e testa o jogo sem a pasta `arquivo/`. Para consultar os materiais históricos ou rodar a auditoria de preservação, inclua-a com `git sparse-checkout add arquivo`. A publicação automática usa o mesmo princípio e obtém apenas as pastas necessárias para compilar o site. Como a compilação estática usa apenas Node.js, o Actions não instala os pacotes de desenvolvimento.

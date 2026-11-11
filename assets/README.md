@@ -1,9 +1,6 @@
-# Nova pasta de assets do jogo
+# Recursos compartilhados
 
-Esta pasta foi recriada após a exclusão dos assets antigos pelo usuário. Não contém os sprites anteriores.
+- `identidade-flora/`: favicon do jogo.
+- `otimizados/`: manifesto compartilhado de recursos.
 
-Coloque os novos sprites nas pastas `personagens/kai/`, `personagens/flora/` e `personagens/carlos/`. Cada pasta tem instruções para organizar imagens individuais e pranchas de animação. Ainda não foram fornecidas as novas imagens.
-
-As artes do menu ficam separadas em `../tela-inicial/assets/`, para que a troca dos sprites não remova o fundo ou a fonte da tela inicial.
-
-A fase em `../beta/` ainda usa caminhos de sprites e cenários antigos. Ela precisa ser atualizada quando as novas artes forem fornecidas; não foram restaurados os arquivos excluídos.
+As imagens e os sprites em uso ficam junto dos módulos em `jogo/*/assets/`. Os originais que deixaram de ser utilizados estão preservados em [`arquivo/assets/`](../arquivo/assets/). Para saber o que vai ao site, consulte [`desenvolvimento/organizacao/recursos.json`](../desenvolvimento/organizacao/recursos.json).

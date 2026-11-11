@@ -16,7 +16,7 @@ https://github.com/iuribrns/GUARDIAO_DA_NATUREZA/settings/pages
 
 O workflow `.github/workflows/pages.yml` publica cada atualização da `main`. Se a configuração for ativada depois do commit, execute **Actions → Publicar jogo no GitHub Pages → Run workflow** uma vez. Depois disso, os próximos pushes são publicados automaticamente.
 
-O fluxo instala as versões fixadas por `npm ci`, copia o manifesto estático de `desenvolvimento/viva/publicacao.json` com `npm run build` e verifica os caminhos com `npm run check:site`, envia `dist/` como artefato e publica no ambiente `github-pages`. Não usa chave pessoal gravada no código. A URL da publicação aparece na execução do workflow e no ambiente do GitHub.
+O fluxo prepara Node.js 24, gera o manifesto de `desenvolvimento/viva/publicacao.json` a partir do catálogo e das referências atuais, copia somente esses arquivos com `npm run build` e verifica os caminhos com `npm run check:site`, envia `dist/` como artefato e publica no ambiente `github-pages`. Não usa chave pessoal gravada no código. A URL da publicação aparece na execução do workflow e no ambiente do GitHub.
 
 ## Conferência local
 
@@ -24,7 +24,12 @@ O fluxo instala as versões fixadas por `npm ci`, copia o manifesto estático de
 npm ci
 npm run build
 npm run check:site
+npm run audit:files
 npm run test:build
 ```
 
 A validação de navegador também abre o site por uma subpasta equivalente à do Pages, conferindo a entrada, os recursos e os controles. Ter os arquivos no GitHub não comprova que o Pages está ativo: confirme o workflow de publicação e a URL pública.
+
+`arquivo/`, `entregas/` e as fontes de desenvolvimento não são publicadas. As revisões históricas não são uma entrada da compilação; o catálogo atual está em `desenvolvimento/organizacao/recursos.json`.
+
+A publicação automática obtém somente `.github/`, `assets/`, `desenvolvimento/`, `jogo/`, `tela-inicial/` e os arquivos da raiz. A compilação e a conferência estática usam apenas módulos nativos do Node.js, portanto não é necessário instalar dependências nessa etapa do Actions. `npm ci` continua sendo usado no ambiente de desenvolvimento e nos testes de navegador.

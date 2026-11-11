@@ -1,7 +1,12 @@
-# Código do jogo
+# Jogo atual
 
-Esta pasta reúne a primeira fase de exploração em área aberta e os componentes compartilhados da jogabilidade. As telas do menu continuam em `../tela-inicial/`, e as artes compartilhadas em `../assets/`.
+**[Jogar no navegador](https://iuribrns.github.io/GUARDIAO_DA_NATUREZA/)** · [Código atual](trilhas-vivas/) · [Estrutura completa](../docs/ESTRUTURA.md)
 
-A fase [`floresta-viva/`](floresta-viva/README.md) está disponível pelo mapa: Floresta em Chamas → Entrar na floresta. Kai começa conversando com Carlos, recebe os itens, explora uma floresta sem montanhas, apaga incêndios, trata e conduz os animais ao abrigo, recebe o fragmento do colar e comemora com Flora. A versão anterior permanece em [`area-aberta/`](area-aberta/README.md).
+- [`viva/index.html`](viva/index.html): tela inicial, seleção das fases, configurações e Sobre o jogo.
+- [`floresta-viva/index.html`](floresta-viva/index.html): Floresta em Chamas.
+- [`jornada/index.html`](jornada/index.html): Rio Poluído, Resgate da Fauna, Reflorestamento e Cidade Sustentável.
+- [`trilhas-vivas/`](trilhas-vivas/): controladores atuais, mapa, folhas, transições, carregamento e renderização.
 
-O componente anterior é [`controles/`](controles/README.md): joystick, botão com Kai pulando e ação de usar/interagir. Há um treino em **Sobre o jogo → Como jogar**. As missões 2 a 6 ainda estão em desenvolvimento; o treino não altera o progresso do mapa.
+As outras pastas que permanecem aqui contêm módulos compartilhados e recursos utilizados pelas entradas atuais. Seus caminhos foram mantidos para não quebrar os atlas, os sprites ou o salvamento. Controladores substituídos, protótipos e testes históricos estão em [`arquivo/jogo/`](../arquivo/jogo/).
+
+As cinco regiões são jogáveis. A restauração da Árvore Guardiã e os créditos encerram a aventura; não há sexta fase de combate. Configurações e mochila abrem sobre a fase. O código funciona em paisagem com teclado ou toque.
