@@ -74,6 +74,8 @@ A troca de velocidade não altera as colisões; as campanhas foram concluídas c
 
 == Transferência local, sem cache ==
 41 recursos; 1255070 bytes na abertura (cerca de 1,20 MiB).
-35401797 bytes no pacote publicado (cerca de 33,76 MiB).
+35401793 bytes no pacote publicado (cerca de 33,76 MiB).
 Nenhum vídeo solicitado na abertura. O atlas completo de ferramentas é separado dos comandos frequentes.
 Sem promessa de FPS ou tempo de carregamento em conexões/aparelhos diferentes.
+
+Os controladores alterados recebem versão brisa-1 nos endereços para renovar o cache do navegador.
