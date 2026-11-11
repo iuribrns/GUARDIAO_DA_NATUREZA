@@ -56,7 +56,7 @@
         "Alguns amigos precisam de cuidado. Marina ensina a respeitar cada espécie e seu habitat.",
       goals: [
         "Encontre a chave dos abrigos.",
-        "Responda às perguntas e ajude os animais.",
+        "Liberte e cuide dos nove animais.",
         "Acompanhe os amigos aos lugares seguros.",
       ],
       row: 2,

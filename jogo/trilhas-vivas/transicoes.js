@@ -60,6 +60,7 @@
         await Promise.allSettled([
           window.BosqueVegetacao?.load(),
           window.TrilhasNatureza?.load(),
+          window.BosqueMapa?.ready?.(),
         ]);
       await new Promise((r) => requestAnimationFrame(r));
     } finally {
@@ -139,6 +140,8 @@
       const open = async () => {
         observer?.disconnect();
         clearTimeout(timeout);
+        if (location.hash === "#mapa")
+          await Promise.allSettled([window.BosqueMapa?.ready?.()]);
         await new Promise((r) =>
           requestAnimationFrame(() => requestAnimationFrame(r)),
         );

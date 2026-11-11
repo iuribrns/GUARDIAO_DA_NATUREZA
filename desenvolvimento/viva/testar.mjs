@@ -37,6 +37,7 @@ try {
   for (const file of [
     "jogo/vida-natural/validacao/fisica.cjs",
     "desenvolvimento/trilhas-vivas/colisoes.cjs",
+    "desenvolvimento/reencontro/flora.cjs",
     "jogo/viva/validacao/interface.cjs",
     "desenvolvimento/trilhas-vivas/interface.cjs",
     "desenvolvimento/trilhas-vivas/nativo.cjs",

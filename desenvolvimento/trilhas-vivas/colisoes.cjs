@@ -29,6 +29,8 @@ w.GuardiaoElenco = w.window.GuardiaoElenco;
 w.GuardiaoFasesJogaveis = w.window.GuardiaoFasesJogaveis;
 read("jogo/cuidado-acessivel/geometria.js");
 w.GuardiaoFasesJogaveis = w.window.GuardiaoFasesJogaveis;
+read("jogo/reencontro/conteudo.js");
+w.GuardiaoFasesJogaveis = w.window.GuardiaoFasesJogaveis;
 read("jogo/bosque-vivo/pintura.js");
 w.BosquePintura = w.window.BosquePintura;
 read("jogo/bosque-vivo/configuracao.js");
@@ -38,7 +40,10 @@ read("jogo/mata-ilustrada/layout.js");
 w.MataLayout = w.window.MataLayout;
 read("jogo/trilhas-vivas/disposicao.js");
 read("jogo/mata-ilustrada/configuracao.js");
+read("jogo/reencontro/geometria.js");
+w.GuardiaoFasesJogaveis = w.window.GuardiaoFasesJogaveis;
 read("jogo/mata-ilustrada/geometria-floresta.js");
+read("jogo/reencontro/cuidados.js");
 const W = w.window.FlorestaMundo,
   g = w.window.GuardiaoMovimento;
 const stuck = { x: 256.5687527170712, y: 489.5021612856038 },
@@ -105,6 +110,19 @@ for (let id = 2; id <= 5; id++) {
       );
       previous = q;
     }
+    if (t.speciesKey || ["fish", "turtle"].includes(t.type)) {
+      const beside = w.window.GuardiaoCuidados.approach(p.at(-1), t, nav);
+      if (beside) {
+        assert.ok(
+          nav.visible(p.at(-1), beside),
+          "aproximação para cuidar sem atravessar obstáculos",
+        );
+        assert.ok(
+          nav.route(p.at(-1), beside).length,
+          "pose lateral alcançável",
+        );
+      }
+    }
   }
   // Simule a colisão real com o passo do jogador, inclusive nas curvas.
   let moving = { ...data.start };
@@ -147,6 +165,21 @@ for (let id = 2; id <= 5; id++) {
     );
   }
   if (id === 2) {
+    for (const t of data.tasks.filter((t) => t.type === "fish")) {
+      assert.ok(t.problem === "plastic" || t.problem === "net");
+      for (let i = 0; i <= 20; i++) {
+        const p = {
+          x: t.x + ((t.home.x - t.x) * i) / 20,
+          y: t.y + ((t.home.y - t.y) * i) / 20,
+        };
+        assert.ok(
+          nav.swimming(p),
+          "o peixe continua na água depois do resgate: " + t.id,
+        );
+      }
+    }
+    const turtle = data.tasks.find((t) => t.type === "turtle");
+    assert.equal(nav.swimming(turtle), false, "tartaruga começa na margem");
     assert.equal(
       nav.swimming({ x: 350, y: 420 }),
       true,
@@ -162,6 +195,17 @@ for (let id = 2; id <= 5; id++) {
     );
   }
   if (id === 3) {
+    assert.equal(
+      data.tasks.filter((t) => t.speciesKey).length,
+      9,
+      "nove espécies para resgatar",
+    );
+    assert.ok(
+      data.tasks
+        .filter((t) => t.speciesKey)
+        .every((t) => t.problem && t.problemLabel),
+      "problemas visíveis antes do cuidado",
+    );
     for (const t of data.tasks.filter((t) => t.speciesKey)) {
       nav.setDynamic(
         data.tasks.filter((c) => c.type === "cage" && c.id !== t.id),

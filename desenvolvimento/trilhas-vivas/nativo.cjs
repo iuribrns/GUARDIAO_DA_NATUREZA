@@ -43,6 +43,16 @@ fs.mkdirSync(out, { recursive: true });
     await p.click("#play-game");
     await p.waitForFunction(() => location.hash === "#mapa");
     await p.waitForFunction(() => window.BosqueVegetacao.ready);
+    await p.evaluate(() => BosqueMapa.ready());
+    await p.evaluate(() => BosqueMapa.paint(performance.now() / 1000, true));
+    const initialPixels = await p.evaluate(() =>
+      Array.from(
+        document
+          .getElementById("living-island")
+          .getContext("2d")
+          .getImageData(1200, 300, 24, 24).data,
+      ),
+    );
     await p.clock.install();
     await p.evaluate(() => {
       GuardiaoProgresso.finish(1);
@@ -73,6 +83,24 @@ fs.mkdirSync(out, { recursive: true });
       0,
     );
     await p.screenshot({ path: out + "/mapa-regiao-restaurada.png" });
+    await p.evaluate(() => {
+      BosqueMapa.finalGrowth(1);
+      BosqueMapa.paint(performance.now() / 1000, true);
+      BosqueMapa.update([], 0);
+      BosqueMapa.paint(performance.now() / 1000, true);
+    });
+    assert.deepEqual(
+      await p.evaluate(() =>
+        Array.from(
+          document
+            .getElementById("living-island")
+            .getContext("2d")
+            .getImageData(1200, 300, 24, 24).data,
+        ),
+      ),
+      initialPixels,
+      "reinício limpa também a restauração desenhada",
+    );
     await p.evaluate(() => {
       GuardiaoProgresso.finish(2);
       GuardiaoProgresso.finish(3);
@@ -148,12 +176,14 @@ fs.mkdirSync(out, { recursive: true });
     });
     assert.deepEqual(turtle, { x: 930, y: 440, swimming: false });
     assert.ok(
-      !requests.some((url) =>
-        /mapa-(vivo|cinzas)|floresta-(ilustrada|restaurada)|\/(floresta|rio|fauna|plantio|cidade)-restaurado-/.test(
-          url,
-        ),
+      requests.some((url) =>
+        url.includes("/reencontro/assets/mapa-antes.webp"),
       ),
-      "nenhum mapa de antes/depois baixado",
+      "modelo ilustrado antigo carregado",
+    );
+    assert.ok(
+      !requests.some((url) => url.includes("/arquivo/")),
+      "a publicação não depende do arquivo histórico",
     );
     const a = JSON.parse(fs.readFileSync("jogo/bosque-vivo/assets/atlas.json"));
     for (const [name, d] of Object.entries(a))
@@ -167,7 +197,7 @@ fs.mkdirSync(out, { recursive: true });
       }
     assert.deepEqual(errors, []);
     console.log(
-      "PASS fundo com falha de rede, restauração por elementos, seis passadas, traje durante plantar/regar, crescimento real e tartaruga na areia.",
+      "PASS fundo com falha de rede, mapa ilustrado, restauração e reinício visual, seis passadas, traje durante plantar/regar, crescimento real e tartaruga na areia.",
     );
   } finally {
     await b.close();

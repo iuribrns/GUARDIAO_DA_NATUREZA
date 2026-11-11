@@ -185,7 +185,7 @@ const done = (t) => ["done", "safe"].includes(t.status);
         await p.waitForFunction(
           () => document.body.dataset.gameReady === "true",
         );
-        assert.equal((await state(p)).scene.renderer, "elementos");
+        assert.equal((await state(p)).scene.renderer, "ilustrado-interativo");
         assert.equal((await state(p)).itemsGiven, false);
         assert.equal(await p.locator("dialog[open]").count(), 1);
         assert.equal(
@@ -211,7 +211,7 @@ const done = (t) => ["done", "safe"].includes(t.status);
             "traje do rio não pode ser retirado durante a atividade",
           );
         }
-        assert.equal((await state(p)).scene.art, "trilhas-vivas");
+        assert.equal((await state(p)).scene.art, "reencontro");
         await p.screenshot({
           path: out + `/fase-${id}-${mobile ? "celular" : "pc"}.png`,
         });
@@ -254,6 +254,34 @@ const done = (t) => ["done", "safe"].includes(t.status);
             await interact(p, mobile);
             await until(
               p,
+              (s) => !!s.action,
+              "aproximação do amigo do rio",
+              80,
+            );
+            await advance(p, 0.5);
+            const treating = await state(p),
+              patient = treating.tasks.find(
+                (t) => t.id === treating.action.task,
+              );
+            assert.ok(["fish", "turtle"].includes(patient.type));
+            assert.ok(
+              Math.hypot(
+                patient.position.x - patient.x,
+                patient.position.y - patient.y,
+              ) < 0.1,
+              "animal permanece no habitat durante o cuidado",
+            );
+            assert.match(
+              await p.evaluate(() => document.body.dataset.riverPose),
+              /^libertar-no-habitat:/,
+            );
+            if (i === 0)
+              await p.screenshot({
+                path:
+                  out + "/rio-cuidado-" + (mobile ? "celular" : "pc") + ".png",
+              });
+            await until(
+              p,
               (s) =>
                 s.tasks.filter(
                   (t) =>
@@ -267,6 +295,10 @@ const done = (t) => ["done", "safe"].includes(t.status);
           }
         }
         if (id === 3) {
+          assert.equal(
+            (await state(p)).tasks.filter((t) => t.speciesKey).length,
+            9,
+          );
           await guide(p, "key");
           await interact(p, mobile);
           await until(
@@ -286,7 +318,7 @@ const done = (t) => ["done", "safe"].includes(t.status);
             ave: "marina",
             capivara: "rio",
           };
-          for (let i = 0; i < 4; i++) {
+          for (let i = 0; i < 9; i++) {
             await guide(p, "animal");
             await interact(p, mobile);
             await until(

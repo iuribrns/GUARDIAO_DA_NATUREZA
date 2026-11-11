@@ -170,8 +170,17 @@
         return walk(c, p, time, reduced, height);
       }
       river(c, p, time, reduced, options = {}) {
-        if (options.dressing || options.kind || p.swimming)
-          return super.river(c, p, time, reduced, options);
+        if (options.dressing || options.kind || p.swimming) {
+          const mirrored = options.kind && p.direction >= 3 && p.direction <= 5;
+          c.save();
+          if (mirrored) {
+            c.translate(p.x * 2, 0);
+            c.scale(-1, 1);
+          }
+          const result = super.river(c, p, time, reduced, options);
+          c.restore();
+          return result;
+        }
         walk(c, p, time, reduced, 63, false, "protecao");
         return "traje-andar:" + pose(p, reduced).step;
       }
