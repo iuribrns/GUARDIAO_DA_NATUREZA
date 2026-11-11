@@ -1,0 +1,3292 @@
+[
+  {
+    "id": 0,
+    "p95": 16.700000000000728,
+    "max": 16.800000000000182,
+    "frames": 152,
+    "longTasks": 0,
+    "longMax": 0,
+    "bytes": 7091708,
+    "resources": [
+      {
+        "file": "/jogo/viva/ui.css",
+        "bytes": 7699
+      },
+      {
+        "file": "/jogo/raizes/orientacao.css",
+        "bytes": 755
+      },
+      {
+        "file": "/jogo/brisa/brisa.css",
+        "bytes": 4397
+      },
+      {
+        "file": "/jogo/viva/acabamento.css",
+        "bytes": 6533
+      },
+      {
+        "file": "/jogo/bosque-vivo/bosque.css",
+        "bytes": 4746
+      },
+      {
+        "file": "/jogo/mata-ilustrada/mata.css",
+        "bytes": 687
+      },
+      {
+        "file": "/jogo/trilhas-vivas/trilhas.css",
+        "bytes": 1572
+      },
+      {
+        "file": "/jogo/viva/assets/inicio.webp",
+        "bytes": 374918
+      },
+      {
+        "file": "/jogo/encanto-natural/catalogo.js",
+        "bytes": 714
+      },
+      {
+        "file": "/jogo/encanto-natural/audio.js",
+        "bytes": 3908
+      },
+      {
+        "file": "/jogo/sistemas/progresso.js",
+        "bytes": 742
+      },
+      {
+        "file": "/jogo/jornada/fases.js",
+        "bytes": 2757
+      },
+      {
+        "file": "/jogo/novo-amanha/conteudo.js",
+        "bytes": 2210
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/conteudo.js",
+        "bytes": 1720
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/atlas.js",
+        "bytes": 517
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/relicario.js",
+        "bytes": 1742
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/otimizados.js",
+        "bytes": 1320
+      },
+      {
+        "file": "/jogo/raizes/atlas.js",
+        "bytes": 1542
+      },
+      {
+        "file": "/jogo/raizes/personagens.js",
+        "bytes": 1016
+      },
+      {
+        "file": "/jogo/viva/atlas.js",
+        "bytes": 581
+      },
+      {
+        "file": "/jogo/viva/comum.js",
+        "bytes": 5779
+      },
+      {
+        "file": "/jogo/viva/arte.js",
+        "bytes": 1372
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/progresso.js",
+        "bytes": 2832
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/colecao.js",
+        "bytes": 3873
+      },
+      {
+        "file": "/jogo/viva/simbolos.js",
+        "bytes": 2330
+      },
+      {
+        "file": "/jogo/brisa/atlas.js",
+        "bytes": 617
+      },
+      {
+        "file": "/jogo/brisa/artes.js",
+        "bytes": 1627
+      },
+      {
+        "file": "/jogo/brisa/ajustes.js",
+        "bytes": 785
+      },
+      {
+        "file": "/jogo/bosque-vivo/atlas.js",
+        "bytes": 3216
+      },
+      {
+        "file": "/jogo/bosque-vivo/trajes.js",
+        "bytes": 187
+      },
+      {
+        "file": "/jogo/trilhas-vivas/kai.js",
+        "bytes": 3051
+      },
+      {
+        "file": "/jogo/bosque-vivo/mochila.js",
+        "bytes": 2250
+      },
+      {
+        "file": "/jogo/trilhas-vivas/transicoes.js",
+        "bytes": 1773
+      },
+      {
+        "file": "/jogo/bosque-vivo/vegetacao.js",
+        "bytes": 966
+      },
+      {
+        "file": "/jogo/trilhas-vivas/folhas.js",
+        "bytes": 2474
+      },
+      {
+        "file": "/jogo/bosque-vivo/cenario-atlas.js",
+        "bytes": 364
+      },
+      {
+        "file": "/jogo/mata-ilustrada/atlas.js",
+        "bytes": 983
+      },
+      {
+        "file": "/jogo/bosque-vivo/pintura.js",
+        "bytes": 3997
+      },
+      {
+        "file": "/jogo/trilhas-vivas/arvores-atlas.js",
+        "bytes": 209
+      },
+      {
+        "file": "/jogo/mata-ilustrada/artes.js",
+        "bytes": 995
+      },
+      {
+        "file": "/jogo/mata-ilustrada/pintura.js",
+        "bytes": 2785
+      },
+      {
+        "file": "/jogo/mata-ilustrada/layout.js",
+        "bytes": 1605
+      },
+      {
+        "file": "/jogo/trilhas-vivas/natureza.js",
+        "bytes": 1252
+      },
+      {
+        "file": "/jogo/trilhas-vivas/disposicao.js",
+        "bytes": 571
+      },
+      {
+        "file": "/jogo/trilhas-vivas/mapa.js",
+        "bytes": 4311
+      },
+      {
+        "file": "/jogo/bosque-vivo/fundo.js",
+        "bytes": 899
+      },
+      {
+        "file": "/jogo/trilhas-vivas/menu.js",
+        "bytes": 7930
+      },
+      {
+        "file": "/jogo/raizes/assets/titulo.webp",
+        "bytes": 197432
+      },
+      {
+        "file": "/jogo/trilhas-vivas/carregamento.js",
+        "bytes": 1010
+      },
+      {
+        "file": "/jogo/revisao-paisagem/orientacao.js",
+        "bytes": 1640
+      },
+      {
+        "file": "/jogo/bosque-vivo/final.js",
+        "bytes": 2385
+      },
+      {
+        "file": "/jogo/brisa/interacoes.js",
+        "bytes": 1017
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/madeira.svg",
+        "bytes": 873
+      },
+      {
+        "file": "/tela-inicial/nova-versao/assets/lilita-one.ttf",
+        "bytes": 28092
+      },
+      {
+        "file": "/jogo/brisa/assets/comandos.webp",
+        "bytes": 66008
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-0.webp",
+        "bytes": 6418
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-1.webp",
+        "bytes": 6652
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-2.webp",
+        "bytes": 4262
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/montura.webp",
+        "bytes": 256408
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/relicario-cristais.webp",
+        "bytes": 53498
+      },
+      {
+        "file": "/jogo/viva/assets/botao.webp",
+        "bytes": 59456
+      },
+      {
+        "file": "/assets/identidade-flora/favicon.ico",
+        "bytes": 15086
+      },
+      {
+        "file": "/jogo/encanto-natural/assets/toque.mp3",
+        "bytes": 2656
+      },
+      {
+        "file": "/jogo/encanto-natural/assets/caminhos-da-floresta.mp3",
+        "bytes": 1686822
+      },
+      {
+        "file": "/assets/identidade-flora/favicon.ico",
+        "bytes": 15086
+      },
+      {
+        "file": "/jogo/raizes/assets/acoes.webp",
+        "bytes": 278030
+      },
+      {
+        "file": "/jogo/raizes/assets/flora.webp",
+        "bytes": 307834
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/explorador.webp",
+        "bytes": 557728
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/vegetacao.webp",
+        "bytes": 646264
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/objetos.webp",
+        "bytes": 329682
+      },
+      {
+        "file": "/jogo/mata-ilustrada/assets/aderecos.webp",
+        "bytes": 652998
+      },
+      {
+        "file": "/jogo/mata-ilustrada/assets/texturas.webp",
+        "bytes": 429532
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/arvores.webp",
+        "bytes": 260782
+      },
+      {
+        "file": "/jogo/raizes/assets/npcs.webp",
+        "bytes": 327578
+      },
+      {
+        "file": "/jogo/viva/assets/encontros.webp",
+        "bytes": 402284
+      },
+      {
+        "file": "/assets/identidade-flora/favicon.ico",
+        "bytes": 15086
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "p95": 16.799999999999727,
+    "max": 16.800000000000182,
+    "frames": 151,
+    "longTasks": 0,
+    "longMax": 0,
+    "bytes": 10226830,
+    "resources": [
+      {
+        "file": "/jogo/encanto-natural/catalogo.js",
+        "bytes": 714
+      },
+      {
+        "file": "/jogo/encanto-natural/audio.js",
+        "bytes": 3908
+      },
+      {
+        "file": "/jogo/viva/floresta.css",
+        "bytes": 1842
+      },
+      {
+        "file": "/jogo/raizes/caminhos.js",
+        "bytes": 1590
+      },
+      {
+        "file": "/jogo/vida-natural/movimento.js",
+        "bytes": 1102
+      },
+      {
+        "file": "/jogo/sistemas/arte-manifesto.js",
+        "bytes": 1420
+      },
+      {
+        "file": "/jogo/sistemas/arte.js",
+        "bytes": 506
+      },
+      {
+        "file": "/jogo/agua-viva/atlas.js",
+        "bytes": 810
+      },
+      {
+        "file": "/jogo/vida-natural/atlas.js",
+        "bytes": 1344
+      },
+      {
+        "file": "/jogo/agua-viva/agua.js",
+        "bytes": 2051
+      },
+      {
+        "file": "/tela-inicial/renascimento/atlas.js",
+        "bytes": 435
+      },
+      {
+        "file": "/jogo/vida-natural/vida.js",
+        "bytes": 3332
+      },
+      {
+        "file": "/jogo/renascimento/ambiente.js",
+        "bytes": 1187
+      },
+      {
+        "file": "/jogo/jornada/atlas.js",
+        "bytes": 2625
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/controles.js",
+        "bytes": 1029
+      },
+      {
+        "file": "/jogo/floresta-viva/mundo.js",
+        "bytes": 1979
+      },
+      {
+        "file": "/jogo/floresta-viva/assets/atlas.js",
+        "bytes": 1803
+      },
+      {
+        "file": "/jogo/trilhas-vivas/disposicao.js",
+        "bytes": 571
+      },
+      {
+        "file": "/jogo/viva/elenco.js",
+        "bytes": 461
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/elenco.js",
+        "bytes": 1131
+      },
+      {
+        "file": "/jogo/mata-ilustrada/layout.js",
+        "bytes": 1605
+      },
+      {
+        "file": "/jogo/mata-ilustrada/geometria-floresta.js",
+        "bytes": 2863
+      },
+      {
+        "file": "/jogo/jornada/atlas-floresta.js",
+        "bytes": 939
+      },
+      {
+        "file": "/jogo/sprites-integros/atlas.js",
+        "bytes": 5189
+      },
+      {
+        "file": "/jogo/floresta-viva/revisao/atlas.js",
+        "bytes": 2194
+      },
+      {
+        "file": "/jogo/encanto-natural/flora-atlas.js",
+        "bytes": 454
+      },
+      {
+        "file": "/jogo/colar-vivo/colar.js",
+        "bytes": 4047
+      },
+      {
+        "file": "/jogo/colar-vivo/geometria.js",
+        "bytes": 5215
+      },
+      {
+        "file": "/jogo/floresta-viva/sprites.js",
+        "bytes": 1005
+      },
+      {
+        "file": "/jogo/floresta-viva/ambiente.js",
+        "bytes": 1511
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/progresso.js",
+        "bytes": 2832
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/atlas.js",
+        "bytes": 517
+      },
+      {
+        "file": "/jogo/interface-viva/atlas.js",
+        "bytes": 834
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/relicario.js",
+        "bytes": 1742
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/colecao.js",
+        "bytes": 3873
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/mochila.js",
+        "bytes": 2776
+      },
+      {
+        "file": "/jogo/novo-amanha/interface.js",
+        "bytes": 1117
+      },
+      {
+        "file": "/jogo/novo-amanha/atlas.js",
+        "bytes": 2447
+      },
+      {
+        "file": "/jogo/revisao-paisagem/plantas.js",
+        "bytes": 748
+      },
+      {
+        "file": "/jogo/revisao-paisagem/plantas-atlas.js",
+        "bytes": 867
+      },
+      {
+        "file": "/jogo/novo-amanha/arte.js",
+        "bytes": 2438
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/atlas.js",
+        "bytes": 944
+      },
+      {
+        "file": "/jogo/viva/etiquetas.js",
+        "bytes": 794
+      },
+      {
+        "file": "/jogo/revisao-paisagem/arte.js",
+        "bytes": 3421
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/colar.js",
+        "bytes": 2156
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/olhares.js",
+        "bytes": 1183
+      },
+      {
+        "file": "/jogo/novo-amanha/sprites.js",
+        "bytes": 908
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/otimizados.js",
+        "bytes": 1320
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/carregamento.js",
+        "bytes": 605
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/artes.js",
+        "bytes": 2475
+      },
+      {
+        "file": "/jogo/raizes/personagens.js",
+        "bytes": 1016
+      },
+      {
+        "file": "/jogo/raizes/atlas.js",
+        "bytes": 1542
+      },
+      {
+        "file": "/jogo/viva/atlas.js",
+        "bytes": 581
+      },
+      {
+        "file": "/jogo/viva/simbolos.js",
+        "bytes": 2330
+      },
+      {
+        "file": "/jogo/viva/comum.js",
+        "bytes": 5779
+      },
+      {
+        "file": "/jogo/brisa/atlas.js",
+        "bytes": 617
+      },
+      {
+        "file": "/jogo/viva/arte.js",
+        "bytes": 1372
+      },
+      {
+        "file": "/jogo/brisa/ajustes.js",
+        "bytes": 785
+      },
+      {
+        "file": "/jogo/brisa/artes.js",
+        "bytes": 1627
+      },
+      {
+        "file": "/jogo/bosque-vivo/mochila.js",
+        "bytes": 2250
+      },
+      {
+        "file": "/jogo/raizes/modelos.js",
+        "bytes": 2342
+      },
+      {
+        "file": "/jogo/viva/mundo.js",
+        "bytes": 2165
+      },
+      {
+        "file": "/jogo/bosque-vivo/cenario-atlas.js",
+        "bytes": 364
+      },
+      {
+        "file": "/jogo/bosque-vivo/vegetacao.js",
+        "bytes": 966
+      },
+      {
+        "file": "/jogo/mata-ilustrada/atlas.js",
+        "bytes": 983
+      },
+      {
+        "file": "/jogo/bosque-vivo/pintura.js",
+        "bytes": 3997
+      },
+      {
+        "file": "/jogo/trilhas-vivas/arvores-atlas.js",
+        "bytes": 209
+      },
+      {
+        "file": "/jogo/mata-ilustrada/pintura.js",
+        "bytes": 2785
+      },
+      {
+        "file": "/jogo/trilhas-vivas/natureza.js",
+        "bytes": 1252
+      },
+      {
+        "file": "/jogo/mata-ilustrada/artes.js",
+        "bytes": 995
+      },
+      {
+        "file": "/jogo/bosque-vivo/configuracao.js",
+        "bytes": 918
+      },
+      {
+        "file": "/jogo/mata-ilustrada/configuracao.js",
+        "bytes": 1083
+      },
+      {
+        "file": "/jogo/mata-ilustrada/camera.js",
+        "bytes": 244
+      },
+      {
+        "file": "/jogo/mata-ilustrada/cenario.js",
+        "bytes": 3394
+      },
+      {
+        "file": "/jogo/trilhas-vivas/renderizacao.js",
+        "bytes": 2222
+      },
+      {
+        "file": "/jogo/bosque-vivo/cenario.js",
+        "bytes": 4308
+      },
+      {
+        "file": "/jogo/bosque-vivo/atlas.js",
+        "bytes": 3216
+      },
+      {
+        "file": "/jogo/viva/revisao.css",
+        "bytes": 3241
+      },
+      {
+        "file": "/jogo/bosque-vivo/trajes.js",
+        "bytes": 187
+      },
+      {
+        "file": "/jogo/bosque-vivo/busca-cooperativa.js",
+        "bytes": 1446
+      },
+      {
+        "file": "/jogo/trilhas-vivas/rotas.js",
+        "bytes": 1043
+      },
+      {
+        "file": "/jogo/brisa/painel-jogo.js",
+        "bytes": 2536
+      },
+      {
+        "file": "/jogo/trilhas-vivas/transicoes.js",
+        "bytes": 1773
+      },
+      {
+        "file": "/jogo/trilhas-vivas/kai.js",
+        "bytes": 3051
+      },
+      {
+        "file": "/jogo/trilhas-vivas/floresta.js",
+        "bytes": 13996
+      },
+      {
+        "file": "/jogo/sistemas/controles.css",
+        "bytes": 779
+      },
+      {
+        "file": "/jogo/colar-vivo/colar.css",
+        "bytes": 1335
+      },
+      {
+        "file": "/jogo/vida-natural/interface.css",
+        "bytes": 1433
+      },
+      {
+        "file": "/jogo/floresta-viva/revisao/interface.js",
+        "bytes": 773
+      },
+      {
+        "file": "/jogo/novo-amanha/mochila.css",
+        "bytes": 1524
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/acabamento.css",
+        "bytes": 1668
+      },
+      {
+        "file": "/tela-inicial/renascimento/rustico.css",
+        "bytes": 904
+      },
+      {
+        "file": "/jogo/novo-amanha/interface.css",
+        "bytes": 1777
+      },
+      {
+        "file": "/jogo/encanto-natural/interface.css",
+        "bytes": 3649
+      },
+      {
+        "file": "/jogo/revisao-paisagem/paisagem.css",
+        "bytes": 4328
+      },
+      {
+        "file": "/jogo/interface-viva/interface.css",
+        "bytes": 3182
+      },
+      {
+        "file": "/tela-inicial/renascimento/interacoes.js",
+        "bytes": 865
+      },
+      {
+        "file": "/jogo/revisao-paisagem/orientacao.js",
+        "bytes": 1640
+      },
+      {
+        "file": "/jogo/nova-jornada/controles.css",
+        "bytes": 1543
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/interface.css",
+        "bytes": 3698
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/interface.js",
+        "bytes": 1957
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/interface.css",
+        "bytes": 1707
+      },
+      {
+        "file": "/jogo/raizes/jogo.css",
+        "bytes": 2346
+      },
+      {
+        "file": "/jogo/viva/jogo.css",
+        "bytes": 1846
+      },
+      {
+        "file": "/jogo/viva/acabamento.css",
+        "bytes": 6533
+      },
+      {
+        "file": "/jogo/viva/ui.css",
+        "bytes": 7699
+      },
+      {
+        "file": "/jogo/bosque-vivo/bosque.css",
+        "bytes": 4746
+      },
+      {
+        "file": "/jogo/brisa/brisa.css",
+        "bytes": 4397
+      },
+      {
+        "file": "/jogo/mata-ilustrada/mata.css",
+        "bytes": 687
+      },
+      {
+        "file": "/jogo/trilhas-vivas/trilhas.css",
+        "bytes": 1572
+      },
+      {
+        "file": "/assets/otimizados/flora-180-0deb6d287fcc.webp",
+        "bytes": 13178
+      },
+      {
+        "file": "/jogo/area-aberta/fase.css",
+        "bytes": 2548
+      },
+      {
+        "file": "/jogo/mata-ilustrada/assets/texturas.webp",
+        "bytes": 429532
+      },
+      {
+        "file": "/tela-inicial/renascimento/assets/madeira-redonda.svg",
+        "bytes": 737
+      },
+      {
+        "file": "/jogo/vida-natural/assets/folha-interacao.svg",
+        "bytes": 881
+      },
+      {
+        "file": "/jogo/vida-natural/assets/botao-folha.svg",
+        "bytes": 551
+      },
+      {
+        "file": "/tela-inicial/nova-versao/assets/lilita-one.ttf",
+        "bytes": 28092
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/explorador.webp",
+        "bytes": 557728
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/equipamentos.webp",
+        "bytes": 342032
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/mangueira.webp",
+        "bytes": 667902
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/vegetacao.webp",
+        "bytes": 646264
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/objetos.webp",
+        "bytes": 329682
+      },
+      {
+        "file": "/jogo/mata-ilustrada/assets/aderecos.webp",
+        "bytes": 652998
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/arvores.webp",
+        "bytes": 260782
+      },
+      {
+        "file": "/jogo/brisa/assets/comandos.webp",
+        "bytes": 66008
+      },
+      {
+        "file": "/jogo/brisa/assets/interface.webp",
+        "bytes": 390162
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/relicario-cristais.webp",
+        "bytes": 53498
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/montura.webp",
+        "bytes": 256408
+      },
+      {
+        "file": "/jogo/raizes/assets/flora.webp",
+        "bytes": 307834
+      },
+      {
+        "file": "/jogo/raizes/assets/acoes.webp",
+        "bytes": 278030
+      },
+      {
+        "file": "/jogo/raizes/assets/npcs.webp",
+        "bytes": 327578
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/floresta-capivara-d9eb3b44.webp",
+        "bytes": 224084
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/floresta-cervo-d0926d15.webp",
+        "bytes": 312506
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/floresta-passaro-16c77d66.webp",
+        "bytes": 224674
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/floresta-natureza-c7a5d40e.webp",
+        "bytes": 442306
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/floresta-itens-2d614081.webp",
+        "bytes": 261584
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-0.webp",
+        "bytes": 6418
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-1.webp",
+        "bytes": 6652
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-2.webp",
+        "bytes": 4262
+      },
+      {
+        "file": "/jogo/viva/assets/encontros.webp",
+        "bytes": 402284
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/madeira.svg",
+        "bytes": 873
+      },
+      {
+        "file": "/jogo/mata-ilustrada/rotas-worker.js",
+        "bytes": 552
+      },
+      {
+        "file": "/assets/identidade-flora/favicon.ico",
+        "bytes": 15086
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/vida-fogo-86ec6b1a.webp",
+        "bytes": 315264
+      },
+      {
+        "file": "/jogo/agua-viva/assets/agua.webp",
+        "bytes": 454504
+      },
+      {
+        "file": "/jogo/vida-natural/assets/sombra-copa.svg",
+        "bytes": 498
+      },
+      {
+        "file": "/jogo/encanto-natural/assets/toque.mp3",
+        "bytes": 2656
+      },
+      {
+        "file": "/jogo/encanto-natural/assets/caminhos-da-floresta.mp3",
+        "bytes": 1686822
+      },
+      {
+        "file": "/assets/identidade-flora/favicon.ico",
+        "bytes": 15086
+      },
+      {
+        "file": "/jogo/encanto-natural/assets/receber.mp3",
+        "bytes": 10232
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "p95": 16.799999999999727,
+    "max": 50.09999999999991,
+    "frames": 149,
+    "longTasks": 1,
+    "longMax": 57,
+    "bytes": 9778715,
+    "resources": [
+      {
+        "file": "/jogo/encanto-natural/catalogo.js",
+        "bytes": 714
+      },
+      {
+        "file": "/jogo/jornada/jornada.css",
+        "bytes": 3644
+      },
+      {
+        "file": "/jogo/sistemas/controles.css",
+        "bytes": 779
+      },
+      {
+        "file": "/jogo/encanto-natural/audio.js",
+        "bytes": 3908
+      },
+      {
+        "file": "/jogo/raizes/caminhos.js",
+        "bytes": 1590
+      },
+      {
+        "file": "/jogo/vida-natural/movimento.js",
+        "bytes": 1102
+      },
+      {
+        "file": "/jogo/sistemas/arte-manifesto.js",
+        "bytes": 1420
+      },
+      {
+        "file": "/jogo/sistemas/arte.js",
+        "bytes": 506
+      },
+      {
+        "file": "/jogo/vida-natural/vida.js",
+        "bytes": 3332
+      },
+      {
+        "file": "/jogo/vida-natural/atlas.js",
+        "bytes": 1344
+      },
+      {
+        "file": "/tela-inicial/renascimento/atlas.js",
+        "bytes": 435
+      },
+      {
+        "file": "/jogo/renascimento/ambiente.js",
+        "bytes": 1187
+      },
+      {
+        "file": "/jogo/jornada/atlas.js",
+        "bytes": 2625
+      },
+      {
+        "file": "/jogo/floresta-viva/assets/atlas.js",
+        "bytes": 1803
+      },
+      {
+        "file": "/jogo/sistemas/progresso.js",
+        "bytes": 742
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/controles.js",
+        "bytes": 1029
+      },
+      {
+        "file": "/jogo/floresta-viva/revisao/atlas.js",
+        "bytes": 2194
+      },
+      {
+        "file": "/jogo/colar-vivo/geometria.js",
+        "bytes": 5215
+      },
+      {
+        "file": "/jogo/sprites-integros/atlas.js",
+        "bytes": 5189
+      },
+      {
+        "file": "/jogo/encanto-natural/flora-atlas.js",
+        "bytes": 454
+      },
+      {
+        "file": "/jogo/colar-vivo/colar.js",
+        "bytes": 4047
+      },
+      {
+        "file": "/jogo/floresta-viva/sprites.js",
+        "bytes": 1005
+      },
+      {
+        "file": "/jogo/jornada/fases.js",
+        "bytes": 2757
+      },
+      {
+        "file": "/jogo/novo-amanha/sprites.js",
+        "bytes": 908
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/progresso.js",
+        "bytes": 2832
+      },
+      {
+        "file": "/jogo/raizes/navegacao.js",
+        "bytes": 1318
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/colecao.js",
+        "bytes": 3873
+      },
+      {
+        "file": "/jogo/interface-viva/atlas.js",
+        "bytes": 834
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/atlas.js",
+        "bytes": 517
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/relicario.js",
+        "bytes": 1742
+      },
+      {
+        "file": "/jogo/novo-amanha/interface.js",
+        "bytes": 1117
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/mochila.js",
+        "bytes": 2776
+      },
+      {
+        "file": "/jogo/novo-amanha/atlas.js",
+        "bytes": 2447
+      },
+      {
+        "file": "/jogo/novo-amanha/arte.js",
+        "bytes": 2438
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/atlas.js",
+        "bytes": 944
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/conteudo.js",
+        "bytes": 1720
+      },
+      {
+        "file": "/jogo/novo-amanha/conteudo.js",
+        "bytes": 2210
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/elenco.js",
+        "bytes": 1131
+      },
+      {
+        "file": "/jogo/revisao-paisagem/plantas-atlas.js",
+        "bytes": 867
+      },
+      {
+        "file": "/jogo/revisao-paisagem/plantas.js",
+        "bytes": 748
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/geometria.js",
+        "bytes": 2250
+      },
+      {
+        "file": "/jogo/viva/etiquetas.js",
+        "bytes": 794
+      },
+      {
+        "file": "/jogo/revisao-paisagem/arte.js",
+        "bytes": 3421
+      },
+      {
+        "file": "/jogo/viva/elenco.js",
+        "bytes": 461
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/colar.js",
+        "bytes": 2156
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/otimizados.js",
+        "bytes": 1320
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/carregamento.js",
+        "bytes": 605
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/olhares.js",
+        "bytes": 1183
+      },
+      {
+        "file": "/jogo/raizes/atlas.js",
+        "bytes": 1542
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/artes.js",
+        "bytes": 2475
+      },
+      {
+        "file": "/jogo/raizes/personagens.js",
+        "bytes": 1016
+      },
+      {
+        "file": "/jogo/viva/atlas.js",
+        "bytes": 581
+      },
+      {
+        "file": "/jogo/viva/comum.js",
+        "bytes": 5779
+      },
+      {
+        "file": "/jogo/viva/arte.js",
+        "bytes": 1372
+      },
+      {
+        "file": "/jogo/viva/simbolos.js",
+        "bytes": 2330
+      },
+      {
+        "file": "/jogo/brisa/atlas.js",
+        "bytes": 617
+      },
+      {
+        "file": "/jogo/brisa/artes.js",
+        "bytes": 1627
+      },
+      {
+        "file": "/jogo/brisa/ajustes.js",
+        "bytes": 785
+      },
+      {
+        "file": "/jogo/bosque-vivo/mochila.js",
+        "bytes": 2250
+      },
+      {
+        "file": "/jogo/raizes/modelos.js",
+        "bytes": 2342
+      },
+      {
+        "file": "/jogo/viva/mundo.js",
+        "bytes": 2165
+      },
+      {
+        "file": "/jogo/bosque-vivo/vegetacao.js",
+        "bytes": 966
+      },
+      {
+        "file": "/jogo/bosque-vivo/cenario-atlas.js",
+        "bytes": 364
+      },
+      {
+        "file": "/jogo/bosque-vivo/pintura.js",
+        "bytes": 3997
+      },
+      {
+        "file": "/jogo/mata-ilustrada/atlas.js",
+        "bytes": 983
+      },
+      {
+        "file": "/jogo/trilhas-vivas/arvores-atlas.js",
+        "bytes": 209
+      },
+      {
+        "file": "/jogo/trilhas-vivas/natureza.js",
+        "bytes": 1252
+      },
+      {
+        "file": "/jogo/mata-ilustrada/artes.js",
+        "bytes": 995
+      },
+      {
+        "file": "/jogo/mata-ilustrada/layout.js",
+        "bytes": 1605
+      },
+      {
+        "file": "/jogo/mata-ilustrada/pintura.js",
+        "bytes": 2785
+      },
+      {
+        "file": "/jogo/trilhas-vivas/disposicao.js",
+        "bytes": 571
+      },
+      {
+        "file": "/jogo/bosque-vivo/configuracao.js",
+        "bytes": 918
+      },
+      {
+        "file": "/jogo/mata-ilustrada/configuracao.js",
+        "bytes": 1083
+      },
+      {
+        "file": "/jogo/bosque-vivo/cenario.js",
+        "bytes": 4308
+      },
+      {
+        "file": "/jogo/mata-ilustrada/cenario.js",
+        "bytes": 3394
+      },
+      {
+        "file": "/jogo/mata-ilustrada/camera.js",
+        "bytes": 244
+      },
+      {
+        "file": "/jogo/trilhas-vivas/renderizacao.js",
+        "bytes": 2222
+      },
+      {
+        "file": "/jogo/bosque-vivo/trajes.js",
+        "bytes": 187
+      },
+      {
+        "file": "/jogo/trilhas-vivas/kai.js",
+        "bytes": 3051
+      },
+      {
+        "file": "/jogo/bosque-vivo/atlas.js",
+        "bytes": 3216
+      },
+      {
+        "file": "/jogo/bosque-vivo/busca-cooperativa.js",
+        "bytes": 1446
+      },
+      {
+        "file": "/jogo/trilhas-vivas/rotas.js",
+        "bytes": 1043
+      },
+      {
+        "file": "/jogo/trilhas-vivas/transicoes.js",
+        "bytes": 1773
+      },
+      {
+        "file": "/jogo/brisa/painel-jogo.js",
+        "bytes": 2536
+      },
+      {
+        "file": "/jogo/trilhas-vivas/campanha.js",
+        "bytes": 16517
+      },
+      {
+        "file": "/jogo/vida-natural/interface.css",
+        "bytes": 1433
+      },
+      {
+        "file": "/jogo/colar-vivo/colar.css",
+        "bytes": 1335
+      },
+      {
+        "file": "/tela-inicial/renascimento/rustico.css",
+        "bytes": 904
+      },
+      {
+        "file": "/jogo/novo-amanha/mochila.css",
+        "bytes": 1524
+      },
+      {
+        "file": "/jogo/novo-amanha/interface.css",
+        "bytes": 1777
+      },
+      {
+        "file": "/tela-inicial/renascimento/interacoes.js",
+        "bytes": 865
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/acabamento.css",
+        "bytes": 1668
+      },
+      {
+        "file": "/jogo/revisao-paisagem/paisagem.css",
+        "bytes": 4328
+      },
+      {
+        "file": "/jogo/interface-viva/interface.css",
+        "bytes": 3182
+      },
+      {
+        "file": "/jogo/encanto-natural/interface.css",
+        "bytes": 3649
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/interface.css",
+        "bytes": 3698
+      },
+      {
+        "file": "/jogo/nova-jornada/controles.css",
+        "bytes": 1543
+      },
+      {
+        "file": "/jogo/viva/ui.css",
+        "bytes": 7699
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/interface.css",
+        "bytes": 1707
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/interface.js",
+        "bytes": 1957
+      },
+      {
+        "file": "/jogo/revisao-paisagem/orientacao.js",
+        "bytes": 1640
+      },
+      {
+        "file": "/jogo/raizes/jogo.css",
+        "bytes": 2346
+      },
+      {
+        "file": "/jogo/viva/acabamento.css",
+        "bytes": 6533
+      },
+      {
+        "file": "/jogo/mata-ilustrada/mata.css",
+        "bytes": 687
+      },
+      {
+        "file": "/jogo/viva/jogo.css",
+        "bytes": 1846
+      },
+      {
+        "file": "/jogo/brisa/brisa.css",
+        "bytes": 4397
+      },
+      {
+        "file": "/jogo/bosque-vivo/bosque.css",
+        "bytes": 4746
+      },
+      {
+        "file": "/jogo/trilhas-vivas/trilhas.css",
+        "bytes": 1572
+      },
+      {
+        "file": "/assets/otimizados/flora-180-0deb6d287fcc.webp",
+        "bytes": 13178
+      },
+      {
+        "file": "/jogo/mata-ilustrada/assets/texturas.webp",
+        "bytes": 429532
+      },
+      {
+        "file": "/tela-inicial/renascimento/assets/madeira-redonda.svg",
+        "bytes": 737
+      },
+      {
+        "file": "/jogo/vida-natural/assets/folha-interacao.svg",
+        "bytes": 881
+      },
+      {
+        "file": "/jogo/vida-natural/assets/botao-folha.svg",
+        "bytes": 551
+      },
+      {
+        "file": "/jogo/brisa/assets/comandos.webp",
+        "bytes": 66008
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/montura.webp",
+        "bytes": 256408
+      },
+      {
+        "file": "/jogo/brisa/assets/interface.webp",
+        "bytes": 390162
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/relicario-cristais.webp",
+        "bytes": 53498
+      },
+      {
+        "file": "/jogo/raizes/assets/npcs.webp",
+        "bytes": 327578
+      },
+      {
+        "file": "/jogo/raizes/assets/acoes.webp",
+        "bytes": 278030
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/objetos.webp",
+        "bytes": 329682
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/explorador.webp",
+        "bytes": 557728
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/vegetacao.webp",
+        "bytes": 646264
+      },
+      {
+        "file": "/jogo/mata-ilustrada/assets/aderecos.webp",
+        "bytes": 652998
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/arvores.webp",
+        "bytes": 260782
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/campanha-objetos-d3f46fe1.webp",
+        "bytes": 399904
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/campanha-animais-rio-5d8f9e74.webp",
+        "bytes": 304506
+      },
+      {
+        "file": "/jogo/raizes/assets/flora.webp",
+        "bytes": 307834
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/floresta-natureza-c7a5d40e.webp",
+        "bytes": 442306
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/equipamentos.webp",
+        "bytes": 342032
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/protecao.webp",
+        "bytes": 497032
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/amanha-traje-nadar-64bee8f0.webp",
+        "bytes": 394862
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/amanha-traje-acoes-1143b814.webp",
+        "bytes": 417494
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-0.webp",
+        "bytes": 6418
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-2.webp",
+        "bytes": 4262
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-1.webp",
+        "bytes": 6652
+      },
+      {
+        "file": "/jogo/viva/assets/encontros.webp",
+        "bytes": 402284
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/madeira.svg",
+        "bytes": 873
+      },
+      {
+        "file": "/tela-inicial/nova-versao/assets/lilita-one.ttf",
+        "bytes": 28092
+      },
+      {
+        "file": "/jogo/mata-ilustrada/rotas-worker.js",
+        "bytes": 552
+      },
+      {
+        "file": "/assets/identidade-flora/favicon.ico",
+        "bytes": 15086
+      },
+      {
+        "file": "/jogo/vida-natural/assets/sombra-copa.svg",
+        "bytes": 498
+      },
+      {
+        "file": "/jogo/encanto-natural/assets/toque.mp3",
+        "bytes": 2656
+      },
+      {
+        "file": "/jogo/encanto-natural/assets/caminhos-da-floresta.mp3",
+        "bytes": 1686822
+      },
+      {
+        "file": "/assets/identidade-flora/favicon.ico",
+        "bytes": 15086
+      },
+      {
+        "file": "/jogo/encanto-natural/assets/receber.mp3",
+        "bytes": 10232
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "p95": 16.800000000000182,
+    "max": 33.30000000000018,
+    "frames": 150,
+    "longTasks": 0,
+    "longMax": 0,
+    "bytes": 10409771,
+    "resources": [
+      {
+        "file": "/jogo/encanto-natural/catalogo.js",
+        "bytes": 714
+      },
+      {
+        "file": "/jogo/jornada/jornada.css",
+        "bytes": 3644
+      },
+      {
+        "file": "/jogo/encanto-natural/audio.js",
+        "bytes": 3908
+      },
+      {
+        "file": "/jogo/sistemas/controles.css",
+        "bytes": 779
+      },
+      {
+        "file": "/jogo/vida-natural/movimento.js",
+        "bytes": 1102
+      },
+      {
+        "file": "/jogo/raizes/caminhos.js",
+        "bytes": 1590
+      },
+      {
+        "file": "/jogo/sistemas/arte.js",
+        "bytes": 506
+      },
+      {
+        "file": "/jogo/sistemas/arte-manifesto.js",
+        "bytes": 1420
+      },
+      {
+        "file": "/jogo/vida-natural/atlas.js",
+        "bytes": 1344
+      },
+      {
+        "file": "/jogo/vida-natural/vida.js",
+        "bytes": 3332
+      },
+      {
+        "file": "/tela-inicial/renascimento/atlas.js",
+        "bytes": 435
+      },
+      {
+        "file": "/jogo/renascimento/ambiente.js",
+        "bytes": 1187
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/controles.js",
+        "bytes": 1029
+      },
+      {
+        "file": "/jogo/sistemas/progresso.js",
+        "bytes": 742
+      },
+      {
+        "file": "/jogo/jornada/atlas.js",
+        "bytes": 2625
+      },
+      {
+        "file": "/jogo/floresta-viva/assets/atlas.js",
+        "bytes": 1803
+      },
+      {
+        "file": "/jogo/floresta-viva/revisao/atlas.js",
+        "bytes": 2194
+      },
+      {
+        "file": "/jogo/sprites-integros/atlas.js",
+        "bytes": 5189
+      },
+      {
+        "file": "/jogo/encanto-natural/flora-atlas.js",
+        "bytes": 454
+      },
+      {
+        "file": "/jogo/floresta-viva/sprites.js",
+        "bytes": 1005
+      },
+      {
+        "file": "/jogo/raizes/navegacao.js",
+        "bytes": 1318
+      },
+      {
+        "file": "/jogo/colar-vivo/colar.js",
+        "bytes": 4047
+      },
+      {
+        "file": "/jogo/colar-vivo/geometria.js",
+        "bytes": 5215
+      },
+      {
+        "file": "/jogo/jornada/fases.js",
+        "bytes": 2757
+      },
+      {
+        "file": "/jogo/novo-amanha/sprites.js",
+        "bytes": 908
+      },
+      {
+        "file": "/jogo/interface-viva/atlas.js",
+        "bytes": 834
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/atlas.js",
+        "bytes": 517
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/progresso.js",
+        "bytes": 2832
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/relicario.js",
+        "bytes": 1742
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/colecao.js",
+        "bytes": 3873
+      },
+      {
+        "file": "/jogo/novo-amanha/interface.js",
+        "bytes": 1117
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/mochila.js",
+        "bytes": 2776
+      },
+      {
+        "file": "/jogo/novo-amanha/arte.js",
+        "bytes": 2438
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/conteudo.js",
+        "bytes": 1720
+      },
+      {
+        "file": "/jogo/novo-amanha/atlas.js",
+        "bytes": 2447
+      },
+      {
+        "file": "/jogo/novo-amanha/conteudo.js",
+        "bytes": 2210
+      },
+      {
+        "file": "/jogo/viva/elenco.js",
+        "bytes": 461
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/atlas.js",
+        "bytes": 944
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/geometria.js",
+        "bytes": 2250
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/elenco.js",
+        "bytes": 1131
+      },
+      {
+        "file": "/jogo/revisao-paisagem/plantas-atlas.js",
+        "bytes": 867
+      },
+      {
+        "file": "/jogo/revisao-paisagem/plantas.js",
+        "bytes": 748
+      },
+      {
+        "file": "/jogo/viva/etiquetas.js",
+        "bytes": 794
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/colar.js",
+        "bytes": 2156
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/olhares.js",
+        "bytes": 1183
+      },
+      {
+        "file": "/jogo/revisao-paisagem/arte.js",
+        "bytes": 3421
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/carregamento.js",
+        "bytes": 605
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/otimizados.js",
+        "bytes": 1320
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/artes.js",
+        "bytes": 2475
+      },
+      {
+        "file": "/jogo/raizes/atlas.js",
+        "bytes": 1542
+      },
+      {
+        "file": "/jogo/raizes/personagens.js",
+        "bytes": 1016
+      },
+      {
+        "file": "/jogo/viva/comum.js",
+        "bytes": 5779
+      },
+      {
+        "file": "/jogo/viva/arte.js",
+        "bytes": 1372
+      },
+      {
+        "file": "/jogo/viva/atlas.js",
+        "bytes": 581
+      },
+      {
+        "file": "/jogo/brisa/artes.js",
+        "bytes": 1627
+      },
+      {
+        "file": "/jogo/brisa/atlas.js",
+        "bytes": 617
+      },
+      {
+        "file": "/jogo/brisa/ajustes.js",
+        "bytes": 785
+      },
+      {
+        "file": "/jogo/viva/simbolos.js",
+        "bytes": 2330
+      },
+      {
+        "file": "/jogo/bosque-vivo/mochila.js",
+        "bytes": 2250
+      },
+      {
+        "file": "/jogo/raizes/modelos.js",
+        "bytes": 2342
+      },
+      {
+        "file": "/jogo/bosque-vivo/cenario-atlas.js",
+        "bytes": 364
+      },
+      {
+        "file": "/jogo/viva/mundo.js",
+        "bytes": 2165
+      },
+      {
+        "file": "/jogo/bosque-vivo/vegetacao.js",
+        "bytes": 966
+      },
+      {
+        "file": "/jogo/bosque-vivo/pintura.js",
+        "bytes": 3997
+      },
+      {
+        "file": "/jogo/mata-ilustrada/atlas.js",
+        "bytes": 983
+      },
+      {
+        "file": "/jogo/mata-ilustrada/artes.js",
+        "bytes": 995
+      },
+      {
+        "file": "/jogo/mata-ilustrada/pintura.js",
+        "bytes": 2785
+      },
+      {
+        "file": "/jogo/trilhas-vivas/arvores-atlas.js",
+        "bytes": 209
+      },
+      {
+        "file": "/jogo/trilhas-vivas/natureza.js",
+        "bytes": 1252
+      },
+      {
+        "file": "/jogo/trilhas-vivas/disposicao.js",
+        "bytes": 571
+      },
+      {
+        "file": "/jogo/bosque-vivo/configuracao.js",
+        "bytes": 918
+      },
+      {
+        "file": "/jogo/mata-ilustrada/layout.js",
+        "bytes": 1605
+      },
+      {
+        "file": "/jogo/mata-ilustrada/configuracao.js",
+        "bytes": 1083
+      },
+      {
+        "file": "/jogo/bosque-vivo/cenario.js",
+        "bytes": 4308
+      },
+      {
+        "file": "/jogo/mata-ilustrada/cenario.js",
+        "bytes": 3394
+      },
+      {
+        "file": "/jogo/mata-ilustrada/camera.js",
+        "bytes": 244
+      },
+      {
+        "file": "/jogo/trilhas-vivas/renderizacao.js",
+        "bytes": 2222
+      },
+      {
+        "file": "/jogo/bosque-vivo/trajes.js",
+        "bytes": 187
+      },
+      {
+        "file": "/jogo/bosque-vivo/busca-cooperativa.js",
+        "bytes": 1446
+      },
+      {
+        "file": "/jogo/trilhas-vivas/kai.js",
+        "bytes": 3051
+      },
+      {
+        "file": "/jogo/bosque-vivo/atlas.js",
+        "bytes": 3216
+      },
+      {
+        "file": "/jogo/trilhas-vivas/transicoes.js",
+        "bytes": 1773
+      },
+      {
+        "file": "/jogo/brisa/painel-jogo.js",
+        "bytes": 2536
+      },
+      {
+        "file": "/jogo/trilhas-vivas/rotas.js",
+        "bytes": 1043
+      },
+      {
+        "file": "/jogo/colar-vivo/colar.css",
+        "bytes": 1335
+      },
+      {
+        "file": "/jogo/vida-natural/interface.css",
+        "bytes": 1433
+      },
+      {
+        "file": "/tela-inicial/renascimento/rustico.css",
+        "bytes": 904
+      },
+      {
+        "file": "/jogo/trilhas-vivas/campanha.js",
+        "bytes": 16517
+      },
+      {
+        "file": "/jogo/novo-amanha/interface.css",
+        "bytes": 1777
+      },
+      {
+        "file": "/jogo/novo-amanha/mochila.css",
+        "bytes": 1524
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/acabamento.css",
+        "bytes": 1668
+      },
+      {
+        "file": "/jogo/revisao-paisagem/paisagem.css",
+        "bytes": 4328
+      },
+      {
+        "file": "/tela-inicial/renascimento/interacoes.js",
+        "bytes": 865
+      },
+      {
+        "file": "/jogo/revisao-paisagem/orientacao.js",
+        "bytes": 1640
+      },
+      {
+        "file": "/jogo/interface-viva/interface.css",
+        "bytes": 3182
+      },
+      {
+        "file": "/jogo/encanto-natural/interface.css",
+        "bytes": 3649
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/interface.css",
+        "bytes": 3698
+      },
+      {
+        "file": "/jogo/nova-jornada/controles.css",
+        "bytes": 1543
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/interface.css",
+        "bytes": 1707
+      },
+      {
+        "file": "/jogo/viva/ui.css",
+        "bytes": 7699
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/interface.js",
+        "bytes": 1957
+      },
+      {
+        "file": "/jogo/raizes/jogo.css",
+        "bytes": 2346
+      },
+      {
+        "file": "/jogo/viva/acabamento.css",
+        "bytes": 6533
+      },
+      {
+        "file": "/jogo/viva/jogo.css",
+        "bytes": 1846
+      },
+      {
+        "file": "/jogo/brisa/brisa.css",
+        "bytes": 4397
+      },
+      {
+        "file": "/jogo/bosque-vivo/bosque.css",
+        "bytes": 4746
+      },
+      {
+        "file": "/jogo/mata-ilustrada/mata.css",
+        "bytes": 687
+      },
+      {
+        "file": "/jogo/trilhas-vivas/trilhas.css",
+        "bytes": 1572
+      },
+      {
+        "file": "/assets/otimizados/flora-180-0deb6d287fcc.webp",
+        "bytes": 13178
+      },
+      {
+        "file": "/jogo/mata-ilustrada/assets/texturas.webp",
+        "bytes": 429532
+      },
+      {
+        "file": "/tela-inicial/renascimento/assets/madeira-redonda.svg",
+        "bytes": 737
+      },
+      {
+        "file": "/jogo/vida-natural/assets/folha-interacao.svg",
+        "bytes": 881
+      },
+      {
+        "file": "/jogo/vida-natural/assets/botao-folha.svg",
+        "bytes": 551
+      },
+      {
+        "file": "/jogo/brisa/assets/comandos.webp",
+        "bytes": 66008
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/montura.webp",
+        "bytes": 256408
+      },
+      {
+        "file": "/jogo/brisa/assets/interface.webp",
+        "bytes": 390162
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/relicario-cristais.webp",
+        "bytes": 53498
+      },
+      {
+        "file": "/jogo/raizes/assets/npcs.webp",
+        "bytes": 327578
+      },
+      {
+        "file": "/jogo/raizes/assets/acoes.webp",
+        "bytes": 278030
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/explorador.webp",
+        "bytes": 557728
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/objetos.webp",
+        "bytes": 329682
+      },
+      {
+        "file": "/jogo/mata-ilustrada/assets/aderecos.webp",
+        "bytes": 652998
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/vegetacao.webp",
+        "bytes": 646264
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/arvores.webp",
+        "bytes": 260782
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/campanha-objetos-d3f46fe1.webp",
+        "bytes": 399904
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/campanha-animais-fauna-3c3deb4e.webp",
+        "bytes": 366594
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/campanha-animais-fauna-andando-0648cc5f.webp",
+        "bytes": 411958
+      },
+      {
+        "file": "/jogo/raizes/assets/flora.webp",
+        "bytes": 307834
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/floresta-natureza-c7a5d40e.webp",
+        "bytes": 442306
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/equipamentos.webp",
+        "bytes": 342032
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/tarefas.webp",
+        "bytes": 398590
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/resgate.webp",
+        "bytes": 720348
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/amanha-fauna-brasileira-c4a5e6ac.webp",
+        "bytes": 347460
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-0.webp",
+        "bytes": 6418
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-1.webp",
+        "bytes": 6652
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-2.webp",
+        "bytes": 4262
+      },
+      {
+        "file": "/jogo/viva/assets/encontros.webp",
+        "bytes": 402284
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/madeira.svg",
+        "bytes": 873
+      },
+      {
+        "file": "/tela-inicial/nova-versao/assets/lilita-one.ttf",
+        "bytes": 28092
+      },
+      {
+        "file": "/jogo/mata-ilustrada/rotas-worker.js",
+        "bytes": 552
+      },
+      {
+        "file": "/assets/identidade-flora/favicon.ico",
+        "bytes": 15086
+      },
+      {
+        "file": "/jogo/vida-natural/assets/sombra-copa.svg",
+        "bytes": 498
+      },
+      {
+        "file": "/jogo/encanto-natural/assets/toque.mp3",
+        "bytes": 2656
+      },
+      {
+        "file": "/jogo/encanto-natural/assets/caminhos-da-floresta.mp3",
+        "bytes": 1686822
+      },
+      {
+        "file": "/assets/identidade-flora/favicon.ico",
+        "bytes": 15086
+      },
+      {
+        "file": "/jogo/encanto-natural/assets/receber.mp3",
+        "bytes": 10232
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "p95": 16.700000000000273,
+    "max": 33.40000000000009,
+    "frames": 150,
+    "longTasks": 0,
+    "longMax": 0,
+    "bytes": 9465981,
+    "resources": [
+      {
+        "file": "/jogo/encanto-natural/catalogo.js",
+        "bytes": 714
+      },
+      {
+        "file": "/jogo/jornada/jornada.css",
+        "bytes": 3644
+      },
+      {
+        "file": "/jogo/encanto-natural/audio.js",
+        "bytes": 3908
+      },
+      {
+        "file": "/jogo/sistemas/controles.css",
+        "bytes": 779
+      },
+      {
+        "file": "/jogo/raizes/caminhos.js",
+        "bytes": 1590
+      },
+      {
+        "file": "/jogo/vida-natural/movimento.js",
+        "bytes": 1102
+      },
+      {
+        "file": "/jogo/sistemas/arte-manifesto.js",
+        "bytes": 1420
+      },
+      {
+        "file": "/jogo/sistemas/arte.js",
+        "bytes": 506
+      },
+      {
+        "file": "/tela-inicial/renascimento/atlas.js",
+        "bytes": 435
+      },
+      {
+        "file": "/jogo/vida-natural/atlas.js",
+        "bytes": 1344
+      },
+      {
+        "file": "/jogo/vida-natural/vida.js",
+        "bytes": 3332
+      },
+      {
+        "file": "/jogo/renascimento/ambiente.js",
+        "bytes": 1187
+      },
+      {
+        "file": "/jogo/jornada/atlas.js",
+        "bytes": 2625
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/controles.js",
+        "bytes": 1029
+      },
+      {
+        "file": "/jogo/sistemas/progresso.js",
+        "bytes": 742
+      },
+      {
+        "file": "/jogo/floresta-viva/assets/atlas.js",
+        "bytes": 1803
+      },
+      {
+        "file": "/jogo/floresta-viva/revisao/atlas.js",
+        "bytes": 2194
+      },
+      {
+        "file": "/jogo/sprites-integros/atlas.js",
+        "bytes": 5189
+      },
+      {
+        "file": "/jogo/encanto-natural/flora-atlas.js",
+        "bytes": 454
+      },
+      {
+        "file": "/jogo/colar-vivo/geometria.js",
+        "bytes": 5215
+      },
+      {
+        "file": "/jogo/colar-vivo/colar.js",
+        "bytes": 4047
+      },
+      {
+        "file": "/jogo/jornada/fases.js",
+        "bytes": 2757
+      },
+      {
+        "file": "/jogo/floresta-viva/sprites.js",
+        "bytes": 1005
+      },
+      {
+        "file": "/jogo/novo-amanha/sprites.js",
+        "bytes": 908
+      },
+      {
+        "file": "/jogo/raizes/navegacao.js",
+        "bytes": 1318
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/colecao.js",
+        "bytes": 3873
+      },
+      {
+        "file": "/jogo/interface-viva/atlas.js",
+        "bytes": 834
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/progresso.js",
+        "bytes": 2832
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/atlas.js",
+        "bytes": 517
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/relicario.js",
+        "bytes": 1742
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/mochila.js",
+        "bytes": 2776
+      },
+      {
+        "file": "/jogo/novo-amanha/atlas.js",
+        "bytes": 2447
+      },
+      {
+        "file": "/jogo/novo-amanha/interface.js",
+        "bytes": 1117
+      },
+      {
+        "file": "/jogo/novo-amanha/arte.js",
+        "bytes": 2438
+      },
+      {
+        "file": "/jogo/novo-amanha/conteudo.js",
+        "bytes": 2210
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/conteudo.js",
+        "bytes": 1720
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/atlas.js",
+        "bytes": 944
+      },
+      {
+        "file": "/jogo/viva/elenco.js",
+        "bytes": 461
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/elenco.js",
+        "bytes": 1131
+      },
+      {
+        "file": "/jogo/revisao-paisagem/plantas-atlas.js",
+        "bytes": 867
+      },
+      {
+        "file": "/jogo/revisao-paisagem/plantas.js",
+        "bytes": 748
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/geometria.js",
+        "bytes": 2250
+      },
+      {
+        "file": "/jogo/viva/etiquetas.js",
+        "bytes": 794
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/colar.js",
+        "bytes": 2156
+      },
+      {
+        "file": "/jogo/revisao-paisagem/arte.js",
+        "bytes": 3421
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/olhares.js",
+        "bytes": 1183
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/carregamento.js",
+        "bytes": 605
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/otimizados.js",
+        "bytes": 1320
+      },
+      {
+        "file": "/jogo/raizes/atlas.js",
+        "bytes": 1542
+      },
+      {
+        "file": "/jogo/raizes/personagens.js",
+        "bytes": 1016
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/artes.js",
+        "bytes": 2475
+      },
+      {
+        "file": "/jogo/viva/comum.js",
+        "bytes": 5779
+      },
+      {
+        "file": "/jogo/viva/atlas.js",
+        "bytes": 581
+      },
+      {
+        "file": "/jogo/viva/arte.js",
+        "bytes": 1372
+      },
+      {
+        "file": "/jogo/brisa/atlas.js",
+        "bytes": 617
+      },
+      {
+        "file": "/jogo/viva/simbolos.js",
+        "bytes": 2330
+      },
+      {
+        "file": "/jogo/brisa/artes.js",
+        "bytes": 1627
+      },
+      {
+        "file": "/jogo/brisa/ajustes.js",
+        "bytes": 785
+      },
+      {
+        "file": "/jogo/bosque-vivo/mochila.js",
+        "bytes": 2250
+      },
+      {
+        "file": "/jogo/bosque-vivo/vegetacao.js",
+        "bytes": 966
+      },
+      {
+        "file": "/jogo/bosque-vivo/cenario-atlas.js",
+        "bytes": 364
+      },
+      {
+        "file": "/jogo/raizes/modelos.js",
+        "bytes": 2342
+      },
+      {
+        "file": "/jogo/viva/mundo.js",
+        "bytes": 2165
+      },
+      {
+        "file": "/jogo/mata-ilustrada/atlas.js",
+        "bytes": 983
+      },
+      {
+        "file": "/jogo/bosque-vivo/pintura.js",
+        "bytes": 3997
+      },
+      {
+        "file": "/jogo/mata-ilustrada/artes.js",
+        "bytes": 995
+      },
+      {
+        "file": "/jogo/trilhas-vivas/arvores-atlas.js",
+        "bytes": 209
+      },
+      {
+        "file": "/jogo/mata-ilustrada/pintura.js",
+        "bytes": 2785
+      },
+      {
+        "file": "/jogo/trilhas-vivas/natureza.js",
+        "bytes": 1252
+      },
+      {
+        "file": "/jogo/trilhas-vivas/disposicao.js",
+        "bytes": 571
+      },
+      {
+        "file": "/jogo/mata-ilustrada/layout.js",
+        "bytes": 1605
+      },
+      {
+        "file": "/jogo/bosque-vivo/configuracao.js",
+        "bytes": 918
+      },
+      {
+        "file": "/jogo/mata-ilustrada/configuracao.js",
+        "bytes": 1083
+      },
+      {
+        "file": "/jogo/bosque-vivo/cenario.js",
+        "bytes": 4308
+      },
+      {
+        "file": "/jogo/mata-ilustrada/cenario.js",
+        "bytes": 3394
+      },
+      {
+        "file": "/jogo/mata-ilustrada/camera.js",
+        "bytes": 244
+      },
+      {
+        "file": "/jogo/trilhas-vivas/renderizacao.js",
+        "bytes": 2222
+      },
+      {
+        "file": "/jogo/bosque-vivo/trajes.js",
+        "bytes": 187
+      },
+      {
+        "file": "/jogo/bosque-vivo/atlas.js",
+        "bytes": 3216
+      },
+      {
+        "file": "/jogo/trilhas-vivas/kai.js",
+        "bytes": 3051
+      },
+      {
+        "file": "/jogo/bosque-vivo/busca-cooperativa.js",
+        "bytes": 1446
+      },
+      {
+        "file": "/jogo/trilhas-vivas/rotas.js",
+        "bytes": 1043
+      },
+      {
+        "file": "/jogo/vida-natural/interface.css",
+        "bytes": 1433
+      },
+      {
+        "file": "/jogo/colar-vivo/colar.css",
+        "bytes": 1335
+      },
+      {
+        "file": "/jogo/trilhas-vivas/transicoes.js",
+        "bytes": 1773
+      },
+      {
+        "file": "/jogo/brisa/painel-jogo.js",
+        "bytes": 2536
+      },
+      {
+        "file": "/jogo/trilhas-vivas/campanha.js",
+        "bytes": 16517
+      },
+      {
+        "file": "/tela-inicial/renascimento/rustico.css",
+        "bytes": 904
+      },
+      {
+        "file": "/jogo/novo-amanha/interface.css",
+        "bytes": 1777
+      },
+      {
+        "file": "/jogo/novo-amanha/mochila.css",
+        "bytes": 1524
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/acabamento.css",
+        "bytes": 1668
+      },
+      {
+        "file": "/tela-inicial/renascimento/interacoes.js",
+        "bytes": 865
+      },
+      {
+        "file": "/jogo/revisao-paisagem/paisagem.css",
+        "bytes": 4328
+      },
+      {
+        "file": "/jogo/interface-viva/interface.css",
+        "bytes": 3182
+      },
+      {
+        "file": "/jogo/encanto-natural/interface.css",
+        "bytes": 3649
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/interface.css",
+        "bytes": 3698
+      },
+      {
+        "file": "/jogo/nova-jornada/controles.css",
+        "bytes": 1543
+      },
+      {
+        "file": "/jogo/revisao-paisagem/orientacao.js",
+        "bytes": 1640
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/interface.js",
+        "bytes": 1957
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/interface.css",
+        "bytes": 1707
+      },
+      {
+        "file": "/jogo/raizes/jogo.css",
+        "bytes": 2346
+      },
+      {
+        "file": "/jogo/viva/ui.css",
+        "bytes": 7699
+      },
+      {
+        "file": "/jogo/viva/acabamento.css",
+        "bytes": 6533
+      },
+      {
+        "file": "/jogo/mata-ilustrada/mata.css",
+        "bytes": 687
+      },
+      {
+        "file": "/jogo/viva/jogo.css",
+        "bytes": 1846
+      },
+      {
+        "file": "/jogo/brisa/brisa.css",
+        "bytes": 4397
+      },
+      {
+        "file": "/jogo/bosque-vivo/bosque.css",
+        "bytes": 4746
+      },
+      {
+        "file": "/jogo/trilhas-vivas/trilhas.css",
+        "bytes": 1572
+      },
+      {
+        "file": "/assets/otimizados/flora-180-0deb6d287fcc.webp",
+        "bytes": 13178
+      },
+      {
+        "file": "/jogo/mata-ilustrada/assets/texturas.webp",
+        "bytes": 429532
+      },
+      {
+        "file": "/tela-inicial/renascimento/assets/madeira-redonda.svg",
+        "bytes": 737
+      },
+      {
+        "file": "/jogo/vida-natural/assets/folha-interacao.svg",
+        "bytes": 881
+      },
+      {
+        "file": "/jogo/vida-natural/assets/botao-folha.svg",
+        "bytes": 551
+      },
+      {
+        "file": "/jogo/brisa/assets/comandos.webp",
+        "bytes": 66008
+      },
+      {
+        "file": "/jogo/brisa/assets/interface.webp",
+        "bytes": 390162
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/montura.webp",
+        "bytes": 256408
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/relicario-cristais.webp",
+        "bytes": 53498
+      },
+      {
+        "file": "/jogo/raizes/assets/npcs.webp",
+        "bytes": 327578
+      },
+      {
+        "file": "/jogo/raizes/assets/acoes.webp",
+        "bytes": 278030
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/explorador.webp",
+        "bytes": 557728
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/vegetacao.webp",
+        "bytes": 646264
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/objetos.webp",
+        "bytes": 329682
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/arvores.webp",
+        "bytes": 260782
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/campanha-objetos-d3f46fe1.webp",
+        "bytes": 399904
+      },
+      {
+        "file": "/jogo/mata-ilustrada/assets/aderecos.webp",
+        "bytes": 652998
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/campanha-kai-plantio-70084e7d.webp",
+        "bytes": 449232
+      },
+      {
+        "file": "/jogo/raizes/assets/flora.webp",
+        "bytes": 307834
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/floresta-natureza-c7a5d40e.webp",
+        "bytes": 442306
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/equipamentos.webp",
+        "bytes": 342032
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/tarefas.webp",
+        "bytes": 398590
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/plantio.webp",
+        "bytes": 453338
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-0.webp",
+        "bytes": 6418
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-1.webp",
+        "bytes": 6652
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-2.webp",
+        "bytes": 4262
+      },
+      {
+        "file": "/jogo/viva/assets/encontros.webp",
+        "bytes": 402284
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/madeira.svg",
+        "bytes": 873
+      },
+      {
+        "file": "/tela-inicial/nova-versao/assets/lilita-one.ttf",
+        "bytes": 28092
+      },
+      {
+        "file": "/jogo/mata-ilustrada/rotas-worker.js",
+        "bytes": 552
+      },
+      {
+        "file": "/assets/identidade-flora/favicon.ico",
+        "bytes": 15086
+      },
+      {
+        "file": "/jogo/vida-natural/assets/sombra-copa.svg",
+        "bytes": 498
+      },
+      {
+        "file": "/jogo/encanto-natural/assets/toque.mp3",
+        "bytes": 2656
+      },
+      {
+        "file": "/jogo/encanto-natural/assets/caminhos-da-floresta.mp3",
+        "bytes": 1686822
+      },
+      {
+        "file": "/assets/identidade-flora/favicon.ico",
+        "bytes": 15086
+      },
+      {
+        "file": "/jogo/encanto-natural/assets/receber.mp3",
+        "bytes": 10232
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "p95": 16.799999999999727,
+    "max": 33.30000000000018,
+    "frames": 150,
+    "longTasks": 0,
+    "longMax": 0,
+    "bytes": 9901923,
+    "resources": [
+      {
+        "file": "/jogo/encanto-natural/catalogo.js",
+        "bytes": 714
+      },
+      {
+        "file": "/jogo/jornada/jornada.css",
+        "bytes": 3644
+      },
+      {
+        "file": "/jogo/sistemas/controles.css",
+        "bytes": 779
+      },
+      {
+        "file": "/jogo/encanto-natural/audio.js",
+        "bytes": 3908
+      },
+      {
+        "file": "/jogo/raizes/caminhos.js",
+        "bytes": 1590
+      },
+      {
+        "file": "/jogo/sistemas/arte-manifesto.js",
+        "bytes": 1420
+      },
+      {
+        "file": "/jogo/vida-natural/atlas.js",
+        "bytes": 1344
+      },
+      {
+        "file": "/jogo/vida-natural/movimento.js",
+        "bytes": 1102
+      },
+      {
+        "file": "/jogo/sistemas/arte.js",
+        "bytes": 506
+      },
+      {
+        "file": "/jogo/vida-natural/vida.js",
+        "bytes": 3332
+      },
+      {
+        "file": "/tela-inicial/renascimento/atlas.js",
+        "bytes": 435
+      },
+      {
+        "file": "/jogo/renascimento/ambiente.js",
+        "bytes": 1187
+      },
+      {
+        "file": "/jogo/jornada/atlas.js",
+        "bytes": 2625
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/controles.js",
+        "bytes": 1029
+      },
+      {
+        "file": "/jogo/sistemas/progresso.js",
+        "bytes": 742
+      },
+      {
+        "file": "/jogo/floresta-viva/assets/atlas.js",
+        "bytes": 1803
+      },
+      {
+        "file": "/jogo/floresta-viva/revisao/atlas.js",
+        "bytes": 2194
+      },
+      {
+        "file": "/jogo/encanto-natural/flora-atlas.js",
+        "bytes": 454
+      },
+      {
+        "file": "/jogo/floresta-viva/sprites.js",
+        "bytes": 1005
+      },
+      {
+        "file": "/jogo/jornada/fases.js",
+        "bytes": 2757
+      },
+      {
+        "file": "/jogo/sprites-integros/atlas.js",
+        "bytes": 5189
+      },
+      {
+        "file": "/jogo/colar-vivo/colar.js",
+        "bytes": 4047
+      },
+      {
+        "file": "/jogo/colar-vivo/geometria.js",
+        "bytes": 5215
+      },
+      {
+        "file": "/jogo/raizes/navegacao.js",
+        "bytes": 1318
+      },
+      {
+        "file": "/jogo/novo-amanha/sprites.js",
+        "bytes": 908
+      },
+      {
+        "file": "/jogo/interface-viva/atlas.js",
+        "bytes": 834
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/atlas.js",
+        "bytes": 517
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/progresso.js",
+        "bytes": 2832
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/colecao.js",
+        "bytes": 3873
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/relicario.js",
+        "bytes": 1742
+      },
+      {
+        "file": "/jogo/novo-amanha/interface.js",
+        "bytes": 1117
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/mochila.js",
+        "bytes": 2776
+      },
+      {
+        "file": "/jogo/novo-amanha/conteudo.js",
+        "bytes": 2210
+      },
+      {
+        "file": "/jogo/novo-amanha/arte.js",
+        "bytes": 2438
+      },
+      {
+        "file": "/jogo/novo-amanha/atlas.js",
+        "bytes": 2447
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/conteudo.js",
+        "bytes": 1720
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/elenco.js",
+        "bytes": 1131
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/atlas.js",
+        "bytes": 944
+      },
+      {
+        "file": "/jogo/viva/elenco.js",
+        "bytes": 461
+      },
+      {
+        "file": "/jogo/revisao-paisagem/plantas-atlas.js",
+        "bytes": 867
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/geometria.js",
+        "bytes": 2250
+      },
+      {
+        "file": "/jogo/revisao-paisagem/plantas.js",
+        "bytes": 748
+      },
+      {
+        "file": "/jogo/viva/etiquetas.js",
+        "bytes": 794
+      },
+      {
+        "file": "/jogo/revisao-paisagem/arte.js",
+        "bytes": 3421
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/colar.js",
+        "bytes": 2156
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/olhares.js",
+        "bytes": 1183
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/carregamento.js",
+        "bytes": 605
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/otimizados.js",
+        "bytes": 1320
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/artes.js",
+        "bytes": 2475
+      },
+      {
+        "file": "/jogo/raizes/atlas.js",
+        "bytes": 1542
+      },
+      {
+        "file": "/jogo/raizes/personagens.js",
+        "bytes": 1016
+      },
+      {
+        "file": "/jogo/viva/atlas.js",
+        "bytes": 581
+      },
+      {
+        "file": "/jogo/viva/arte.js",
+        "bytes": 1372
+      },
+      {
+        "file": "/jogo/viva/simbolos.js",
+        "bytes": 2330
+      },
+      {
+        "file": "/jogo/viva/comum.js",
+        "bytes": 5779
+      },
+      {
+        "file": "/jogo/brisa/atlas.js",
+        "bytes": 617
+      },
+      {
+        "file": "/jogo/brisa/artes.js",
+        "bytes": 1627
+      },
+      {
+        "file": "/jogo/brisa/ajustes.js",
+        "bytes": 785
+      },
+      {
+        "file": "/jogo/bosque-vivo/mochila.js",
+        "bytes": 2250
+      },
+      {
+        "file": "/jogo/bosque-vivo/vegetacao.js",
+        "bytes": 966
+      },
+      {
+        "file": "/jogo/bosque-vivo/cenario-atlas.js",
+        "bytes": 364
+      },
+      {
+        "file": "/jogo/viva/mundo.js",
+        "bytes": 2165
+      },
+      {
+        "file": "/jogo/bosque-vivo/pintura.js",
+        "bytes": 3997
+      },
+      {
+        "file": "/jogo/raizes/modelos.js",
+        "bytes": 2342
+      },
+      {
+        "file": "/jogo/mata-ilustrada/atlas.js",
+        "bytes": 983
+      },
+      {
+        "file": "/jogo/mata-ilustrada/pintura.js",
+        "bytes": 2785
+      },
+      {
+        "file": "/jogo/mata-ilustrada/artes.js",
+        "bytes": 995
+      },
+      {
+        "file": "/jogo/trilhas-vivas/arvores-atlas.js",
+        "bytes": 209
+      },
+      {
+        "file": "/jogo/trilhas-vivas/natureza.js",
+        "bytes": 1252
+      },
+      {
+        "file": "/jogo/mata-ilustrada/layout.js",
+        "bytes": 1605
+      },
+      {
+        "file": "/jogo/trilhas-vivas/disposicao.js",
+        "bytes": 571
+      },
+      {
+        "file": "/jogo/mata-ilustrada/configuracao.js",
+        "bytes": 1083
+      },
+      {
+        "file": "/jogo/bosque-vivo/configuracao.js",
+        "bytes": 918
+      },
+      {
+        "file": "/jogo/mata-ilustrada/cenario.js",
+        "bytes": 3394
+      },
+      {
+        "file": "/jogo/trilhas-vivas/renderizacao.js",
+        "bytes": 2222
+      },
+      {
+        "file": "/jogo/bosque-vivo/cenario.js",
+        "bytes": 4308
+      },
+      {
+        "file": "/jogo/mata-ilustrada/camera.js",
+        "bytes": 244
+      },
+      {
+        "file": "/jogo/bosque-vivo/trajes.js",
+        "bytes": 187
+      },
+      {
+        "file": "/jogo/bosque-vivo/busca-cooperativa.js",
+        "bytes": 1446
+      },
+      {
+        "file": "/jogo/trilhas-vivas/kai.js",
+        "bytes": 3051
+      },
+      {
+        "file": "/jogo/bosque-vivo/atlas.js",
+        "bytes": 3216
+      },
+      {
+        "file": "/jogo/vida-natural/interface.css",
+        "bytes": 1433
+      },
+      {
+        "file": "/jogo/trilhas-vivas/rotas.js",
+        "bytes": 1043
+      },
+      {
+        "file": "/jogo/trilhas-vivas/transicoes.js",
+        "bytes": 1773
+      },
+      {
+        "file": "/jogo/brisa/painel-jogo.js",
+        "bytes": 2536
+      },
+      {
+        "file": "/jogo/trilhas-vivas/campanha.js",
+        "bytes": 16517
+      },
+      {
+        "file": "/jogo/colar-vivo/colar.css",
+        "bytes": 1335
+      },
+      {
+        "file": "/tela-inicial/renascimento/rustico.css",
+        "bytes": 904
+      },
+      {
+        "file": "/jogo/novo-amanha/interface.css",
+        "bytes": 1777
+      },
+      {
+        "file": "/tela-inicial/renascimento/interacoes.js",
+        "bytes": 865
+      },
+      {
+        "file": "/jogo/novo-amanha/mochila.css",
+        "bytes": 1524
+      },
+      {
+        "file": "/jogo/vida-em-equilibrio/acabamento.css",
+        "bytes": 1668
+      },
+      {
+        "file": "/jogo/interface-viva/interface.css",
+        "bytes": 3182
+      },
+      {
+        "file": "/jogo/encanto-natural/interface.css",
+        "bytes": 3649
+      },
+      {
+        "file": "/jogo/revisao-paisagem/paisagem.css",
+        "bytes": 4328
+      },
+      {
+        "file": "/jogo/nova-jornada/controles.css",
+        "bytes": 1543
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/interface.css",
+        "bytes": 3698
+      },
+      {
+        "file": "/jogo/revisao-paisagem/orientacao.js",
+        "bytes": 1640
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/interface.css",
+        "bytes": 1707
+      },
+      {
+        "file": "/jogo/viva/ui.css",
+        "bytes": 7699
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/interface.js",
+        "bytes": 1957
+      },
+      {
+        "file": "/jogo/raizes/jogo.css",
+        "bytes": 2346
+      },
+      {
+        "file": "/jogo/viva/acabamento.css",
+        "bytes": 6533
+      },
+      {
+        "file": "/jogo/mata-ilustrada/mata.css",
+        "bytes": 687
+      },
+      {
+        "file": "/jogo/viva/jogo.css",
+        "bytes": 1846
+      },
+      {
+        "file": "/jogo/brisa/brisa.css",
+        "bytes": 4397
+      },
+      {
+        "file": "/jogo/trilhas-vivas/trilhas.css",
+        "bytes": 1572
+      },
+      {
+        "file": "/jogo/bosque-vivo/bosque.css",
+        "bytes": 4746
+      },
+      {
+        "file": "/assets/otimizados/flora-180-0deb6d287fcc.webp",
+        "bytes": 13178
+      },
+      {
+        "file": "/jogo/mata-ilustrada/assets/texturas.webp",
+        "bytes": 429532
+      },
+      {
+        "file": "/tela-inicial/renascimento/assets/madeira-redonda.svg",
+        "bytes": 737
+      },
+      {
+        "file": "/jogo/vida-natural/assets/folha-interacao.svg",
+        "bytes": 881
+      },
+      {
+        "file": "/jogo/vida-natural/assets/botao-folha.svg",
+        "bytes": 551
+      },
+      {
+        "file": "/jogo/brisa/assets/comandos.webp",
+        "bytes": 66008
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/montura.webp",
+        "bytes": 256408
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/relicario-cristais.webp",
+        "bytes": 53498
+      },
+      {
+        "file": "/jogo/raizes/assets/npcs.webp",
+        "bytes": 327578
+      },
+      {
+        "file": "/jogo/brisa/assets/interface.webp",
+        "bytes": 390162
+      },
+      {
+        "file": "/jogo/raizes/assets/acoes.webp",
+        "bytes": 278030
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/explorador.webp",
+        "bytes": 557728
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/vegetacao.webp",
+        "bytes": 646264
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/objetos.webp",
+        "bytes": 329682
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/arvores.webp",
+        "bytes": 260782
+      },
+      {
+        "file": "/jogo/mata-ilustrada/assets/aderecos.webp",
+        "bytes": 652998
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/campanha-kai-rio-3edf9612.webp",
+        "bytes": 455240
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/campanha-kai-plantio-70084e7d.webp",
+        "bytes": 449232
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/campanha-objetos-d3f46fe1.webp",
+        "bytes": 399904
+      },
+      {
+        "file": "/jogo/raizes/assets/flora.webp",
+        "bytes": 307834
+      },
+      {
+        "file": "/jogo/cuidado-acessivel/assets/floresta-natureza-c7a5d40e.webp",
+        "bytes": 442306
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/equipamentos.webp",
+        "bytes": 342032
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/tarefas.webp",
+        "bytes": 398590
+      },
+      {
+        "file": "/jogo/bosque-vivo/assets/voluntario.webp",
+        "bytes": 434040
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-0.webp",
+        "bytes": 6418
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-1.webp",
+        "bytes": 6652
+      },
+      {
+        "file": "/jogo/trilhas-vivas/assets/folha-2.webp",
+        "bytes": 4262
+      },
+      {
+        "file": "/jogo/viva/assets/encontros.webp",
+        "bytes": 402284
+      },
+      {
+        "file": "/jogo/encontros-da-floresta/assets/madeira.svg",
+        "bytes": 873
+      },
+      {
+        "file": "/tela-inicial/nova-versao/assets/lilita-one.ttf",
+        "bytes": 28092
+      },
+      {
+        "file": "/jogo/mata-ilustrada/rotas-worker.js",
+        "bytes": 552
+      },
+      {
+        "file": "/assets/identidade-flora/favicon.ico",
+        "bytes": 15086
+      },
+      {
+        "file": "/jogo/vida-natural/assets/sombra-copa.svg",
+        "bytes": 498
+      },
+      {
+        "file": "/jogo/encanto-natural/assets/toque.mp3",
+        "bytes": 2656
+      },
+      {
+        "file": "/jogo/encanto-natural/assets/caminhos-da-floresta.mp3",
+        "bytes": 1686822
+      },
+      {
+        "file": "/assets/identidade-flora/favicon.ico",
+        "bytes": 15086
+      },
+      {
+        "file": "/jogo/encanto-natural/assets/receber.mp3",
+        "bytes": 10232
+      }
+    ]
+  }
+]

@@ -52,6 +52,8 @@ for (const dir of [
   "jogo/bosque-vivo/assets",
   "jogo/mata-ilustrada",
   "jogo/mata-ilustrada/assets",
+  "jogo/trilhas-vivas",
+  "jogo/trilhas-vivas/assets",
 ])
   for (const f of readdirSync(dir))
     if (/\.(html|js|css|webp|json)$/.test(f)) add(dir + "/" + f);

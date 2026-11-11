@@ -226,6 +226,25 @@
     "jogo/sistemas/progresso.js",
     "jogo/sprites-integros/assets/campanha-icones.webp",
     "jogo/sprites-integros/atlas.js",
+    "jogo/trilhas-vivas/arvores-atlas.js",
+    "jogo/trilhas-vivas/assets/arvores.webp",
+    "jogo/trilhas-vivas/assets/costa.webp",
+    "jogo/trilhas-vivas/assets/folha-0.webp",
+    "jogo/trilhas-vivas/assets/folha-1.webp",
+    "jogo/trilhas-vivas/assets/folha-2.webp",
+    "jogo/trilhas-vivas/campanha.js",
+    "jogo/trilhas-vivas/carregamento.js",
+    "jogo/trilhas-vivas/disposicao.js",
+    "jogo/trilhas-vivas/floresta.js",
+    "jogo/trilhas-vivas/folhas.js",
+    "jogo/trilhas-vivas/kai.js",
+    "jogo/trilhas-vivas/mapa.js",
+    "jogo/trilhas-vivas/menu.js",
+    "jogo/trilhas-vivas/natureza.js",
+    "jogo/trilhas-vivas/renderizacao.js",
+    "jogo/trilhas-vivas/rotas.js",
+    "jogo/trilhas-vivas/transicoes.js",
+    "jogo/trilhas-vivas/trilhas.css",
     "jogo/vida-em-equilibrio/acabamento.css",
     "jogo/vida-em-equilibrio/atlas.js",
     "jogo/vida-em-equilibrio/colecao.js",
@@ -279,5 +298,5 @@
     "tela-inicial/renascimento/interacoes.js",
     "tela-inicial/renascimento/rustico.css"
   ],
-  "bytes": 35567930
+  "bytes": 36256257
 }
