@@ -28,9 +28,19 @@ const root = resolve("."),
     "jogo/novo-amanha/icones.js",
     "jogo/interface-viva/artes.js",
   ]);
+// O cenário atual é composto por elementos. As pinturas completas ficam no histórico,
+// sem ocupar o pacote público ou serem usadas como máscaras de restauração.
+const unusedMap =
+  /^(?:jogo\/cuidado-acessivel\/assets\/(?:(?:floresta|rio|fauna|plantio|cidade)(?:-restaurado)?|mapa(?:-celular)?)-[a-f0-9]{8}\.webp|jogo\/raizes\/assets\/mapa-(?:cinzas|vivo)\.webp)$/;
 function add(f) {
   f = f.replace(/^\//, "");
-  if (!omit.has(f) && existsSync(f) && statSync(f).isFile()) keep.add(f);
+  if (
+    !omit.has(f) &&
+    !unusedMap.test(f) &&
+    existsSync(f) &&
+    statSync(f).isFile()
+  )
+    keep.add(f);
 }
 old.files.forEach(add);
 for (const dir of [
@@ -38,6 +48,8 @@ for (const dir of [
   "jogo/viva/assets",
   "jogo/brisa",
   "jogo/brisa/assets",
+  "jogo/bosque-vivo",
+  "jogo/bosque-vivo/assets",
 ])
   for (const f of readdirSync(dir))
     if (/\.(html|js|css|webp|json)$/.test(f)) add(dir + "/" + f);

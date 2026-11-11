@@ -2,7 +2,7 @@
 
 Aventura de exploração em HTML, CSS e JavaScript para crianças de 5 a 10 anos. Kai e Flora cuidam de cinco regiões de uma ilha e devolvem força à Árvore Guardiã. O jogo funciona em **paisagem**, com teclado ou controles de toque.
 
-[Jogar](https://iuribrns.github.io/GUARDIAO_DA_NATUREZA/) · [Código atual](jogo/viva/) · [Estrutura](docs/ESTRUTURA.md) · [Publicação](docs/PUBLICACAO.md) · [Revisão e testes](desenvolvimento/brisa/README.md)
+[Jogar](https://iuribrns.github.io/GUARDIAO_DA_NATUREZA/) · [Entrada](jogo/viva/) · [Código atual](jogo/bosque-vivo/) · [Estrutura](docs/ESTRUTURA.md) · [Publicação](docs/PUBLICACAO.md) · [Revisão e testes](desenvolvimento/bosque-vivo/README.md)
 
 | Região             | Cuidado                                                        | Aliado  | Cristal  |
 | ------------------ | -------------------------------------------------------------- | ------- | -------- |
@@ -13,6 +13,8 @@ Aventura de exploração em HTML, CSS e JavaScript para crianças de 5 a 10 anos
 | Cidade Sustentável | Separar resíduos, ajustar painéis solares e cuidar dos jardins | Luciana | Violeta  |
 
 A seleção mostra somente as cinco regiões. A paisagem recuperada aparece depois da conquista. Ao completar todas, Kai percorre os caminhos do próprio mapa, ergue o colar e restaura a Árvore Guardiã em uma animação desenhada ao vivo, sem vídeo. Os créditos aparecem no final. **Nova jornada** reinicia fases, itens, cristais e ilha, preservando áudio e controles.
+
+Os mapas atuais são compostos por terreno, água, caminhos, construções e árvores. Os mesmos troncos se alongam, as copas crescem e o terreno muda de cor com os objetivos; a restauração não revela outra pintura por cima do cenário. As cinco fases têm trilhas próprias e usam os elementos visíveis para definir as colisões.
 
 ## Jogar e ajustar
 
@@ -38,7 +40,9 @@ npm run test:build
 
 ## Arte e arquivos
 
-A entrada atual é `jogo/viva/index.html`. As entradas anteriores redirecionam para ela, mantendo os favoritos. O fluxo atual usa WebP e carrega os sprites quando a tela ou fase precisa deles. Na medição local em Chromium, a abertura solicitou 1,20 MiB; o site completo ocupa 33,76 MiB. Não há download de vídeo nem do laboratório no jogo publicado. `desenvolvimento/viva/publicacao.json` define os arquivos que vão para o Pages.
+A entrada atual é `jogo/viva/index.html`; os controladores e cenários atuais ficam em `jogo/bosque-vivo/`. As entradas anteriores redirecionam para o menu, mantendo os favoritos. O fluxo usa WebP e carrega os sprites quando a tela ou fase precisa deles. Na medição local em Chromium, a abertura solicitou 1,22 MiB; o site completo ocupa aproximadamente 32,85 MiB. Não há download de vídeo nem do laboratório no jogo publicado. `desenvolvimento/viva/publicacao.json` define os arquivos que vão para o Pages e é atualizado a cada compilação.
+
+Kai tem seis passadas em cada vista, com roupas de explorador, proteção do rio, resgate, plantio e voluntariado. As ações de cuidado, plantio, rega e coleta mantêm o traje da missão. Os caminhos dos animais e a orientação até os objetivos são calculados em segundo plano; uma alternativa em pequenos lotes atende navegadores sem Web Workers.
 
 Esta revisão preserva as pastas e artes anteriores. Os arquivos que deixaram de ser usados ficam fora da publicação. A limpeza feita em uma revisão anterior está documentada em `desenvolvimento/raizes/retirados.json`. Os testes históricos não são a suíte da campanha atual.
 

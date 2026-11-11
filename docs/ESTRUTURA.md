@@ -3,21 +3,24 @@
 | Local                                        | Responsabilidade                                                                           |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | `index.html`                                 | Entrada e redirecionamento para o jogo                                                     |
-| `jogo/brisa/`                                | Artes dos comandos, botânica, transições suaves, inventário e pausa atuais                 |
+| `jogo/bosque-vivo/`                          | Controladores atuais, mapas compostos, crescimento, sprites de Kai, mochila e rotas         |
+| `jogo/bosque-vivo/assets/`                   | Quadros WebP medidos, vegetação por partes, objetos e miniaturas dos trajes                  |
+| `jogo/brisa/`                                | Artes dos comandos, folhas, transições, ajustes e pausa reutilizados                        |
 | `jogo/viva/`                                 | Entrada atual, composição visual, símbolos, folhas, ajustes e encerramento ao vivo no mapa |
-| `jogo/raizes/`                               | Controladores compartilhados, atlas e animações reutilizados                               |
+| `jogo/raizes/`                               | Busca de caminhos e personagens compartilhados; controladores anteriores preservados       |
 | `jogo/viva/assets/`                          | Nova abertura, moldura, cenários de conversa, folhas e sprites WebP medidos                |
-| `jogo/raizes/assets/`                        | Mapas e personagens reutilizados; o MP4 antigo não é publicado                             |
+| `jogo/raizes/assets/`                        | Personagens compartilhados; pinturas antigas dos mapas preservadas fora da publicação     |
 | `jogo/floresta-viva/index.html`              | Entrada da primeira fase                                                                   |
 | `jogo/jornada/index.html?fase=2…5`           | Entradas das demais fases                                                                  |
 | `jogo/cuidado-acessivel/`                    | Geometria, elenco e imagens otimizadas compartilhadas                                      |
 | `jogo/sistemas/`, `jogo/vida-em-equilibrio/` | Progresso, controles, memória dos itens e conteúdo das fases                               |
 | `jogo/encanto-natural/`                      | Uma trilha e os efeitos sonoros atuais                                                     |
 | `tela-inicial/nova-versao/`                  | Compatibilidade dos endereços anteriores                                                   |
-| `desenvolvimento/brisa/`                     | Conversão das novas artes, teste das interações e medição de abertura                      |
-| `desenvolvimento/viva/`                      | Compilação estática, manifesto, medições e relatório da revisão atual                      |
+| `desenvolvimento/bosque-vivo/`               | Compilação atual, preparação das artes, testes das cinco fases, interface e medições        |
+| `desenvolvimento/brisa/`                     | Testes dos comandos e histórico da revisão Brisa                                           |
+| `desenvolvimento/viva/`                      | Manifesto, cópia estática e entrada da suíte atual                                           |
 | `desenvolvimento/raizes/`                    | Histórico da revisão anterior                                                              |
-| `jogo/viva/validacao/`                       | Interface e campanha real com teclado/toque; geometria e percursos                         |
+| `jogo/viva/validacao/`                       | Regressão da interface e publicação em subpasta; campanha anterior preservada               |
 | `desenvolvimento/laboratorio/`               | Laboratório de Phaser e GSAP, separado do jogo                                             |
 | `docs/`                                      | Orientações do repositório                                                                 |
 

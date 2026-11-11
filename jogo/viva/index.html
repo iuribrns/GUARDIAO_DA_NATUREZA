@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="../raizes/orientacao.css?v=raizes-1" />
     <link rel="stylesheet" href="acabamento.css?v=viva-1" />
     <link rel="stylesheet" href="../brisa/brisa.css?v=brisa-1" />
+    <link rel="stylesheet" href="../bosque-vivo/bosque.css?v=bosque-1" />
+    <link rel="preload" as="image" href="assets/inicio.webp" fetchpriority="high" />
     <script src="../encanto-natural/catalogo.js" defer></script>
     <script src="../encanto-natural/audio.js" defer></script>
     <script src="../sistemas/progresso.js" defer></script>
@@ -33,12 +35,20 @@
     <script src="../brisa/atlas.js?v=brisa-1" defer></script>
     <script src="../brisa/artes.js?v=brisa-1" defer></script>
     <script src="../brisa/ajustes.js?v=brisa-1" defer></script>
-    <script src="../brisa/mochila.js?v=brisa-1" defer></script>
+    <script src="../bosque-vivo/atlas.js?v=bosque-1" defer></script>
+    <script src="../bosque-vivo/trajes.js?v=bosque-1" defer></script>
+    <script src="../bosque-vivo/kai.js?v=bosque-1" defer></script>
+    <script src="../bosque-vivo/mochila.js?v=bosque-1" defer></script>
     <script src="../brisa/transicoes.js?v=brisa-1" defer></script>
     <script src="../brisa/folhas.js?v=brisa-1" defer></script>
-    <script src="app.js" defer></script>
+    <script src="../bosque-vivo/cenario-atlas.js?v=bosque-1" defer></script>
+    <script src="../bosque-vivo/vegetacao.js?v=bosque-1" defer></script>
+    <script src="../bosque-vivo/pintura.js?v=bosque-1" defer></script>
+    <script src="../bosque-vivo/mapa.js?v=bosque-1" defer></script>
+    <script src="../bosque-vivo/fundo.js?v=bosque-1" defer></script>
+    <script src="../bosque-vivo/menu.js?v=bosque-1" defer></script>
     <script src="../brisa/interacoes.js?v=brisa-1" defer></script>
-    <script src="final.js" defer></script>
+    <script src="../bosque-vivo/final.js?v=bosque-1" defer></script>
     <script src="../revisao-paisagem/orientacao.js" defer></script>
   </head>
   <body>
@@ -99,15 +109,7 @@
       >
         <div class="island">
           <div class="map-stage">
-            <img
-              id="island-ash"
-              src="../raizes/assets/mapa-cinzas.webp"
-              alt="Ilha com cinco regiões afetadas e uma Árvore Guardiã enfraquecida no centro"
-              width="1672"
-              height="941"
-              fetchpriority="low"
-              loading="lazy"
-            /><svg
+            <svg
               id="island-restoration"
               viewBox="0 0 1000 563"
               preserveAspectRatio="none"

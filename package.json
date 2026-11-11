@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "vite --config desenvolvimento/vite.config.mjs",
-    "build": "node desenvolvimento/viva/compilar.mjs",
+    "build": "node desenvolvimento/bosque-vivo/compilar.mjs",
     "preview": "vite preview --config desenvolvimento/vite.config.mjs",
     "test": "node desenvolvimento/viva/testar.mjs",
     "check:tools": "node desenvolvimento/scripts/verificar-ferramentas.mjs",
