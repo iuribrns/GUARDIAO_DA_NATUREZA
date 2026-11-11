@@ -174,6 +174,19 @@
     "jogo/jornada/fases.js",
     "jogo/jornada/index.html",
     "jogo/jornada/jornada.css",
+    "jogo/mata-ilustrada/artes.js",
+    "jogo/mata-ilustrada/assets/aderecos.webp",
+    "jogo/mata-ilustrada/assets/texturas.webp",
+    "jogo/mata-ilustrada/atlas.js",
+    "jogo/mata-ilustrada/camera.js",
+    "jogo/mata-ilustrada/cenario.js",
+    "jogo/mata-ilustrada/configuracao.js",
+    "jogo/mata-ilustrada/geometria-floresta.js",
+    "jogo/mata-ilustrada/layout.js",
+    "jogo/mata-ilustrada/mata.css",
+    "jogo/mata-ilustrada/pintura.js",
+    "jogo/mata-ilustrada/rotas-worker.js",
+    "jogo/mata-ilustrada/rotas.js",
     "jogo/nova-jornada/controles.css",
     "jogo/novo-amanha/arte.js",
     "jogo/novo-amanha/assets/icones.svg",
@@ -266,5 +279,5 @@
     "tela-inicial/renascimento/interacoes.js",
     "tela-inicial/renascimento/rustico.css"
   ],
-  "bytes": 34441003
+  "bytes": 35567930
 }

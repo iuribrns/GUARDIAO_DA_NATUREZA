@@ -950,12 +950,10 @@
     canvas.width = Math.round(viewport.w * r);
     canvas.height = Math.round(viewport.h * r);
     ctx.setTransform(r, 0, 0, r, 0, 0);
-    camera.scale = Math.max(
-      viewport.w / 1280,
-      viewport.h / 720,
-      window.GuardiaoControles.effective() === "touch"
-        ? Math.min(0.95, viewport.h / 480)
-        : 0.8,
+    camera.scale = MataCamera.scale(
+      viewport.w,
+      viewport.h,
+      window.GuardiaoControles.effective() === "touch",
     );
     draw();
   }

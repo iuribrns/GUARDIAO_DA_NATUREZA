@@ -1,0 +1,422 @@
+{
+  "imagens": 69,
+  "antes": 143157721,
+  "depois": 27727386,
+  "reducao_percentual": 80.63,
+  "arquivos": [
+    {
+      "original": "assets/identidade-flora/flora-32.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/assets/identidade-flora/flora-32.webp",
+      "antes": 3183,
+      "depois": 1256
+    },
+    {
+      "original": "assets/interface/kai-pulando.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/assets/interface/kai-pulando.webp",
+      "antes": 1071494,
+      "depois": 175300
+    },
+    {
+      "original": "assets/itens-remodelados/kai/01_mangueira.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/assets/itens-remodelados/kai/01_mangueira.webp",
+      "antes": 1703195,
+      "depois": 429438
+    },
+    {
+      "original": "desenvolvimento/novo-amanha/fontes/fauna-brasileira.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/novo-amanha/fontes/fauna-brasileira.webp",
+      "antes": 2291938,
+      "depois": 346100
+    },
+    {
+      "original": "desenvolvimento/novo-amanha/fontes/ilha-degradada-celular.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/novo-amanha/fontes/ilha-degradada-celular.webp",
+      "antes": 3539887,
+      "depois": 577070
+    },
+    {
+      "original": "desenvolvimento/novo-amanha/fontes/traje-nadar.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/novo-amanha/fontes/traje-nadar.webp",
+      "antes": 1798574,
+      "depois": 448086
+    },
+    {
+      "original": "desenvolvimento/novo-amanha/fontes/uniforme-plantio.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/novo-amanha/fontes/uniforme-plantio.webp",
+      "antes": 1601758,
+      "depois": 409780
+    },
+    {
+      "original": "desenvolvimento/novo-amanha/fontes/uniforme-resgate.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/novo-amanha/fontes/uniforme-resgate.webp",
+      "antes": 1804178,
+      "depois": 474652
+    },
+    {
+      "original": "desenvolvimento/novo-amanha/fontes/traje-acoes.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/novo-amanha/fontes/traje-acoes.webp",
+      "antes": 2576697,
+      "depois": 449572
+    },
+    {
+      "original": "desenvolvimento/novo-amanha/fontes/ilha-degradada.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/novo-amanha/fontes/ilha-degradada.webp",
+      "antes": 3488144,
+      "depois": 543794
+    },
+    {
+      "original": "desenvolvimento/novo-amanha/fontes/equipe-2d.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/novo-amanha/fontes/equipe-2d.webp",
+      "antes": 1501408,
+      "depois": 343214
+    },
+    {
+      "original": "desenvolvimento/novo-amanha/fontes/traje-andar.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/novo-amanha/fontes/traje-andar.webp",
+      "antes": 1714112,
+      "depois": 439538
+    },
+    {
+      "original": "desenvolvimento/novo-amanha/fontes/reencontros.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/novo-amanha/fontes/reencontros.webp",
+      "antes": 1891646,
+      "depois": 457054
+    },
+    {
+      "original": "desenvolvimento/novo-amanha/fontes/uniforme-voluntario.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/novo-amanha/fontes/uniforme-voluntario.webp",
+      "antes": 1632215,
+      "depois": 401832
+    },
+    {
+      "original": "desenvolvimento/novo-amanha/fontes/moradores.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/novo-amanha/fontes/moradores.webp",
+      "antes": 1674382,
+      "depois": 442158
+    },
+    {
+      "original": "desenvolvimento/interface-viva/fontes/ferramentas.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/interface-viva/fontes/ferramentas.webp",
+      "antes": 2419353,
+      "depois": 636062
+    },
+    {
+      "original": "desenvolvimento/interface-viva/fontes/simbolos.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/interface-viva/fontes/simbolos.webp",
+      "antes": 1825585,
+      "depois": 415592
+    },
+    {
+      "original": "desenvolvimento/revisao-paisagem/fontes/plantas-nativas.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/revisao-paisagem/fontes/plantas-nativas.webp",
+      "antes": 2154939,
+      "depois": 713978
+    },
+    {
+      "original": "desenvolvimento/vida-em-equilibrio/fontes/vida-rio.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/vida-em-equilibrio/fontes/vida-rio.webp",
+      "antes": 2359339,
+      "depois": 400662
+    },
+    {
+      "original": "desenvolvimento/vida-em-equilibrio/fontes/fauna-copa.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/vida-em-equilibrio/fontes/fauna-copa.webp",
+      "antes": 1516484,
+      "depois": 325292
+    },
+    {
+      "original": "desenvolvimento/vida-em-equilibrio/fontes/mapa.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/vida-em-equilibrio/fontes/mapa.webp",
+      "antes": 3273036,
+      "depois": 481368
+    },
+    {
+      "original": "desenvolvimento/vida-em-equilibrio/fontes/kai-acoes.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/vida-em-equilibrio/fontes/kai-acoes.webp",
+      "antes": 1697075,
+      "depois": 402972
+    },
+    {
+      "original": "desenvolvimento/vida-em-equilibrio/fontes/mapa-celular.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/vida-em-equilibrio/fontes/mapa-celular.webp",
+      "antes": 3439778,
+      "depois": 526002
+    },
+    {
+      "original": "desenvolvimento/vida-em-equilibrio/fontes/fauna-grande.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/vida-em-equilibrio/fontes/fauna-grande.webp",
+      "antes": 2224319,
+      "depois": 631146
+    },
+    {
+      "original": "desenvolvimento/vida-em-equilibrio/fontes/kai-acoes-rascunho.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/vida-em-equilibrio/fontes/kai-acoes-rascunho.webp",
+      "antes": 1795664,
+      "depois": 459478
+    },
+    {
+      "original": "desenvolvimento/renascimento/fontes/rio.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/renascimento/fontes/rio.webp",
+      "antes": 3644241,
+      "depois": 562242
+    },
+    {
+      "original": "desenvolvimento/renascimento/fontes/floresta.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/renascimento/fontes/floresta.webp",
+      "antes": 3601135,
+      "depois": 563428
+    },
+    {
+      "original": "desenvolvimento/renascimento/fontes/decidueye.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/renascimento/fontes/decidueye.webp",
+      "antes": 124222,
+      "depois": 26622
+    },
+    {
+      "original": "desenvolvimento/renascimento/fontes/rowlet.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/renascimento/fontes/rowlet.webp",
+      "antes": 137280,
+      "depois": 21080
+    },
+    {
+      "original": "desenvolvimento/renascimento/fontes/ilha-curada.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/renascimento/fontes/ilha-curada.webp",
+      "antes": 3672795,
+      "depois": 628684
+    },
+    {
+      "original": "desenvolvimento/renascimento/fontes/arvores.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/renascimento/fontes/arvores.webp",
+      "antes": 1484404,
+      "depois": 401064
+    },
+    {
+      "original": "desenvolvimento/renascimento/fontes/plantio.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/renascimento/fontes/plantio.webp",
+      "antes": 3708046,
+      "depois": 601634
+    },
+    {
+      "original": "desenvolvimento/renascimento/fontes/inicio-curado.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/renascimento/fontes/inicio-curado.webp",
+      "antes": 3321667,
+      "depois": 563240
+    },
+    {
+      "original": "desenvolvimento/renascimento/fontes/fauna.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/renascimento/fontes/fauna.webp",
+      "antes": 3840954,
+      "depois": 626072
+    },
+    {
+      "original": "desenvolvimento/renascimento/fontes/ilha-cinzas.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/renascimento/fontes/ilha-cinzas.webp",
+      "antes": 3717012,
+      "depois": 613050
+    },
+    {
+      "original": "desenvolvimento/renascimento/fontes/equipe.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/renascimento/fontes/equipe.webp",
+      "antes": 1836679,
+      "depois": 349868
+    },
+    {
+      "original": "desenvolvimento/renascimento/fontes/inicio-cinzas.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/renascimento/fontes/inicio-cinzas.webp",
+      "antes": 2631798,
+      "depois": 344772
+    },
+    {
+      "original": "desenvolvimento/renascimento/fontes/cidade.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/renascimento/fontes/cidade.webp",
+      "antes": 3939603,
+      "depois": 645978
+    },
+    {
+      "original": "desenvolvimento/equipe-2d/fontes/estudantes.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/equipe-2d/fontes/estudantes.webp",
+      "antes": 1332567,
+      "depois": 296550
+    },
+    {
+      "original": "desenvolvimento/recortes/fontes/kai-vestindo-colar.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/recortes/fontes/kai-vestindo-colar.webp",
+      "antes": 1400960,
+      "depois": 341482
+    },
+    {
+      "original": "desenvolvimento/recortes/fontes/kai-cuidados.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/recortes/fontes/kai-cuidados.webp",
+      "antes": 1682239,
+      "depois": 434882
+    },
+    {
+      "original": "desenvolvimento/recortes/fontes/kai-andar-b.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/recortes/fontes/kai-andar-b.webp",
+      "antes": 1703234,
+      "depois": 445070
+    },
+    {
+      "original": "desenvolvimento/recortes/fontes/colar-vazio.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/recortes/fontes/colar-vazio.webp",
+      "antes": 1981048,
+      "depois": 195464
+    },
+    {
+      "original": "desenvolvimento/recortes/fontes/kai-andar-a.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/recortes/fontes/kai-andar-a.webp",
+      "antes": 1494251,
+      "depois": 398050
+    },
+    {
+      "original": "desenvolvimento/agua-viva/fontes/agua-original.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/agua-viva/fontes/agua-original.webp",
+      "antes": 1732025,
+      "depois": 662688
+    },
+    {
+      "original": "desenvolvimento/horizonte-vivo/fontes/mapa.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/horizonte-vivo/fontes/mapa.webp",
+      "antes": 3287708,
+      "depois": 532052
+    },
+    {
+      "original": "desenvolvimento/horizonte-vivo/fontes/vista.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/horizonte-vivo/fontes/vista.webp",
+      "antes": 2726112,
+      "depois": 403218
+    },
+    {
+      "original": "desenvolvimento/horizonte-vivo/fontes/dupla.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/horizonte-vivo/fontes/dupla.webp",
+      "antes": 2163351,
+      "depois": 308878
+    },
+    {
+      "original": "desenvolvimento/horizonte-vivo/fontes/mapa-celular-verde.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/horizonte-vivo/fontes/mapa-celular-verde.webp",
+      "antes": 3374828,
+      "depois": 603224
+    },
+    {
+      "original": "desenvolvimento/horizonte-vivo/fontes/mapa-celular.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/horizonte-vivo/fontes/mapa-celular.webp",
+      "antes": 3525316,
+      "depois": 611122
+    },
+    {
+      "original": "desenvolvimento/horizonte-vivo/fontes/mapa-verde.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/horizonte-vivo/fontes/mapa-verde.webp",
+      "antes": 3243270,
+      "depois": 551724
+    },
+    {
+      "original": "desenvolvimento/horizonte-vivo/fontes/campo.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/horizonte-vivo/fontes/campo.webp",
+      "antes": 2998306,
+      "depois": 425596
+    },
+    {
+      "original": "desenvolvimento/encontros-da-floresta/fontes/fragmento-5.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/encontros-da-floresta/fontes/fragmento-5.webp",
+      "antes": 34979,
+      "depois": 6316
+    },
+    {
+      "original": "desenvolvimento/encontros-da-floresta/fontes/cristais.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/encontros-da-floresta/fontes/cristais.webp",
+      "antes": 1679361,
+      "depois": 307992
+    },
+    {
+      "original": "desenvolvimento/encontros-da-floresta/fontes/encontros-piscada.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/encontros-da-floresta/fontes/encontros-piscada.webp",
+      "antes": 2663822,
+      "depois": 402470
+    },
+    {
+      "original": "desenvolvimento/encontros-da-floresta/fontes/fragmento-2.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/encontros-da-floresta/fontes/fragmento-2.webp",
+      "antes": 37798,
+      "depois": 6732
+    },
+    {
+      "original": "desenvolvimento/encontros-da-floresta/fontes/fragmento-3.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/encontros-da-floresta/fontes/fragmento-3.webp",
+      "antes": 41147,
+      "depois": 7966
+    },
+    {
+      "original": "desenvolvimento/encontros-da-floresta/fontes/encontros.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/encontros-da-floresta/fontes/encontros.webp",
+      "antes": 2653615,
+      "depois": 439942
+    },
+    {
+      "original": "desenvolvimento/encontros-da-floresta/fontes/fragmento-1.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/encontros-da-floresta/fontes/fragmento-1.webp",
+      "antes": 31612,
+      "depois": 6494
+    },
+    {
+      "original": "desenvolvimento/encontros-da-floresta/fontes/montura.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/encontros-da-floresta/fontes/montura.webp",
+      "antes": 2092877,
+      "depois": 205102
+    },
+    {
+      "original": "desenvolvimento/encontros-da-floresta/fontes/fragmento-4.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/encontros-da-floresta/fontes/fragmento-4.webp",
+      "antes": 34814,
+      "depois": 6928
+    },
+    {
+      "original": "desenvolvimento/encanto-natural/fontes/molduras.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/encanto-natural/fontes/molduras.webp",
+      "antes": 2312150,
+      "depois": 264542
+    },
+    {
+      "original": "desenvolvimento/encanto-natural/fontes/flora.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/encanto-natural/fontes/flora.webp",
+      "antes": 1901940,
+      "depois": 504162
+    },
+    {
+      "original": "desenvolvimento/arte-natural/fontes/kai-mangueira.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/arte-natural/fontes/kai-mangueira.webp",
+      "antes": 2184588,
+      "depois": 597876
+    },
+    {
+      "original": "desenvolvimento/arte-natural/fontes/estudo-fogo.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/arte-natural/fontes/estudo-fogo.webp",
+      "antes": 12183,
+      "depois": 15092
+    },
+    {
+      "original": "desenvolvimento/arte-natural/fontes/fogo.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/arte-natural/fontes/fogo.webp",
+      "antes": 1346932,
+      "depois": 366884
+    },
+    {
+      "original": "desenvolvimento/arte-natural/fontes/kai-andando.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/arte-natural/fontes/kai-andando.webp",
+      "antes": 2242357,
+      "depois": 621590
+    },
+    {
+      "original": "desenvolvimento/arte-natural/fontes/flora.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/desenvolvimento/arte-natural/fontes/flora.webp",
+      "antes": 1817851,
+      "depois": 426478
+    },
+    {
+      "original": "tela-inicial/jornada-viva/assets/festa-da-floresta.png",
+      "webp": "desenvolvimento/mata-ilustrada/arquivo-webp/tela-inicial/jornada-viva/assets/festa-da-floresta.webp",
+      "antes": 2766261,
+      "depois": 451690
+    }
+  ]
+}
