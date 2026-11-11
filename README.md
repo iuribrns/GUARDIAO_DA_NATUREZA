@@ -2,7 +2,7 @@
 
 Aventura de exploração em HTML, CSS e JavaScript para crianças de 5 a 10 anos. Kai e Flora cuidam de cinco regiões de uma ilha e devolvem força à Árvore Guardiã. O jogo funciona em **paisagem**, com teclado ou controles de toque.
 
-[Jogar](https://iuribrns.github.io/GUARDIAO_DA_NATUREZA/) · [Entrada](jogo/viva/) · [Revisão atual](jogo/sereno/) · [Estrutura](docs/ESTRUTURA.md) · [Publicação](docs/PUBLICACAO.md) · [Testes e medições](desenvolvimento/sereno/README.md)
+[Jogar](https://iuribrns.github.io/GUARDIAO_DA_NATUREZA/) · [Código atual](jogo/viva/) · [Estrutura](docs/ESTRUTURA.md) · [Publicação](docs/PUBLICACAO.md) · [Revisão e testes](desenvolvimento/brisa/README.md)
 
 | Região             | Cuidado                                                        | Aliado  | Cristal  |
 | ------------------ | -------------------------------------------------------------- | ------- | -------- |
@@ -36,13 +36,9 @@ npm run test:build
 
 `npm test` testa o servidor de desenvolvimento; `npm run test:build` testa os arquivos publicados. Ambos verificam colisões, cinco tamanhos de tela, ajustes sobre a fase, salvamento, reinício, tela cheia, encerramento no mapa e as cinco fases com teclado e toque. `CHROMIUM_PATH` permite indicar outra instalação de Chrome.
 
-Os caminhos dos animais resgatados, a orientação por missões e o retorno ao NPC são calculados em um Web Worker. Em navegadores sem esse recurso, a busca trabalha em pequenos lotes e cede tempo à interface. A geometria das colisões é compartilhada com a navegação; os resgates continuam contando somente quando o animal chega ao destino.
-
 ## Arte e arquivos
 
-A entrada atual é `jogo/viva/index.html`. As entradas anteriores redirecionam para ela, mantendo os favoritos. Os controladores e as artes desta revisão ficam em `jogo/sereno/`. O fluxo usa WebP e carrega os sprites quando a tela ou fase precisa deles. Na medição local em Chromium, a abertura solicitou 1,16 MiB; o site completo ocupa 35,61 MiB. Não há download de vídeo nem do laboratório no jogo publicado. `desenvolvimento/viva/publicacao.json` define os arquivos que vão para o Pages.
-
-A revisão Sereno inclui folhas verdes menores, reações discretas nos botões, ícones contidos nas molduras, oceano que preenche a tela em volta da ilha e novos quadros de equipamentos e conquista. Os pontos de apoio dos sprites de movimento foram preservados para manter os pés alinhados às colisões.
+A entrada atual é `jogo/viva/index.html`. As entradas anteriores redirecionam para ela, mantendo os favoritos. O fluxo atual usa WebP e carrega os sprites quando a tela ou fase precisa deles. Na medição local em Chromium, a abertura solicitou 1,20 MiB; o site completo ocupa 33,76 MiB. Não há download de vídeo nem do laboratório no jogo publicado. `desenvolvimento/viva/publicacao.json` define os arquivos que vão para o Pages.
 
 Esta revisão preserva as pastas e artes anteriores. Os arquivos que deixaram de ser usados ficam fora da publicação. A limpeza feita em uma revisão anterior está documentada em `desenvolvimento/raizes/retirados.json`. Os testes históricos não são a suíte da campanha atual.
 

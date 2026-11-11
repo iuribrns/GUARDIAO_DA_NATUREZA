@@ -38,8 +38,6 @@ for (const dir of [
   "jogo/viva/assets",
   "jogo/brisa",
   "jogo/brisa/assets",
-  "jogo/sereno",
-  "jogo/sereno/assets",
 ])
   for (const f of readdirSync(dir))
     if (/\.(html|js|css|webp|json)$/.test(f)) add(dir + "/" + f);
