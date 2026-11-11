@@ -36,11 +36,13 @@ try {
   if (!ready) throw Error("Servidor indisponível: " + log);
   for (const file of [
     "jogo/vida-natural/validacao/fisica.cjs",
-    "jogo/viva/validacao/colisoes.cjs",
+    "desenvolvimento/sereno/colisoes.cjs",
     "jogo/viva/validacao/interface.cjs",
-    "desenvolvimento/brisa/interface.cjs",
+    "desenvolvimento/sereno/interface.cjs",
+    "desenvolvimento/sereno/rotas.cjs",
+    "desenvolvimento/sereno/colar.cjs",
     ...(production ? ["jogo/viva/validacao/subpasta.cjs"] : []),
-    "jogo/viva/validacao/campanha.cjs",
+    "desenvolvimento/sereno/campanha.cjs",
   ])
     await new Promise((ok, bad) => {
       const child = spawn(process.execPath, [file], {

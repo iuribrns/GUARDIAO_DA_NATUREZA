@@ -1,0 +1,294 @@
+.backdrop {
+  background-image: url("assets/inicio.webp");
+}
+/* A água continua até os limites da janela; a ilha permanece inteira. */
+.map-view,
+.map-view .island {
+  background: #22acc0 url("assets/oceano.webp") center/cover no-repeat !important;
+}
+.map-stage {
+  box-shadow: none !important;
+}
+#island-ash,
+#island-restoration {
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 15px,
+    #000 calc(100% - 15px),
+    transparent
+  );
+}
+.raizes-jogo .top-actions {
+  gap: 8px !important;
+  right: max(12px, env(safe-area-inset-right)) !important;
+}
+.raizes-jogo .top-actions .ra-world-icon {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  max-width: 48px !important;
+  box-sizing: border-box !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  isolation: isolate;
+}
+.raizes-jogo .top-actions .ra-world-icon > .brisa-icon {
+  width: 76% !important;
+  height: 76% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  position: static !important;
+  transform: none !important;
+  margin: 0 !important;
+  display: block !important;
+  flex: none !important;
+}
+#fs-toggle {
+  box-sizing: border-box;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+#fs-toggle > .brisa-icon,
+#menu-pausa .ra-pause-full > .brisa-icon {
+  width: 70% !important;
+  height: 70% !important;
+  position: static !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+#menu-pausa .ra-pause-full {
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.home-menu .wood-button {
+  background: none !important;
+  isolation: isolate;
+}
+.home-menu .wood-button::before {
+  content: "" !important;
+  position: absolute;
+  inset: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent url("../viva/assets/botao.webp") center/100% 100%
+    no-repeat !important;
+  pointer-events: none;
+  z-index: -1;
+  animation: sereno-button-float 6s ease-in-out infinite;
+  box-shadow: none !important;
+  rotate: none !important;
+}
+.home-menu .menu-float-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  pointer-events: none;
+  animation: sereno-button-float 6s ease-in-out infinite;
+}
+.home-menu #about-game::before,
+.home-menu #about-game .menu-float-content {
+  animation-delay: -3s;
+}
+@keyframes sereno-button-float {
+  0%,
+  100% {
+    transform: translateY(1px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+.item-illustration .diving-outfit {
+  height: 108px !important;
+  width: 72px !important;
+  overflow: hidden !important;
+}
+.item-illustration.uniform-protecao {
+  height: 115px;
+}
+.pack-actor {
+  display: block;
+  flex: none;
+  width: 105px;
+  height: 80px;
+  margin-left: auto;
+}
+.brisa-pack > header .pack-actor + .icon-button {
+  margin-left: 0;
+}
+/* O encaixe tem espaço para o colar e para a nova sequência de Kai. */
+.colar-card {
+  border: 6px solid #a17a3f !important;
+  background: radial-gradient(ellipse at 50% 40%, #fff7d9, #ecdfb9) !important;
+  border-radius: 26px !important;
+  box-shadow:
+    inset 0 0 0 2px #e3cb91,
+    0 18px 60px #173a2a77 !important;
+}
+.colar-card > header {
+  border-bottom: 1px solid #c0b274;
+  padding-bottom: 10px;
+}
+.colar-card {
+  box-sizing: border-box;
+  width: min(820px, calc(100vw - 30px)) !important;
+  height: min(580px, calc(100dvh - 30px));
+  display: grid !important;
+  grid-template-columns: 46% minmax(0, 1fr) !important;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 10px 16px;
+  padding: 20px !important;
+  overflow: hidden !important;
+  color: #385539 !important;
+}
+.colar-card > .colar-view {
+  grid-column: 1 !important;
+  grid-row: 1/4 !important;
+  height: 100% !important;
+  width: 100% !important;
+  min-height: 0;
+  max-height: 100% !important;
+}
+.colar-card > header {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  align-self: center !important;
+}
+.colar-card > footer {
+  grid-column: 2 !important;
+  grid-row: 2 !important;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: auto !important;
+  min-height: 0;
+  margin: 0 !important;
+}
+.colar-card #colar-kai {
+  width: 260px !important;
+  height: 139px !important;
+  max-width: 100% !important;
+  max-height: calc(100% - 50px);
+  flex: none;
+}
+.colar-card > footer p {
+  text-align: center !important;
+  color: #536944 !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+.colar-card .colar-eyebrow {
+  color: #687a45 !important;
+}
+.colar-card #colar-frase {
+  color: #4b623e !important;
+}
+.colar-card #colar-contagem {
+  color: #3d643c !important;
+  text-shadow: none !important;
+}
+.colar-card > button {
+  grid-column: 2 !important;
+  grid-row: 3 !important;
+}
+.colar-card h2 {
+  font-family: Lilita;
+  color: #3e623b;
+}
+.colar-card > button {
+  background: transparent url("../viva/assets/botao.webp") center/100% 100%
+    no-repeat !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: #fff0bf !important;
+  min-height: 56px;
+  font-family: Lilita;
+  font-size: 19px !important;
+  padding: 12px 28px !important;
+}
+.colar-card .relicario-view {
+  filter: drop-shadow(0 4px 6px #75562322);
+}
+@media (orientation: landscape) and (max-height: 500px) {
+  .raizes-jogo .top-actions {
+    gap: 6px !important;
+    right: max(9px, env(safe-area-inset-right)) !important;
+  }
+  .raizes-jogo .top-actions .ra-world-icon {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    max-width: 44px !important;
+  }
+  .pack-actor {
+    width: 70px;
+    height: 55px;
+  }
+  .item-illustration .diving-outfit {
+    height: 77px !important;
+    width: 46px !important;
+  }
+  .item-illustration.uniform-protecao {
+    height: 80px;
+  }
+  .colar-card > button {
+    min-height: 44px;
+    font-size: 16px !important;
+    padding: 8px 22px !important;
+  }
+  .colar-card > header {
+    padding-bottom: 5px;
+  }
+  .colar-card {
+    padding: 12px !important;
+    gap: 6px 12px;
+    height: calc(100dvh - 30px);
+  }
+  .colar-card #colar-kai {
+    width: 240px !important;
+    height: 128px !important;
+  }
+  .colar-card > footer p {
+    font-size: 10px;
+  }
+}
+@media (orientation: landscape) and (max-height: 345px) {
+  .colar-card #colar-kai {
+    height: 95px !important;
+    width: 178px !important;
+  }
+  .colar-card h2 {
+    font-size: 20px !important;
+  }
+  .colar-card #colar-contagem {
+    font-size: 22px !important;
+  }
+  .colar-card #colar-frase {
+    font-size: 10px !important;
+  }
+}
+.reduce-motion .home-menu .menu-float-content,
+.reduce-motion .home-menu .wood-button::before {
+  animation: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-menu .menu-float-content,
+  .home-menu .wood-button::before {
+    animation: none !important;
+  }
+}

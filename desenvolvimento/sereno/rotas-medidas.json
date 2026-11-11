@@ -1,0 +1,158 @@
+[
+  {
+    "phase": 1,
+    "mainCalls": 0,
+    "ticks": 89,
+    "timerLag": 0.599999999627471,
+    "maxFrameGap": 16.800000000000182,
+    "duration": 1488.0999999996275,
+    "paths": [
+      {
+        "animal": "capivara",
+        "points": 5,
+        "last": {
+          "x": 226,
+          "y": 282
+        }
+      },
+      {
+        "animal": "cervo",
+        "points": 6,
+        "last": {
+          "x": 205,
+          "y": 255
+        }
+      },
+      {
+        "animal": "passaro",
+        "points": 5,
+        "last": {
+          "x": 250,
+          "y": 294
+        }
+      }
+    ],
+    "worker": {
+      "requests": 3,
+      "completed": 3,
+      "workerMs": 1482.1000000005588,
+      "fallbacks": 0,
+      "pending": 0,
+      "failed": false,
+      "workerReady": true,
+      "phase": 1
+    }
+  },
+  {
+    "phase": 2,
+    "mainCalls": 0,
+    "ticks": 2,
+    "timerLag": 0.20000000018626451,
+    "maxFrameGap": 16.700000000000273,
+    "duration": 30.200000000186265,
+    "paths": [
+      {
+        "animal": "peixes1",
+        "points": 1,
+        "last": {
+          "x": 610,
+          "y": 420
+        }
+      },
+      {
+        "animal": "peixes2",
+        "points": 1,
+        "last": {
+          "x": 700,
+          "y": 420
+        }
+      },
+      {
+        "animal": "tartaruga",
+        "points": 1,
+        "last": {
+          "x": 745,
+          "y": 430
+        }
+      }
+    ],
+    "worker": {
+      "requests": 3,
+      "completed": 3,
+      "workerMs": 2.8999999994412065,
+      "fallbacks": 0,
+      "pending": 0,
+      "failed": false,
+      "workerReady": true,
+      "phase": 2
+    }
+  },
+  {
+    "phase": 3,
+    "mainCalls": 0,
+    "ticks": 5,
+    "timerLag": 0.20000000018626451,
+    "maxFrameGap": 16.700000000000273,
+    "duration": 72.90000000037253,
+    "paths": [
+      {
+        "animal": "macaco",
+        "points": 2,
+        "last": {
+          "x": 746,
+          "y": 159
+        }
+      },
+      {
+        "animal": "tucano",
+        "points": 2,
+        "last": {
+          "x": 1040,
+          "y": 270
+        }
+      },
+      {
+        "animal": "ave",
+        "points": 2,
+        "last": {
+          "x": 769,
+          "y": 211
+        }
+      },
+      {
+        "animal": "capivara",
+        "points": 1,
+        "last": {
+          "x": 1052,
+          "y": 310
+        }
+      }
+    ],
+    "worker": {
+      "requests": 4,
+      "completed": 4,
+      "workerMs": 71.10000000149012,
+      "fallbacks": 0,
+      "pending": 0,
+      "failed": false,
+      "workerReady": true,
+      "phase": 3
+    }
+  },
+  {
+    "fallback": {
+      "delay": 6.2000000001862645,
+      "points": 128,
+      "stats": {
+        "requests": 1,
+        "completed": 0,
+        "workerMs": 0,
+        "fallbacks": 1,
+        "pending": 0,
+        "failed": true,
+        "workerReady": false,
+        "phase": 1
+      }
+    }
+  }
+]

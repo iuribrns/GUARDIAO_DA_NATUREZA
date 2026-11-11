@@ -1,0 +1,187 @@
+{
+  "initialAssets": 45,
+  "encodedBytes": 1217034,
+  "videoRequested": false,
+  "resources": [
+    {
+      "file": "/jogo/viva/ui.css",
+      "bytes": 7699
+    },
+    {
+      "file": "/jogo/raizes/orientacao.css",
+      "bytes": 755
+    },
+    {
+      "file": "/jogo/viva/acabamento.css",
+      "bytes": 6533
+    },
+    {
+      "file": "/jogo/brisa/brisa.css",
+      "bytes": 4397
+    },
+    {
+      "file": "/jogo/sereno/sereno.css",
+      "bytes": 1880
+    },
+    {
+      "file": "/jogo/encanto-natural/catalogo.js",
+      "bytes": 714
+    },
+    {
+      "file": "/jogo/encanto-natural/audio.js",
+      "bytes": 3908
+    },
+    {
+      "file": "/jogo/sistemas/progresso.js",
+      "bytes": 742
+    },
+    {
+      "file": "/jogo/jornada/fases.js",
+      "bytes": 2757
+    },
+    {
+      "file": "/jogo/vida-em-equilibrio/conteudo.js",
+      "bytes": 1720
+    },
+    {
+      "file": "/jogo/novo-amanha/conteudo.js",
+      "bytes": 2210
+    },
+    {
+      "file": "/jogo/encontros-da-floresta/atlas.js",
+      "bytes": 517
+    },
+    {
+      "file": "/jogo/encontros-da-floresta/relicario.js",
+      "bytes": 1742
+    },
+    {
+      "file": "/jogo/cuidado-acessivel/otimizados.js",
+      "bytes": 1320
+    },
+    {
+      "file": "/jogo/raizes/atlas.js",
+      "bytes": 1542
+    },
+    {
+      "file": "/jogo/raizes/personagens.js",
+      "bytes": 1016
+    },
+    {
+      "file": "/jogo/viva/comum.js",
+      "bytes": 5779
+    },
+    {
+      "file": "/jogo/viva/atlas.js",
+      "bytes": 581
+    },
+    {
+      "file": "/jogo/vida-em-equilibrio/progresso.js",
+      "bytes": 2832
+    },
+    {
+      "file": "/jogo/viva/arte.js",
+      "bytes": 1372
+    },
+    {
+      "file": "/jogo/vida-em-equilibrio/colecao.js",
+      "bytes": 3873
+    },
+    {
+      "file": "/jogo/viva/simbolos.js",
+      "bytes": 2330
+    },
+    {
+      "file": "/jogo/brisa/atlas.js",
+      "bytes": 617
+    },
+    {
+      "file": "/jogo/brisa/artes.js",
+      "bytes": 1627
+    },
+    {
+      "file": "/jogo/sereno/atlas.js",
+      "bytes": 1772
+    },
+    {
+      "file": "/jogo/sereno/sprites.js",
+      "bytes": 949
+    },
+    {
+      "file": "/jogo/brisa/ajustes.js",
+      "bytes": 785
+    },
+    {
+      "file": "/jogo/sereno/mochila.js",
+      "bytes": 2341
+    },
+    {
+      "file": "/jogo/brisa/transicoes.js",
+      "bytes": 1264
+    },
+    {
+      "file": "/jogo/sereno/folhas.js",
+      "bytes": 1815
+    },
+    {
+      "file": "/jogo/brisa/interacoes.js",
+      "bytes": 1017
+    },
+    {
+      "file": "/jogo/viva/app.js",
+      "bytes": 8309
+    },
+    {
+      "file": "/jogo/sereno/interface.js",
+      "bytes": 735
+    },
+    {
+      "file": "/jogo/viva/final.js",
+      "bytes": 2673
+    },
+    {
+      "file": "/jogo/revisao-paisagem/orientacao.js",
+      "bytes": 1640
+    },
+    {
+      "file": "/jogo/raizes/assets/titulo.webp",
+      "bytes": 197432
+    },
+    {
+      "file": "/jogo/sereno/assets/inicio.webp",
+      "bytes": 331230
+    },
+    {
+      "file": "/jogo/encontros-da-floresta/assets/madeira.svg",
+      "bytes": 873
+    },
+    {
+      "file": "/jogo/viva/assets/botao.webp",
+      "bytes": 59456
+    },
+    {
+      "file": "/tela-inicial/nova-versao/assets/lilita-one.ttf",
+      "bytes": 28092
+    },
+    {
+      "file": "/jogo/brisa/assets/comandos.webp",
+      "bytes": 66008
+    },
+    {
+      "file": "/jogo/brisa/assets/botanica.webp",
+      "bytes": 127188
+    },
+    {
+      "file": "/jogo/encontros-da-floresta/assets/montura.webp",
+      "bytes": 256408
+    },
+    {
+      "file": "/jogo/encontros-da-floresta/assets/relicario-cristais.webp",
+      "bytes": 53498
+    },
+    {
+      "file": "/assets/identidade-flora/favicon.ico",
+      "bytes": 15086
+    }
+  ]
+}
