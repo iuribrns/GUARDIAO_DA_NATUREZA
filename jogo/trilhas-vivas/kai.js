@@ -50,7 +50,9 @@
           );
         return loading.get(name);
       }),
-      ...(window.BosqueVegetacao ? [BosqueVegetacao.load()] : []),
+      ...(phase === 4 && window.TrilhasNatureza
+        ? [TrilhasNatureza.load()]
+        : []),
     ]);
   }
   function draw(
@@ -130,12 +132,15 @@
       document.body.dataset.kaiUniform = name;
       document.body.dataset.kaiWalkFrame = String(v.step);
       document.body.dataset.kaiWalkDirection = String(p.direction);
+      document.body.dataset.heroDirection = String(p.direction);
     }
     return draw(c, name, v.row * 6 + v.step, p.x, p.y, h + idle, {
       flip: v.flip,
     });
   }
   function equipment(c, row, progress, x, y, height = 83, flip = false) {
+    if (c.canvas.id === "cenario")
+      document.body.dataset.heroDirection = flip ? "4" : "0";
     return draw(
       c,
       "equipamentos",
@@ -220,6 +225,8 @@
   }
   function task(c, row, progress, p, target, height = 83) {
     const flip = target ? target.x < p.x : p.direction >= 3 && p.direction <= 5;
+    if (c.canvas.id === "cenario")
+      document.body.dataset.heroDirection = flip ? "4" : "0";
     document.body.dataset.kaiAction = String(row);
     document.body.dataset.kaiUniform = {
       0: "resgate",

@@ -42,7 +42,6 @@ fs.mkdirSync(out, { recursive: true });
     );
     await p.click("#play-game");
     await p.waitForFunction(() => location.hash === "#mapa");
-    await p.waitForFunction(() => window.BosqueVegetacao.ready);
     await p.evaluate(() => BosqueMapa.ready());
     await p.evaluate(() => BosqueMapa.paint(performance.now() / 1000, true));
     const initialPixels = await p.evaluate(() =>
@@ -68,6 +67,7 @@ fs.mkdirSync(out, { recursive: true });
       BosqueMapa.health(1, 800, 130, false),
     );
     assert.ok(during > before && during < 0.9);
+    await p.waitForFunction(() => BosqueMapa.state().restoredReady);
     await p.screenshot({ path: out + "/mapa-crescimento.png" });
     await p.clock.runFor(5000);
     assert.equal(

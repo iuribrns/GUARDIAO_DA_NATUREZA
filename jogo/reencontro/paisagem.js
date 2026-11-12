@@ -18,16 +18,42 @@
       this.name = name;
       this.mask = canvas(w, h);
       this.layer = canvas(w, h);
-      this.ready = Promise.all(
-        ["antes", "depois"].map(async (state) => {
-          const im = new Image();
-          im.src = new URL(name + "-" + state + ".webp", base);
-          await im.decode();
-          this[state] = im;
-        }),
-      );
+      // Só o cenário inicial bloqueia a entrada. A restauração é preparada depois.
+      this.ready = this.image("antes");
       this.built = -999;
       this.signature = "";
+      this.builds = 0;
+      this.ready
+        .then(() => {
+          const warm = () => this.after();
+          if (window.requestIdleCallback)
+            requestIdleCallback(warm, { timeout: 4000 });
+          else setTimeout(warm, 2200);
+        })
+        .catch(() => {});
+    }
+    async image(state) {
+      const im = new Image();
+      im.decoding = "async";
+      im.fetchPriority = state === "antes" ? "high" : "low";
+      im.src = new URL(this.name + "-" + state + ".webp", base);
+      await im.decode();
+      this[state] = im;
+      this.signature = null;
+    }
+    after() {
+      if (this.depois) return Promise.resolve(true);
+      if (this.afterPromise) return this.afterPromise;
+      if (performance.now() < (this.retryAfter || 0))
+        return Promise.resolve(false);
+      this.afterPromise = this.image("depois")
+        .then(() => true)
+        .catch(() => {
+          this.afterPromise = null;
+          this.retryAfter = performance.now() + 10000;
+          return false;
+        });
+      return this.afterPromise;
     }
     draw(c, points, time, reduced, full = 0) {
       if (!this.antes) {
@@ -35,19 +61,27 @@
         c.fillRect(0, 0, this.w, this.h);
         return;
       }
-      c.drawImage(this.antes, 0, 0, this.w, this.h);
+      if (points.length || full > 0) this.after();
+      if (full >= 1 && this.depois) {
+        c.drawImage(this.depois, 0, 0, this.w, this.h);
+        return;
+      }
       const signature =
-        points.map((p) => p.id + ":" + p.at).join("|") + ":" + (full >= 1);
+        points.map((p) => p.id + ":" + p.at).join("|") +
+        ":" +
+        (full >= 1) +
+        ":" +
+        !!this.depois;
       const animating =
         points.some((p) => time - p.at < 7) || (full > 0 && full < 1);
       if (
-        this.depois &&
-        (signature !== this.signature || (animating && time - this.built > 0.1))
+        signature !== this.signature ||
+        (this.depois && animating && time - this.built > 0.1)
       ) {
         const m = this.mask.getContext("2d"),
           g = this.layer.getContext("2d");
         m.clearRect(0, 0, this.w, this.h);
-        for (const p of points) {
+        for (const p of this.depois ? points : []) {
           const progress = reduced ? 1 : ease((time - p.at) / 5);
           const radius = Math.max(1, (p.radius || 185) * progress);
           const glow = m.createRadialGradient(p.x, p.y, 0, p.x, p.y, radius);
@@ -64,14 +98,19 @@
           m.globalAlpha = 1;
         }
         g.clearRect(0, 0, this.w, this.h);
-        g.drawImage(this.depois, 0, 0, this.w, this.h);
-        g.globalCompositeOperation = "destination-in";
-        g.drawImage(this.mask, 0, 0);
+        if (this.depois) {
+          g.drawImage(this.depois, 0, 0, this.w, this.h);
+          g.globalCompositeOperation = "destination-in";
+          g.drawImage(this.mask, 0, 0);
+          g.globalCompositeOperation = "destination-over";
+        }
+        g.drawImage(this.antes, 0, 0, this.w, this.h);
         g.globalCompositeOperation = "source-over";
         this.signature = signature;
         this.built = time;
+        this.builds++;
       }
-      if (this.depois) c.drawImage(this.layer, 0, 0);
+      c.drawImage(this.layer, 0, 0);
     }
   }
   const names = {
@@ -172,7 +211,41 @@
         return this.backup?.actors(time, reduced, player) || [];
       }
       plant(c, ...args) {
-        return Previous.prototype.plant.call(this, c, ...args);
+        const [t, time, reduced] = args,
+          P = BosquePintura;
+        const seeded = ["seeded", "growing", "done"].includes(t.status);
+        P.oval(c, t.x, t.y, 24, 9, seeded ? "#6a5935" : "#64543b");
+        if (!seeded) {
+          for (let j = 0; j < 3; j++)
+            P.line(
+              c,
+              [
+                [t.x - 12 + j * 10, t.y - 3],
+                [t.x - 14 + j * 10, t.y + 3],
+              ],
+              "#b59662",
+              1.5,
+            );
+          return;
+        }
+        const age =
+          t.status === "seeded"
+            ? 0.08
+            : t.status === "done"
+              ? reduced
+                ? 1
+                : ease((time - (t.restoredAt ?? -10)) / 4)
+              : 0.4;
+        P.tree(
+          c,
+          t.x,
+          t.y,
+          17 + 66 * age,
+          0.5 + 0.5 * age,
+          time,
+          Math.round(t.x),
+          reduced,
+        );
       }
       state() {
         return {
@@ -183,6 +256,7 @@
           complete: this.complete,
           objects: 0,
           bitmapReplacements: 0,
+          terrainBuilds: this.landscape.builds,
         };
       }
     };

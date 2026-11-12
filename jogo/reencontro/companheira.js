@@ -35,6 +35,8 @@
   A.owl = owl;
   if (window.VivaArt) VivaArt.owl = owl;
   function direction(p, phase) {
+    const visual = document.body.dataset.heroDirection;
+    if (!p.moving && /^[0-7]$/.test(visual || "")) return Number(visual);
     const npc =
       phase === 1
         ? { x: 245, y: 245 }
@@ -49,7 +51,10 @@
   }
   function shoulder(p, phase) {
     const d = direction(p, phase);
-    return { x: p.x + (d >= 3 && d <= 5 ? 19 : -19), y: p.y - 49 };
+    return {
+      x: p.x + (d >= 3 && d <= 5 ? 19 : -19),
+      y: p.y - ([1, 2, 3].includes(d) ? 46 : d >= 5 ? 42 : 43),
+    };
   }
   function update(f, p, dt, options) {
     const { phase, busy, reward, jump = 0 } = options;

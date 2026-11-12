@@ -35,7 +35,10 @@ for (const entry of plan.ativos) {
     assert.ok(same, "recurso do jogo permanece idêntico: " + entry.file);
 }
 for (const file of manifest.files)
-  assert.ok(existsSync(file), "recurso publicado: " + file);
+  assert.ok(
+    existsSync(manifest.generated?.includes(file) ? "dist/" + file : file),
+    "recurso publicado: " + file,
+  );
 if (compare)
   assert.deepEqual(
     manifest.files,

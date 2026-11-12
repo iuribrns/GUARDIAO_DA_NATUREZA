@@ -1903,17 +1903,10 @@
     $("loading").textContent =
       "Preparando " + data.name.toLowerCase() + "… " + loaded;
   }
-  const specific =
-    id === 2
-      ? ["animais-rio"]
-      : id === 3
-        ? ["kai-floresta", "animais-fauna", "animais-fauna-andando"]
-        : id === 4
-          ? ["kai-plantio", "kai-floresta"]
-          : ["kai-rio", "kai-plantio", "kai-floresta"];
+  const specific = id === 2 ? ["animais-rio"] : [];
   Promise.all([
     sprites.load(["npcs", "objetos", ...specific], progress),
-    shared.load(progress, ["kai-repouso", "natureza"]),
+    shared.load(progress, ["natureza"]),
     Promise.resolve(null),
     Promise.resolve(null),
     window.GuardiaoIcones.load(),

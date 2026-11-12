@@ -38,6 +38,8 @@ try {
     "jogo/vida-natural/validacao/fisica.cjs",
     "desenvolvimento/trilhas-vivas/colisoes.cjs",
     "desenvolvimento/reencontro/flora.cjs",
+    "desenvolvimento/brisa-suave/transicoes.cjs",
+    "desenvolvimento/brisa-suave/personagens.cjs",
     "jogo/viva/validacao/interface.cjs",
     "desenvolvimento/trilhas-vivas/interface.cjs",
     "desenvolvimento/trilhas-vivas/nativo.cjs",

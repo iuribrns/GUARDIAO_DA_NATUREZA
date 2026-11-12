@@ -71,7 +71,20 @@ fs.mkdirSync(out, { recursive: true });
       await p.waitForFunction(
         () => document.body.dataset.transition === "pronta",
       );
-      await p.waitForFunction(() => BosqueVegetacao.ready && MataArte.ready);
+      await p.evaluate(() => BosqueMapa.ready());
+      assert.equal(
+        await p.evaluate(() =>
+          performance
+            .getEntriesByType("resource")
+            .some((r) =>
+              /\/mata-ilustrada\/assets\/(aderecos|texturas)\.webp/.test(
+                r.name,
+              ),
+            ),
+        ),
+        false,
+        "mapa ilustrado não carrega as texturas do cenário descartado",
+      );
       assert.equal(
         await p.evaluate(() => BosqueMapa.state().composition),
         "ilha-antiga",
@@ -79,6 +92,9 @@ fs.mkdirSync(out, { recursive: true });
       await p.screenshot({
         path: out + "/mapa-" + (mobile ? "celular" : "pc") + ".png",
       });
+      await p.evaluate(() => BosqueMapa.update([1]));
+      await p.waitForFunction(() => BosqueMapa.state().restoredReady);
+      await p.evaluate(() => BosqueMapa.update([]));
       const colors = await p.evaluate(async () => {
         const frame = () =>
           new Promise((r) =>

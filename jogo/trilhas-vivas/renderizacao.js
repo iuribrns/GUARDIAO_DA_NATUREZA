@@ -168,7 +168,7 @@
     async load() {
       const names =
         this.phase === 2
-          ? ["traje-nadar", "traje-acoes"]
+          ? []
           : this.phase === 3
             ? ["fauna-brasileira", "fauna-grande", "fauna-copa"]
             : [];

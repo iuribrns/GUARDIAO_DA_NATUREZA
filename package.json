@@ -15,6 +15,7 @@
     "check:tools": "node desenvolvimento/scripts/verificar-ferramentas.mjs",
     "tools:install": "python3 desenvolvimento/scripts/instalar-editores.py",
     "test:build": "node desenvolvimento/viva/testar.mjs --production",
+    "test:polimento": "npm run build && node desenvolvimento/brisa-suave/verificar.mjs && node desenvolvimento/brisa-suave/transicoes.cjs && node desenvolvimento/brisa-suave/personagens.cjs && node desenvolvimento/reencontro/flora.cjs && node desenvolvimento/trilhas-vivas/colisoes.cjs && python3 desenvolvimento/brisa-suave/verificar-atlas.py",
     "check:site": "node desenvolvimento/viva/verificar-site.mjs",
     "format:campaign": "prettier --write \"jogo/trilhas-vivas/*.{js,css}\"",
     "audit:files": "node desenvolvimento/organizacao/auditar.mjs"

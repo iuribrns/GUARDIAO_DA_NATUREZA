@@ -120,6 +120,7 @@
       finalGrowth: final,
       bitmapReplacements: 0,
       time: now,
+      restoredReady: !!land?.depois,
     }),
   };
 })();

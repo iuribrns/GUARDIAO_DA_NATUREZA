@@ -1601,6 +1601,7 @@
   const activeSheets = Object.keys(ATLAS.sheets).filter(
       (name) =>
         ![
+          "kai-repouso",
           "kai-cuidados",
           "kai-caminhada",
           "kai-livre",
