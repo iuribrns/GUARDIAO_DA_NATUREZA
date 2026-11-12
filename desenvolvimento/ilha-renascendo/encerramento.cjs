@@ -66,6 +66,21 @@ const base =
     await p.locator("#ending-island").click();
     assert.equal(await p.evaluate(() => VivaFinal.active), false);
     assert.equal(await p.evaluate(() => BosqueMapa.state().stage), 5);
+    await p.reload();
+    await p.waitForFunction(() => document.body.dataset.uiReady === "true");
+    await p.evaluate(() => BosqueMapa.ready());
+    await p.clock.runFor(1200);
+    await p.evaluate(() => (location.hash = "configuracoes"));
+    await p.clock.runFor(8500);
+    assert.equal(
+      await p.evaluate(() => VivaFinal.active),
+      false,
+      "não inicia encerramento sobre configurações",
+    );
+    assert.equal(
+      await p.evaluate(() => document.body.dataset.view),
+      "configuracoes",
+    );
     assert.deepEqual(errors, []);
     console.log(
       "PASS rede lenta, quinta restauração completa antes do encerramento, árvore, créditos e retorno à ilha.",

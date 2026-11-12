@@ -205,6 +205,7 @@
           clearTimeout(restoreTimer);
           restoreTimer = setTimeout(
             () => {
+              if (view !== "mapa" || !progress().completed.includes(id)) return;
               const s = progress();
               delete s.pendingRestoration;
               try {
@@ -225,7 +226,9 @@
       localStorage.getItem("guardiao.viva.final.v1") !== "visto"
     ) {
       clearTimeout(restoreTimer);
-      restoreTimer = setTimeout(() => window.VivaFinal?.start(), 900);
+      restoreTimer = setTimeout(() => {
+        if (view === "mapa" && R.won()) window.VivaFinal?.start();
+      }, 900);
     }
   }
   function brief(id) {
