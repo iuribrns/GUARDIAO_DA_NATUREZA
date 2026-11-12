@@ -49,6 +49,7 @@ try {
     "desenvolvimento/arte-viva/interface.cjs",
     "desenvolvimento/mapa-ferido/verificar.cjs",
     "desenvolvimento/rio-claro/verificar.cjs",
+    "desenvolvimento/correnteza/verificar.cjs",
     "desenvolvimento/trilhas-vivas/campanha.cjs",
   ];
   const resume = process.argv

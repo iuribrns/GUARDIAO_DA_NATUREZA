@@ -260,8 +260,11 @@
     }
   }
   function uniformMarkup(name) {
-    return `<svg class="bosque-uniform" viewBox="${BosqueTrajes[name].join(" ")}" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><image href="${new URL("assets/trajes-mini.webp", base)}" width="600" height="160"/></svg>`;
+    const b = BosqueTrajes[name],
+      clip = "traje-" + name;
+    return `<svg class="bosque-uniform" viewBox="${b.join(" ")}" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><defs><clipPath id="${clip}"><rect x="${b[0]}" y="${b[1]}" width="${b[2]}" height="${b[3]}"/></clipPath></defs><image clip-path="url(#${clip})" href="${new URL("assets/trajes-mini.webp", base)}" width="600" height="160"/></svg>`;
   }
+
   if (window.RaizesPersonagens) {
     const A = RaizesPersonagens,
       priorLoad = A.load,

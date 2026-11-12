@@ -40,9 +40,9 @@
     "jogo/bosque-vivo/trajes.js",
     "jogo/bosque-vivo/vegetacao.js",
     "jogo/brisa-suave/carregamento.js",
-    "jogo/brisa-suave/compilados/floresta-viva-d6ea9dac038f.js",
-    "jogo/brisa-suave/compilados/jornada-c8c8ea4b6472.js",
-    "jogo/brisa-suave/compilados/viva-65f28a8b07e0.js",
+    "jogo/brisa-suave/compilados/floresta-viva-80610f5d7a75.js",
+    "jogo/brisa-suave/compilados/jornada-70ef13d11f87.js",
+    "jogo/brisa-suave/compilados/viva-aeedb00499bd.js",
     "jogo/brisa-suave/etiquetas.js",
     "jogo/brisa-suave/interface.css",
     "jogo/brisa-suave/transicoes.js",
@@ -59,6 +59,9 @@
     "jogo/colar-vivo/colar.css",
     "jogo/colar-vivo/colar.js",
     "jogo/colar-vivo/geometria.js",
+    "jogo/correnteza/conclusao.js",
+    "jogo/correnteza/interface.css",
+    "jogo/correnteza/rio.js",
     "jogo/cuidado-acessivel/artes.js",
     "jogo/cuidado-acessivel/assets/amanha-equipe-2d-526a1e5b.webp",
     "jogo/cuidado-acessivel/assets/amanha-fauna-brasileira-c4a5e6ac.webp",
@@ -325,10 +328,10 @@
     "tela-inicial/renascimento/interacoes.js",
     "tela-inicial/renascimento/rustico.css"
   ],
-  "bytes": 43707897,
+  "bytes": 43722248,
   "generated": [
-    "jogo/brisa-suave/compilados/viva-65f28a8b07e0.js",
-    "jogo/brisa-suave/compilados/floresta-viva-d6ea9dac038f.js",
-    "jogo/brisa-suave/compilados/jornada-c8c8ea4b6472.js"
+    "jogo/brisa-suave/compilados/viva-aeedb00499bd.js",
+    "jogo/brisa-suave/compilados/floresta-viva-80610f5d7a75.js",
+    "jogo/brisa-suave/compilados/jornada-70ef13d11f87.js"
   ]
 }

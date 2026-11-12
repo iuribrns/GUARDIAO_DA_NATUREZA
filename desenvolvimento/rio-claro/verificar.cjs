@@ -68,10 +68,10 @@ async function turtleTrial(browser, mobile, errors) {
   const t = (await state()).tasks.find((t) => t.id === "tartaruga");
   assert.deepEqual(
     { x: t.x, y: t.y },
-    { x: 1010, y: 360 },
+    { x: 970, y: 340 },
     "partida antiga usa a nova praia, sem perder objetivos",
   );
-  assert.deepEqual(t.position, { x: 1010, y: 360 });
+  assert.deepEqual(t.position, { x: 970, y: 340 });
   await p.locator('[data-goal="animal"]').click();
   await until((s) => !s.routePending && !s.route.length, "caminho até a praia");
   if (mobile) await p.locator("#interagir").tap();

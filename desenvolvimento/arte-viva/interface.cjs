@@ -111,7 +111,7 @@ fs.mkdirSync(out, { recursive: true });
           throw Error("Pose clássica da quinta conquista não carregou");
         c.render(4, false);
       });
-      const card = await p.locator(".colar-card").boundingBox();
+      const card = await p.locator("#vitoria").boundingBox();
       assert.ok(
         card.x >= 0 &&
           card.y >= 0 &&

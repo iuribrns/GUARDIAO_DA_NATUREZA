@@ -39,8 +39,8 @@
       t.problem = "plastic";
       t.problemLabel = "Tartaruga presa em plástico e canudo";
       // Praia livre ao norte da rocha grande: o casco não fica sobre o capim.
-      t.x = 1010;
-      t.y = 360;
+      t.x = 970;
+      t.y = 340;
       t.home = { x: 833, y: 445 };
     }
   }

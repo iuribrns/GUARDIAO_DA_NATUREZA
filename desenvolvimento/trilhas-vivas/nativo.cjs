@@ -174,7 +174,7 @@ fs.mkdirSync(out, { recursive: true });
         swimming: new GuardiaoNavegacao.Navigation(d).swimming(t),
       };
     });
-    assert.deepEqual(turtle, { x: 1010, y: 360, swimming: false });
+    assert.deepEqual(turtle, { x: 970, y: 340, swimming: false });
     assert.ok(
       requests.some((url) =>
         url.includes("/mapa-ferido/assets/mapa-antes.webp"),

@@ -846,7 +846,7 @@
     ui.update(dt);
     if (stage === "dressing") {
       dressingTime += dt;
-      if (dressingTime >= 2.4) {
+      if (dressingTime >= 5.6) {
         protective = true;
         stage = "exploring";
         $("cinema").hidden = true;
@@ -1255,7 +1255,7 @@
     } else if (stage === "dressing") {
       const pose = art.river(ctx, player, time, reduced(), {
         dressing: true,
-        progress: Math.min(0.999, dressingTime / 2.4),
+        progress: Math.min(0.999, dressingTime / 5.6),
       });
       name = pose.split(":")[0];
       frame = Number(pose.split(":")[1]);

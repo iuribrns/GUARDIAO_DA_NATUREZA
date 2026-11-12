@@ -203,7 +203,7 @@ const done = (t) => ["done", "safe"].includes(t.status);
         if (id === 2) {
           assert.equal((await state(p)).protective, false);
           assert.equal((await state(p)).stage, "dressing");
-          await advance(p, 2.7);
+          await advance(p, 5.9);
           assert.equal((await state(p)).protective, true);
           assert.equal(
             await p.evaluate(() => GuardiaoMemoria.uniform("explorador")),
