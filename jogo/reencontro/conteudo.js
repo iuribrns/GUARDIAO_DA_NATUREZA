@@ -28,18 +28,19 @@
     "A patinha mostra quem precisa de ajuda. Chegue perto para cuidar.";
   for (const t of phases[2].tasks) {
     if (t.type === "fish") {
-      t.problem = t.id === "peixes1" ? "plastic" : "net";
+      t.problem = t.id === "peixes1" ? "net" : "plastic";
       t.problemLabel =
         t.id === "peixes1"
-          ? "Peixes presos no plástico"
-          : "Peixes enroscados numa rede";
+          ? "Peixes enroscados numa rede"
+          : "Peixes presos no plástico";
       // O peixe é libertado onde está. Nunca é levado para um abrigo em terra.
       t.home = { x: t.x + 36, y: t.y - 16 };
     } else if (t.type === "turtle") {
       t.problem = "plastic";
-      t.problemLabel = "Tartaruga presa numa embalagem";
-      t.x = 930;
-      t.y = 440;
+      t.problemLabel = "Tartaruga presa em plástico e canudo";
+      // Praia livre ao norte da rocha grande: o casco não fica sobre o capim.
+      t.x = 1010;
+      t.y = 360;
       t.home = { x: 833, y: 445 };
     }
   }

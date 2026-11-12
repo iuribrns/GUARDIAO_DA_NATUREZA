@@ -224,7 +224,23 @@ const done = (t) => ["done", "safe"].includes(t.status);
         if (id === 2) {
           for (let i = 0; i < 8; i++) {
             await guide(p, "trash");
+            if ((await state(p)).player.swimming)
+              assert.equal(
+                await p.locator("body").getAttribute("data-river-sprite-drawn"),
+                "true",
+                "Kai é desenhado no trajeto dentro da água",
+              );
             await interact(p, mobile);
+            await until(p, (s) => !!s.action, "início da coleta na bolsa", 80);
+            await advance(p, 0.35);
+            assert.match(
+              await p.locator("body").getAttribute("data-river-pose"),
+              /^coletar-na-bolsa:/,
+            );
+            assert.equal(
+              await p.locator("body").getAttribute("data-river-sprite-drawn"),
+              "true",
+            );
             await until(
               p,
               (s) =>
@@ -234,6 +250,10 @@ const done = (t) => ["done", "safe"].includes(t.status);
               60,
             );
             if (i === 0) {
+              await p.screenshot({
+                path:
+                  out + "/rio-coleta-" + (mobile ? "celular" : "pc") + ".png",
+              });
               await advance(p, 2);
               assert.equal((await state(p)).flora.mode, "voando");
               await p.reload();

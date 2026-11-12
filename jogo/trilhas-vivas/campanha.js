@@ -1068,7 +1068,10 @@
       if (["trash", "recycle"].includes(t.type)) {
         if (
           t.status === "pending" &&
-          !(isCurrent && action.elapsed / action.duration > 0.45)
+          !(
+            isCurrent &&
+            action.elapsed / action.duration > (id === 2 ? 0.18 : 0.45)
+          )
         )
           if (!art.residual(ctx, t))
             sprites.draw(
@@ -1104,6 +1107,7 @@
             p.x,
             p.y,
             t.type === "turtle" ? 43 : 30,
+            isCurrent ? action.elapsed / action.duration : 0,
           )
         )
           return;
@@ -1255,11 +1259,7 @@
       });
       name = pose.split(":")[0];
       frame = Number(pose.split(":")[1]);
-    } else if (
-      id === 2 &&
-      protective &&
-      (action || player.swimming || !action)
-    ) {
+    } else if (id === 2 && protective) {
       const pose = art.river(ctx, player, time, reduced(), {
         // A pose de coleta alcança a embalagem. As poses antigas de carregar um
         // peixe/tartaruga fariam o animal aparecer duplicado fora da água.
@@ -1275,6 +1275,14 @@
       });
       name = pose.split(":")[0];
       frame = Number(pose.split(":")[1]);
+      if (action?.kind === "trash")
+        art.riverTrash?.(
+          ctx,
+          sprites,
+          tasks.find((t) => t.id === action.task),
+          player,
+          action.elapsed / action.duration,
+        );
     } else if (action && id >= 3) {
       const target = tasks.find((t) => t.id === action.task),
         progress = Math.min(0.999, action.elapsed / action.duration);
@@ -1442,6 +1450,10 @@
   }
   function drawCelebration() {
     const c = $("celebration").getContext("2d");
+    if (window.RioClaroResumo) {
+      RioClaroResumo.paint(c, 420, 230, time, reduced());
+      return;
+    }
     c.clearRect(0, 0, 420, 175);
     sprites.draw(c, "npcs", data.npcRow * 3 + 1, 105, 150, 108);
     colar.drawActor(c, 6.5, 210, 153, 125, true);
