@@ -42,7 +42,7 @@
     "jogo/brisa-suave/carregamento.js",
     "jogo/brisa-suave/compilados/floresta-viva-80610f5d7a75.js",
     "jogo/brisa-suave/compilados/jornada-70ef13d11f87.js",
-    "jogo/brisa-suave/compilados/viva-aeedb00499bd.js",
+    "jogo/brisa-suave/compilados/viva-4cc54ea8dc17.js",
     "jogo/brisa-suave/etiquetas.js",
     "jogo/brisa-suave/interface.css",
     "jogo/brisa-suave/transicoes.js",
@@ -168,6 +168,13 @@
     "jogo/floresta-viva/revisao/atlas.js",
     "jogo/floresta-viva/revisao/interface.js",
     "jogo/floresta-viva/sprites.js",
+    "jogo/ilha-renascendo/assets/etapa-1.webp",
+    "jogo/ilha-renascendo/assets/etapa-2.webp",
+    "jogo/ilha-renascendo/assets/etapa-3.webp",
+    "jogo/ilha-renascendo/assets/etapa-4.webp",
+    "jogo/ilha-renascendo/assets/etapa-5.webp",
+    "jogo/ilha-renascendo/interface.css",
+    "jogo/ilha-renascendo/mapa.js",
     "jogo/interface-viva/assets/viva-ferramentas.webp",
     "jogo/interface-viva/assets/viva-simbolos.webp",
     "jogo/interface-viva/atlas.js",
@@ -241,7 +248,6 @@
     "jogo/reencontro/conteudo.js",
     "jogo/reencontro/cuidados.js",
     "jogo/reencontro/geometria.js",
-    "jogo/reencontro/mapa.js",
     "jogo/reencontro/paisagem.js",
     "jogo/reencontro/quadros.js",
     "jogo/reencontro/rio-atlas.js",
@@ -328,9 +334,9 @@
     "tela-inicial/renascimento/interacoes.js",
     "tela-inicial/renascimento/rustico.css"
   ],
-  "bytes": 43722248,
+  "bytes": 50963774,
   "generated": [
-    "jogo/brisa-suave/compilados/viva-aeedb00499bd.js",
+    "jogo/brisa-suave/compilados/viva-4cc54ea8dc17.js",
     "jogo/brisa-suave/compilados/floresta-viva-80610f5d7a75.js",
     "jogo/brisa-suave/compilados/jornada-70ef13d11f87.js"
   ]

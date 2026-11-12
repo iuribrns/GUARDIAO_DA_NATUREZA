@@ -198,22 +198,28 @@
     if (id && p.completed.includes(id)) {
       mapDraw(id);
       clearTimeout(restoreTimer);
-      restoreTimer = setTimeout(
-        () => {
-          const s = progress();
-          delete s.pendingRestoration;
-          try {
-            localStorage.setItem(
-              "guardiao.mapa.progresso.v1",
-              JSON.stringify(s),
-            );
-          } catch {}
-          history.replaceState(null, "", location.pathname + "#mapa");
-          if (R.won()) window.VivaFinal?.start();
-          else mapDraw();
-        },
-        reduced() ? 300 : 2100,
-      );
+      Promise.resolve(BosqueMapa.ready())
+        .catch(() => {})
+        .then(() => {
+          if (view !== "mapa" || !progress().completed.includes(id)) return;
+          clearTimeout(restoreTimer);
+          restoreTimer = setTimeout(
+            () => {
+              const s = progress();
+              delete s.pendingRestoration;
+              try {
+                localStorage.setItem(
+                  "guardiao.mapa.progresso.v1",
+                  JSON.stringify(s),
+                );
+              } catch {}
+              history.replaceState(null, "", location.pathname + "#mapa");
+              if (R.won()) window.VivaFinal?.start();
+              else mapDraw();
+            },
+            reduced() ? 300 : (BosqueMapa.duration || 2.1) * 1000 + 200,
+          );
+        });
     } else if (
       R.won() &&
       localStorage.getItem("guardiao.viva.final.v1") !== "visto"
@@ -600,9 +606,9 @@
       const island = document.querySelector(".island"),
         stage = document.querySelector(".map-stage"),
         r = island.getBoundingClientRect(),
-        k = Math.min(r.width / 1000, r.height / 563);
-      stage.style.width = k * 1000 + "px";
-      stage.style.height = k * 563 + "px";
+        k = Math.min(r.width / 1280, r.height / 721);
+      stage.style.width = k * 1280 + "px";
+      stage.style.height = k * 721 + "px";
       document.body.dataset.mapFit = "inteiro";
     };
     new ResizeObserver(fit).observe(document.querySelector(".island"));

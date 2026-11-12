@@ -48,6 +48,8 @@ try {
     ...(production ? ["jogo/viva/validacao/subpasta.cjs"] : []),
     "desenvolvimento/arte-viva/interface.cjs",
     "desenvolvimento/mapa-ferido/verificar.cjs",
+    "desenvolvimento/ilha-renascendo/verificar.cjs",
+    "desenvolvimento/ilha-renascendo/encerramento.cjs",
     "desenvolvimento/rio-claro/verificar.cjs",
     "desenvolvimento/correnteza/verificar.cjs",
     "desenvolvimento/trilhas-vivas/campanha.cjs",
