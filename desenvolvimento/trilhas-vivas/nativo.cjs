@@ -25,7 +25,7 @@ fs.mkdirSync(out, { recursive: true });
       requests = [];
     p.on("pageerror", (e) => errors.push(e.message));
     p.on("request", (r) => requests.push(new URL(r.url()).pathname));
-    await p.route("**/jogo/viva/assets/inicio.webp*", (r) => r.abort());
+    await p.route("**/jogo/arte-viva/assets/inicio.webp*", (r) => r.abort());
     await p.goto(base);
     await p.waitForFunction(() => document.body.dataset.uiReady === "true");
     assert.match(
@@ -35,7 +35,7 @@ fs.mkdirSync(out, { recursive: true });
       /data:image\/webp/,
     );
     assert.ok(await p.locator("#play-game").isVisible());
-    await p.unroute("**/jogo/viva/assets/inicio.webp*");
+    await p.unroute("**/jogo/arte-viva/assets/inicio.webp*");
     await p.reload();
     await p.waitForFunction(
       () => document.querySelector(".home-landscape")?.naturalWidth > 1000,
@@ -177,9 +177,9 @@ fs.mkdirSync(out, { recursive: true });
     assert.deepEqual(turtle, { x: 930, y: 440, swimming: false });
     assert.ok(
       requests.some((url) =>
-        url.includes("/reencontro/assets/mapa-antes.webp"),
+        url.includes("/arte-viva/assets/mapa-antes.webp"),
       ),
-      "modelo ilustrado antigo carregado",
+      "mapa ilustrado cartunizado carregado",
     );
     assert.ok(
       !requests.some((url) => url.includes("/arquivo/")),

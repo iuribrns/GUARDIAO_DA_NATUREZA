@@ -32,7 +32,7 @@
       return;
     warmed.add(id);
     prefetch("../reencontro/assets/" + maps[id] + "-antes.webp");
-    prefetch("assets/flora.webp");
+    prefetch("../arte-viva/assets/flora.webp");
     for (const name of [
       "explorador",
       "equipamentos",
@@ -41,7 +41,7 @@
     ])
       if (BosqueKaiAtlas[name])
         prefetch(BosqueKaiAtlas[name].file, BosqueKai.base);
-    if (id === 2) prefetch("assets/rio.webp");
+    if (id === 2) prefetch("../reencontro/assets/kai-rio-cuidado.webp");
   }
   document.addEventListener("DOMContentLoaded", () => {
     new MutationObserver(prepare).observe(document.body, {

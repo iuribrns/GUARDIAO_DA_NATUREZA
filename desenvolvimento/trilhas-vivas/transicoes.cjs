@@ -106,12 +106,12 @@ fs.mkdirSync(out, { recursive: true });
             ...c
               .getContext("2d")
               .getImageData(
-                Math.round((c.width * 430) / 1000),
-                Math.round((c.height * 455) / 563),
-                1,
-                1,
+                Math.round((c.width * 280) / 1000) - 16,
+                Math.round((c.height * 420) / 563) - 16,
+                32,
+                32,
               ).data,
-          ].slice(0, 3);
+          ].filter((_, i) => i % 4 !== 3);
         };
         BosqueMapa.update([]);
         await frame();
@@ -127,20 +127,24 @@ fs.mkdirSync(out, { recursive: true });
         colors.before.reduce(
           (n, v, i) => n + Math.abs(v - colors.green[i]),
           0,
-        ) > 30,
+        ) /
+          colors.before.length >
+          5,
         "o solo muda ao recuperar a ilha",
       );
       assert.ok(
         colors.before.reduce(
           (n, v, i) => n + Math.abs(v - colors.reset[i]),
           0,
-        ) < 20,
+        ) /
+          colors.before.length <
+          2,
         "reiniciar remove o verde guardado no cache",
       );
 
       await p.click('[data-phase="1"]');
       await p.route(
-        "**/jogo/bosque-vivo/assets/equipamentos.webp*",
+        "**/jogo/reencontro/assets/equipamentos.webp*",
         async (r) => {
           await new Promise((resolve) => setTimeout(resolve, 700));
           await r.continue();

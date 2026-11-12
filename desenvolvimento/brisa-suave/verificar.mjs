@@ -136,10 +136,11 @@ const source = readFileSync("jogo/jornada/index.html", "utf8");
 assert.ok(source.includes("reencontro/paisagem.js"));
 assert.ok(!source.includes("bosque-vivo/configuracao.js"));
 assert.ok(!source.includes("mata-ilustrada/configuracao.js"));
-for (const name of ["flora", "protecao", "rio"])
-  assert.ok(
-    readFileSync("jogo/brisa-suave/assets/" + name + ".webp").length > 1000,
-  );
+for (const name of ["flora", "inicio", "mapa-antes", "mapa-depois"]) {
+  const image = readFileSync("jogo/arte-viva/assets/" + name + ".webp");
+  assert.equal(image.toString("ascii", 8, 12), "WEBP");
+  assert.ok(image.length < 1024 * 1024, "cenário ou prancha abaixo de 1 MiB");
+}
 console.log(
   "PASS: mapas ilustrados mantidos e recursos substituídos fora da inicialização das fases.",
 );

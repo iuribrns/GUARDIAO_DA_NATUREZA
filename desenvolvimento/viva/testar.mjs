@@ -34,20 +34,31 @@ try {
     await new Promise((r) => setTimeout(r, 100));
   }
   if (!ready) throw Error("Servidor indisponível: " + log);
-  for (const file of [
+  const cases = [
     "jogo/vida-natural/validacao/fisica.cjs",
     "desenvolvimento/trilhas-vivas/colisoes.cjs",
     "desenvolvimento/reencontro/flora.cjs",
     "desenvolvimento/brisa-suave/transicoes.cjs",
-    "desenvolvimento/brisa-suave/personagens.cjs",
+    "desenvolvimento/arte-viva/personagens.cjs",
     "jogo/viva/validacao/interface.cjs",
     "desenvolvimento/trilhas-vivas/interface.cjs",
     "desenvolvimento/trilhas-vivas/nativo.cjs",
     "desenvolvimento/trilhas-vivas/rotas.cjs",
     "desenvolvimento/trilhas-vivas/transicoes.cjs",
     ...(production ? ["jogo/viva/validacao/subpasta.cjs"] : []),
+    "desenvolvimento/arte-viva/interface.cjs",
     "desenvolvimento/trilhas-vivas/campanha.cjs",
-  ])
+  ];
+  const resume = process.argv
+    .find((arg) => arg.startsWith("--from="))
+    ?.slice(7);
+  const start = resume
+    ? cases.findIndex(
+        (file) => file === resume || file.endsWith("/" + resume + ".cjs"),
+      )
+    : 0;
+  if (start < 0) throw Error("Teste desconhecido: " + resume);
+  for (const file of cases.slice(start))
     await new Promise((ok, bad) => {
       const child = spawn(process.execPath, [file], {
         cwd: root,
@@ -64,7 +75,11 @@ try {
       );
     });
   console.log(
-    "PASS fluxo atual: colisões, interface, configurações na fase, reinício, encerramento no mapa e cinco fases com teclado e toque.",
+    resume
+      ? "PASS testes retomados a partir de " +
+          resume +
+          "; cinco fases com teclado e toque."
+      : "PASS fluxo atual: colisões, interface, configurações na fase, reinício, encerramento no mapa e cinco fases com teclado e toque.",
   );
 } finally {
   server.kill("SIGTERM");

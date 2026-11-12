@@ -456,16 +456,7 @@
         A.owl(c, w * 0.5, h * 0.9, h * 0.69, time, "ombro", false),
       );
       A.canvas($("settings-preview"), (c, w, h) => {
-        A.scenery(c, 5, w, h);
-        A.owl(
-          c,
-          w * 0.54,
-          h * 0.89,
-          Math.min(h * 0.49, w * 0.48),
-          time,
-          "ombro",
-          false,
-        );
+        ArteVivaContextos.settings(c, w, h, time);
       });
     }
     if ($("phase-dialog").open)

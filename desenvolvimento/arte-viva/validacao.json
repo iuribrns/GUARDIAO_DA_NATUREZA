@@ -1,0 +1,29 @@
+{
+  "rendering": "Artes originais de Kai e NPCs; 16 poses originais da Flora e 12 complementares.",
+  "entryMeasurement": {
+    "environment": "Chromium headless, localhost, cache frio, 844x390",
+    "resources": 21,
+    "bytes": 1149518,
+    "scripts": 1,
+    "video": false,
+    "ambience": true,
+    "backdrop": 1672
+  },
+  "checks": {
+    "characterDirectionsAndCrop": "PASS",
+    "collisionAndRoutes": "PASS",
+    "fiveStagesKeyboard": "PASS",
+    "fiveStagesTouch": "PASS",
+    "guardianTreeEndingAndRestart": "PASS",
+    "interfaceSizes": [
+      "1280x720",
+      "844x390",
+      "740x320",
+      "667x375",
+      "932x430"
+    ],
+    "publishedPathsAndAssets": "PASS",
+    "historicFilesPreserved": 691
+  },
+  "notes": "A medição descreve a entrada. As demais fases carregam seus recursos quando abertas."
+}

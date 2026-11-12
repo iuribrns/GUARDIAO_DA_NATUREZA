@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="180" viewBox="0 0 600 180" fill="none">
+<defs><linearGradient id="wood" x2="0" y2="180" gradientUnits="userSpaceOnUse"><stop stop-color="#bd7c36"/><stop offset=".25" stop-color="#efb75e"/><stop offset=".55" stop-color="#8d4d22"/><stop offset=".84" stop-color="#bf7a35"/><stop offset="1" stop-color="#643c20"/></linearGradient><linearGradient id="field" x2="0" y2="160" gradientUnits="userSpaceOnUse"><stop stop-color="#507b36"/><stop offset=".4" stop-color="#234f30"/><stop offset="1" stop-color="#133f2b"/></linearGradient><linearGradient id="leaf" x2="1" y2="1"><stop stop-color="#c7df55"/><stop offset="1" stop-color="#4e8c32"/></linearGradient></defs>
+<path d="M56 18Q300 32 545 18q38-3 40 31l5 75q-3 40-44 38-242-15-489 0-41 1-45-38l4-75q2-35 40-31Z" fill="url(#wood)" stroke="#573119" stroke-width="6"/>
+<path d="M57 30q239 13 485 0 29-1 31 25l2 64q-2 29-31 28-239-12-487 0-29 0-30-28l2-64q1-25 28-25Z" fill="url(#field)" stroke="#efc86b" stroke-width="5"/>
+<path d="M61 39q236 13 477 0M59 138q237-11 481 0" stroke="#dbb659" stroke-width="2" opacity=".65"/>
+<path d="M23 75q-10-40 29-50-3 29-29 50Z M38 33Q43 4 74 12 64 38 38 33Z M553 142q12-34 34-18-7 22-34 18Z M542 149q-4-30-25-24-1 25 25 24Z" fill="url(#leaf)" stroke="#446d28" stroke-width="3"/>
+<path d="m23 72 22-37m-5-4 24-13m493 124 13-10m-34 16-10-15" stroke="#e5e77a" stroke-width="2" stroke-linecap="round"/>
+<path d="m89 22 76 1m300 134 56 1M20 91l-1 27m555-71 1 30" stroke="#efb35b" stroke-width="2" opacity=".7"/>
+</svg>

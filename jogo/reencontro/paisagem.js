@@ -36,7 +36,14 @@
       const im = new Image();
       im.decoding = "async";
       im.fetchPriority = state === "antes" ? "high" : "low";
-      im.src = new URL(this.name + "-" + state + ".webp", base);
+      im.src = new URL(
+        (this.name === "mapa" ? "../../arte-viva/assets/" : "") +
+          this.name +
+          "-" +
+          state +
+          ".webp",
+        base,
+      );
       await im.decode();
       this[state] = im;
       this.signature = null;
@@ -98,7 +105,9 @@
           m.globalAlpha = 1;
         }
         g.clearRect(0, 0, this.w, this.h);
-        if (this.depois) {
+        // Sem objetivos concluídos, a imagem saudável não entra na composição.
+        // Além de evitar trabalho, o reinício conserva os mesmos pixels da entrada.
+        if (this.depois && (points.length || full > 0)) {
           g.drawImage(this.depois, 0, 0, this.w, this.h);
           g.globalCompositeOperation = "destination-in";
           g.drawImage(this.mask, 0, 0);
@@ -141,6 +150,10 @@
           (t) =>
             t.life === 0 || ["done", "safe", "returning"].includes(t.status),
         );
+        // Conserva o estado público da cidade usado pela interface e pela campanha.
+        if (this.phase === 5)
+          document.body.dataset.industryState =
+            this.objectives.length === tasks.length ? "recuperada" : "poluida";
         const loaded = complete && this.fullAt === null;
         if (loaded) this.fullAt = time;
         this.complete = complete;
