@@ -13,7 +13,6 @@
     "jogo/arte-viva/assets/botao.webp",
     "jogo/arte-viva/assets/flora.webp",
     "jogo/arte-viva/assets/inicio.webp",
-    "jogo/arte-viva/assets/mapa-antes.webp",
     "jogo/arte-viva/assets/mapa-depois.webp",
     "jogo/arte-viva/assets/regiao.webp",
     "jogo/arte-viva/assets/titulo.webp",
@@ -42,9 +41,9 @@
     "jogo/bosque-vivo/trajes.js",
     "jogo/bosque-vivo/vegetacao.js",
     "jogo/brisa-suave/carregamento.js",
-    "jogo/brisa-suave/compilados/floresta-viva-f8c1f554b909.js",
-    "jogo/brisa-suave/compilados/jornada-b5ba28edd5e3.js",
-    "jogo/brisa-suave/compilados/viva-4391c4a886c8.js",
+    "jogo/brisa-suave/compilados/floresta-viva-913adbea9b8c.js",
+    "jogo/brisa-suave/compilados/jornada-4bb23507d13f.js",
+    "jogo/brisa-suave/compilados/viva-205469da70b5.js",
     "jogo/brisa-suave/etiquetas.js",
     "jogo/brisa-suave/interface.css",
     "jogo/brisa-suave/transicoes.js",
@@ -176,6 +175,11 @@
     "jogo/jornada/fases.js",
     "jogo/jornada/index.html",
     "jogo/jornada/jornada.css",
+    "jogo/mapa-ferido/assets/kai-retrato.webp",
+    "jogo/mapa-ferido/assets/mapa-antes.webp",
+    "jogo/mapa-ferido/assets/placa-distante.webp",
+    "jogo/mapa-ferido/interface.css",
+    "jogo/mapa-ferido/mapa.js",
     "jogo/mata-ilustrada/artes.js",
     "jogo/mata-ilustrada/assets/aderecos.webp",
     "jogo/mata-ilustrada/assets/texturas.webp",
@@ -314,10 +318,10 @@
     "tela-inicial/renascimento/interacoes.js",
     "tela-inicial/renascimento/rustico.css"
   ],
-  "bytes": 42725396,
+  "bytes": 42831078,
   "generated": [
-    "jogo/brisa-suave/compilados/viva-4391c4a886c8.js",
-    "jogo/brisa-suave/compilados/floresta-viva-f8c1f554b909.js",
-    "jogo/brisa-suave/compilados/jornada-b5ba28edd5e3.js"
+    "jogo/brisa-suave/compilados/viva-205469da70b5.js",
+    "jogo/brisa-suave/compilados/floresta-viva-913adbea9b8c.js",
+    "jogo/brisa-suave/compilados/jornada-4bb23507d13f.js"
   ]
 }

@@ -47,6 +47,7 @@ try {
     "desenvolvimento/trilhas-vivas/transicoes.cjs",
     ...(production ? ["jogo/viva/validacao/subpasta.cjs"] : []),
     "desenvolvimento/arte-viva/interface.cjs",
+    "desenvolvimento/mapa-ferido/verificar.cjs",
     "desenvolvimento/trilhas-vivas/campanha.cjs",
   ];
   const resume = process.argv

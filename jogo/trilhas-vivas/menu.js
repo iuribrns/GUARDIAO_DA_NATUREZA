@@ -162,10 +162,12 @@
   }
   function mapDraw(restoring = 0) {
     const p = progress();
+    MapaFerido.prepare();
+    document.body.dataset.mapRestored = String(p.completed.length === 5);
     $("map-hotspots").innerHTML = phases
       .map(
         (d) =>
-          `<button type="button" class="map-hotspot ${p.completed.includes(d.id) ? "is-complete" : ""}" data-phase="${d.id}" style="--x:${d.region[0]}%;--y:${d.region[1]}%" aria-label="${d.name}. ${unlocked(d.id) ? (p.completed.includes(d.id) ? "Natureza recuperada" : "Disponível") : "Complete a região anterior"}" aria-disabled="${!unlocked(d.id)}"><span class="number">${d.id}</span>${R.icon(d.icon)}<span class="map-region-name">${d.name}</span><small>${p.completed.includes(d.id) ? "Natureza recuperada" : unlocked(d.id) ? "Vamos cuidar?" : "Complete a região anterior"}</small></button>`,
+          `<button type="button" class="map-hotspot ${p.completed.includes(d.id) ? "is-complete" : ""}" data-phase="${d.id}" data-region-state="${MapaFerido.regionState(d.id, p)}" style="--x:${d.region[0]}%;--y:${d.region[1]}%" aria-label="${d.name}. ${unlocked(d.id) ? (p.completed.includes(d.id) ? "Natureza recuperada" : "Disponível") : "Complete a região anterior"}" aria-disabled="${!unlocked(d.id)}"><span class="number">${d.id}</span>${R.icon(d.icon)}<span class="map-region-name">${MapaFerido.label(d.id)}</span><small>${p.completed.includes(d.id) ? "Natureza recuperada" : unlocked(d.id) ? "Vamos cuidar?" : "Complete a região anterior"}</small></button>`,
       )
       .join("");
     BosqueMapa.update(
@@ -395,6 +397,7 @@
         const d = phases[(progress().current || 1) - 1],
           x = (w * d.region[0]) / 100,
           y = (h * d.region[1]) / 100 - 57;
+        if (MapaFerido.portrait(c, x, y, w < 900 ? 17 : 19)) return;
         c.fillStyle = "#305a39";
         c.strokeStyle = "#edce7a";
         c.lineWidth = 3;

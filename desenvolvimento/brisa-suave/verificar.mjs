@@ -137,7 +137,13 @@ assert.ok(source.includes("reencontro/paisagem.js"));
 assert.ok(!source.includes("bosque-vivo/configuracao.js"));
 assert.ok(!source.includes("mata-ilustrada/configuracao.js"));
 for (const name of ["flora", "inicio", "mapa-antes", "mapa-depois"]) {
-  const image = readFileSync("jogo/arte-viva/assets/" + name + ".webp");
+  const image = readFileSync(
+    "jogo/" +
+      (name === "mapa-antes" ? "mapa-ferido" : "arte-viva") +
+      "/assets/" +
+      name +
+      ".webp",
+  );
   assert.equal(image.toString("ascii", 8, 12), "WEBP");
   assert.ok(image.length < 1024 * 1024, "cenário ou prancha abaixo de 1 MiB");
 }

@@ -177,7 +177,7 @@ fs.mkdirSync(out, { recursive: true });
     assert.deepEqual(turtle, { x: 930, y: 440, swimming: false });
     assert.ok(
       requests.some((url) =>
-        url.includes("/arte-viva/assets/mapa-antes.webp"),
+        url.includes("/mapa-ferido/assets/mapa-antes.webp"),
       ),
       "mapa ilustrado cartunizado carregado",
     );

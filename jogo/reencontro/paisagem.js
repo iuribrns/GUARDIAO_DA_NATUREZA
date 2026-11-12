@@ -37,7 +37,11 @@
       im.decoding = "async";
       im.fetchPriority = state === "antes" ? "high" : "low";
       im.src = new URL(
-        (this.name === "mapa" ? "../../arte-viva/assets/" : "") +
+        (this.name === "mapa"
+          ? "../../" +
+            (state === "antes" ? "mapa-ferido" : "arte-viva") +
+            "/assets/"
+          : "") +
           this.name +
           "-" +
           state +

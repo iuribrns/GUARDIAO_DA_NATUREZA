@@ -1,0 +1,27 @@
+{
+  "scope": "Mapa da seleção de fases",
+  "viewports": [
+    "1280x720",
+    "844x390",
+    "740x320",
+    "667x375",
+    "932x430"
+  ],
+  "checks": {
+    "centeredText": "PASS",
+    "smallerTouchTargets": "PASS, altura de 58px",
+    "damagedFutureRegions": "PASS",
+    "previewDoesNotUnlock": "PASS",
+    "savedProgressAndReset": "PASS",
+    "floraHintDoesNotCoverNames": "PASS",
+    "portraitAndAssets": "PASS",
+    "restorationAndTransitions": "PASS",
+    "pagesSubfolder": "PASS",
+    "historicFilesPreserved": 691
+  },
+  "assetsBytes": {
+    "mapa-antes.webp": 626398,
+    "placa-distante.webp": 61322,
+    "kai-retrato.webp": 23088
+  }
+}

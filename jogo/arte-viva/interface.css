@@ -109,7 +109,7 @@ button:is(.icon-button, [data-fullscreen]) > .nature-symbol {
   background-color: #208eaa;
   background-image:
     radial-gradient(ellipse at center, #80d1cf33, #175d7c55),
-    url("assets/mapa-antes.webp");
+    url("../mapa-ferido/assets/mapa-antes.webp");
   background-size: cover;
   background-position: center;
 }
@@ -124,7 +124,7 @@ button:is(.icon-button, [data-fullscreen]) > .nature-symbol {
   inset: -22px;
   background:
     linear-gradient(#185a6b44, #163e5655),
-    url("assets/mapa-antes.webp") center/cover;
+    url("../mapa-ferido/assets/mapa-antes.webp") center/cover;
   filter: blur(14px);
   pointer-events: none;
 }
