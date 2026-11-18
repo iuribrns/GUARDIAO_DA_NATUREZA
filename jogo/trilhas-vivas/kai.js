@@ -127,16 +127,24 @@
       v = pose(p, reduced);
     const name = images.has(bank) ? bank : "explorador",
       h = c.canvas.id === "cenario" ? height * 1.32 : height;
-    const idle = p.moving || reduced ? 0 : Math.sin(time * 1.7) * 0.35;
+    const idle = p.moving || reduced ? 0 : Math.sin(time * 1.8) * 0.8;
     if (c.canvas.id === "cenario") {
       document.body.dataset.kaiUniform = name;
       document.body.dataset.kaiWalkFrame = String(v.step);
       document.body.dataset.kaiWalkDirection = String(p.direction);
       document.body.dataset.heroDirection = String(p.direction);
     }
-    return draw(c, name, v.row * 6 + v.step, p.x, p.y, h + idle, {
+    c.save();
+    if (!p.moving && !reduced) {
+      c.translate(p.x, p.y);
+      c.rotate(Math.sin(time * 0.85) * 0.006);
+      c.translate(-p.x, -p.y);
+    }
+    const result = draw(c, name, v.row * 6 + v.step, p.x, p.y, h + idle, {
       flip: v.flip,
     });
+    c.restore();
+    return result;
   }
   function equipment(c, row, progress, x, y, height = 83, flip = false) {
     if (c.canvas.id === "cenario")
