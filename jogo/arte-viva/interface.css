@@ -68,6 +68,28 @@ button:is(.icon-button, [data-fullscreen]) > .nature-symbol {
   flex: none;
   transform: none;
 }
+/* O conteúdo respeita o diâmetro interno dos três comandos das cinco fases. */
+#jogo .top-actions button.ra-world-icon {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 6px !important;
+  gap: 0;
+  line-height: 0;
+  overflow: hidden;
+}
+body #jogo .top-actions button.ra-world-icon > svg.nature-symbol {
+  display: block;
+  position: static !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 !important;
+  flex: none;
+  transform: none;
+}
 .shell-bar #fs-toggle {
   width: 48px;
   height: 48px;
