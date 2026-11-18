@@ -16,25 +16,26 @@
         hh = Math.min((h - reserve) * 0.88, w * 0.63),
         y = h - reserve - 7,
         kaiHeight = hh * 0.9,
-        x = w * 0.27,
+        x = w * 0.33,
         b = breath(t, quiet);
       c.save();
       c.fillStyle = "#332c2522";
-      for (const xx of [x, w * 0.74]) {
+      for (const xx of [x, w * 0.76]) {
         c.beginPath();
         c.ellipse(xx, y, hh * 0.18, hh * 0.04, 0, 0, Math.PI * 2);
         c.fill();
       }
       c.save();
       c.translate(x, y);
+      c.filter = "saturate(1.1) contrast(1.02)";
       c.rotate(quiet ? 0 : Math.sin(t * 0.85) * 0.005);
       R.draw(c, "acoes", 0, 0, 0, kaiHeight + b);
       // Pés apoiados na capa/ombro de trás; asas recolhidas, rosto de Kai livre.
-      const shoulder = { x: -kaiHeight * 0.15, y: -(kaiHeight + b) * 0.545 };
+      const shoulder = { x: -kaiHeight * 0.12, y: -(kaiHeight + b) * 0.565 };
       const pose = ArteVivaPersonagens.frame(0, "ombro", t, 0, quiet);
       const glance =
         !quiet && t % 8 < 6 ? 12 + (t % 4.8 > 4.62 ? 1 : 0) : pose.index;
-      R.draw(c, "flora", glance, shoulder.x, shoulder.y, hh * 0.205, {
+      R.draw(c, "flora", glance, shoulder.x, shoulder.y, hh * 0.32, {
         angle: quiet ? 0 : Math.sin(t * 1.2) * 0.025,
       });
       c.restore();
@@ -43,7 +44,7 @@
         c,
         "npcs",
         phase - 1 + (listening ? 5 : 0),
-        w * 0.74,
+        w * 0.76,
         y,
         hh + breath(t + 0.7, quiet),
       );
@@ -58,14 +59,14 @@
     const quiet = still(),
       t = performance.now() / 1000,
       role = index % 5,
-      gesture = !quiet && (t + role * 1.3) % 8 > 6.5;
+      gesture = !quiet && (t + role * 1.3) % 6 > 3;
     c.save();
     c.translate(x, y);
-    c.rotate(quiet ? 0 : Math.sin(t * 0.85 + role) * 0.005);
+    c.rotate(quiet ? 0 : Math.sin(t * 0.85 + role) * 0.012);
     const result = prior(
       c,
       name,
-      gesture ? role + 5 : index,
+      quiet ? index : role + (gesture ? 5 : 0),
       0,
       0,
       height + breath(t + role, quiet),

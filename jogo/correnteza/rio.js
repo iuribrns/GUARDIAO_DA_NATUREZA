@@ -1,7 +1,28 @@
 "use strict";
 (() => {
   const Previous = GuardiaoAdventureArt;
+  const swimScale = 0.78;
   window.GuardiaoAdventureArt = class extends Previous {
+    riverTrash(c, sprites, target, p, progress) {
+      if (this.phase !== 2 || !p.swimming || !target)
+        return super.riverTrash(c, sprites, target, p, progress);
+      c.save();
+      c.translate(p.x, p.y);
+      c.scale(swimScale, swimScale);
+      const result = super.riverTrash(
+        c,
+        sprites,
+        {
+          ...target,
+          x: (target.x - p.x) / swimScale,
+          y: (target.y - p.y) / swimScale,
+        },
+        { ...p, x: 0, y: 0 },
+        progress,
+      );
+      c.restore();
+      return result;
+    }
     river(c, p, time, reduced, options = {}) {
       if (this.phase !== 2) return super.river(c, p, time, reduced, options);
       if (options.dressing) {
@@ -56,7 +77,14 @@
       g.fillStyle = "#00000044";
       g.fill("evenodd");
       g.globalCompositeOperation = "source-over";
-      c.drawImage(this.swimSurface, p.x - 110, p.y - 90);
+      const scale = swimScale;
+      c.drawImage(
+        this.swimSurface,
+        p.x - 110 * scale,
+        p.y - 90 * scale,
+        220 * scale,
+        180 * scale,
+      );
       c.save();
       c.strokeStyle = "#e1fff4bd";
       c.lineWidth = 1.2;
@@ -68,8 +96,8 @@
         c.ellipse(
           p.x,
           p.y - 7,
-          18 + q * 18,
-          4 + q * 4,
+          (18 + q * 18) * scale,
+          (4 + q * 4) * scale,
           0,
           0.08,
           Math.PI * 0.95,

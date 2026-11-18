@@ -48,9 +48,11 @@ async function turtleTrial(browser, mobile, errors) {
       }),
     );
   });
+  // Instala o relógio antes do primeiro requestAnimationFrame: trocar a origem
+  // do tempo durante a partida pode produzir um passo negativo só no teste.
+  await p.clock.install();
   await p.goto(new URL("jogo/jornada/index.html?fase=2", base).href);
   await p.waitForFunction(() => window.GuardiaoJornada?.estado().ready);
-  await p.clock.install();
   const state = () => p.evaluate(() => GuardiaoJornada.estado());
   async function until(test, label) {
     for (let i = 0; i < 300; i++) {

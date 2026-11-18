@@ -46,6 +46,14 @@
   }
   phases[2].intro[1] =
     "Vista o traje, recolha o lixo e solte os peixes das embalagens. A tartaruga precisa de ajuda na areia!";
+  phases[5].station = { x: 240, y: 535 };
+  phases[5].obstacles.push(
+    ...[
+      { x: 154, y: 514 },
+      { x: 225, y: 493 },
+      { x: 300, y: 472 },
+    ].map((p) => ({ ...p, rx: 18, ry: 9 })),
+  );
   window.GuardiaoFasesJogaveis = Object.freeze(phases);
   // A física corresponde à ilustração aprovada, antes das árvores aleatórias.
   window.ReencontroGeometria = Object.fromEntries(

@@ -1053,7 +1053,7 @@
       ctx.stroke();
       ctx.setLineDash([]);
     }
-    if (data.station) art.bins(ctx, data.station);
+    if (data.station && !art.binActors) art.bins(ctx, data.station);
 
     if (id === 4) {
       ellipse(data.refill.x, data.refill.y, 22, 7, "#8ce9f144");
@@ -1512,6 +1512,7 @@
       y: t.position.y,
       draw: () => drawTask(t),
     }));
+    if (data.station) actors.push(...(art.binActors?.(ctx) || []));
     actors.push(
       ...world
         .actors(time, reduced(), player)
