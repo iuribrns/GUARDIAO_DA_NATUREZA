@@ -42,7 +42,7 @@
     "jogo/brisa-suave/carregamento.js",
     "jogo/brisa-suave/compilados/floresta-viva-ce7f1d61a631.js",
     "jogo/brisa-suave/compilados/jornada-7847f6775c0c.js",
-    "jogo/brisa-suave/compilados/viva-f1d533a869fb.js",
+    "jogo/brisa-suave/compilados/viva-19696853c197.js",
     "jogo/brisa-suave/etiquetas.js",
     "jogo/brisa-suave/interface.css",
     "jogo/brisa-suave/transicoes.js",
@@ -61,6 +61,10 @@
     "jogo/colar-vivo/colar.css",
     "jogo/colar-vivo/colar.js",
     "jogo/colar-vivo/geometria.js",
+    "jogo/companheiros/assets/floresta.webp",
+    "jogo/companheiros/assets/kai-flora.webp",
+    "jogo/companheiros/assets/moldura.webp",
+    "jogo/companheiros/painel.css",
     "jogo/correnteza/conclusao.js",
     "jogo/correnteza/interface.css",
     "jogo/correnteza/rio.js",
@@ -266,11 +270,9 @@
     "jogo/revisao-paisagem/plantas-atlas.js",
     "jogo/revisao-paisagem/plantas.js",
     "jogo/rio-claro/assets/animais-rio.webp",
-    "jogo/rio-claro/assets/galho.webp",
     "jogo/rio-claro/assets/kai-nado.webp",
     "jogo/rio-claro/atlas.js",
     "jogo/rio-claro/conclusao.js",
-    "jogo/rio-claro/configuracoes.js",
     "jogo/rio-claro/interface.css",
     "jogo/rio-claro/rio.js",
     "jogo/sistemas/arte-manifesto.js",
@@ -342,9 +344,9 @@
     "tela-inicial/renascimento/interacoes.js",
     "tela-inicial/renascimento/rustico.css"
   ],
-  "bytes": 51570628,
+  "bytes": 52451052,
   "generated": [
-    "jogo/brisa-suave/compilados/viva-f1d533a869fb.js",
+    "jogo/brisa-suave/compilados/viva-19696853c197.js",
     "jogo/brisa-suave/compilados/floresta-viva-ce7f1d61a631.js",
     "jogo/brisa-suave/compilados/jornada-7847f6775c0c.js"
   ]
