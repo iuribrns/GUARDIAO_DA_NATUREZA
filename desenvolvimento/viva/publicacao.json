@@ -40,9 +40,9 @@
     "jogo/bosque-vivo/trajes.js",
     "jogo/bosque-vivo/vegetacao.js",
     "jogo/brisa-suave/carregamento.js",
-    "jogo/brisa-suave/compilados/floresta-viva-34a8d88d415a.js",
-    "jogo/brisa-suave/compilados/jornada-6fef6177091b.js",
-    "jogo/brisa-suave/compilados/viva-30923108c036.js",
+    "jogo/brisa-suave/compilados/floresta-viva-ce7f1d61a631.js",
+    "jogo/brisa-suave/compilados/jornada-7847f6775c0c.js",
+    "jogo/brisa-suave/compilados/viva-f1d533a869fb.js",
     "jogo/brisa-suave/etiquetas.js",
     "jogo/brisa-suave/interface.css",
     "jogo/brisa-suave/transicoes.js",
@@ -171,6 +171,11 @@
     "jogo/floresta-viva/revisao/atlas.js",
     "jogo/floresta-viva/revisao/interface.js",
     "jogo/floresta-viva/sprites.js",
+    "jogo/gire-o-celular/assets/botao.webp",
+    "jogo/gire-o-celular/assets/flora.webp",
+    "jogo/gire-o-celular/assets/floresta.webp",
+    "jogo/gire-o-celular/assets/moldura.webp",
+    "jogo/gire-o-celular/tela.css",
     "jogo/ilha-renascendo/assets/etapa-1.webp",
     "jogo/ilha-renascendo/assets/etapa-2.webp",
     "jogo/ilha-renascendo/assets/etapa-3.webp",
@@ -337,10 +342,10 @@
     "tela-inicial/renascimento/interacoes.js",
     "tela-inicial/renascimento/rustico.css"
   ],
-  "bytes": 50985192,
+  "bytes": 51570628,
   "generated": [
-    "jogo/brisa-suave/compilados/viva-30923108c036.js",
-    "jogo/brisa-suave/compilados/floresta-viva-34a8d88d415a.js",
-    "jogo/brisa-suave/compilados/jornada-6fef6177091b.js"
+    "jogo/brisa-suave/compilados/viva-f1d533a869fb.js",
+    "jogo/brisa-suave/compilados/floresta-viva-ce7f1d61a631.js",
+    "jogo/brisa-suave/compilados/jornada-7847f6775c0c.js"
   ]
 }

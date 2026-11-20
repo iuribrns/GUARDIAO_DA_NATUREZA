@@ -14,6 +14,8 @@
     "tela-inicial/renascimento/creditos.html"
   ],
   "assets": [
+    "jogo/gire-o-celular/assets/flora.webp",
+    "jogo/gire-o-celular/assets/moldura.webp",
     ".nojekyll",
     "assets/identidade-flora/favicon.ico",
     "assets/otimizados/flora-180-0deb6d287fcc.webp",
