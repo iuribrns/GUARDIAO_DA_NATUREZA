@@ -104,6 +104,40 @@ async function contained(p, selector) {
         await p.locator("#mochila-jornada").waitFor({ state: "visible" });
         await p.locator("button[data-pack-tab=items]").click();
         await images(p, "#mochila-jornada");
+        assert.ok(
+          await p.locator(".kit-tabs button").evaluateAll((buttons) =>
+            buttons.every((button) => {
+              const box = button.getBoundingClientRect(),
+                label = button.lastElementChild.getBoundingClientRect();
+              return (
+                Math.abs(box.x + box.width / 2 - label.x - label.width / 2) <
+                  1 &&
+                Math.abs(box.y + box.height / 2 - label.y - label.height / 2) <
+                  1
+              );
+            }),
+          ),
+          "rótulos centralizados nas três abas",
+        );
+        assert.ok(
+          await p.locator(".mission-tool-card").evaluateAll((cards) =>
+            cards.every((card) => {
+              const holder = card
+                  .querySelector(".item-illustration")
+                  .getBoundingClientRect(),
+                svg = card.querySelector(".mission-tool"),
+                r = svg.getBoundingClientRect(),
+                v = svg.viewBox.baseVal;
+              return (
+                Math.abs(r.width - r.height) < 1 &&
+                v.width === v.height &&
+                Math.abs(holder.x + holder.width / 2 - r.x - r.width / 2) < 1 &&
+                Math.abs(holder.y + holder.height / 2 - r.y - r.height / 2) < 1
+              );
+            }),
+          ),
+          "dezesseis ícones com área quadrada e centro comum",
+        );
         const cards = p.locator(".mission-tool-card");
         assert.equal(await cards.count(), 16);
         assert.equal(
@@ -189,6 +223,27 @@ async function contained(p, selector) {
           assert.equal(
             await p.locator("#phase-items .mission-tool").count(),
             id === 4 ? 4 : 3,
+          );
+          assert.ok(
+            await p
+              .locator("#phase-items .mission-tool")
+              .evaluateAll((icons) => {
+                const rectangles = icons.map((e) => e.getBoundingClientRect());
+                return rectangles.every(
+                  (r) =>
+                    Math.abs(r.width - r.height) < 1 &&
+                    Math.abs(r.y - rectangles[0].y) < 1,
+                );
+              }),
+            "equipamentos alinhados sem deformação",
+          );
+          assert.ok(
+            await p
+              .locator("#close-phase .kit-art")
+              .evaluate((e) =>
+                getComputedStyle(e).clipPath.startsWith("circle("),
+              ),
+            "fechar sem fundo quadrado",
           );
           assert.ok(
             (

@@ -29,6 +29,10 @@
   min-height: 0;
   overflow: hidden;
 }
+.kit-round-icon {
+  clip-path: circle(50%);
+  border-radius: 50%;
+}
 .kit-pack .kit-frame {
   --kit-slice: 20px;
   position: absolute;
@@ -125,6 +129,8 @@
 #mochila-jornada .kit-tabs button {
   position: relative;
   isolation: isolate;
+  display: grid;
+  place-items: center;
   min-width: 0;
   min-height: 44px;
   height: clamp(44px, 7.2vh, 62px);
@@ -144,6 +150,8 @@
   --kit-slice-x: 36px;
   --kit-slice-y: 15px;
   z-index: -1;
+  border-radius: 15px;
+  overflow: hidden;
 }
 .kit-tabs .kit-tab-on,
 .kit-tabs [aria-selected="true"] .kit-tab-off {
@@ -236,6 +244,8 @@
 }
 .kit-pack .kit-card-frame {
   z-index: -1;
+  border-radius: 15px;
+  overflow: hidden;
 }
 .kit-pack .kit-check {
   position: absolute;
@@ -432,6 +442,7 @@
   }
   .kit-pack .kit-card-frame {
     --kit-slice: 13px;
+    border-radius: 10px;
   }
   .kit-pack .kit-check {
     width: 21px;

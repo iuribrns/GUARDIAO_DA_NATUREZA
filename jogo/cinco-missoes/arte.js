@@ -3,18 +3,27 @@
   const base = new URL("./", document.currentScript.src);
   const { art, frame } = MochilaIlustrada,
     ids = GuardiaoMemoria.items.map((i) => i.id);
-  const tool = (id) =>
-    art("ferramenta-" + (ids.indexOf(id) + 1), undefined, "mission-tool");
+  // A mesma área quadrada centraliza peças largas e altas sem esticá-las.
+  const tool = (id) => {
+    const name = "ferramenta-" + (ids.indexOf(id) + 1),
+      [x, y, w, h] = MochilaIlustradaAtlas[name].bounds,
+      side = Math.max(w, h);
+    return art(
+      name,
+      [x + (w - side) / 2, y + (h - side) / 2, side, side],
+      "mission-tool",
+    );
+  };
   const card = () =>
     frame(
       "painel-ferramentas",
-      [53, 307, 473, 284],
-      55,
-      55,
+      [47, 300, 486, 299],
+      64,
+      64,
       "mission-card-frame",
     );
   const green = (cls) =>
-    frame("painel-apresentacao", [754, 167, 862, 55], 62, 22, cls);
+    frame("painel-apresentacao", [748, 162, 874, 64], 70, 25, cls);
   function tools(memory) {
     const sorted = [...memory.items].sort(
       (a, b) => memory.has(b.id) - memory.has(a.id) || a.phase - b.phase,
@@ -79,9 +88,9 @@
         "afterbegin",
         frame(
           "painel-apresentacao",
-          [54, 666, 661, 84],
-          66,
-          27,
+          [49, 660, 675, 97],
+          76,
+          32,
           "brief-caption-art",
         ),
       );
@@ -109,8 +118,16 @@
       };
       picture.src = src;
     }
-    document.getElementById("phase-emblem").innerHTML = art("emblema-" + id);
-    document.getElementById("close-phase").innerHTML = art("fechar-fase");
+    document.getElementById("phase-emblem").innerHTML = art(
+      "emblema-" + id,
+      [0, 3, 114, 106],
+      "kit-round-icon",
+    );
+    document.getElementById("close-phase").innerHTML = art(
+      "fechar-fase",
+      [6, 6, 96, 96],
+      "kit-round-icon",
+    );
     const items = GuardiaoMemoria.items.filter((i) => i.phase === id);
     document.getElementById("phase-items").innerHTML =
       `<span class="brief-item-art" aria-hidden="true">${items.map((i) => tool(i.id)).join("")}</span><span>${

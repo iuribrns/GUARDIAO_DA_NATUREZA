@@ -32,23 +32,24 @@
       .join("")}</span>`;
   }
   const card = () =>
-      frame("painel-trajes", [52, 309, 288, 615], 56, 56, "kit-card-frame"),
-    check = () => art("painel-trajes", [1465, 320, 61, 62], "kit-check"),
+      frame("painel-trajes", [47, 303, 302, 628], 60, 60, "kit-card-frame"),
+    check = () =>
+      art("painel-trajes", [1470, 320, 56, 56], "kit-check kit-round-icon"),
     tabArt = (selected) =>
       frame(
         "painel-colar",
-        selected ? [555, 173, 478, 72] : [60, 175, 480, 70],
-        62,
-        25,
+        selected ? [548, 168, 490, 84] : [54, 168, 492, 84],
+        70,
+        30,
         selected ? "kit-tab-on" : "kit-tab-off",
       );
   function shell() {
     return `${frame("painel-colar", [0, 0, 1585, 992], 24, 24, "kit-window-frame", false)}
       <header class="kit-pack-heading">
         ${art("painel-colar", [200, 23, 1195, 125], "kit-heading-art", "xMidYMid slice")}
-        ${art("painel-colar", [72, 28, 125, 122], "kit-pack-emblem")}
+        ${art("painel-colar", [76, 31, 118, 118], "kit-pack-emblem kit-round-icon")}
         <div class="kit-heading-copy"><p class="eyebrow">CUIDADOS QUE VIAJAM COM VOCÊ</p><h2 id="pack-title">Mochila de Kai</h2></div>
-        <button type="button" data-pack-close class="icon-button kit-close" aria-label="Fechar mochila">${art("painel-colar", [1410, 32, 115, 110])}</button>
+        <button type="button" data-pack-close class="icon-button kit-close" aria-label="Fechar mochila">${art("painel-colar", [1417, 36, 98, 98], "kit-round-icon")}</button>
       </header>
       <div class="ra-tabs kit-tabs" role="tablist" aria-label="Dentro da mochila">
         ${[
