@@ -69,6 +69,25 @@ async function fit(p) {
     JSON.stringify(result),
   );
 }
+async function buttonSkin(p, state) {
+  const result = await p
+    .locator("#vitoria .resumo-proximo")
+    .evaluate((button) => {
+      const art = button.querySelector(".conquista-next"),
+        b = button.getBoundingClientRect(),
+        a = art.getBoundingClientRect();
+      return {
+        position: getComputedStyle(button).position,
+        edges: [a.x - b.x, a.y - b.y, a.right - b.right, a.bottom - b.bottom],
+        hover: button.matches(":hover"),
+        focus: button.matches(":focus-visible"),
+      };
+    });
+  assert.ok(
+    result.position !== "static" && result.edges.every((v) => Math.abs(v) < 1),
+    state + ": " + JSON.stringify(result),
+  );
+}
 (async () => {
   const b = await chromium.launch({
     executablePath: "/usr/bin/chromium",
@@ -283,6 +302,22 @@ async function fit(p) {
           await new Promise(requestAnimationFrame);
         });
         await fit(p);
+        await buttonSkin(p, "foco inicial");
+        await p.mouse.move(0, 0);
+        await p.evaluate(() => document.activeElement.blur());
+        await p.waitForTimeout(200);
+        await buttonSkin(
+          p,
+          "sem foco e sem cursor: moldura permanece dentro do botão",
+        );
+        await p.screenshot({ path: `${out}/sem-foco-${id}-${width}.png` });
+        if (width >= 1000) {
+          await p.locator(".resumo-proximo").hover();
+          await buttonSkin(p, "cursor sobre o botão");
+        }
+        await p.locator(".resumo-proximo").focus();
+        await p.keyboard.press("ArrowRight");
+        await buttonSkin(p, "foco pelo teclado");
         assert.equal(await p.locator("[data-close=vitoria]").count(), 0);
         assert.match(
           await p.locator(".resumo-colar figcaption").textContent(),

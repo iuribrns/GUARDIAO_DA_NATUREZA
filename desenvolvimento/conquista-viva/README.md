@@ -8,6 +8,8 @@ As cinco conclusões compartilham a nova moldura e os cartões de resultado. As 
 
 As artes de celebração carregam ao receber a recompensa ou abrir a conclusão. A decoração dos resultados observa alterações nos contadores sem executar novamente a cada quadro da animação.
 
+A moldura de avançar fica contida no próprio link em todos os estados. O seletor sobrescreve a antiga regra que definia `position: static`: sem essa prioridade, a imagem absoluta usava o painel inteiro como referência quando o botão perdia o foco. A verificação mede as quatro bordas da arte com e sem foco e cursor, além de registrar capturas sem foco nas cinco fases.
+
 Com o preview de produção na porta 4189, execute `node desenvolvimento/conquista-viva/verificar.cjs`. A verificação cobre as cinco fases em computador e celular, contadores, barras, tela cheia, mochila, pausa, limites dos painéis, progresso do colar, teclado/toque e avanço.
 
 `node desenvolvimento/conquista-viva/passagem.cjs` percorre a animação real da recompensa até a conclusão e avança nas cinco fases com Enter e toque. A saída esconde explicitamente o painel, fecha o diálogo e remove a prévia da recompensa antes da transição. A verificação acompanha o documento anterior, o mapa e a chegada à próxima fase para impedir banners residuais.
