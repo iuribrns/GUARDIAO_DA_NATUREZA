@@ -255,7 +255,8 @@
       ? "Iniciar fase"
       : "Conclua a região anterior";
     $("start-phase").setAttribute("aria-disabled", String(!unlocked(id)));
-    A.load(["npcs", "encontros"]);
+    if (window.CincoMissoes) CincoMissoes.brief(id);
+    else A.load(["npcs", "encontros"]);
     document.querySelector(".phase-scene").style.backgroundImage = "none";
     $("phase-dialog").showModal();
     document.body.dataset.phasePreview = String(id);
@@ -462,7 +463,7 @@
         A.owl(c, w * 0.5, h * 0.9, h * 0.69, time, "ombro", false),
       );
     }
-    if ($("phase-dialog").open)
+    if ($("phase-dialog").open && $("phase-conversation"))
       A.canvas($("phase-conversation"), (c, w, h) =>
         A.meeting(c, w, h, selected, time),
       );

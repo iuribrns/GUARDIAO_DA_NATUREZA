@@ -52,6 +52,8 @@
     <script src="../bosque-vivo/mochila.js?v=bosque-1" defer></script>
     <script src="../mochila-ilustrada/atlas.js?v=1" defer></script>
     <script src="../mochila-ilustrada/mochila.js?v=1" defer></script>
+    <script src="../cinco-missoes/atlas.js?v=1" defer></script>
+    <script src="../cinco-missoes/arte.js?v=1" defer></script>
     <script src="../brisa-suave/transicoes.js?v=suave-1" defer></script>
     <script src="../trilhas-vivas/folhas.js?v=trilhas-1" defer></script>
     <script src="../bosque-vivo/cenario-atlas.js?v=bosque-1" defer></script>
@@ -86,6 +88,7 @@
     <link rel="stylesheet" href="../gire-o-celular/tela.css?v=1" />
     <link rel="stylesheet" href="../companheiros/painel.css?v=1" />
     <link rel="stylesheet" href="../mochila-ilustrada/mochila.css?v=1" />
+    <link rel="stylesheet" href="../cinco-missoes/interface.css?v=1" />
   </head>
   <body>
     <div class="backdrop" aria-hidden="true"></div>
@@ -554,12 +557,15 @@
     </main>
     <dialog
       id="phase-dialog"
-      class="ra-dialog phase-brief"
+      class="ra-dialog phase-brief kit-presentation"
       aria-labelledby="phase-title"
     >
       <header>
-        <p id="phase-number" class="eyebrow"></p>
-        <h2 id="phase-title"></h2>
+        <span id="phase-emblem" aria-hidden="true"></span>
+        <div class="brief-heading-copy">
+          <p id="phase-number" class="eyebrow"></p>
+          <h2 id="phase-title"></h2>
+        </div>
         <button
           type="button"
           id="close-phase"
@@ -569,10 +575,15 @@
       </header>
       <div class="phase-columns">
         <figure class="phase-scene">
-          <canvas
-            id="phase-conversation"
-            aria-label="Kai e o aliado se olham durante a conversa"
-          ></canvas>
+          <div class="brief-picture">
+            <img
+              id="phase-picture"
+              width="631"
+              height="481"
+              alt=""
+              decoding="async"
+            />
+          </div>
           <figcaption>
             <strong id="phase-npc"></strong><span id="phase-job"></span>
           </figcaption>

@@ -38,10 +38,13 @@
         b.setAttribute("aria-selected", String(b.dataset.packTab === tab)),
       );
     const illustrated = !phase && window.MochilaIlustrada;
-    if (illustrated && tab !== "items") {
-      body.innerHTML = illustrated.content(tab, m);
-      body.scrollTop = 0;
-      return;
+    if (illustrated) {
+      const content = illustrated.content(tab, m);
+      if (content !== null) {
+        body.innerHTML = content;
+        body.scrollTop = 0;
+        return;
+      }
     }
     if (tab === "items") {
       const sorted = [...m.items].sort(

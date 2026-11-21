@@ -110,8 +110,14 @@
       .join("")}</div></div>`;
   }
   window.MochilaIlustrada = Object.freeze({
+    art,
+    frame,
     shell,
     content: (tab, memory) =>
-      tab === "uniforms" ? uniforms(memory) : crystals(memory),
+      tab === "items"
+        ? (window.CincoMissoes?.tools(memory) ?? null)
+        : tab === "uniforms"
+          ? uniforms(memory)
+          : crystals(memory),
   });
 })();
