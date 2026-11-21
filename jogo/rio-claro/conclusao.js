@@ -35,7 +35,6 @@
       art = panel.querySelector(".celebration-art,#celebration"),
       stats = panel.querySelector(".completion-stats,#victory-stats"),
       next = panel.querySelector("a"),
-      explore = panel.querySelector("[data-close=vitoria]"),
       notes = [...panel.querySelectorAll("#salvo,#reward-label,#save-state")];
     const header = document.createElement("header");
     header.className = "resumo-cabecalho";
@@ -56,9 +55,10 @@
     body.append(reward, friends);
     const footer = document.createElement("footer");
     footer.className = "resumo-acoes";
-    explore.className = "resumo-explorar";
     next.className = "primary resumo-proximo";
-    footer.append(explore, next);
+    next.autofocus = true;
+    footer.append(next);
+    panel.addEventListener("cancel", (e) => e.preventDefault());
     const note = document.createElement("div");
     note.className = "resumo-nota";
     note.append(...notes);
