@@ -58,6 +58,25 @@
     next.className = "primary resumo-proximo";
     next.autofocus = true;
     footer.append(next);
+    next.addEventListener(
+      "click",
+      (event) => {
+        if (
+          event.button > 0 ||
+          event.ctrlKey ||
+          event.metaKey ||
+          event.shiftKey ||
+          event.altKey
+        )
+          return;
+        // A saída não pode conservar a prévia não modal da recompensa.
+        panel.classList.remove("reward-preview");
+        panel.dataset.summaryLeaving = "true";
+        panel.hidden = true;
+        if (panel.open) panel.close();
+      },
+      { capture: true },
+    );
     panel.addEventListener("cancel", (e) => e.preventDefault());
     const note = document.createElement("div");
     note.className = "resumo-nota";

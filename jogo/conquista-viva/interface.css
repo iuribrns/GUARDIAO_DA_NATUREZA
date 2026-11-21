@@ -267,8 +267,12 @@ dialog#vitoria.conquista-panel {
   color: #173e25;
   box-shadow: 0 16px 55px #082d2b99;
 }
-dialog#vitoria.conquista-panel[open],
-dialog#vitoria.conquista-panel.reward-preview:not([open]) {
+dialog#vitoria.conquista-panel[hidden],
+dialog#vitoria.conquista-panel:not([open]):not(.reward-preview) {
+  display: none !important;
+}
+dialog#vitoria.conquista-panel[open]:not([hidden]),
+dialog#vitoria.conquista-panel.reward-preview:not([open]):not([hidden]) {
   display: flex !important;
   flex-direction: column;
   gap: 8px;
