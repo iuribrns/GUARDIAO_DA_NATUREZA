@@ -55,6 +55,7 @@ try {
     "desenvolvimento/encontros-vivos/verificar.cjs",
     "desenvolvimento/clareira/verificar.cjs",
     "desenvolvimento/gire-o-celular/verificar.cjs",
+    "desenvolvimento/mochila-ilustrada/verificar.cjs",
     "desenvolvimento/trilhas-vivas/campanha.cjs",
   ];
   const resume = process.argv
