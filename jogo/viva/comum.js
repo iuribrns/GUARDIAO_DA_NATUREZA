@@ -265,7 +265,7 @@
       activeGeneration = localStorage.getItem(generation);
       document.dispatchEvent(new CustomEvent("guardiao:neutralizar"));
       resetDialog?.close();
-      location.replace(new URL("index.html#inicio", base));
+      freshHome();
     } catch {
       for (const [k, v] of backup)
         try {
@@ -283,7 +283,16 @@
   };
   let activeGeneration = readGeneration();
   const stale = () => readGeneration() !== activeGeneration;
-  const freshHome = () => location.replace(new URL("index.html#inicio", base));
+  const freshHome = () => {
+    const home = new URL("index.html#inicio", base),
+      samePage =
+        home.origin === location.origin &&
+        home.pathname === location.pathname &&
+        home.search === location.search;
+    location.replace(home);
+    // Trocar apenas o hash preservaria inventário e restauração em memória.
+    if (samePage) location.reload();
+  };
   window.addEventListener("pageshow", () => {
     if (stale()) freshHome();
   });
@@ -308,10 +317,18 @@
   function askReset() {
     if (!resetDialog) {
       resetDialog = document.createElement("dialog");
-      resetDialog.className = "ra-dialog ra-reset";
+      resetDialog.className = "ra-dialog ra-reset nova-jornada";
       resetDialog.id = "ra-reset";
       resetDialog.setAttribute("aria-labelledby", "ra-reset-title");
-      resetDialog.innerHTML = `<p class="eyebrow">UMA NOVA JORNADA</p><h2 id="ra-reset-title">Começar do início?</h2><p>As cinco fases, os itens e os cristais serão reiniciados. A ilha volta ao estado inicial.</p><p>Áudio e controles continuam do seu jeito.</p><div class="ra-dialog-actions"><button type="button" data-cancel autofocus>Continuar por aqui</button><button type="button" class="primary" data-confirm>Sim, recomeçar</button></div>`;
+      resetDialog.setAttribute(
+        "aria-describedby",
+        "ra-reset-description ra-reset-preferences",
+      );
+      resetDialog.innerHTML = `<img class="recomeco-art" src="${new URL("../recomeco/assets/painel.webp", base).href}" width="1774" height="887" alt="" aria-hidden="true" decoding="async">
+        <header class="recomeco-heading"><p class="eyebrow">UMA NOVA JORNADA</p><h2 id="ra-reset-title">Começar do início?</h2></header>
+        <p id="ra-reset-description">As cinco fases, os itens e os cristais serão reiniciados. A ilha volta ao estado inicial.</p>
+        <p id="ra-reset-preferences">Áudio e controles continuam do seu jeito.</p>
+        <div class="ra-dialog-actions"><button type="button" data-cancel autofocus>Continuar por aqui</button><button type="button" class="primary" data-confirm>Sim, recomeçar</button></div>`;
       document.body.append(resetDialog);
       resetDialog.querySelector("[data-cancel]").onclick = () =>
         resetDialog.close();
