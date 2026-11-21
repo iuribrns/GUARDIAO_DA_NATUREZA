@@ -1451,7 +1451,9 @@
   function drawCelebration() {
     const c = $("celebration").getContext("2d");
     if (window.RioClaroResumo) {
-      RioClaroResumo.paint(c, 420, 230, time, reduced());
+      RaizesPersonagens.canvas($("celebration"), (ctx, width, height) =>
+        RioClaroResumo.paint(ctx, width, height, time, reduced()),
+      );
       return;
     }
     c.clearRect(0, 0, 420, 175);

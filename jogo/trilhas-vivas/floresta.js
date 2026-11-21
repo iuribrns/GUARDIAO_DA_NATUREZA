@@ -1328,6 +1328,7 @@
     node.replaceChildren(c);
   }
   function actionIcon(button, index) {
+    if (button === "mochila" && window.GuardiaoHUD) return;
     const mark = document.createElement("span");
     mark.className = "action-symbol";
     mark.innerHTML =

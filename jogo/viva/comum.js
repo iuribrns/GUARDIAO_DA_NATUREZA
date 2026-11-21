@@ -196,7 +196,8 @@
   let pending = false;
   function syncFull() {
     document.querySelectorAll("[data-fullscreen]").forEach((b) => {
-      b.innerHTML = icon(full() ? "exit" : "full");
+      b.innerHTML =
+        window.GuardiaoHUD?.fullIcon(full()) || icon(full() ? "exit" : "full");
       b.title = full() ? "Sair da tela cheia" : "Entrar em tela cheia";
       b.setAttribute("aria-label", b.title);
       b.setAttribute("aria-pressed", String(full()));

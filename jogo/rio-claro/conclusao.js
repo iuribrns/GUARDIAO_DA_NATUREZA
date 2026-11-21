@@ -79,7 +79,8 @@
         ...new Set([...(Array.isArray(earned) ? earned : []), phase]),
       ].filter((n) => Number.isInteger(n) && n >= 1 && n <= 5);
       reward.innerHTML =
-        GuardiaoRelicario.necklace(earned, "summary") +
+        (window.ConquistaViva?.necklace(earned) ||
+          GuardiaoRelicario.necklace(earned, "summary")) +
         `<figcaption><strong>${earned.length} de 5</strong> cristais conquistados</figcaption>` +
         `<div class="resumo-cristais" aria-hidden="true">${Array.from({ length: 5 }, (_, i) => GuardiaoRelicario.fragment(i, earned.includes(i + 1))).join("")}</div>`;
     }
