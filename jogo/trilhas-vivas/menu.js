@@ -351,6 +351,11 @@
     time = now / 1000;
     if (!ready) return;
     if (view === "mapa") {
+      if (
+        window.VivaFinal?.active &&
+        document.body.dataset.finaleScene === "video"
+      )
+        return;
       BosqueMapa.paint(time, reduced());
       A.canvas($("map-flora"), (c, w, h) => {
         A.owl(

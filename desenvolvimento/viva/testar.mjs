@@ -62,6 +62,7 @@ try {
     "desenvolvimento/conquista-viva/passagem.cjs",
     "desenvolvimento/trilhas-vivas/campanha.cjs",
     "desenvolvimento/tela-fixa/verificar.cjs",
+    "desenvolvimento/cinematica/verificar.cjs",
   ];
   const resume = process.argv
     .find((arg) => arg.startsWith("--from="))
@@ -76,7 +77,8 @@ try {
     await new Promise((ok, bad) => {
       const child = spawn(
         process.execPath,
-        file.endsWith("tela-fixa/verificar.cjs")
+        file.endsWith("tela-fixa/verificar.cjs") ||
+          file.endsWith("cinematica/verificar.cjs")
           ? [file]
           : [
               "--require",

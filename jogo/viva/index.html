@@ -649,21 +649,29 @@
       role="dialog"
       aria-modal="true"
       aria-label="A restauração da Árvore Guardiã"
+      tabindex="-1"
     >
       <video
         id="final-movie"
-        controls
         playsinline
+        disablepictureinpicture
+        disableremoteplayback
+        controlslist="nodownload noremoteplayback noplaybackrate"
         preload="none"
         aria-label="Kai restaura a natureza — cutscene final com créditos"
       >
         <source src="assets/cutscene-final-com-creditos.mp4" type="video/mp4" />
       </video>
-      <p id="final-movie-status" role="status" hidden>
-        Toque em reproduzir para assistir ao final.
-      </p>
-      <button type="button" id="ending-skip" class="wood-button">
-        Pular vídeo
+      <div id="cinema-gate" hidden>
+        <p class="eyebrow">GUARDIÃO DA NATUREZA</p>
+        <h2>O coração da ilha</h2>
+        <p id="final-movie-status" role="status">
+          Uma última história espera por você.
+        </p>
+        <button type="button" id="cinema-action">Entrar na cena</button>
+      </div>
+      <button type="button" id="ending-skip" class="cinema-skip">
+        Pular cena
       </button>
     </section>
     <dialog

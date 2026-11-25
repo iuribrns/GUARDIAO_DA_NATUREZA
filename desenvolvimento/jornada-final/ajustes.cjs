@@ -192,7 +192,7 @@ async function ready(p, url) {
         false,
       );
       await p.locator("#ending-skip").click();
-      assert.equal(await p.locator("#final-credits").isVisible(), true);
+      await p.locator("#final-credits").waitFor({ state: "visible" });
       await p.locator("#ending-island").click();
       assert.equal(await p.evaluate(() => VivaFinal.active), false);
       assert.deepEqual(errors, []);

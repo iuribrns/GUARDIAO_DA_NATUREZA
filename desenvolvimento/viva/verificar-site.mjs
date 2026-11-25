@@ -27,7 +27,13 @@ for (const file of manifest.files) {
 const html = readFileSync(resolve(root, "jogo/viva/index.html"), "utf8");
 assert.ok(!html.includes('data-phase="6"'));
 assert.ok(html.includes("tree-restoration"));
-assert.match(html, /<video[^>]*id="final-movie"/);
+const movieTag = html.match(/<video[^>]*id="final-movie"[^>]*>/)?.[0];
+assert.ok(movieTag);
+assert.ok(
+  !/\scontrols(?:\s|=|>)/.test(movieTag),
+  "cinemática sem controles ou linha do tempo nativos",
+);
+assert.ok(movieTag.includes("disablepictureinpicture"));
 assert.match(html, /playsinline/);
 assert.match(html, /preload="none"/);
 assert.ok(html.includes("assets/cutscene-final-com-creditos.mp4"));
