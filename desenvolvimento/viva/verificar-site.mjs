@@ -26,7 +26,11 @@ for (const file of manifest.files) {
 const html = readFileSync(resolve(root, "jogo/viva/index.html"), "utf8");
 assert.ok(!html.includes('data-phase="6"'));
 assert.ok(html.includes("tree-restoration"));
-assert.ok(!html.includes("<video"));
+assert.match(html, /<video[^>]*id="final-movie"/);
+assert.match(html, /playsinline/);
+assert.match(html, /preload="none"/);
+assert.ok(html.includes("assets/cutscene-final-com-creditos.mp4"));
+assert.ok(!html.includes('id="island-finale-caption"'));
 for (const file of [".git", "node_modules", ".cache"])
   assert.equal(existsSync(resolve(root, file)), false);
 const atlas = JSON.parse(

@@ -11,7 +11,7 @@
     <link rel="icon" href="../../assets/identidade-flora/favicon.ico" />
     <link rel="stylesheet" href="ui.css?v=arte-1" />
     <link rel="stylesheet" href="../raizes/orientacao.css?v=raizes-1" />
-    <link rel="stylesheet" href="acabamento.css?v=arte-1" />
+    <link rel="stylesheet" href="acabamento.css?v=filme-2" />
     <link rel="stylesheet" href="../brisa/brisa.css?v=brisa-1" />
     <link rel="stylesheet" href="../bosque-vivo/bosque.css?v=bosque-1" />
     <link rel="stylesheet" href="../mata-ilustrada/mata.css?v=mata-1" />
@@ -76,7 +76,7 @@
     <script src="../trilhas-vivas/menu.js?v=ferido-1" defer></script>
     <script src="../brisa-suave/carregamento.js?v=suave-1" defer></script>
     <script src="../brisa/interacoes.js?v=brisa-1" defer></script>
-    <script src="../bosque-vivo/final.js?v=bosque-1" defer></script>
+    <script src="../bosque-vivo/final.js?v=filme-2" defer></script>
     <script src="../revisao-paisagem/orientacao.js" defer></script>
     <link rel="stylesheet" href="../brisa-suave/interface.css?v=suave-1" />
     <link rel="stylesheet" href="../arte-viva/interface.css?v=controles-1" />
@@ -619,14 +619,29 @@
         >
       </footer>
     </dialog>
-    <aside id="island-finale-caption" hidden aria-live="polite">
-      <p class="eyebrow">O CORAÇÃO DA ILHA</p>
-      <h2 id="ending-title">Vamos até a Árvore Guardiã.</h2>
-      <p id="ending-line"></p>
-      <button type="button" id="ending-skip" class="text-button">
-        Concluir animação
+    <section
+      id="final-cinema"
+      hidden
+      role="dialog"
+      aria-modal="true"
+      aria-label="A restauração da Árvore Guardiã"
+    >
+      <video
+        id="final-movie"
+        controls
+        playsinline
+        preload="none"
+        aria-label="Kai restaura a natureza — cutscene final com créditos"
+      >
+        <source src="assets/cutscene-final-com-creditos.mp4" type="video/mp4" />
+      </video>
+      <p id="final-movie-status" role="status" hidden>
+        Toque em reproduzir para assistir ao final.
+      </p>
+      <button type="button" id="ending-skip" class="wood-button">
+        Pular vídeo
       </button>
-    </aside>
+    </section>
     <dialog
       id="final-credits"
       class="ra-dialog forest-credits"

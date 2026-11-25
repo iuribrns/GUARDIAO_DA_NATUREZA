@@ -1411,3 +1411,35 @@ a {
     top: -8px;
   }
 }
+
+/* Preserve the entire supplied film, including its embedded credits. */
+#final-cinema:not([hidden]) {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: #000;
+}
+#final-movie {
+  width: 100%;
+  height: 100%;
+  max-height: 100dvh;
+  object-fit: contain;
+}
+#final-cinema #ending-skip {
+  position: absolute;
+  right: max(12px, env(safe-area-inset-right));
+  top: max(12px, env(safe-area-inset-top));
+  width: auto;
+  min-height: 44px;
+}
+#final-movie-status {
+  position: absolute;
+  bottom: 85px;
+  max-width: 80%;
+  color: #fff5d6;
+  background: #183c2e;
+  padding: 12px;
+  border-radius: 10px;
+}
