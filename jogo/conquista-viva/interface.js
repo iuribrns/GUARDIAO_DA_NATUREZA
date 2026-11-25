@@ -105,6 +105,7 @@
   window.ConquistaViva = { necklace, ready: loadFriends };
   function decorateStats(panel) {
     const stats = panel.querySelector(".completion-stats,#victory-stats");
+    stats.dataset.statCount = String(stats.children.length);
     [...stats.children].forEach((card, i) => {
       if (card.querySelector(".conquista-stat-icon")) return;
       const text = [...card.childNodes]
@@ -128,14 +129,27 @@
               ? ["chave", "pata"][i]
               : phase === 4
                 ? "folha"
-                : ["lixo", "folha", "folha"][i];
+                : ["lixo", "sun", "folha"][i];
       card.insertAdjacentHTML(
         "afterbegin",
-        frame("painel", [62, 608, 480, 155], 65, 54, "conquista-stat-frame"),
+        window.GuardiaoRemodelacao
+          ? GuardiaoRemodelacao.frame(
+              "cartao-estatistica",
+              170,
+              80,
+              "conquista-stat-frame remodel-stat-frame",
+            )
+          : frame(
+              "painel",
+              [62, 608, 480, 155],
+              65,
+              54,
+              "conquista-stat-frame",
+            ),
       );
       card.insertAdjacentHTML(
         "beforeend",
-        `<span class="conquista-stat-icon" aria-hidden="true">${name ? art(name) : GuardiaoRelicario.fragment(phase - 1, true)}</span>`,
+        `<span class="conquista-stat-icon" aria-hidden="true">${name ? (window.GuardiaoRemodelacao?.has({ lixo: "trash", pata: "paw", folha: "leaf", fogo: "fire", peixe: "paw" }[name] || name) ? GuardiaoRemodelacao.icon({ lixo: "trash", pata: "paw", folha: "leaf", fogo: "fire", peixe: "paw" }[name] || name) : art(name)) : GuardiaoRelicario.fragment(phase - 1, true)}</span>`,
       );
       card.append(label);
     });
@@ -233,7 +247,9 @@
         const name = icons[host.dataset.icon];
         if (name && !host.dataset.hudIcon) {
           host.dataset.hudIcon = name;
-          host.innerHTML = art(name, undefined, "hud-goal-icon");
+          host.innerHTML = window.GuardiaoRemodelacao?.has(host.dataset.icon)
+            ? GuardiaoRemodelacao.icon(host.dataset.icon)
+            : art(name, undefined, "hud-goal-icon");
         }
       });
     };

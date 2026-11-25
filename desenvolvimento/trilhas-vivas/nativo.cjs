@@ -58,6 +58,7 @@ fs.mkdirSync(out, { recursive: true });
       RaizesApp.refreshMap();
       BosqueMapa.update([1], 1);
     });
+    await p.evaluate(() => BosqueMapa.ready());
     const before = await p.evaluate(() =>
       BosqueMapa.health(1, 800, 130, false),
     );
@@ -135,6 +136,7 @@ fs.mkdirSync(out, { recursive: true });
       await p.clock.runFor(250);
     }
     await p.keyboard.press("Enter");
+    await p.locator('[data-answer="Pau-brasil"]').click();
     await p.clock.runFor(400);
     assert.equal(
       await p.evaluate(() => document.body.dataset.kaiUniform),

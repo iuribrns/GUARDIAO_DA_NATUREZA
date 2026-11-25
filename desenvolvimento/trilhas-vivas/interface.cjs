@@ -101,7 +101,10 @@ fs.mkdirSync(artifacts, { recursive: true });
       await p.click("[data-pack-close]");
       await p.click('[data-phase="1"]');
       await p.waitForFunction(() => VivaArt.images.has("encontros"));
-      assert.equal(await p.locator("#phase-items .brisa-icon").count(), 3);
+      assert.equal(
+        await p.locator("#phase-items .brief-item-art > svg").count(),
+        3,
+      );
       await p.waitForTimeout(120);
       if (width === 844)
         await p.screenshot({

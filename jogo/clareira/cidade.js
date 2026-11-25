@@ -49,7 +49,7 @@
   window.GuardiaoAdventureArt = class extends Previous {
     async load(...args) {
       await super.load(...args);
-      if (this.phase === 5)
+      if (this.phase === 5 && !window.GuardiaoRemodelacao)
         await Promise.all(
           spots.map((s) => this.drawing(s.kind, GuardiaoColecao.bin(s.kind))),
         );

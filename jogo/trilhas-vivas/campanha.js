@@ -1109,7 +1109,8 @@
         return;
       }
       if (t.type === "key") {
-        if (!finished(t)) icon("key", t.x, t.y - 9, 26);
+        if (!finished(t))
+          GuardiaoRemodelacao.draw(ctx, "materiais/chave", t.x, t.y, 29);
         return;
       }
       if (isAnimal) {
@@ -1216,7 +1217,12 @@
       } else if (t.type === "nest")
         sprites.draw(ctx, "objetos", finished(t) ? 14 : 13, t.x, t.y, 43);
       else if (t.type === "solar") {
-        sprites.draw(ctx, "objetos", finished(t) ? 11 : 10, t.x, t.y, 48);
+        GuardiaoRemodelacao.solar(
+          ctx,
+          t,
+          finished(t),
+          isCurrent ? action.elapsed / action.duration : 0,
+        );
         if (finished(t)) art.energy(ctx, t.x, t.y, time, reduced());
       } else if (t.type === "garden" && finished(t))
         shared.draw(
@@ -1562,10 +1568,15 @@
             : animal(t)
               ? 53
               : t.type === "solar"
-                ? 60
-                : 37),
-        size = animal(t) ? 24 : 18;
-      ellipse(t.x, y, animal(t) ? 15 : 11, animal(t) ? 15 : 11, "#fff2c6eb");
+                ? 75
+                : 43),
+        size = GuardiaoRemodelacao.has(t.icon)
+          ? 30 / camera.scale
+          : animal(t)
+            ? 24
+            : 18;
+      if (!GuardiaoRemodelacao.has(t.icon))
+        ellipse(t.x, y, animal(t) ? 15 : 11, animal(t) ? 15 : 11, "#fff2c6eb");
       icon(t.icon, t.x, y, size);
       if (
         t === target() &&
@@ -1933,24 +1944,22 @@
   nav.setDynamic(
     tasks.filter((t) => t.type === "cage" && t.status === "pending"),
   );
-  let loaded = 0;
-  function progress() {
-    loaded++;
-    $("loading").textContent =
-      "Preparando " + data.name.toLowerCase() + "… " + loaded;
-  }
   const specific = id === 2 ? ["animais-rio"] : [];
-  Promise.all([
-    sprites.load(["npcs", "objetos", ...specific], progress),
-    shared.load(progress, ["natureza"]),
-    Promise.resolve(null),
-    Promise.resolve(null),
-    window.GuardiaoIcones.load(),
-    life.load(),
-    colar.load(),
-    art.load(),
-    BosqueKai.load(),
-    world.ready,
+  GuardiaoCarregamento.run([
+    {
+      label: "Personagens e objetos",
+      load: () => sprites.load(["npcs", "objetos", ...specific]),
+    },
+    { label: "Natureza", load: () => shared.load(undefined, ["natureza"]) },
+    { label: null, load: () => null },
+    { label: null, load: () => null },
+    { label: "Símbolos", load: () => window.GuardiaoIcones.load() },
+    { label: "Animações", load: () => life.load() },
+    { label: "Colar", load: () => colar.load() },
+    { label: "Artes da fase", load: () => art.load() },
+    { label: "Uniforme de Kai", load: () => BosqueKai.load() },
+    { label: "Cenário", load: () => world.ready },
+    { label: "Novas artes", load: () => GuardiaoRemodelacao.phase(id) },
   ])
     .then((r) => {
       iconImage = r[4];
@@ -1960,7 +1969,7 @@
           { required: true },
         );
       ready = true;
-      $("loading").hidden = true;
+
       document.body.dataset.gameReady = "true";
       resize();
       updateHUD();
@@ -1973,15 +1982,12 @@
         window.GuardiaoMemoria.grant(2);
         window.GuardiaoMemoria.uniform("protecao", { required: true });
       }
+      GuardiaoCarregamento.finish();
       start();
     })
     .catch((error) => {
-      console.error(error);
-      $("loading").innerHTML =
-        'Não foi possível carregar a aventura.<br><a href="' +
-        location.pathname +
-        "?fase=" +
-        id +
-        '">Tentar novamente</a>';
+      ready = false;
+      document.body.dataset.gameReady = "false";
+      GuardiaoCarregamento.fail(error);
     });
 })();

@@ -80,31 +80,31 @@ fs.mkdirSync("test-results/clareira", { recursive: true });
         const d = GuardiaoFasesJogaveis[5],
           nav = new GuardiaoNavegacao.Navigation(d);
         return {
-          drawings: a.drawings.size,
+          drawings: [...GuardiaoRemodelacao.bank.keys()].filter((k) =>
+            k.startsWith("lixeiras/"),
+          ).length,
           count,
           actors: actors.length,
           station: nav.walkable(d.station),
-          bins: [
-            { x: 154, y: 514 },
-            { x: 225, y: 493 },
-            { x: 300, y: 472 },
-          ].map((p) => nav.walkable(p)),
+          bins: GuardiaoCidadeBins.map((p) => nav.walkable(p)),
         };
       });
-      assert.equal(result.actors, 3);
-      assert.ok(result.drawings >= 3 && result.count > 3000);
+      assert.equal(result.actors, 5, "quatro lixeiras e placa da estação");
+      assert.ok(result.drawings === 5 && result.count > 3000);
       assert.ok(result.station);
-      assert.deepEqual(result.bins, [false, false, false]);
+      assert.deepEqual(result.bins, [false, false, false, false]);
       await p.locator('[data-goal="recycle"]').click();
       for (let i = 0; i < 160; i++) {
         const s = await p.evaluate(() => GuardiaoJornada.estado());
+        if (s.routePending)
+          await p.waitForFunction(() => !GuardiaoJornada.estado().routePending);
         if (!s.route.length && !s.routePending) break;
         await p.clock.runFor(300);
       }
       if (w < 1000) await p.locator("#interagir").tap();
       else await p.keyboard.press("Enter");
       await p.waitForFunction(() => document.getElementById("puzzle").open);
-      await p.locator('[data-answer="recyclable"]').click();
+      await p.locator('[data-answer="plastic"]').click();
       assert.equal(
         await p.evaluate(() => GuardiaoJornada.estado().bag.length),
         5,
@@ -143,7 +143,7 @@ fs.mkdirSync("test-results/clareira", { recursive: true });
       assert.deepEqual(errors, []);
       await p.close();
       console.log(
-        "PASS apresentações compactas, três lixeiras visíveis/sólidas, reciclagem acessível e cinco NPCs animados:",
+        "PASS apresentações compactas, quatro lixeiras visíveis/sólidas, reciclagem acessível e cinco NPCs animados:",
         w,
         h,
       );

@@ -123,11 +123,10 @@
       [0, 3, 114, 106],
       "kit-round-icon",
     );
-    document.getElementById("close-phase").innerHTML = art(
-      "fechar-fase",
-      [6, 6, 96, 96],
-      "kit-round-icon",
-    );
+    document.getElementById("close-phase").innerHTML =
+      window.GuardiaoRemodelacao
+        ? GuardiaoRemodelacao.icon("close")
+        : art("fechar-fase", [6, 6, 96, 96], "kit-round-icon");
     const items = GuardiaoMemoria.items.filter((i) => i.phase === id);
     document.getElementById("phase-items").innerHTML =
       `<span class="brief-item-art" aria-hidden="true">${items.map((i) => tool(i.id)).join("")}</span><span>${

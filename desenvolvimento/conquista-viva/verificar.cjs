@@ -174,7 +174,7 @@ async function buttonSkin(p, state) {
           .evaluateAll((ds) => ds.forEach((d) => d.close()));
         await decode(p, ".top-actions");
         assert.equal(
-          await p.locator("#mochila .hud-control-art").count(),
+          await p.locator("#mochila .remodel-icon").count(),
           1,
           "sem duplicar ícone da mochila após carregar a fase",
         );
@@ -182,7 +182,9 @@ async function buttonSkin(p, state) {
           await p.locator(".top-actions .hud-button").evaluateAll((bs) =>
             bs.every((b) => {
               const r = b.getBoundingClientRect(),
-                s = b.querySelector(".hud-control-art").getBoundingClientRect();
+                s = b
+                  .querySelector(".remodel-full,.remodel-icon")
+                  .getBoundingClientRect();
               return (
                 r.width >= 44 &&
                 r.height >= 44 &&
@@ -213,13 +215,19 @@ async function buttonSkin(p, state) {
             () =>
               GuardiaoTela.state().fullscreen && !GuardiaoTela.state().pending,
           );
-          assert.equal(await p.locator("#app-fullscreen .hud-exit").count(), 1);
+          assert.equal(
+            await p.locator("#app-fullscreen .remodel-exit").count(),
+            1,
+          );
           await p.locator("#app-fullscreen").click();
           await p.waitForFunction(
             () =>
               !GuardiaoTela.state().fullscreen && !GuardiaoTela.state().pending,
           );
-          assert.equal(await p.locator("#app-fullscreen .hud-exit").count(), 0);
+          assert.equal(
+            await p.locator("#app-fullscreen .remodel-exit").count(),
+            0,
+          );
         }
         await p.locator("#pausa").click();
         await p.locator("#menu-pausa").waitFor({ state: "visible" });

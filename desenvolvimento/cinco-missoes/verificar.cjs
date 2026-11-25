@@ -239,10 +239,8 @@ async function contained(p, selector) {
           );
           assert.ok(
             await p
-              .locator("#close-phase .kit-art")
-              .evaluate((e) =>
-                getComputedStyle(e).clipPath.startsWith("circle("),
-              ),
+              .locator("#close-phase .remodel-icon")
+              .evaluate((e) => getComputedStyle(e).objectFit === "contain"),
             "fechar sem fundo quadrado",
           );
           assert.ok(

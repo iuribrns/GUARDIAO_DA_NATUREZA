@@ -40,7 +40,7 @@ fs.mkdirSync(out, { recursive: true });
       );
       const centered = await p.locator("#fs-toggle").evaluate((b) => {
         const a = b.getBoundingClientRect(),
-          r = b.querySelector("svg").getBoundingClientRect();
+          r = b.querySelector("svg,.remodel-icon").getBoundingClientRect();
         return Math.hypot(
           a.x + a.width / 2 - r.x - r.width / 2,
           a.y + a.height / 2 - r.y - r.height / 2,
@@ -84,9 +84,19 @@ fs.mkdirSync(out, { recursive: true });
         if (view === "sobre")
           assert.ok(
             await p.locator(".journal-friends").evaluate((e) => {
-              const r = e.getBoundingClientRect(),
-                a = e.querySelector("canvas").getBoundingClientRect();
-              return a.bottom < r.bottom && a.width > r.width * 0.9;
+              const r = e
+                  .querySelector(".companions-panel")
+                  .getBoundingClientRect(),
+                a = e
+                  .querySelector(".companions-picture")
+                  .getBoundingClientRect();
+              return (
+                a.x >= r.x - 1 &&
+                a.right <= r.right + 1 &&
+                a.y >= r.y - 1 &&
+                a.bottom <= r.bottom + 1 &&
+                a.width > r.width * 0.9
+              );
             }),
             "banner inteiro, sem recortar os personagens",
           );

@@ -189,23 +189,28 @@ const base =
     await p.clock.install();
     await p.goto(base + "index.html#mapa");
     await p.waitForFunction(() => window.VivaFinal?.active);
-    await p.clock.runFor(4500);
-    const first = await p.evaluate(() => VivaFinal.state());
-    await p.screenshot({ path: artifacts + "/viva-final-caminho.png" });
-    await p.clock.runFor(6500);
+    await p.waitForFunction(() => JornadaRetorno.state().ready);
+    await p.clock.runFor(1500);
+    const first = await p.evaluate(() => JornadaRetorno.state());
+    await p.screenshot({ path: artifacts + "/viva-final-reencontro.png" });
+    await p.clock.runFor(2000);
     assert.ok(
-      (await p.evaluate(() => VivaFinal.state())).elapsed > first.elapsed,
+      (await p.evaluate(() => JornadaRetorno.state())).elapsed > first.elapsed,
     );
-    await p.screenshot({
-      path: artifacts + "/viva-final-restauracao.png",
-    });
-    assert.equal(await p.locator("video").count(), 0);
+    for (let id = 1; id <= 5; id++) {
+      assert.equal(
+        await p.locator("body").getAttribute("data-return-phase"),
+        String(id),
+      );
+      await p.click("#return-next");
+    }
     assert.equal(await p.evaluate(() => document.body.dataset.view), "mapa");
-    await p.clock.runFor(7000);
-    await p.screenshot({
-      path: artifacts + "/viva-final-celebracao.png",
-    });
-    await p.clock.runFor(4000);
+    assert.equal(
+      await p.locator("#final-movie").getAttribute("controls"),
+      null,
+    );
+    await p.click("#ending-skip");
+    await p.clock.runFor(850);
     assert.equal(await p.locator("#final-credits").isVisible(), true);
     await p.click("#ending-island");
     assert.equal(await p.evaluate(() => VivaFinal.active), false);
@@ -215,7 +220,7 @@ const base =
     await p.waitForURL("**#inicio");
     assert.equal(await p.evaluate(() => Raizes.won()), false);
     console.log(
-      "PASS encerramento no próprio mapa, caminho, restauração, créditos e nova jornada",
+      "PASS cinco reencontros, vídeo final enviado, créditos e nova jornada",
     );
     assert.deepEqual(errors, []);
   } finally {

@@ -54,7 +54,7 @@
         ).map((n) => this.ensure(n)),
       );
       if (this.phase === 4) await this.ensure("plantas");
-      if (this.phase === 5)
+      if (this.phase === 5 && !window.GuardiaoRemodelacao)
         await Promise.all(
           ["recyclable", "organic", "residual"].map((n) =>
             this.drawing(n, GuardiaoColecao.bin(n)),

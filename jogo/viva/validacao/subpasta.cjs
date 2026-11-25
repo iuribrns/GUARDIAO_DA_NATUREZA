@@ -68,20 +68,21 @@ const server = http.createServer((req, res) => {
       if (r.status() >= 400) errors.push(r.status() + " " + r.url());
     });
     await p.goto(base);
-    await p.waitForURL("**/GUARDIAO_DA_NATUREZA/jogo/viva/index.html#inicio");
-    await p.waitForFunction(() => document.body.dataset.uiReady === "true");
-    await p.click("#play-game");
-    await p.click('[data-phase="1"]');
-    await p.click("#start-phase");
-    await p.waitForFunction(() => document.body.dataset.gameReady === "true");
-    assert.match(p.url(), /GUARDIAO_DA_NATUREZA\/jogo\/floresta-viva/);
-    await p.click("#conversa-avancar");
-    await p.click("#conversa-avancar");
+    await p.waitForSelector("#guardiao-game");
+    const f = p.frame({ name: "guardiao-game" });
+    await f.waitForFunction(() => document.body.dataset.uiReady === "true");
+    await f.click("#play-game");
+    await f.click('[data-phase="1"]');
+    await f.click("#start-phase");
+    await f.waitForFunction(() => document.body.dataset.gameReady === "true");
+    assert.match(f.url(), /GUARDIAO_DA_NATUREZA\/jogo\/floresta-viva/);
+    await f.click("#conversa-avancar");
+    await f.click("#conversa-avancar");
     await p.waitForTimeout(1800);
-    await p.click("#pausa");
-    await p.click("[data-adjust]");
-    await p.click('[data-setting-tab="controles"]');
-    assert.equal(await p.locator("[name=controlMode]").isVisible(), true);
+    await f.click("#pausa");
+    await f.click("[data-adjust]");
+    await f.click('[data-setting-tab="controles"]');
+    assert.equal(await f.locator("[name=controlMode]").isVisible(), true);
     assert.deepEqual(errors, []);
     console.log(
       "PASS Pages em subpasta: entrada, menu, arte, primeira fase, conversa e ajustes sem 404.",

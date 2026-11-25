@@ -63,6 +63,7 @@ try {
     "desenvolvimento/trilhas-vivas/campanha.cjs",
     "desenvolvimento/tela-fixa/verificar.cjs",
     "desenvolvimento/cinematica/verificar.cjs",
+    "desenvolvimento/remodelacao/verificar.cjs",
   ];
   const resume = process.argv
     .find((arg) => arg.startsWith("--from="))
@@ -73,12 +74,21 @@ try {
       )
     : 0;
   if (start < 0) throw Error("Teste desconhecido: " + resume);
-  for (const file of cases.slice(start))
+  const until = process.argv.find((arg) => arg.startsWith("--to="))?.slice(5),
+    end = until
+      ? cases.findIndex(
+          (file) => file === until || file.endsWith("/" + until + ".cjs"),
+        )
+      : cases.length - 1;
+  if (end < start) throw Error("Fim do intervalo de testes inválido: " + until);
+  for (const file of cases.slice(start, end + 1))
     await new Promise((ok, bad) => {
       const child = spawn(
         process.execPath,
         file.endsWith("tela-fixa/verificar.cjs") ||
-          file.endsWith("cinematica/verificar.cjs")
+          file.endsWith("cinematica/verificar.cjs") ||
+          file.endsWith("validacao/subpasta.cjs") ||
+          file.endsWith("remodelacao/verificar.cjs")
           ? [file]
           : [
               "--require",
@@ -101,11 +111,13 @@ try {
       );
     });
   console.log(
-    resume
-      ? "PASS testes retomados a partir de " +
+    until
+      ? "PASS intervalo de testes: " + cases[start] + " até " + cases[end]
+      : resume
+        ? "PASS testes retomados a partir de " +
           resume +
           "; cinco fases com teclado e toque."
-      : "PASS fluxo atual: colisões, interface, configurações na fase, reinício, encerramento no mapa e cinco fases com teclado e toque.",
+        : "PASS fluxo atual: colisões, interface, configurações na fase, reinício, encerramento no mapa e cinco fases com teclado e toque.",
   );
 } finally {
   server.kill("SIGTERM");

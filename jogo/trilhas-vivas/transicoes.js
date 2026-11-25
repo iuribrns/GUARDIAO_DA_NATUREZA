@@ -136,7 +136,9 @@
       const ready = () =>
         document.body.dataset.gameReady === "true" ||
         document.body.dataset.uiReady === "true" ||
-        document.querySelector("#loading a");
+        document.querySelector("#loading a") ||
+        document.body.dataset.loadingState === "loading" ||
+        document.body.dataset.loadingState === "error";
       const open = async () => {
         observer?.disconnect();
         clearTimeout(timeout);
@@ -161,7 +163,11 @@
         });
         observer.observe(document.body, {
           attributes: true,
-          attributeFilter: ["data-game-ready", "data-ui-ready"],
+          attributeFilter: [
+            "data-game-ready",
+            "data-ui-ready",
+            "data-loading-state",
+          ],
           childList: true,
           subtree: true,
         });

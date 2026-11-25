@@ -274,8 +274,26 @@ async function turtleTrial(browser, mobile, errors) {
           "Resumo sem sobreposição/recorte " + JSON.stringify(fit),
         );
         assert.ok(fit.bottom <= height, JSON.stringify(fit));
-        assert.equal(fit.title, "rgb(255, 244, 204)");
-        assert.equal(fit.stats, "rgb(40, 95, 62)");
+        const luminance = (rgb) =>
+            rgb
+              .map((v) => {
+                const n = v / 255;
+                return n <= 0.04045 ? n / 12.92 : ((n + 0.055) / 1.055) ** 2.4;
+              })
+              .reduce((n, v, i) => n + v * [0.2126, 0.7152, 0.0722][i], 0),
+          contrast = (text, background) => {
+            const a = luminance(text.match(/\d+/g).map(Number)),
+              b = luminance(background);
+            return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+          };
+        assert.ok(
+          contrast(fit.title, [18, 70, 34]) >= 4.5,
+          "título legível na faixa verde",
+        );
+        assert.ok(
+          contrast(fit.stats, [253, 233, 178]) >= 4.5,
+          "números legíveis no pergaminho",
+        );
         await p.screenshot({
           path: `${out}/conclusao-${phase}-${width}.png`,
           animations: "disabled",
