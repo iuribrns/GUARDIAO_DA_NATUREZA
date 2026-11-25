@@ -127,6 +127,10 @@
               : t.type === "bed" && old.status === "growing"
                 ? "done"
                 : old.status;
+          if (t.speciesKey === "preguica" && t.status === "returning") {
+            t.status = "safe";
+            t.position = { x: t.x, y: t.y };
+          }
           t.seedSpecies = old.seedSpecies || "ipê";
           t.quizPassed = old.quizPassed === true;
           t.progress = Math.max(0, Math.min(1, Number(old.progress) || 0));
@@ -386,12 +390,12 @@
     return [];
   }
   function rescue(t) {
-    t.status = "returning";
+    t.status = t.speciesKey === "preguica" ? "safe" : "returning";
     t.position = { x: t.x, y: t.y };
     nav.setDynamic(
       tasks.filter((v) => v.type === "cage" && v.status === "pending"),
     );
-    t.route = animalRoute(t);
+    t.route = t.status === "safe" ? [] : animalRoute(t);
 
     t.restoredAt = elapsed;
     message(t.name + " está melhor!", "Kai");
@@ -475,11 +479,11 @@
         ["sun", "Virar para o sol", window.GuardiaoIcones.markup("sun")],
         ["shade", "Virar para a sombra", window.GuardiaoIcones.markup("leaf")],
       ];
-    return [
-      ["recyclable", "Recicláveis", window.GuardiaoColecao.bin("recyclable")],
-      ["organic", "Orgânicos", window.GuardiaoColecao.bin("organic")],
-      ["residual", "Rejeitos", window.GuardiaoColecao.bin("residual")],
-    ];
+    return GuardiaoCidadeBins.map((s) => [
+      s.kind,
+      s.label + " · " + s.colorName,
+      window.GuardiaoColecao.bin(s.kind),
+    ]);
   }
 
   function objectMarkup(i) {
@@ -558,7 +562,7 @@
         t.type === "bed"
           ? "Este local combina com " + t.native + ". Vamos tentar essa muda?"
           : t.type === "recycle"
-            ? "Recicláveis: papel limpo, plástico e metal. Orgânicos: restos de alimento. Rejeitos: resíduos sem reaproveitamento, como papel sujo. Tente de novo!"
+            ? "Vermelha: plástico. Verde: vidro. Amarela: metal. Azul: papel limpo. Escolha pelo material do objeto. Tente de novo!"
             : "Vamos tentar outra? Você consegue!";
       $("puzzle-feedback").dataset.correct = "false";
       tone(330);

@@ -197,15 +197,16 @@
       if (!spec) return super.animal(ctx, t, time, reduced, x, y, height);
       const pending = t.status === "pending",
         frame =
-          spec[1] * 4 +
-          (pending
-            ? !reduced && time % 4.2 > 3.9
-              ? 1
-              : 0
-            : 2 +
-              (!reduced
-                ? Math.floor(time * (t.speciesKey === "preguica" ? 1.4 : 5)) % 2
-                : 0));
+          t.speciesKey === "preguica"
+            ? pending
+              ? 4
+              : 6
+            : spec[1] * 4 +
+              (pending
+                ? !reduced && time % 4.2 > 3.9
+                  ? 1
+                  : 0
+                : 2 + (!reduced ? Math.floor(time * 5) % 2 : 0));
       return this.draw(ctx, spec[0], frame, x, y, height, {
         flip: t.facingRight === false,
       });

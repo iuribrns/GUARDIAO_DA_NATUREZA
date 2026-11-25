@@ -59,6 +59,9 @@ const base =
     await p.screenshot({
       path: "test-results/ilha-renascendo/arvore-encerramento.png",
     });
+    await p.waitForFunction(() => JornadaRetorno.state().ready);
+    while (await p.locator("#journey-return").isVisible())
+      await p.locator("#return-next").click();
     await p.locator("#ending-skip").click();
     await p.waitForFunction(
       () => document.getElementById("final-credits").open,

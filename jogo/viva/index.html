@@ -76,6 +76,8 @@
     <script src="../trilhas-vivas/menu.js?v=ferido-1" defer></script>
     <script src="../brisa-suave/carregamento.js?v=suave-1" defer></script>
     <script src="../brisa/interacoes.js?v=brisa-1" defer></script>
+    <script src="../jornada-final/atlas.js?v=1" defer></script>
+    <script src="../jornada-final/retorno.js?v=1" defer></script>
     <script src="../bosque-vivo/final.js?v=filme-2" defer></script>
     <script src="../revisao-paisagem/orientacao.js" defer></script>
     <link rel="stylesheet" href="../brisa-suave/interface.css?v=suave-1" />
@@ -619,6 +621,26 @@
         >
       </footer>
     </dialog>
+    <section
+      id="journey-return"
+      hidden
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="return-title"
+    >
+      <canvas
+        id="return-art"
+        aria-label="Regiões restauradas, animais recuperados e reencontros de Kai"
+      ></canvas>
+      <div class="return-caption">
+        <p id="return-count" class="eyebrow"></p>
+        <h2 id="return-title"></h2>
+        <p id="return-line" aria-live="polite"></p>
+        <button type="button" id="return-next" class="wood-button">
+          Próxima lembrança →
+        </button>
+      </div>
+    </section>
     <section
       id="final-cinema"
       hidden

@@ -1443,3 +1443,64 @@ a {
   padding: 12px;
   border-radius: 10px;
 }
+
+#journey-return:not([hidden]) {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  background: #102e24;
+}
+#return-art {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+.return-caption {
+  position: relative;
+  padding: 12px max(20px, env(safe-area-inset-left));
+  padding-right: max(270px, 22vw);
+  background: linear-gradient(100deg, #244d36, #153d2f);
+  border-top: 3px solid #b58b47;
+  color: #fff1cd;
+  min-height: 120px;
+  box-sizing: border-box;
+}
+.return-caption h2 {
+  margin: 3px 0 5px;
+  font: 400 clamp(24px, 3vw, 36px) / 1.1 Lilita;
+  color: #fff1cd;
+}
+.return-caption p {
+  margin: 3px 0;
+  max-width: 800px;
+}
+.return-caption #return-next {
+  position: absolute;
+  right: max(16px, env(safe-area-inset-right));
+  top: 50%;
+  transform: translateY(-50%);
+  width: 230px;
+  min-height: 48px;
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .return-caption {
+    min-height: 92px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-right: 210px;
+    font-size: 12px;
+  }
+  .return-caption h2 {
+    font-size: 24px;
+  }
+  .return-caption .eyebrow {
+    font-size: 10px;
+  }
+  .return-caption #return-next {
+    width: 185px;
+    font-size: 14px;
+    right: 10px;
+  }
+}

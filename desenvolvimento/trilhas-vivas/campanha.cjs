@@ -119,7 +119,9 @@ const done = (t) => ["done", "safe"].includes(t.status);
       await p.locator('.map-hotspot[data-phase="1"]').click();
       await p.locator("#start-phase").click();
       await advance(p, 2.2);
-      await p.waitForURL("**/floresta-viva/index.html");
+      await p.waitForURL("**/floresta-viva/index.html", {
+        waitUntil: "domcontentloaded",
+      });
       await p.waitForFunction(() => document.body.dataset.gameReady === "true");
       for (let i = 0; i < 2; i++) await p.locator("#conversa-avancar").click();
       await advance(p, 2);
@@ -173,7 +175,9 @@ const done = (t) => ["done", "safe"].includes(t.status);
       );
       await p.locator("#vitoria a.primary").click();
       await advance(p, 2.2);
-      await p.waitForURL("**/viva/index.html?**#mapa");
+      await p.waitForURL("**/viva/index.html?**#mapa", {
+        waitUntil: "domcontentloaded",
+      });
       await p.waitForFunction(() => window.RaizesApp);
       await advance(p, 4);
       for (let id = 2; id <= 5; id++) {
@@ -181,7 +185,9 @@ const done = (t) => ["done", "safe"].includes(t.status);
         await p.locator('.map-hotspot[data-phase="' + id + '"]').click();
         await p.locator("#start-phase").click();
         await advance(p, 2.2);
-        await p.waitForURL("**/jornada/index.html?fase=" + id);
+        await p.waitForURL("**/jornada/index.html?fase=" + id, {
+          waitUntil: "domcontentloaded",
+        });
         await p.waitForFunction(
           () => document.body.dataset.gameReady === "true",
         );
@@ -453,14 +459,10 @@ const done = (t) => ["done", "safe"].includes(t.status);
           await interact(p, mobile);
           for (let i = 0; i < 6; i++) {
             await p.locator("#puzzle").waitFor();
-            const text = await p.locator("#puzzle-description").textContent(),
-              answer = text.includes("Casca")
-                ? "organic"
-                : text.includes("sujo") || text.includes("Esponja")
-                  ? "residual"
-                  : "recyclable";
+            const saved = await state(p),
+              answer = saved.tasks.find((t) => t.id === saved.bag[0]).material;
             if (i === 0) {
-              await p.locator('[data-answer="organic"]').click();
+              await p.locator('[data-answer="glass"]').click();
               assert.match(
                 await p.locator("#puzzle-feedback").textContent(),
                 /Tente de novo/,
@@ -570,9 +572,12 @@ const done = (t) => ["done", "safe"].includes(t.status);
         );
       }
       await p.waitForFunction(() => window.VivaFinal?.active);
-      assert.equal(await p.locator("video").count(), 0);
+      assert.equal(await p.locator("#final-movie").count(), 1);
       await advance(p, 8);
       assert.equal(await p.evaluate(() => VivaFinal.active), true);
+      await p.waitForFunction(() => JornadaRetorno.state().ready);
+      while (await p.locator("#journey-return").isVisible())
+        await p.locator("#return-next").click();
       await p.click("#ending-skip");
       await p.waitForFunction(
         () => document.body.dataset.endingState === "concluido",

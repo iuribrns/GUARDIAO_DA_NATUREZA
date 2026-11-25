@@ -40,9 +40,9 @@
     "jogo/bosque-vivo/trajes.js",
     "jogo/bosque-vivo/vegetacao.js",
     "jogo/brisa-suave/carregamento.js",
-    "jogo/brisa-suave/compilados/floresta-viva-0e6488b12a95.js",
-    "jogo/brisa-suave/compilados/jornada-59ac42b12947.js",
-    "jogo/brisa-suave/compilados/viva-ed26b35ae6d8.js",
+    "jogo/brisa-suave/compilados/floresta-viva-446b661902bb.js",
+    "jogo/brisa-suave/compilados/jornada-36c8fce8b9d7.js",
+    "jogo/brisa-suave/compilados/viva-57feb06589b6.js",
     "jogo/brisa-suave/etiquetas.js",
     "jogo/brisa-suave/interface.css",
     "jogo/brisa-suave/transicoes.js",
@@ -253,6 +253,10 @@
     "jogo/interface-viva/assets/viva-simbolos.webp",
     "jogo/interface-viva/atlas.js",
     "jogo/interface-viva/interface.css",
+    "jogo/jornada-final/assets/abracos.webp",
+    "jogo/jornada-final/assets/vestir-traje.webp",
+    "jogo/jornada-final/atlas.js",
+    "jogo/jornada-final/retorno.js",
     "jogo/jornada/atlas-floresta.js",
     "jogo/jornada/atlas.js",
     "jogo/jornada/fases.js",
@@ -425,10 +429,10 @@
     "tela-inicial/renascimento/interacoes.js",
     "tela-inicial/renascimento/rustico.css"
   ],
-  "bytes": 78129445,
+  "bytes": 78873351,
   "generated": [
-    "jogo/brisa-suave/compilados/viva-ed26b35ae6d8.js",
-    "jogo/brisa-suave/compilados/floresta-viva-0e6488b12a95.js",
-    "jogo/brisa-suave/compilados/jornada-59ac42b12947.js"
+    "jogo/brisa-suave/compilados/viva-57feb06589b6.js",
+    "jogo/brisa-suave/compilados/floresta-viva-446b661902bb.js",
+    "jogo/brisa-suave/compilados/jornada-36c8fce8b9d7.js"
   ]
 }

@@ -8,6 +8,7 @@
   function complete() {
     if (!active || finished) return;
     finished = true;
+    JornadaRetorno.stop();
     $("final-movie").pause();
     $("final-cinema").hidden = true;
     window.GuardiaoAudio?.cinematic(false);
@@ -29,6 +30,12 @@
     active = true;
     finished = false;
     document.body.classList.add("island-ending");
+    document.body.dataset.endingState = "retrospectiva";
+    document.body.dataset.finaleScene = "retrospectiva";
+    JornadaRetorno.start(startMovie);
+  }
+  function startMovie() {
+    if (!active || finished) return;
     document.body.dataset.endingState = "video";
     document.body.dataset.finaleScene = "video";
     $("final-cinema").hidden = false;
@@ -44,6 +51,7 @@
   function stop() {
     const wasActive = active;
     active = false;
+    JornadaRetorno.stop();
     $("final-movie").pause();
     $("final-cinema").hidden = true;
     document.body.classList.remove("island-ending");
@@ -97,13 +105,14 @@
     start,
     stop,
     skip: complete,
-    // The map keeps its own rendering loop; the replacement film needs no canvas overlay.
-    paint() {},
+    // A retrospectiva compartilha o ciclo do mapa; o vídeo não cria outro loop.
+    paint: (...args) => JornadaRetorno.paint(...args),
     state: () => ({
       active,
       finished,
       elapsed: $("final-movie")?.currentTime || 0,
-      scene: "video",
+      scene: document.body.dataset.finaleScene,
+      retrospective: JornadaRetorno.state(),
     }),
   };
 })();

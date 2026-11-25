@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import vm from "node:vm";
 import { readFileSync, existsSync, statSync } from "node:fs";
 import { resolve, dirname, relative } from "node:path";
 const root = resolve("dist"),
@@ -47,6 +48,23 @@ for (const [name, sheet] of Object.entries(atlas)) {
     );
   }
 }
+const sprites = { window: {} };
+vm.runInNewContext(
+  readFileSync("jogo/jornada-final/atlas.js", "utf8"),
+  sprites,
+);
+for (const [name, sheet] of Object.entries(sprites.window.JornadaFinalAtlas)) {
+  const target = resolve(root, "jogo/jornada-final", sheet.file);
+  assert.ok(existsSync(target), "arte do retorno publicada: " + name);
+  for (const frame of sheet.frames) {
+    const [x, y, w, h] = frame.bounds;
+    assert.ok(
+      x >= 0 && y >= 0 && x + w <= sheet.width && y + h <= sheet.height,
+      "recorte da arte: " + name,
+    );
+  }
+}
+assert.ok(html.includes('id="journey-return"'));
 const bytes = manifest.files.reduce(
   (n, f) => n + statSync(resolve(root, f)).size,
   0,
