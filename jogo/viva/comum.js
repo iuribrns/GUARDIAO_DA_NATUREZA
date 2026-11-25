@@ -191,8 +191,17 @@
       }
     });
   }
-  const full = () =>
-    !!(document.fullscreenElement || document.webkitFullscreenElement);
+  function fullDocument() {
+    try {
+      if (parent !== window && parent.GuardiaoJanela?.frame)
+        return parent.document;
+    } catch {}
+    return document;
+  }
+  const full = () => {
+    const owner = fullDocument();
+    return !!(owner.fullscreenElement || owner.webkitFullscreenElement);
+  };
   let pending = false;
   function syncFull() {
     document.querySelectorAll("[data-fullscreen]").forEach((b) => {
@@ -209,18 +218,19 @@
     pending = true;
     syncFull();
     try {
+      const owner = fullDocument();
       if (full()) {
-        const fn = document.fullscreenElement
-          ? document.exitFullscreen || document.webkitExitFullscreen
-          : document.webkitExitFullscreen || document.exitFullscreen;
-        await fn.call(document);
+        const fn = owner.fullscreenElement
+          ? owner.exitFullscreen || owner.webkitExitFullscreen
+          : owner.webkitExitFullscreen || owner.exitFullscreen;
+        await fn.call(owner);
         screen.orientation?.unlock?.();
       } else {
         const fn =
-          document.documentElement.requestFullscreen ||
-          document.documentElement.webkitRequestFullscreen;
+          owner.documentElement.requestFullscreen ||
+          owner.documentElement.webkitRequestFullscreen;
         if (!fn) throw Error();
-        await fn.call(document.documentElement);
+        await fn.call(owner.documentElement);
         if (navigator.maxTouchPoints)
           try {
             await screen.orientation?.lock("landscape");
@@ -353,8 +363,10 @@
   };
   window.GuardiaoTela = {
     toggle: toggleFull,
+    enter: () => (full() ? Promise.resolve() : toggleFull()),
     state: () => ({ fullscreen: full(), pending }),
   };
+  window.addEventListener("guardiao:fullscreen", syncFull);
   for (const event of ["fullscreenchange", "webkitfullscreenchange"])
     document.addEventListener(event, syncFull);
   document.addEventListener("DOMContentLoaded", () => {

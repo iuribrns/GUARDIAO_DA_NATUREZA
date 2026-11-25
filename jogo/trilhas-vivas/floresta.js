@@ -1452,6 +1452,10 @@
     location.reload();
   });
   $("tela-cheia").addEventListener("click", async () => {
+    if (window.GuardiaoTela) {
+      await GuardiaoTela.toggle();
+      return;
+    }
     try {
       if (document.fullscreenElement) await document.exitFullscreen();
       else await $("jogo").requestFullscreen();

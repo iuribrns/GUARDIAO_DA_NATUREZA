@@ -40,9 +40,9 @@
     "jogo/bosque-vivo/trajes.js",
     "jogo/bosque-vivo/vegetacao.js",
     "jogo/brisa-suave/carregamento.js",
-    "jogo/brisa-suave/compilados/floresta-viva-446b661902bb.js",
-    "jogo/brisa-suave/compilados/jornada-36c8fce8b9d7.js",
-    "jogo/brisa-suave/compilados/viva-57feb06589b6.js",
+    "jogo/brisa-suave/compilados/floresta-viva-7fcb4fe6ccb1.js",
+    "jogo/brisa-suave/compilados/jornada-4adea59d1983.js",
+    "jogo/brisa-suave/compilados/viva-7815034de00a.js",
     "jogo/brisa-suave/etiquetas.js",
     "jogo/brisa-suave/interface.css",
     "jogo/brisa-suave/transicoes.js",
@@ -359,12 +359,19 @@
     "jogo/rio-claro/conclusao.js",
     "jogo/rio-claro/interface.css",
     "jogo/rio-claro/rio.js",
+    "jogo/sementes-nativas/ajustes.css",
+    "jogo/sementes-nativas/assets/sementes-arvores.webp",
+    "jogo/sementes-nativas/atlas.js",
+    "jogo/sementes-nativas/sementes.js",
     "jogo/sistemas/arte-manifesto.js",
     "jogo/sistemas/arte.js",
     "jogo/sistemas/controles.css",
     "jogo/sistemas/progresso.js",
     "jogo/sprites-integros/assets/campanha-icones.webp",
     "jogo/sprites-integros/atlas.js",
+    "jogo/tela-fixa/entrada.js",
+    "jogo/tela-fixa/janela.css",
+    "jogo/tela-fixa/janela.js",
     "jogo/trilhas-vivas/arvores-atlas.js",
     "jogo/trilhas-vivas/assets/arvores.webp",
     "jogo/trilhas-vivas/assets/costa.webp",
@@ -429,10 +436,10 @@
     "tela-inicial/renascimento/interacoes.js",
     "tela-inicial/renascimento/rustico.css"
   ],
-  "bytes": 78873351,
+  "bytes": 79588420,
   "generated": [
-    "jogo/brisa-suave/compilados/viva-57feb06589b6.js",
-    "jogo/brisa-suave/compilados/floresta-viva-446b661902bb.js",
-    "jogo/brisa-suave/compilados/jornada-36c8fce8b9d7.js"
+    "jogo/brisa-suave/compilados/viva-7815034de00a.js",
+    "jogo/brisa-suave/compilados/floresta-viva-7fcb4fe6ccb1.js",
+    "jogo/brisa-suave/compilados/jornada-4adea59d1983.js"
   ]
 }

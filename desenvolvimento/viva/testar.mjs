@@ -61,6 +61,7 @@ try {
     "desenvolvimento/conquista-viva/verificar.cjs",
     "desenvolvimento/conquista-viva/passagem.cjs",
     "desenvolvimento/trilhas-vivas/campanha.cjs",
+    "desenvolvimento/tela-fixa/verificar.cjs",
   ];
   const resume = process.argv
     .find((arg) => arg.startsWith("--from="))
@@ -73,15 +74,25 @@ try {
   if (start < 0) throw Error("Teste desconhecido: " + resume);
   for (const file of cases.slice(start))
     await new Promise((ok, bad) => {
-      const child = spawn(process.execPath, [file], {
-        cwd: root,
-        stdio: "inherit",
-        env: {
-          ...process.env,
-          GUARDIAO_TEST_URL: origin + "/jogo/viva/",
-          GUARDIAO_PRODUCTION: String(production),
+      const child = spawn(
+        process.execPath,
+        file.endsWith("tela-fixa/verificar.cjs")
+          ? [file]
+          : [
+              "--require",
+              resolve("desenvolvimento/tela-fixa/isolado.cjs"),
+              file,
+            ],
+        {
+          cwd: root,
+          stdio: "inherit",
+          env: {
+            ...process.env,
+            GUARDIAO_TEST_URL: origin + "/jogo/viva/",
+            GUARDIAO_PRODUCTION: String(production),
+          },
         },
-      });
+      );
       child.on("error", bad);
       child.on("exit", (code) =>
         code === 0 ? ok() : bad(Error(file + " falhou: " + code)),

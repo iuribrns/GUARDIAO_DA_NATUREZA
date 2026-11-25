@@ -426,7 +426,7 @@
       t.progress = 1;
       t.restoredAt = elapsed;
       water = Math.max(0, water - 12);
-      message("Uma nova " + t.seedSpecies + " para a floresta!", "Kai");
+      message("Semente de " + t.seedSpecies + " plantada!", "Kai");
     } else if (animal(t)) rescue(t);
     else if (t.type === "recycle") {
       t.status = "carried";
@@ -513,10 +513,10 @@
           window.GuardiaoIcones.markup(icon),
         ])
       : t.type === "bed"
-        ? ["ipê", "ingá", "aroeira"].map((name) => [
+        ? GuardiaoSementes.species.map(({ name }) => [
             name,
             name,
-            window.GuardiaoColecao.plant(name),
+            GuardiaoSementes.markup(name),
           ])
         : choices(t.type);
     if (t.quiz) {
@@ -525,9 +525,9 @@
         "Vamos pensar antes de cuidar de " + t.name + ".";
     }
     if (t.type === "bed") {
-      $("puzzle-title").textContent = "Qual muda vamos plantar?";
+      $("puzzle-title").textContent = "Qual semente vamos plantar?";
       $("puzzle-description").textContent =
-        "Escolha a planta que você quiser. Todas são nativas. Depois plante e regue!";
+        "Escolha uma semente de árvore brasileira ameaçada. Depois, é só plantar e regar.";
     }
     $("puzzle-feedback").removeAttribute("data-correct");
     $("quiz-continue")?.remove();
@@ -537,6 +537,18 @@
         b.type = "button";
         b.dataset.answer = value;
         b.innerHTML = art + "<span>" + label + "</span>";
+        if (t.type === "bed") {
+          const seed = GuardiaoSementes.species.find((s) => s.name === value);
+          b.insertAdjacentHTML(
+            "beforeend",
+            "<small><i>" +
+              seed.scientific +
+              "</i><br>" +
+              seed.status +
+              "</small>",
+          );
+          b.title = seed.fact;
+        }
         b.addEventListener("click", () => answer(value));
         return b;
       }),
@@ -551,7 +563,7 @@
     const correct = t.quiz
       ? value === t.quiz.answer
       : t.type === "bed"
-        ? ["ipê", "ingá", "aroeira"].includes(value)
+        ? GuardiaoSementes.species.some((s) => s.name === value)
         : t.type === "cage"
           ? value === t.answer
           : t.type === "solar"
@@ -679,10 +691,7 @@
     }
     if (t.type === "bed") {
       if (t.status === "pending") {
-        t.seedSpecies = ["ipê", "ingá", "aroeira"][
-          tasks.filter((v) => v.type === "bed").indexOf(t) % 3
-        ];
-        startAction(t, "seed", 1.05);
+        showPuzzle(t);
       } else if (t.status === "seeded") {
         if (water >= 12) startAction(t, "water", 1.4);
         else message("Encha o regador na fonte.");
@@ -750,8 +759,12 @@
   }
   function updateHUD() {
     document.querySelectorAll("[data-goal]").forEach((b) => {
-      const type = b.dataset.goal,
-        total = tasks.filter((t) => group(t, type)).length,
+      const type = b.dataset.goal;
+      if (type === "home") {
+        b.querySelector("strong").textContent = "→";
+        return;
+      }
+      const total = tasks.filter((t) => group(t, type)).length,
         done = tasks.filter((t) => group(t, type) && finished(t)).length;
       b.querySelector("strong").textContent = done + "/" + total;
       b.classList.toggle("done", done === total);
@@ -1778,6 +1791,10 @@
     location.reload();
   });
   $("tela-cheia").addEventListener("click", async () => {
+    if (window.GuardiaoTela) {
+      await GuardiaoTela.toggle();
+      return;
+    }
     try {
       if (document.fullscreenElement) await document.exitFullscreen();
       else await $("jogo").requestFullscreen();
@@ -1864,7 +1881,7 @@
           `<button class="goal" data-goal="${type}"><span data-icon="${iconName}"></span><span class="goal-label">${label}</span><strong>0/${total}</strong></button>`,
       )
       .join("") +
-    `<button class="goal return-goal" data-goal="home" hidden><span data-icon="leaf"></span><span>Voltar a ${data.npc}</span><strong>→</strong></button>`;
+    `<button class="goal return-goal" data-goal="home" hidden><span data-icon="leaf"></span><span class="goal-label">Voltar a ${data.npc}</span><strong>→</strong></button>`;
   document.querySelectorAll("[data-goal]").forEach((b) =>
     b.addEventListener("click", () => {
       guide(b.dataset.goal);

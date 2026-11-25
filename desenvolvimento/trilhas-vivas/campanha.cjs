@@ -418,11 +418,9 @@ const done = (t) => ["done", "safe"].includes(t.status);
           for (let i = 0; i < 6; i++) {
             await guide(p, "bed");
             await interact(p, mobile);
-            assert.equal(
-              await p.locator("#puzzle").isVisible(),
-              false,
-              "plantar sem abrir outra tela",
-            );
+            await p.locator("#puzzle").waitFor();
+            const species = ["Pau-brasil", "Araucária", "Cedro-rosa"][i % 3];
+            await p.locator('[data-answer="' + species + '"]').click();
             await until(
               p,
               (s) => s.tasks.some((t) => t.status === "seeded"),

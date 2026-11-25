@@ -84,7 +84,8 @@
             const enter =
               document.documentElement.requestFullscreen ||
               document.documentElement.webkitRequestFullscreen;
-            await enter?.call(document.documentElement);
+            if (window.GuardiaoTela) await GuardiaoTela.enter();
+            else await enter?.call(document.documentElement);
           }
         } catch {}
         try {
