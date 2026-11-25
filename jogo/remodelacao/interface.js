@@ -21,16 +21,43 @@
     if (!d?.classList.contains("ra-talk")) return;
     d.classList.add("remodel-talk");
     const head = d.querySelector("header"),
-      title = head.querySelector("h2"),
+      previousTitle = head.querySelector("h2"),
+      title = document.getElementById("intro-name") || previousTitle,
       kicker = head.querySelector(".eyebrow"),
-      copy = d.querySelector(".ra-talk-copy");
+      copy = d.querySelector(".ra-talk-copy"),
+      text =
+        document.getElementById("intro-text") ||
+        document.getElementById("conversa-texto"),
+      canvas = d.querySelector(".ra-talk-scene"),
+      footer = d.querySelector("footer"),
+      names = [
+        "Floresta em Chamas",
+        "Rio Poluído",
+        "Resgate da Fauna",
+        "Reflorestamento",
+        "Cidade Sustentável",
+      ];
     kicker.textContent = "CONVERSA · FASE " + phase;
+    if (title !== previousTitle) previousTitle.remove();
+    title.classList.add("remodel-talk-name");
+    d.setAttribute("aria-labelledby", title.id);
+    d.setAttribute("aria-describedby", text.id);
+    const message = document.createElement("div");
+    message.className = "remodel-talk-message";
+    message.append(text);
+    copy.append(message, footer);
     copy.prepend(kicker, title);
+    const figure = document.createElement("figure"),
+      caption = document.createElement("figcaption");
+    figure.className = "remodel-talk-visual";
+    caption.textContent = names[phase - 1];
+    canvas.before(figure);
+    figure.append(canvas, caption);
     head.innerHTML =
       K.frame("faixa-titulo", 180, 0, "remodel-talk-frame") +
       K.icon("book") +
       "<p>Um cuidado começa com um encontro</p>";
-    const footer = d.querySelector("footer");
+    footer.classList.add("remodel-talk-footer");
     footer.querySelector("button").classList.add("remodel-action");
   }
   document.addEventListener(

@@ -91,16 +91,33 @@ async function dialogFit(f) {
       noScroll:
         d.scrollWidth <= d.clientWidth + 1 &&
         d.scrollHeight <= d.clientHeight + 1,
-      text: getComputedStyle(d.querySelector(".ra-talk-copy > p:last-child"))
+      text: getComputedStyle(d.querySelector(".remodel-talk-message p"))
         .fontSize,
       button: d.querySelector("footer button").getBoundingClientRect().height,
       left:
         d.querySelector("canvas").getBoundingClientRect().right <=
         d.querySelector(".ra-talk-copy").getBoundingClientRect().x,
+      footerInCopy: d
+        .querySelector(".ra-talk-copy")
+        .contains(d.querySelector("footer")),
+      caption:
+        d.querySelector(".remodel-talk-visual figcaption").textContent.trim()
+          .length > 0,
+      visibleName:
+        d.querySelector(".remodel-talk-name").getBoundingClientRect().height >
+        0,
+      focused: d.contains(document.activeElement),
     };
   });
   assert.ok(
-    result.fits && result.children && result.noScroll && result.left,
+    result.fits &&
+      result.children &&
+      result.noScroll &&
+      result.left &&
+      result.footerInCopy &&
+      result.caption &&
+      result.visibleName &&
+      result.focused,
     JSON.stringify(result),
   );
   assert.ok(parseFloat(result.text) >= 15);
@@ -139,6 +156,20 @@ async function seedVictory(f, id) {
   await f.goto(phaseURL(id));
   await ready(f);
   await f.locator("#vitoria").waitFor();
+  const summary = await f.locator("#vitoria").evaluate((d) => ({
+    screenHeight: innerHeight,
+    artHeight: d.querySelector(".resumo-amigos canvas").getBoundingClientRect()
+      .height,
+    fits:
+      d.scrollHeight <= d.clientHeight + 1 &&
+      d.scrollWidth <= d.clientWidth + 1,
+  }));
+  assert.ok(summary.fits, JSON.stringify(summary));
+  if (summary.screenHeight <= 360)
+    assert.ok(
+      summary.artHeight >= 100,
+      "o colar e os personagens não viram miniaturas para abrir espaço aos cartões",
+    );
   const stats = await f.locator("#victory-stats").evaluate((root) => {
     const r = root.getBoundingClientRect();
     return {
@@ -153,6 +184,13 @@ async function seedVictory(f, id) {
           frame: c.querySelectorAll(".remodel-stat-frame").length,
           fit: b.x >= r.x - 1 && b.right <= r.right + 1,
           scroll: c.scrollWidth > c.clientWidth + 1,
+          aligned:
+            getComputedStyle(c.querySelector("strong")).textAlign === "left" &&
+            Math.abs(
+              c.querySelector("strong").getBoundingClientRect().x -
+                c.querySelector(".conquista-stat-label").getBoundingClientRect()
+                  .x,
+            ) < 1,
         };
       }),
       center: r.x + r.width / 2,
@@ -160,7 +198,7 @@ async function seedVictory(f, id) {
   });
   assert.equal(stats.count, id === 4 ? 1 : 3);
   assert.ok(
-    stats.cards.every((c) => c.frame === 1 && c.fit && !c.scroll),
+    stats.cards.every((c) => c.frame === 1 && c.fit && !c.scroll && c.aligned),
     JSON.stringify(stats),
   );
   if (id === 4) {
@@ -305,6 +343,38 @@ async function seedVictory(f, id) {
             ),
           );
         }
+        if (id > 1) {
+          assert.equal(
+            await f.locator("#intro-name").isVisible(),
+            true,
+            "nome original continua visível e atualizado",
+          );
+          assert.equal(
+            await f.locator("#intro").getAttribute("aria-labelledby"),
+            "intro-name",
+          );
+        }
+        if (width === 1280 || width === 844) {
+          const next = f.locator(
+              id === 1 ? "#conversa-avancar" : "#intro-next",
+            ),
+            count = f.locator(id === 1 ? "#conversa-pagina" : "#intro-count");
+          if (width === 844) await next.tap();
+          else await p.keyboard.press("Enter");
+          assert.match(
+            await count.textContent(),
+            /2\s*\/\s*2/,
+            "uma entrada avança exatamente uma fala",
+          );
+          if (width === 844) await next.tap();
+          else await p.keyboard.press("Enter");
+          await f.waitForFunction(
+            () =>
+              (window.GuardiaoJornada?.estado() || GuardiaoFloresta.estado())
+                .itemsGiven,
+          );
+          assert.equal(await f.locator(".remodel-talk").isVisible(), false);
+        }
       }
       for (const id of [4, 5]) {
         const f = await open(p, id);
@@ -364,8 +434,12 @@ async function seedVictory(f, id) {
     await ready(f);
     await c.close();
     // An essential art failure keeps a recoverable screen. A decorative background failure does not block play.
-    for (const essential of [true, false]) {
-      const c = await context(b),
+    for (const [essential, width, height] of [
+      [true, 1280, 720],
+      [true, 740, 320],
+      [false, 1280, 720],
+    ]) {
+      const c = await context(b, width, height),
         p = await c.newPage(),
         pattern = essential
           ? "**/remodelacao/assets/icones/cuidar.webp"
@@ -377,6 +451,22 @@ async function seedVictory(f, id) {
           () => document.body.dataset.loadingState === "error",
         );
         assert.ok(await f.locator(".remodel-retry").isVisible());
+        assert.ok(
+          await f.locator(".remodel-retry").evaluate((e) => {
+            const r = e.getBoundingClientRect();
+            return (
+              r.x >= 0 &&
+              r.y >= 0 &&
+              r.right <= innerWidth &&
+              r.bottom <= innerHeight
+            );
+          }),
+          "nova tentativa permanece acessível em uma tela baixa",
+        );
+        assert.match(
+          await f.locator("#loading h1").textContent(),
+          /Não foi possível carregar/,
+        );
         assert.notEqual(
           await f.locator("body").getAttribute("data-game-ready"),
           "true",
@@ -384,7 +474,7 @@ async function seedVictory(f, id) {
         assert.ok(
           (await f.evaluate(() => GuardiaoCarregamento.state())).percent < 100,
         );
-        await p.screenshot({ path: `${out}/carregamento-erro.png` });
+        await p.screenshot({ path: `${out}/carregamento-erro-${width}.png` });
         await c.unroute(pattern);
         await f.locator(".remodel-retry").click();
       }

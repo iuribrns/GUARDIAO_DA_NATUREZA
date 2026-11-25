@@ -18,6 +18,21 @@ o fundo decorativo possui uma cor de reserva e não bloqueia a partida.
 molduras dos títulos e estatísticas são divididas em trechos para preservar os
 cantos. O cartão único de reflorestamento tem largura máxima de 440 px.
 
+A conversa segue a distribuição da prévia: faixa superior, cena com legenda à
+esquerda e nome, fala, contador e Continuar à direita. O elemento `intro-name`
+original fica visível e identifica o modal. Só a fala pode rolar quando o texto é
+maior; o contador e a ação permanecem acessíveis. Os valores e as legendas das
+estatísticas compartilham o alinhamento à esquerda ao lado do emblema.
+
+A dica de carregamento mantém a região central livre dos personagens. Em erro,
+o título informa a falha e a barra não continua aparentando progresso. A placa da
+coleta seletiva acompanha a estação sem encobrir os rótulos das quatro lixeiras;
+o teste da cidade compara os pixels de cada rótulo isolado e na cena completa.
+Em telas paisagem de até 360 px de altura, o resumo compacto reserva espaço às
+artes; a nota repetida continua disponível ao leitor de tela. A validação exige
+uma área de pelo menos 100 px para a cena da comemoração, além de verificar que
+as estatísticas e a ação de avançar cabem no painel.
+
 `verificar.cjs` testa a publicação em quatro resoluções, cinco fases, texto maior,
 movimento reduzido, alinhamento dos diálogos e controles, conquistas, rede lenta,
 falha obrigatória, nova tentativa e ausência do fundo. Usa a navegação real pelo

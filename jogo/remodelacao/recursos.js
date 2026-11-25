@@ -208,6 +208,8 @@
       }
       binActors(c) {
         if (this.phase !== 5) return super.binActors(c);
+        const station = GuardiaoFasesJogaveis[5].station,
+          sign = { x: station.x, y: station.y + 70 };
         return GuardiaoCidadeBins.map((s) => ({
           y: s.y,
           draw: () => {
@@ -224,8 +226,8 @@
           },
         })).concat([
           {
-            y: 555,
-            draw: () => draw(c, "lixeiras/placa-estacao", 104, 566, 47),
+            y: sign.y,
+            draw: () => draw(c, "lixeiras/placa-estacao", sign.x, sign.y, 47),
           },
         ]);
       }

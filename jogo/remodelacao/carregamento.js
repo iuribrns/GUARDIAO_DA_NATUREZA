@@ -84,6 +84,7 @@
     failed = true;
     document.body.dataset.loadingState = "error";
     root().hidden = false;
+    root().querySelector("h1").textContent = "Não foi possível carregar";
     root().querySelector("[data-load-status]").textContent =
       "Não foi possível preparar a fase. Confira sua conexão e tente novamente.";
     root().querySelector(".remodel-retry").hidden = false;

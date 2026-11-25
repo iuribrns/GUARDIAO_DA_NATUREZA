@@ -79,6 +79,16 @@ fs.mkdirSync("test-results/clareira", { recursive: true });
         for (let i = 3; i < pixels.length; i += 4) if (pixels[i] > 128) count++;
         const d = GuardiaoFasesJogaveis[5],
           nav = new GuardiaoNavegacao.Navigation(d);
+        const clearLabels = GuardiaoCidadeBins.every((bin, index) => {
+          const isolated = document.createElement("canvas");
+          isolated.width = 1280;
+          isolated.height = 720;
+          const g = isolated.getContext("2d");
+          a.binActors(g)[index].draw();
+          const full = ctx.getImageData(bin.x - 40, bin.y + 1, 80, 20).data,
+            alone = g.getImageData(bin.x - 40, bin.y + 1, 80, 20).data;
+          return full.every((v, i) => v === alone[i]);
+        });
         return {
           drawings: [...GuardiaoRemodelacao.bank.keys()].filter((k) =>
             k.startsWith("lixeiras/"),
@@ -87,12 +97,17 @@ fs.mkdirSync("test-results/clareira", { recursive: true });
           actors: actors.length,
           station: nav.walkable(d.station),
           bins: GuardiaoCidadeBins.map((p) => nav.walkable(p)),
+          clearLabels,
         };
       });
       assert.equal(result.actors, 5, "quatro lixeiras e placa da estação");
       assert.ok(result.drawings === 5 && result.count > 3000);
       assert.ok(result.station);
       assert.deepEqual(result.bins, [false, false, false, false]);
+      assert.ok(
+        result.clearLabels,
+        "a placa da estação não cobre os nomes das lixeiras",
+      );
       await p.locator('[data-goal="recycle"]').click();
       for (let i = 0; i < 160; i++) {
         const s = await p.evaluate(() => GuardiaoJornada.estado());
