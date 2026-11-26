@@ -49,12 +49,13 @@
   }
   window.GuardiaoAdventureArt = class extends Previous {
     async load(...args) {
-      await super.load(...args);
-      if (this.phase !== 2) return;
+      const inherited = super.load(...args);
+      if (this.phase !== 2) return inherited;
       this.riverSheets = {};
       // TrilhasRender substitui load() da arte base: os sprites aquáticos devem
       // ser dependências explícitas da fase, nunca depender de um load ancestral.
       await Promise.all([
+        inherited,
         this.ensure("traje-acoes"),
         ...Object.entries(atlas).map(async ([name, d]) => {
           const im = new Image();

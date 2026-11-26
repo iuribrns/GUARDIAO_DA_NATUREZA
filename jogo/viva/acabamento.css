@@ -85,9 +85,6 @@
   z-index: 40;
   pointer-events: none;
 }
-.view.entering {
-  animation: view-arrive 0.4s ease both;
-}
 button,
 a {
   transition:
@@ -694,54 +691,6 @@ a {
 .phase-brief .eyebrow {
   font-size: 10px;
 }
-/* Travessia de folhas, comum às páginas e aos botões de navegação. */
-#leaf-transition {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 10000;
-  overflow: hidden;
-  visibility: hidden;
-}
-#leaf-transition.is-covering {
-  visibility: visible;
-  pointer-events: auto;
-}
-.transition-canopy {
-  position: absolute;
-  inset: -20% -15%;
-  background: linear-gradient(130deg, #123b2f, #3c6d3f 46%, #183e30);
-  transform: translateX(-115%) rotate(-7deg);
-  transition: transform 0.3s cubic-bezier(0.33, 0.7, 0.3, 1);
-  box-shadow: 0 0 80px 40px #23513466;
-}
-.transition-canopy:after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse, #b9d77b2a, transparent 65%);
-}
-.transition-canopy i {
-  position: absolute;
-  width: 45vw;
-  height: 45vw;
-  left: calc((var(--i) - 2) * 13%);
-  top: calc(20% + var(--row, 1) * 12%);
-  rotate: calc(var(--i) * 41deg);
-  opacity: 0.75;
-}
-.transition-canopy i svg {
-  width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 8px 7px #102f2b88);
-}
-.is-covering .transition-canopy {
-  transform: translateX(0) rotate(-7deg);
-}
-.is-covering.is-leaving .transition-canopy {
-  transform: translateX(115%) rotate(6deg);
-  transition-duration: 0.4s;
-}
 /* O encerramento é desenhado na ilha em resolução nativa. */
 .island-ending .map-heading,
 .island-ending .map-footer,
@@ -1302,9 +1251,6 @@ a {
   .wood-button:hover,
   .wood-button:active {
     scale: 1;
-  }
-  .view.entering {
-    animation: none;
   }
 }
 

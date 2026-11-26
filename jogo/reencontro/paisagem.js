@@ -25,10 +25,24 @@
       this.builds = 0;
       this.ready
         .then(() => {
-          const warm = () => this.after();
-          if (window.requestIdleCallback)
-            requestIdleCallback(warm, { timeout: 4000 });
-          else setTimeout(warm, 2200);
+          // O cenário saudável não disputa banda com os sprites obrigatórios.
+          const warm = () => {
+            if (window.requestIdleCallback)
+              requestIdleCallback(() => this.after(), { timeout: 4000 });
+            else setTimeout(() => this.after(), 2200);
+          };
+          if (document.body.dataset.gameReady === "true") warm();
+          else {
+            const observer = new MutationObserver(() => {
+              if (document.body.dataset.gameReady !== "true") return;
+              observer.disconnect();
+              warm();
+            });
+            observer.observe(document.body, {
+              attributes: true,
+              attributeFilter: ["data-game-ready"],
+            });
+          }
         })
         .catch(() => {});
     }

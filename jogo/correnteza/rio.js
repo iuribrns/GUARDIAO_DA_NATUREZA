@@ -5,14 +5,14 @@
   const assets = new URL("../jornada-final/", document.currentScript.src);
   window.GuardiaoAdventureArt = class extends Previous {
     async load(...args) {
-      await super.load(...args);
-      if (this.phase !== 2) return;
+      const inherited = super.load(...args);
+      if (this.phase !== 2) return inherited;
       this.dressingImage = new Image();
       this.dressingImage.src = new URL(
         JornadaFinalAtlas["vestir-traje"].file,
         assets,
       );
-      await this.dressingImage.decode();
+      await Promise.all([inherited, this.dressingImage.decode()]);
     }
     riverTrash(c, sprites, target, p, progress) {
       if (this.phase !== 2 || !p.swimming || !target)

@@ -50,45 +50,6 @@
   z-index: 40;
   contain: strict;
 }
-/* As folhas da transição são os sprites pintados, com fechamento e abertura próprios. */
-.transition-canopy {
-  transition: transform 0.72s cubic-bezier(0.32, 0.65, 0.26, 1) !important;
-  inset: -25% -18%;
-  background: linear-gradient(130deg, #133e30, #4c7941 48%, #14382d);
-}
-.transition-canopy i {
-  width: 35vw;
-  height: 35vw;
-  left: calc(-3% + (var(--i) - 1) * 8.6%);
-  top: calc(-16% + var(--row) * 34%);
-  rotate: calc(-30deg + var(--i) * 29deg);
-  opacity: 0.94;
-}
-.transition-canopy i svg {
-  overflow: hidden !important;
-  filter: drop-shadow(0 10px 9px #17372b66);
-}
-.is-covering.is-leaving .transition-canopy {
-  transition-duration: 0.9s !important;
-}
-.is-covering.is-arriving .transition-canopy {
-  transform: translateX(0) rotate(-7deg);
-  transition: none !important;
-}
-.view.entering {
-  animation-duration: 0.7s;
-}
-.map-view.entering {
-  animation-name: brisa-map-arrive;
-}
-@keyframes brisa-map-arrive {
-  from {
-    opacity: 0.8;
-  }
-  to {
-    opacity: 1;
-  }
-}
 .brisa-map-pack {
   position: absolute;
   z-index: 9;

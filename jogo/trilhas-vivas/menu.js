@@ -167,7 +167,7 @@
     $("map-hotspots").innerHTML = phases
       .map(
         (d) =>
-          `<button type="button" class="map-hotspot ${p.completed.includes(d.id) ? "is-complete" : ""}" data-phase="${d.id}" data-region-state="${MapaFerido.regionState(d.id, p)}" style="--x:${d.region[0]}%;--y:${d.region[1]}%" aria-label="${d.name}. ${unlocked(d.id) ? (p.completed.includes(d.id) ? "Natureza recuperada" : "Disponível") : "Complete a região anterior"}" aria-disabled="${!unlocked(d.id)}"><span class="number">${d.id}</span>${R.icon(d.icon)}<span class="map-region-name">${MapaFerido.label(d.id)}</span><small>${p.completed.includes(d.id) ? "Natureza recuperada" : unlocked(d.id) ? "Vamos cuidar?" : "Complete a região anterior"}</small></button>`,
+          `<button type="button" class="map-hotspot ${p.completed.includes(d.id) ? "is-complete" : ""}" data-phase="${d.id}" data-region-state="${MapaFerido.regionState(d.id, p)}" style="--x:${d.region[0]}%;--y:${d.region[1]}%" aria-label="${d.name}. ${unlocked(d.id) ? (p.completed.includes(d.id) ? "Natureza recuperada" : "Disponível") : "Complete a região anterior"}" aria-disabled="${!unlocked(d.id)}"><span class="number">${d.id}</span><span class="map-region-name">${MapaFerido.label(d.id)}</span><small>${p.completed.includes(d.id) ? "Natureza recuperada" : unlocked(d.id) ? "Vamos cuidar?" : "Complete a região anterior"}</small></button>`,
       )
       .join("");
     BosqueMapa.update(
@@ -281,7 +281,6 @@
     }
     document.querySelectorAll("#app > [data-view]").forEach((el) => {
       el.hidden = el.dataset.view !== view;
-      el.classList.toggle("entering", !el.hidden && !reduced());
     });
     document.body.dataset.view = view;
     $("back-home").hidden = view === "inicio";

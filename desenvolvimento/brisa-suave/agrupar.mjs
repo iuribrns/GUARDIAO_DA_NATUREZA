@@ -52,6 +52,99 @@ export function combine(htmlFile, html, read) {
   );
   return { file, code, html: rewritten, count: selected.length };
 }
+// Conserva a ordem da cascata e resolve cada imagem/fonte a partir de seu CSS.
+// O navegador recebe uma folha de estilos em vez de dezenas de pedidos bloqueantes.
+export function combineStyles(htmlFile, html, read) {
+  const selected = [
+    ...html.matchAll(/<link\b[^>]*\brel="stylesheet"[^>]*>/g),
+  ].filter(
+    (m) =>
+      /\bhref="(?![a-z]+:|\/\/)[^"]+"/i.test(m[0]) &&
+      !/\bmedia=|\bdisabled\b/.test(m[0]),
+  );
+  const folder = "jogo/brisa-suave/compilados";
+  function sheet(file, parents = []) {
+    if (parents.includes(file)) throw Error("Importação circular: " + file);
+    const css = read(file);
+    // Resolver os imports no lugar preserva sua posição na cascata e evita
+    // mais uma rodada de rede ao abrir a Floresta em Chamas.
+    const imports = [];
+    const source = css.replace(
+      /@import\s+url\(\s*['"]?([^)'"\s]+)['"]?\s*\)\s*([^;]*);/gi,
+      (_, href, media) => {
+        if (/^(?:[a-z]+:|\/)/i.test(href))
+          throw Error("Importação externa: " + href);
+        const imported = posix.normalize(
+          posix.join(posix.dirname(file), href.split(/[?#]/)[0]),
+        );
+        const content = sheet(imported, [...parents, file]);
+        imports.push(
+          media.trim() ? "@media " + media + "{\n" + content + "\n}" : content,
+        );
+        return "/* guardiao-import-" + (imports.length - 1) + " */";
+      },
+    );
+    const resolved = source.replace(
+      /url\(\s*(?:"([^"]*)"|'([^']*)'|([^)]*?))\s*\)/gi,
+      (match, a, b, c) => {
+        const raw = a ?? b ?? c;
+        if (!raw || /^(?:[a-z]+:|\/|#)/i.test(raw)) return match;
+        const url = new URL(raw, "https://guardiao.invalid/" + file);
+        return (
+          "url(" +
+          JSON.stringify(
+            posix.relative(folder, url.pathname.slice(1)) +
+              url.search +
+              url.hash,
+          ) +
+          ")"
+        );
+      },
+    );
+    return (
+      "/* " +
+      file +
+      " */\n" +
+      resolved.replace(
+        /\/\* guardiao-import-(\d+) \*\//g,
+        (_, n) => imports[Number(n)],
+      )
+    );
+  }
+  const code = selected
+    .map((m) => {
+      const href = m[0].match(/\bhref="([^"]+)"/)[1];
+      const file = posix.normalize(
+        posix.join(posix.dirname(htmlFile), href.split(/[?#]/)[0]),
+      );
+      return sheet(file);
+    })
+    .join("\n");
+  const hash = createHash("sha256").update(code).digest("hex").slice(0, 12);
+  const file =
+    folder +
+    "/" +
+    posix.basename(posix.dirname(htmlFile)) +
+    "-" +
+    hash +
+    ".css";
+  const chosen = new Set(selected.map((m) => m.index));
+  let first = true;
+  const rewritten = html.replace(
+    /<link\b[^>]*\brel="stylesheet"[^>]*>/g,
+    (match, offset) => {
+      if (!chosen.has(offset)) return match;
+      if (!first) return "";
+      first = false;
+      return (
+        '<link rel="stylesheet" href="' +
+        posix.relative(posix.dirname(htmlFile), file) +
+        '" data-guardiao-styles="true">'
+      );
+    },
+  );
+  return { file, code, html: rewritten, count: selected.length };
+}
 export function build() {
   const manifestFile = "desenvolvimento/viva/publicacao.json",
     manifest = JSON.parse(readFileSync(manifestFile, "utf8"));
@@ -69,13 +162,19 @@ export function build() {
     );
     mkdirSync(dirname(resolve("dist", result.file)), { recursive: true });
     writeFileSync(resolve("dist", result.file), result.code);
-    writeFileSync("dist/" + entry, result.html);
-    generated.push(result.file);
+    const styles = combineStyles(entry, result.html, (file) =>
+      readFileSync(file, "utf8"),
+    );
+    writeFileSync(resolve("dist", styles.file), styles.code);
+    writeFileSync("dist/" + entry, styles.html);
+    generated.push(result.file, styles.file);
     report.push({
       entry,
       scriptsBefore: result.count,
       scriptsAfter: 1,
       bytes: Buffer.byteLength(result.code),
+      stylesBefore: styles.count,
+      stylesAfter: 1,
     });
   }
   manifest.generated = generated;

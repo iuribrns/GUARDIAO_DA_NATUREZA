@@ -172,8 +172,10 @@
           : this.phase === 3
             ? ["fauna-brasileira", "fauna-grande", "fauna-copa"]
             : [];
-      await Promise.all(names.map((n) => this.ensure(n)));
-      await BosqueKai.load();
+      await Promise.all([
+        BosqueKai.load(),
+        ...names.map((n) => this.ensure(n)),
+      ]);
     }
   };
   const prior = RaizesPersonagens.load;

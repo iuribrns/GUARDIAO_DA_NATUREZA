@@ -57,15 +57,29 @@ fs.mkdirSync(out, { recursive: true });
         await p.evaluate((n) => VivaFolhas.state().burstCount > n, burst),
       );
       await p.click("#play-game");
+      assert.equal(
+        await p.locator("#leaf-transition").count(),
+        1,
+        "uma única passagem",
+      );
+      assert.equal(
+        await p
+          .locator(".grove-half, .transition-canopy, .view.entering")
+          .count(),
+        0,
+        "efeitos antigos removidos",
+      );
       await p.waitForTimeout(100);
       const a = await p
-        .locator(".grove-half.left")
+        .locator("#leaf-transition .grove-leaf")
+        .first()
         .evaluate((e) => getComputedStyle(e).transform);
       await p.waitForTimeout(180);
       const z = await p
-        .locator(".grove-half.left")
+        .locator("#leaf-transition .grove-leaf")
+        .first()
         .evaluate((e) => getComputedStyle(e).transform);
-      assert.notEqual(a, z, "cortina avança entre quadros");
+      assert.notEqual(a, z, "folhas avançam suavemente entre quadros");
       assert.equal(new URL(p.url()).hash, "");
       await p.waitForURL("**/#mapa");
       await p.waitForFunction(

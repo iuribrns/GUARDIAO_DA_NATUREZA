@@ -39,6 +39,7 @@ try {
     "desenvolvimento/trilhas-vivas/colisoes.cjs",
     "desenvolvimento/reencontro/flora.cjs",
     "desenvolvimento/brisa-suave/transicoes.cjs",
+    "desenvolvimento/brisa-suave/carregamento.cjs",
     "desenvolvimento/arte-viva/personagens.cjs",
     "jogo/viva/validacao/interface.cjs",
     "desenvolvimento/trilhas-vivas/interface.cjs",
@@ -86,6 +87,7 @@ try {
       const child = spawn(
         process.execPath,
         file.endsWith("tela-fixa/verificar.cjs") ||
+          file.endsWith("brisa-suave/carregamento.cjs") ||
           file.endsWith("cinematica/verificar.cjs") ||
           file.endsWith("validacao/subpasta.cjs") ||
           file.endsWith("remodelacao/verificar.cjs")

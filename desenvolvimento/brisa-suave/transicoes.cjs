@@ -11,6 +11,7 @@ function page(url, storage = new Map()) {
   class Element {
     constructor() {
       this.className = "";
+      this.style = { setProperty() {} };
       this.dataset = {};
       this.classList = {
         add: (...xs) => {

@@ -92,25 +92,31 @@
     const Previous = GuardiaoVidaNatural;
     window.GuardiaoVidaNatural = class extends Previous {
       async load(onProgress = () => {}) {
-        await A.load([
-          "kai",
-          "flora",
-          "npcs",
-          "acoes",
-          ...(this.phase === 1 ? ["mangueira"] : []),
+        // São recursos independentes: iniciar juntos evita uma cascata de rede.
+        await Promise.all([
+          A.load([
+            "kai",
+            "flora",
+            "npcs",
+            "acoes",
+            ...(this.phase === 1 ? ["mangueira"] : []),
+          ]),
+          (async () => {
+            if (this.phase !== 1) return;
+            const d = GuardiaoVidaAtlas.fogo,
+              im = new Image();
+            im.src = new URL(d.file, base);
+            await im.decode();
+            this.images.set("fogo", im);
+          })(),
+          this.water?.load(),
+          this.rebirth?.load(),
+          (async () => {
+            this.canopyShadow = new Image();
+            this.canopyShadow.src = new URL("sombra-copa.svg", base);
+            await this.canopyShadow.decode();
+          })(),
         ]);
-        if (this.phase === 1) {
-          const d = GuardiaoVidaAtlas.fogo,
-            im = new Image();
-          im.src = new URL(d.file, base);
-          await im.decode();
-          this.images.set("fogo", im);
-        }
-        if (this.water) await this.water.load();
-        if (this.rebirth) await this.rebirth.load();
-        this.canopyShadow = new Image();
-        this.canopyShadow.src = new URL("sombra-copa.svg", base);
-        await this.canopyShadow.decode();
         onProgress();
       }
       draw(ctx, name, index, x, y, height, options = {}) {

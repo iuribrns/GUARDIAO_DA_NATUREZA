@@ -615,23 +615,6 @@ body #jogo .top-actions button.ra-world-icon > svg.nature-symbol {
   box-shadow: none;
 }
 
-/* Folhas atravessam uma luz de bosque, sem grandes polígonos na passagem. */
-#leaf-transition .grove-shade {
-  background: radial-gradient(ellipse at 52% 42%, #426c45, #193e31 72%);
-}
-#leaf-transition .grove-half {
-  clip-path: ellipse(82% 72% at 10% 50%);
-  background: linear-gradient(100deg, #65924466, #bad27710);
-  opacity: 0.65;
-}
-#leaf-transition .grove-leaf {
-  width: clamp(44px, 8vw, 110px);
-  filter: drop-shadow(0 3px 3px #0f2c2830);
-}
-#leaf-transition.grove-closed .grove-leaf {
-  opacity: 0.78;
-}
-
 @media (orientation: landscape) and (max-height: 520px) {
   .settings-shell .ra-settings-body [data-setting-panel="audio"] {
     align-content: start;

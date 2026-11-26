@@ -1,8 +1,8 @@
 "use strict";
 (() => {
   const base = new URL("../trilhas-vivas/", document.currentScript.src),
-    cover = 480,
-    reveal = 600,
+    cover = 420,
+    reveal = 560,
     key = "guardiao.passagem.v2";
   let el,
     busy = false,
@@ -20,13 +20,15 @@
     el.id = "leaf-transition";
     el.setAttribute("aria-hidden", "true");
     el.innerHTML =
-      '<div class="grove-shade"></div><div class="grove-half left"></div><div class="grove-half right"></div>' +
+      '<div class="grove-shade"></div>' +
       Array.from(
         { length: 8 },
         (_, i) =>
           `<img class="grove-leaf" src="${new URL("assets/folha-" + (i % 3) + ".webp", base)}" alt="" style="--i:${i};--x:${10 + ((i * 31) % 80)}%;--y:${8 + ((i * 23) % 84)}%;--angle:${i * 47}deg">`,
       ).join("") +
-      '<span class="grove-loading">Uma nova trilha<span aria-hidden="true">• • •</span></span>';
+      '<span class="grove-loading">Preparando a próxima trilha<span aria-hidden="true">• • •</span></span>';
+    el.style.setProperty("--passagem-fechar", cover + "ms");
+    el.style.setProperty("--passagem-abrir", reveal + "ms");
     document.body.append(el);
   }
   async function limited(promise, ms = 8000) {

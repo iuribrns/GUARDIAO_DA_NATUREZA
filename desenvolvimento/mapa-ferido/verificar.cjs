@@ -56,6 +56,11 @@ fs.mkdirSync(out, { recursive: true });
         "distante",
         "distante",
       ]);
+      assert.equal(
+        await p.locator(".map-hotspot img, .map-hotspot svg").count(),
+        0,
+        "nenhum ícone fica atrás dos nomes das fases",
+      );
       const sizes = await p.locator(".map-hotspot").evaluateAll((bs) =>
         bs.map((b) => {
           const r = b.getBoundingClientRect(),

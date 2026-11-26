@@ -22,16 +22,26 @@
     done = 0,
     failed = false,
     finished = false,
-    lastPercent = 0;
-  function render(label) {
+    lastPercent = 0,
+    started = 0,
+    stages = [];
+  function render() {
     if (failed || finished) return;
     lastPercent = total ? Math.min(99, Math.floor((done / total) * 100)) : 0;
-    root().querySelector("[data-load-status]").textContent =
-      label || "Preparando a trilha…";
+    const waiting = stages.filter((s) => s.status === "loading");
+    root().querySelector("[data-load-status]").textContent = waiting.length
+      ? "Preparando: " +
+        waiting
+          .slice(0, 2)
+          .map((s) => s.label.toLocaleLowerCase("pt-BR"))
+          .join(" e ") +
+        "…"
+      : "Finalizando os preparativos…";
     root().querySelector("[data-load-count]").textContent = total
       ? lastPercent + "%"
       : "Preparando…";
     const bar = root().querySelector('[role="progressbar"]');
+    bar.setAttribute("aria-valuetext", `${done} de ${total} etapas prontas`);
     if (total) bar.setAttribute("aria-valuenow", String(lastPercent));
     else bar.removeAttribute("aria-valuenow");
     root().querySelector("[data-load-fill]").style.width = lastPercent + "%";
@@ -50,6 +60,10 @@
     render();
   }
   async function run(jobs) {
+    started = performance.now();
+    stages = jobs
+      .filter((j) => j.label)
+      .map((j) => ({ label: j.label, status: "loading", duration: 0 }));
     setup(jobs.filter((j) => j.label).length);
     return Promise.all(
       jobs.map((j) =>
@@ -57,8 +71,11 @@
           .then(j.load)
           .then((result) => {
             if (j.label) {
+              const stage = stages.find((s) => s.label === j.label);
+              stage.status = "ready";
+              stage.duration = Math.round(performance.now() - started);
               done++;
-              render("Pronto: " + j.label);
+              render();
             }
             return result;
           }),
@@ -76,6 +93,9 @@
     root()
       .querySelector('[role="progressbar"]')
       .setAttribute("aria-valuenow", "100");
+    root()
+      .querySelector('[role="progressbar"]')
+      .setAttribute("aria-valuetext", "Fase pronta");
     finished = true;
     document.body.dataset.loadingState = "ready";
     root().hidden = true;
@@ -96,6 +116,13 @@
     run,
     finish,
     fail,
-    state: () => ({ total, done, percent: lastPercent, failed, finished }),
+    state: () => ({
+      total,
+      done,
+      percent: lastPercent,
+      failed,
+      finished,
+      stages: stages.map((s) => ({ ...s })),
+    }),
   };
 })();

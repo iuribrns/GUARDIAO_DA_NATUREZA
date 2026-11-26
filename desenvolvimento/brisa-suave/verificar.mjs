@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { Script, createContext, runInContext } from "node:vm";
-import { combine } from "./agrupar.mjs";
+import { combine, combineStyles } from "./agrupar.mjs";
 
 // Empacotamento conserva os caminhos originais em páginas aninhadas do Pages.
 const files = {
@@ -33,10 +33,41 @@ assert.equal(
   "https://example.org/GUARDIAO_DA_NATUREZA/jogo/b/worker.js",
 );
 assert.equal((grouped.html.match(/<script/g) || []).length, 1);
+const styles = combineStyles(
+  "jogo/tela/index.html",
+  '<link rel="stylesheet" href="../a/base.css"><link rel="stylesheet" href="../b/final.css">',
+  (f) =>
+    ({
+      "jogo/a/base.css":
+        '@import url("../c/importado.css");.test{background:url("assets/fundo.webp?v=2#p")}@font-face{src:url(../fonte.woff2)}',
+      "jogo/c/importado.css": ".importado{background:url(./fundo.webp)}",
+      "jogo/b/final.css":
+        ".test{color:green;filter:url(#luz);mask:url(data:image/png;base64,AA==)}",
+    })[f],
+);
+assert.equal((styles.html.match(/rel="stylesheet"/g) || []).length, 1);
+assert.ok(
+  styles.code.indexOf("background:") < styles.code.indexOf("color:green"),
+);
+assert.ok(styles.code.includes('url("../../a/assets/fundo.webp?v=2#p")'));
+assert.ok(styles.code.includes('url("../../fonte.woff2")'));
+assert.ok(styles.code.includes('url("../../c/fundo.webp")'));
+assert.ok(styles.code.indexOf(".importado") < styles.code.indexOf(".test"));
+assert.ok(styles.code.includes("url(#luz)"));
+assert.ok(styles.code.includes("url(data:image/png;base64,AA==)"));
 for (const entry of ["viva", "floresta-viva", "jornada"]) {
   const text = readFileSync("dist/jogo/" + entry + "/index.html", "utf8");
-  const scripts = [...text.matchAll(/<script[^>]+src="([^"]+)"/g)];
+  assert.equal((text.match(/rel="stylesheet"/g) || []).length, 1);
+  const scripts = [
+    ...text.matchAll(
+      /<script[^>]+src="([^"]+)"[^>]*data-guardiao-bundle="true"/g,
+    ),
+  ];
   assert.equal(scripts.length, 1);
+  assert.ok(
+    text.includes('<script src="../tela-fixa/entrada.js"></script>'),
+    "entrada síncrona preserva a tela cheia",
+  );
   const url = new URL(
     scripts[0][1],
     "https://example.org/GUARDIAO_DA_NATUREZA/jogo/" + entry + "/index.html",
@@ -92,8 +123,17 @@ const w = {
   requestIdleCallback: (cb) => idle.push(cb),
   document: {
     currentScript: { src: "https://example.org/jogo/reencontro/paisagem.js" },
+    body: { dataset: { gameReady: "false" } },
     createElement: () => ({ getContext: () => context() }),
   },
+};
+let onReady;
+w.MutationObserver = class {
+  constructor(cb) {
+    onReady = cb;
+  }
+  observe() {}
+  disconnect() {}
 };
 w.window = w;
 createContext(w);
@@ -102,6 +142,18 @@ const landscape = new w.GuardiaoPaisagem.Landscape("rio", 1280, 720);
 await landscape.ready;
 assert.equal(requested.length, 1);
 assert.ok(requested[0].includes("-antes.webp"));
+assert.equal(
+  idle.length,
+  0,
+  "não agenda restauração antes de a fase ficar pronta",
+);
+w.document.body.dataset.gameReady = "true";
+onReady();
+assert.equal(
+  idle.length,
+  1,
+  "restauração é preparada em segundo plano depois da entrada",
+);
 const c = context();
 for (let i = 0; i < 300; i++) {
   clock = i / 60;

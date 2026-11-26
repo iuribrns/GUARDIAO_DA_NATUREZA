@@ -68,19 +68,6 @@ a svg {
   inset: 0;
   isolation: isolate;
 }
-.view.entering {
-  animation: view-arrive 0.45s ease both;
-}
-@keyframes view-arrive {
-  from {
-    opacity: 0;
-    translate: 0 12px;
-  }
-  to {
-    opacity: 1;
-    translate: 0 0;
-  }
-}
 .shell-bar {
   position: fixed;
   top: max(14px, env(safe-area-inset-top));
