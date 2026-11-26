@@ -49,6 +49,7 @@ try {
     ...(production ? ["jogo/viva/validacao/subpasta.cjs"] : []),
     "desenvolvimento/arte-viva/interface.cjs",
     "desenvolvimento/mapa-ferido/verificar.cjs",
+    "desenvolvimento/mapa-hud/verificar.cjs",
     "desenvolvimento/ilha-renascendo/verificar.cjs",
     "desenvolvimento/ilha-renascendo/encerramento.cjs",
     "desenvolvimento/rio-claro/verificar.cjs",
@@ -88,6 +89,7 @@ try {
         process.execPath,
         file.endsWith("tela-fixa/verificar.cjs") ||
           file.endsWith("brisa-suave/carregamento.cjs") ||
+          file.endsWith("mapa-hud/verificar.cjs") ||
           file.endsWith("cinematica/verificar.cjs") ||
           file.endsWith("validacao/subpasta.cjs") ||
           file.endsWith("remodelacao/verificar.cjs")

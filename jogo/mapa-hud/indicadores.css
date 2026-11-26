@@ -1,0 +1,283 @@
+/* As placas do kit usam bordas preservadas; os símbolos mantêm a proporção. */
+.map-view .map-hud {
+  --hud-height: 76px;
+  position: absolute;
+  inset: auto max(14px, env(safe-area-inset-right))
+    max(12px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.3fr 0.9fr;
+  align-items: stretch;
+  gap: 10px;
+  z-index: 9;
+  padding: 0;
+  pointer-events: none;
+}
+.map-hud .map-hud-card {
+  --hud-plaque: url("assets/placa-ativo.webp");
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  min-width: 0;
+  max-width: none;
+  min-height: var(--hud-height);
+  height: var(--hud-height);
+  margin: 0;
+  padding: 7px 14px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  color: #fff4cf;
+  text-align: left;
+  font:
+    400 18px/1.12 Lilita,
+    system-ui,
+    sans-serif;
+  isolation: isolate;
+}
+.map-hud-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 14px solid transparent;
+  border-inline-width: 38px;
+  border-image: var(--hud-plaque) 28 88 fill stretch;
+  pointer-events: none;
+  z-index: -1;
+}
+.map-hud-card[data-region-state="recuperada"],
+.map-hud-card[data-tree-state="restaurada"] {
+  --hud-plaque: url("assets/placa-concluido.webp");
+}
+.map-hud-card[data-region-state="bloqueada"] {
+  --hud-plaque: url("assets/placa-bloqueado.webp");
+}
+.map-hud-card > img {
+  flex: none;
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+}
+.map-hud-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.map-hud-copy strong {
+  font-weight: 400;
+}
+.map-hud-copy > span {
+  font:
+    700 13px/1.1 system-ui,
+    sans-serif;
+  color: #f5dd8a;
+}
+#map-current .map-hud-copy > span {
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.025em;
+}
+.map-hud #map-fragments {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr;
+  gap: 3px 7px;
+  padding-inline: 18px;
+}
+.map-hud-caption {
+  grid-column: 1 / -1;
+  font:
+    700 11px/1.1 system-ui,
+    sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.035em;
+  color: #f5dd8a;
+}
+.map-hud-slots {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  min-width: 0;
+}
+.map-hud-slot {
+  display: grid;
+  place-items: center;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 28px;
+  height: 30px;
+}
+.map-hud-slot :is(img, svg) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.map-hud-slot[data-earned="true"] {
+  padding: 2px 5px;
+  box-sizing: border-box;
+}
+[data-map-count] {
+  font:
+    400 30px/1 Lilita,
+    system-ui,
+    sans-serif;
+  align-self: center;
+  color: #fff4cf;
+}
+.map-hud #map-backpack {
+  width: auto;
+  right: auto;
+  bottom: auto;
+  pointer-events: auto;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.map-hud #map-backpack:focus-visible,
+.map-hud-actions > button:focus-visible {
+  outline: 3px solid #fff2a8;
+  outline-offset: 3px;
+}
+.map-hud-actions {
+  position: absolute;
+  left: 51%;
+  bottom: calc(100% + 7px);
+  translate: -50% 0;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  width: clamp(132px, 18vw, 240px);
+  pointer-events: auto;
+}
+.map-hud-actions > .small-button {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 44px;
+  padding: 6px 8px;
+  font-size: 12px;
+  line-height: 1.15;
+  white-space: normal;
+}
+.map-hud-actions:not(:has(button:not([hidden]))) {
+  display: none;
+}
+.island-ending .map-hud {
+  visibility: hidden;
+}
+.large-text .map-hud .map-hud-card {
+  padding-block: 5px;
+}
+.large-text .map-hud-caption {
+  font-size: 13px;
+}
+.large-text .map-hud-copy > strong {
+  font-size: 21px;
+}
+.large-text .map-hud-copy > span {
+  font-size: 15px;
+}
+.large-text #map-current .map-hud-copy > span {
+  font-size: 12px;
+}
+@media (orientation: landscape) and (max-height: 540px), (max-width: 900px) {
+  .map-view .island {
+    top: 6px;
+    bottom: 18px;
+  }
+  .map-view .map-hud {
+    --hud-height: 50px;
+    inset-inline: max(6px, env(safe-area-inset-left))
+      max(6px, env(safe-area-inset-right));
+    bottom: max(5px, env(safe-area-inset-bottom));
+    grid-template-columns: 1.2fr 1fr 1.2fr 0.8fr;
+    gap: 5px;
+  }
+  .map-hud .map-hud-card {
+    padding: 5px 9px;
+    gap: 4px;
+    font-size: 12px;
+  }
+  .map-hud-card::before {
+    border-width: 9px 23px;
+  }
+  .map-hud-card > img {
+    width: 36px;
+    height: 36px;
+  }
+  .map-hud-copy {
+    gap: 2px;
+  }
+  .map-hud-copy > span {
+    font-size: 10px;
+  }
+  #map-current .map-hud-copy > span {
+    font-size: 8px;
+  }
+  .map-hud #map-fragments {
+    gap: 1px 4px;
+    padding-inline: 10px;
+  }
+  .map-hud-caption {
+    font-size: 8px;
+    letter-spacing: 0;
+  }
+  .map-hud-slot {
+    max-width: 21px;
+    height: 22px;
+  }
+  .map-hud-slot[data-earned="true"] {
+    padding: 1px 3px;
+  }
+  .map-hud-slots {
+    gap: 1px;
+  }
+  [data-map-count] {
+    font-size: 22px;
+  }
+  .map-hud-actions {
+    bottom: calc(100% + 5px);
+  }
+  .map-hud-actions > .small-button {
+    font-size: 11px;
+    padding: 4px;
+  }
+  .map-view > .flora-line {
+    top: 34%;
+    bottom: auto;
+  }
+  .large-text .map-hud-copy > strong {
+    font-size: 14px;
+  }
+  .large-text .map-hud .map-hud-card {
+    padding-block: 3px;
+  }
+  .large-text .map-hud-caption {
+    font-size: 10px;
+  }
+  .large-text .map-hud-copy > span {
+    font-size: 11px;
+  }
+  .large-text #map-current .map-hud-copy > span {
+    font-size: 9px;
+  }
+}
+@media (orientation: landscape) and (max-height: 345px) {
+  .map-view .island {
+    top: 8px;
+    bottom: 30px;
+  }
+  .map-hud-actions {
+    flex-direction: column;
+    width: 96px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .map-hud :is(button, img) {
+    transition: none;
+    animation: none;
+  }
+}

@@ -53,7 +53,7 @@
     } catch {}
     document.body.dataset.endingState = "concluido";
     document.body.dataset.finaleScene = "celebracao";
-    $("tree-state").textContent = "Árvore Guardiã restaurada";
+    GuardiaoMapaHUD.update();
     $("credits-necklace").innerHTML = GuardiaoRelicario.necklace(
       [1, 2, 3, 4, 5],
       "credits",

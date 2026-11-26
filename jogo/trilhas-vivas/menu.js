@@ -178,15 +178,7 @@
         !window.VivaFinal?.active,
     );
     $("island-restoration").innerHTML = "";
-    const current = phases.find((d) => d.id === p.current) || phases[0];
-    $("map-current").innerHTML = R.icon(current.icon) + current.name;
-    $("map-fragments").textContent = p.completed.length + " / 5 cristais";
-    $("tree-state").textContent =
-      p.completed.length === 0
-        ? "Árvore Guardiã enfraquecida"
-        : p.completed.length === 5
-          ? "A ilha pode florescer de novo"
-          : `A árvore recupera forças · ${p.completed.length}/5`;
+    GuardiaoMapaHUD.update(p);
     $("tree-restoration").innerHTML = "";
     $("map-reset").hidden = !p.completed.length;
     $("replay-ending").hidden = !R.won();

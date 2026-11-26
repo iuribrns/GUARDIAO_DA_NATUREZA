@@ -236,23 +236,7 @@ a {
   height: 21px;
   font-size: 12px;
 }
-.map-footer {
-  gap: 7px;
-  bottom: 7px;
-}
-.map-footer p {
-  font-size: 11px;
-  padding: 6px 10px;
-  background: #234d3bea;
-}
-.map-footer #tree-state {
-  font-weight: 500;
-  font-size: 10px;
-  color: #e1dda9;
-}
-.map-footer #map-fragments {
-  margin-left: auto;
-}
+
 .flora-line {
   top: 74px;
   max-width: 360px;
@@ -838,24 +822,7 @@ a {
     height: 16px;
     font-size: 9px;
   }
-  .map-footer {
-    gap: 5px;
-    bottom: 4px;
-    left: 6px;
-    right: 6px;
-  }
-  .map-footer p {
-    font-size: 9px;
-    padding: 5px 7px;
-  }
-  .map-footer #tree-state {
-    display: none;
-  }
-  .map-footer .small-button {
-    font-size: 9px;
-    min-height: 29px;
-    padding: 4px 7px;
-  }
+
   .flora-line {
     font-size: 9px;
     top: 58px;

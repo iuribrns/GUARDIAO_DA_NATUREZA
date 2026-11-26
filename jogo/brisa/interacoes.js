@@ -23,8 +23,6 @@
       "</span>";
   }
   document.addEventListener("DOMContentLoaded", () => {
-    const bag = document.getElementById("map-backpack");
-    if (bag) bag.innerHTML = Raizes.icon("bag") + "<span>Mochila</span>";
     document
       .querySelectorAll(
         ".home-menu a,.home-settings,.map-hotspot,.ra-world-icon",

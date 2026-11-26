@@ -472,32 +472,7 @@ a svg {
   display: grid;
   place-items: center;
 }
-.map-footer {
-  position: absolute;
-  bottom: 10px;
-  left: 16px;
-  right: 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  z-index: 6;
-}
-.map-footer p {
-  background: #214e43e8;
-  border: 2px solid #b6965a;
-  border-radius: 13px;
-  padding: 7px 14px;
-  color: #f4edca;
-  margin: 0;
-  font-size: 12px;
-  font-weight: 700;
-}
-.map-footer #map-fragments {
-  margin-left: auto;
-}
-.map-footer #map-current {
-  max-width: 35vw;
-}
+
 .map-growth {
   animation: region-grow 1.8s ease-out both;
   transform-box: fill-box;
@@ -1350,17 +1325,7 @@ a svg {
     height: 23px;
     font-size: 16px;
   }
-  .map-footer {
-    left: 10px;
-    right: 10px;
-    bottom: 7px;
-    gap: 6px;
-  }
-  .map-footer p {
-    font-size: 10px;
-    padding: 6px 10px;
-    border-radius: 10px;
-  }
+
   .small-button {
     padding: 5px 9px;
     min-height: 32px;
@@ -1802,16 +1767,6 @@ dialog:not([open]) {
   display: none !important;
 }
 
-.map-footer #map-current {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-.map-footer #map-current svg {
-  width: 18px;
-  height: 18px;
-  flex: none;
-}
 .wood-button,
 .game-logo {
   background-blend-mode: normal;

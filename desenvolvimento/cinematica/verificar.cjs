@@ -107,8 +107,21 @@ async function rewindRetrospective(f) {
         v.currentTime = v.duration - 0.2;
       });
       await f.locator("#final-credits").waitFor({ state: "visible" });
+      assert.equal(
+        await f.locator("#tree-state").getAttribute("data-tree-state"),
+        "restaurada",
+        "cutscene concluída atualiza o mesmo indicador do mapa",
+      );
+      assert.match(
+        await f.locator("[data-map-tree-icon]").getAttribute("src"),
+        /arvore-restaurada\.webp$/,
+      );
       assert.ok(await p.evaluate(() => !!document.fullscreenElement));
       await f.locator("#ending-island").click();
+      assert.equal(
+        await f.locator("[data-map-tree-status]").textContent(),
+        "Restaurada",
+      );
       assert.equal(await f.evaluate(() => VivaFinal.active), false);
       // Retry the ending: stop during the fade must not reopen a stale summary.
       await f.locator("#replay-ending").click();

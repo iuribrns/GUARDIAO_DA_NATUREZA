@@ -74,6 +74,7 @@
     <script src="../encontros-vivos/cenas.js?v=1" defer></script>
     <script src="../arte-viva/ambiente.js?v=arte-1" defer></script>
     <script src="../mapa-ferido/mapa.js?v=ferido-1" defer></script>
+    <script src="../mapa-hud/indicadores.js?v=1" defer></script>
     <script src="../trilhas-vivas/menu.js?v=ferido-1" defer></script>
     <script src="../brisa-suave/carregamento.js?v=suave-1" defer></script>
     <script src="../brisa/interacoes.js?v=brisa-1" defer></script>
@@ -98,6 +99,7 @@
     <script src="../remodelacao/recursos.js?v=1" defer></script>
     <script src="../remodelacao/interface.js?v=1" defer></script>
     <link rel="stylesheet" href="../remodelacao/remodelacao.css?v=1" />
+    <link rel="stylesheet" href="../mapa-hud/indicadores.css?v=1" />
   </head>
   <body>
     <div class="backdrop" aria-hidden="true"></div>
@@ -185,22 +187,81 @@
           </div>
         </header>
         <p id="flora-map-line" class="flora-line" role="status" hidden></p>
-        <button
-          type="button"
-          id="map-backpack"
-          class="brisa-map-pack"
-          aria-label="Mochila de Kai"
-          aria-haspopup="dialog"
-        ></button>
-        <footer class="map-footer">
-          <p id="map-current"></p>
-          <p id="map-fragments"></p>
-          <p id="tree-state">Árvore Guardiã enfraquecida</p>
-          <button type="button" id="map-reset" class="small-button" hidden>
-            Nova jornada</button
-          ><button type="button" id="replay-ending" class="small-button" hidden>
-            Rever final
+        <footer class="map-footer map-hud" aria-label="Indicadores da jornada">
+          <p id="map-current" class="map-hud-card" data-region-state="atual">
+            <img
+              data-map-phase-icon
+              src="../remodelacao/assets/icones/fogo.webp"
+              width="320"
+              height="320"
+              alt=""
+              loading="lazy"
+            />
+            <span class="map-hud-copy"
+              ><strong data-map-phase-name>Floresta em Chamas</strong
+              ><span data-map-phase-status>Região atual</span></span
+            >
+          </p>
+          <div
+            id="map-fragments"
+            class="map-hud-card"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <strong class="map-hud-caption">Cristais conquistados</strong>
+            <span class="map-hud-slots"></span
+            ><strong data-map-count>0/5</strong>
+          </div>
+          <p
+            id="tree-state"
+            class="map-hud-card"
+            aria-label="Árvore Guardiã enfraquecida"
+          >
+            <img
+              data-map-tree-icon
+              src="../mapa-hud/assets/arvore-enfraquecida.webp"
+              width="382"
+              height="384"
+              alt=""
+              loading="lazy"
+            />
+            <span class="map-hud-copy"
+              ><strong>Árvore Guardiã</strong
+              ><span data-map-tree-status>Enfraquecida</span></span
+            >
+          </p>
+          <button
+            type="button"
+            id="map-backpack"
+            class="brisa-map-pack map-hud-card"
+            aria-label="Mochila de Kai"
+            aria-haspopup="dialog"
+          >
+            <img
+              src="../remodelacao/assets/icones/mochila.webp"
+              width="320"
+              height="320"
+              alt=""
+              loading="lazy"
+            />
+            <span class="map-hud-copy"
+              ><strong>Mochila</strong><span>de Kai</span></span
+            >
           </button>
+          <nav class="map-hud-actions" aria-label="Opções da jornada">
+            <button type="button" id="map-reset" class="small-button" hidden>
+              Nova jornada
+            </button>
+            <button
+              type="button"
+              id="replay-ending"
+              class="small-button"
+              hidden
+            >
+              Rever final
+            </button>
+          </nav>
         </footer>
       </section>
       <section
