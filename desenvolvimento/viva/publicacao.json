@@ -44,7 +44,7 @@
     "jogo/brisa-suave/compilados/floresta-viva-bcc03d69bea6.js",
     "jogo/brisa-suave/compilados/jornada-0c9c3cc906d3.js",
     "jogo/brisa-suave/compilados/jornada-985ac890250b.css",
-    "jogo/brisa-suave/compilados/viva-30d4b6028145.css",
+    "jogo/brisa-suave/compilados/viva-7642213fc311.css",
     "jogo/brisa-suave/compilados/viva-dc518b1aaa0f.js",
     "jogo/brisa-suave/etiquetas.js",
     "jogo/brisa-suave/interface.css",
@@ -488,10 +488,10 @@
     "tela-inicial/renascimento/interacoes.js",
     "tela-inicial/renascimento/rustico.css"
   ],
-  "bytes": 82381987,
+  "bytes": 82382025,
   "generated": [
     "jogo/brisa-suave/compilados/viva-dc518b1aaa0f.js",
-    "jogo/brisa-suave/compilados/viva-30d4b6028145.css",
+    "jogo/brisa-suave/compilados/viva-7642213fc311.css",
     "jogo/brisa-suave/compilados/floresta-viva-bcc03d69bea6.js",
     "jogo/brisa-suave/compilados/floresta-viva-a7b3cb2d76f4.css",
     "jogo/brisa-suave/compilados/jornada-0c9c3cc906d3.js",

@@ -1,16 +1,16 @@
 /* As placas do kit usam bordas preservadas; os símbolos mantêm a proporção. */
 .map-view .map-hud {
-  --hud-height: 72px;
+  --hud-height: 58px;
   position: absolute;
   inset: auto max(14px, env(safe-area-inset-right))
     max(12px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
   display: grid;
   grid-template-columns: 1.2fr 1fr 1.3fr 0.9fr;
   align-items: stretch;
-  gap: 10px;
+  gap: 8px;
   z-index: 9;
   padding: 0;
-  max-width: 1360px;
+  max-width: 1080px;
   margin-inline: auto;
   pointer-events: none;
 }
@@ -20,13 +20,13 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 8px;
+  gap: 6px;
   min-width: 0;
   max-width: none;
   min-height: var(--hud-height);
   height: var(--hud-height);
   margin: 0;
-  padding: 7px 14px;
+  padding: 4px 10px;
   box-sizing: border-box;
   border: 0;
   border-radius: 0;
@@ -35,7 +35,7 @@
   color: #fff4cf;
   text-align: left;
   font:
-    400 18px/1.12 Lilita,
+    400 16px/1.12 Lilita,
     system-ui,
     sans-serif;
   isolation: isolate;
@@ -44,8 +44,8 @@
   content: "";
   position: absolute;
   inset: 0;
-  border: 14px solid transparent;
-  border-inline-width: 38px;
+  border: 11px solid transparent;
+  border-inline-width: 30px;
   border-image: var(--hud-plaque) 28 88 fill stretch;
   pointer-events: none;
   z-index: -1;
@@ -59,14 +59,14 @@
 }
 .map-hud-card > img {
   flex: none;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
 }
 .map-hud-copy {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   min-width: 0;
 }
 .map-hud-copy strong {
@@ -74,26 +74,26 @@
 }
 .map-hud-copy > span {
   font:
-    700 13px/1.1 system-ui,
+    700 11px/1.1 system-ui,
     sans-serif;
   color: #f5dd8a;
 }
 #map-current .map-hud-copy > span {
   text-transform: uppercase;
-  font-size: 10px;
+  font-size: 9px;
   letter-spacing: 0.025em;
 }
 .map-hud #map-fragments {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   grid-template-rows: auto 1fr;
-  gap: 3px 7px;
-  padding-inline: 18px;
+  gap: 2px 5px;
+  padding-inline: 13px;
 }
 .map-hud-caption {
   grid-column: 1 / -1;
   font:
-    700 11px/1.1 system-ui,
+    700 10px/1.1 system-ui,
     sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.035em;
@@ -111,8 +111,8 @@
   place-items: center;
   flex: 1 1 0;
   min-width: 0;
-  max-width: 28px;
-  height: 30px;
+  max-width: 24px;
+  height: 24px;
 }
 .map-hud-slot :is(img, svg) {
   display: block;
@@ -126,7 +126,7 @@
 }
 [data-map-count] {
   font:
-    400 30px/1 Lilita,
+    400 26px/1 Lilita,
     system-ui,
     sans-serif;
   align-self: center;
@@ -173,22 +173,22 @@
   visibility: hidden;
 }
 .large-text .map-hud .map-hud-card {
-  padding-block: 5px;
+  padding-block: 3px;
 }
 .large-text .map-view .map-hud {
-  --hud-height: 80px;
+  --hud-height: 70px;
 }
 .large-text .map-hud-caption {
-  font-size: 13px;
+  font-size: 12px;
 }
 .large-text .map-hud-copy > strong {
-  font-size: 21px;
+  font-size: 19px;
 }
 .large-text .map-hud-copy > span {
-  font-size: 15px;
+  font-size: 13px;
 }
 .large-text #map-current .map-hud-copy > span {
-  font-size: 12px;
+  font-size: 11px;
 }
 @media (orientation: landscape) and (max-height: 540px), (max-width: 900px) {
   .map-view .island {
@@ -196,30 +196,31 @@
     bottom: 18px;
   }
   .map-view .map-hud {
-    --hud-height: 48px;
+    --hud-height: 44px;
+    max-width: 640px;
     inset-inline: max(6px, env(safe-area-inset-left))
       max(6px, env(safe-area-inset-right));
     bottom: max(5px, env(safe-area-inset-bottom));
     grid-template-columns: 1.2fr 1fr 1.2fr 0.8fr;
-    gap: 5px;
+    gap: 4px;
   }
   .map-hud .map-hud-card {
-    padding: 5px 9px;
+    padding: 3px 8px;
     gap: 4px;
     font-size: 12px;
   }
   .map-hud-card::before {
-    border-width: 9px 23px;
+    border-width: 8px 20px;
   }
   .map-hud-card > img {
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
   }
   .map-hud-copy {
     gap: 2px;
   }
   .map-hud-copy > span {
-    font-size: 10px;
+    font-size: 9px;
   }
   #map-current .map-hud-copy > span {
     font-size: 8px;
@@ -233,8 +234,8 @@
     letter-spacing: 0;
   }
   .map-hud-slot {
-    max-width: 21px;
-    height: 20px;
+    max-width: 19px;
+    height: 18px;
   }
   .map-hud-slot[data-earned="true"] {
     padding: 1px 3px;
@@ -243,7 +244,7 @@
     gap: 1px;
   }
   [data-map-count] {
-    font-size: 22px;
+    font-size: 20px;
   }
   .map-hud-actions {
     bottom: calc(100% + 5px);
@@ -260,10 +261,10 @@
     font-size: 14px;
   }
   .large-text .map-view .map-hud {
-    --hud-height: 52px;
+    --hud-height: 48px;
   }
   .large-text .map-hud .map-hud-card {
-    padding-block: 3px;
+    padding-block: 2px;
   }
   .large-text .map-hud-caption {
     font-size: 10px;

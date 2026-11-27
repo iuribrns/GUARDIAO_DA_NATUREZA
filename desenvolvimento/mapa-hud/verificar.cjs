@@ -218,12 +218,12 @@ async function artReady(frame) {
         );
         assert.ok(g.targets && g.symbols);
         assert.ok(
-          g.hudWidth <= 1360,
+          g.hudWidth <= (width < 1000 ? 640 : 1080),
           "rodapé não estica demais em monitores largos",
         );
         if (width < 1000)
           assert.ok(
-            g.hudHeight <= (large ? 52 : 48),
+            g.hudHeight <= (large ? 48 : 44),
             "painéis compactos no celular",
           );
         assert.ok(
