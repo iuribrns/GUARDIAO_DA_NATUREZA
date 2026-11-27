@@ -180,5 +180,5 @@
   document.addEventListener("click", (event) => {
     if (event.detail === 0) touch(event);
   });
-  window.GuardiaoMapaHUD = { update };
+  window.GuardiaoMapaHUD = { update, fragment };
 })();

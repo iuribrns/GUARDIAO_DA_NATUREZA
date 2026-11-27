@@ -712,33 +712,7 @@ a {
   min-height: 28px;
   padding: 3px 8px;
 }
-.forest-credits {
-  width: min(620px, 90vw);
-  text-align: center;
-  background:
-    linear-gradient(#f8edcc, #e1d5ad) padding-box,
-    var(--wood) border-box;
-}
-.forest-credits h2 {
-  color: #365b3c;
-}
-.forest-credits #credits-necklace {
-  float: left;
-  width: 120px;
-  height: 180px;
-}
-.forest-credits #credits-necklace svg {
-  width: 100%;
-  height: 100%;
-}
-.forest-credits > p:not(.eyebrow) {
-  font-size: 12px;
-  margin: 7px 0;
-}
-.forest-credits .ra-dialog-actions {
-  clear: both;
-  padding-top: 15px;
-}
+
 @media (orientation: landscape) and (max-height: 500px) {
   .home-copy {
     top: 2%;
@@ -1113,29 +1087,6 @@ a {
     font-size: 10px;
     margin: 4px 0;
   }
-  .forest-credits {
-    padding: 13px 20px;
-  }
-  .forest-credits h2 {
-    font-size: 25px;
-  }
-  .forest-credits #credits-necklace {
-    height: 134px;
-    width: 100px;
-  }
-  .forest-credits > p:not(.eyebrow) {
-    font-size: 10px;
-    margin: 4px 0;
-  }
-  .forest-credits .ra-dialog-actions {
-    padding-top: 7px;
-    margin-top: 10px;
-  }
-  .forest-credits .ra-dialog-actions button {
-    font-size: 12px;
-    min-height: 39px;
-    padding: 8px;
-  }
 }
 @media (orientation: landscape) and (max-height: 345px) {
   .home .game-logo .logo-art {
@@ -1447,63 +1398,5 @@ a {
   }
 }
 
-#journey-return:not([hidden]) {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
-  background: #102e24;
-}
-#return-art {
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-}
-.return-caption {
-  position: relative;
-  padding: 12px max(20px, env(safe-area-inset-left));
-  padding-right: max(270px, 22vw);
-  background: linear-gradient(100deg, #244d36, #153d2f);
-  border-top: 3px solid #b58b47;
-  color: #fff1cd;
-  min-height: 120px;
-  box-sizing: border-box;
-}
-.return-caption h2 {
-  margin: 3px 0 5px;
-  font: 400 clamp(24px, 3vw, 36px) / 1.1 Lilita;
-  color: #fff1cd;
-}
-.return-caption p {
-  margin: 3px 0;
-  max-width: 800px;
-}
-.return-caption #return-next {
-  position: absolute;
-  right: max(16px, env(safe-area-inset-right));
-  top: 50%;
-  transform: translateY(-50%);
-  width: 230px;
-  min-height: 48px;
-}
 @media (max-height: 500px) and (orientation: landscape) {
-  .return-caption {
-    min-height: 92px;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    padding-right: 210px;
-    font-size: 12px;
-  }
-  .return-caption h2 {
-    font-size: 24px;
-  }
-  .return-caption .eyebrow {
-    font-size: 10px;
-  }
-  .return-caption #return-next {
-    width: 185px;
-    font-size: 14px;
-    right: 10px;
-  }
 }

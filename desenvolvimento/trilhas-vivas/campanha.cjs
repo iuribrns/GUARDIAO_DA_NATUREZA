@@ -576,6 +576,9 @@ const done = (t) => ["done", "safe"].includes(t.status);
       await p.waitForFunction(() => JornadaRetorno.state().ready);
       while (await p.locator("#journey-return").isVisible())
         await p.locator("#return-next").click();
+      await p.waitForFunction(
+        () => !JornadaRetorno.state().active || JornadaRetorno.state().ready,
+      );
       await p.click("#ending-skip");
       await p.waitForFunction(
         () => document.body.dataset.endingState === "concluido",

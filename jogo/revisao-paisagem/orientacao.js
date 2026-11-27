@@ -13,7 +13,8 @@
     prompt.showModal();
   }
   function apply() {
-    const next = innerHeight > innerWidth;
+    // As lembranças e os créditos têm composição própria em retrato.
+    const next = innerHeight > innerWidth && !window.VivaFinal?.active;
     const mobile = phone();
     document.getElementById("girar-titulo").textContent = mobile
       ? "Gire o celular"

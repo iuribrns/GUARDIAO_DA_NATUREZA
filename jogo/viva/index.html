@@ -100,6 +100,7 @@
     <script src="../remodelacao/interface.js?v=1" defer></script>
     <link rel="stylesheet" href="../remodelacao/remodelacao.css?v=1" />
     <link rel="stylesheet" href="../mapa-hud/indicadores.css?v=1" />
+    <link rel="stylesheet" href="../reencontros-finais/encerramento.css?v=1" />
   </head>
   <body>
     <div class="backdrop" aria-hidden="true"></div>
@@ -695,18 +696,44 @@
       aria-modal="true"
       aria-labelledby="return-title"
     >
-      <canvas
-        id="return-art"
-        aria-label="Regiões restauradas, animais recuperados e reencontros de Kai"
-      ></canvas>
-      <div class="return-caption">
-        <p id="return-count" class="eyebrow"></p>
+      <div class="return-backdrop" aria-hidden="true"></div>
+      <header class="return-heading">
+        <div class="memory-plate return-brand">
+          <p>GUARDIÃO DA NATUREZA</p>
+          <strong>Memórias da jornada</strong>
+        </div>
+        <div
+          class="memory-plate return-progress"
+          aria-label="Cinco cristais conquistados"
+        >
+          <strong id="return-count"></strong>
+          <div id="return-crystals"></div>
+        </div>
+      </header>
+      <div class="return-picture">
+        <img id="return-art-before" alt="" aria-hidden="true" hidden />
+        <img id="return-art" width="1672" height="941" alt="" hidden />
+      </div>
+      <div class="memory-plate return-caption">
+        <img id="return-icon" width="320" height="320" alt="" />
+        <p id="return-ally" class="eyebrow"></p>
         <h2 id="return-title"></h2>
         <p id="return-line" aria-live="polite"></p>
-        <button type="button" id="return-next" class="wood-button">
+      </div>
+      <p id="return-status" role="status" hidden></p>
+      <nav class="return-actions" aria-label="Navegação das lembranças">
+        <button
+          type="button"
+          id="return-previous"
+          class="memory-secondary"
+          disabled
+        >
+          ← Anterior
+        </button>
+        <button type="button" id="return-next" class="memory-primary">
           Próxima lembrança →
         </button>
-      </div>
+      </nav>
     </section>
     <section
       id="final-cinema"
@@ -744,18 +771,67 @@
       class="ra-dialog forest-credits"
       aria-labelledby="credits-title"
     >
-      <p class="eyebrow">CADA CUIDADO FEZ A DIFERENÇA</p>
-      <h2 id="credits-title">A ilha voltou a florescer!</h2>
-      <div id="credits-necklace"></div>
-      <p>Criação e gestão · Iuri Barroso Nascimento</p>
-      <p>Programação · Hicham Mohamed El Attar e Eric Nascimento</p>
-      <p>Design · Natson Evangelista</p>
-      <p>Professor Peterson Lobato · UNEB · Web 1</p>
-      <div class="ra-dialog-actions">
-        <button type="button" id="ending-island">Voltar à ilha</button
-        ><button type="button" class="primary" id="ending-restart">
-          Jogar do início
-        </button>
+      <figure class="credits-landscape">
+        <header class="memory-plate">
+          <p>UMA JORNADA CONCLUÍDA</p>
+          <h2>A natureza agradece!</h2>
+        </header>
+        <div class="credits-picture">
+          <img
+            src="../reencontros-finais/assets/cenario-final.webp"
+            width="1672"
+            height="941"
+            alt="Kai e Flora diante da Árvore Guardiã restaurada"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <figcaption class="memory-plate credits-amulet">
+          <div id="credits-necklace"></div>
+          <div>
+            <strong>5 de 5 cristais</strong>
+            <p>O poder de cuidar juntos.</p>
+          </div>
+        </figcaption>
+      </figure>
+      <div class="credits-copy">
+        <p class="eyebrow">CADA CUIDADO FEZ A DIFERENÇA</p>
+        <h2 id="credits-title" tabindex="-1">A ilha voltou a florescer!</h2>
+        <p>Obrigado por fazer parte desta aventura.</p>
+        <dl class="credits-team">
+          <div>
+            <dt>Criação e gestão</dt>
+            <dd>Iuri Barroso Nascimento</dd>
+          </div>
+          <div>
+            <dt>Programação</dt>
+            <dd>Hicham Mohamed El Attar<br />Eric Nascimento</dd>
+          </div>
+          <div>
+            <dt>Design</dt>
+            <dd>Natson Evangelista</dd>
+          </div>
+          <div>
+            <dt>Orientação acadêmica</dt>
+            <dd>Professor Peterson Lobato<small>UNEB · Web 1</small></dd>
+          </div>
+        </dl>
+        <section
+          class="credits-technologies"
+          aria-label="Ferramentas e tecnologias"
+        >
+          <h3>Ferramentas e tecnologias</h3>
+          <p>HTML · CSS · JavaScript · Figma · ChatGPT · Codex</p>
+        </section>
+        <div class="ra-dialog-actions">
+          <button type="button" id="ending-island" class="memory-primary">
+            Voltar à ilha
+          </button>
+          <button type="button" id="ending-restart" class="memory-secondary">
+            Jogar do início
+          </button>
+        </div>
+        <p class="credits-note">Uma aventura de educação ambiental.</p>
       </div>
     </dialog>
     <p id="raizes-status" role="status" hidden></p>

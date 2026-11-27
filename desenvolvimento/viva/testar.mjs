@@ -65,6 +65,7 @@ try {
     "desenvolvimento/trilhas-vivas/campanha.cjs",
     "desenvolvimento/tela-fixa/verificar.cjs",
     "desenvolvimento/cinematica/verificar.cjs",
+    "desenvolvimento/reencontros-finais/verificar.cjs",
     "desenvolvimento/remodelacao/verificar.cjs",
   ];
   const resume = process.argv
@@ -91,6 +92,7 @@ try {
           file.endsWith("brisa-suave/carregamento.cjs") ||
           file.endsWith("mapa-hud/verificar.cjs") ||
           file.endsWith("cinematica/verificar.cjs") ||
+          file.endsWith("reencontros-finais/verificar.cjs") ||
           file.endsWith("validacao/subpasta.cjs") ||
           file.endsWith("remodelacao/verificar.cjs")
           ? [file]

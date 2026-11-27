@@ -59,6 +59,9 @@
       "credits",
     );
     if (!$("final-credits").open) $("final-credits").showModal();
+    $("final-credits").scrollTop = 0;
+    $("final-credits").querySelector(".credits-copy").scrollTop = 0;
+    $("credits-title").focus({ preventScroll: true });
   }
   function complete() {
     if (!active || finished || closing) return;
@@ -95,6 +98,7 @@
     document.body.classList.add("island-ending");
     document.body.dataset.endingState = "retrospectiva";
     document.body.dataset.finaleScene = "retrospectiva";
+    window.GuardiaoOrientacao?.refresh();
     enterFullscreen();
     JornadaRetorno.start(startMovie);
   }
@@ -134,6 +138,7 @@
     $("cinema-gate").hidden = true;
     document.body.classList.remove("island-ending");
     if ($("final-credits").open) $("final-credits").close();
+    window.GuardiaoOrientacao?.refresh();
     if (wasActive) {
       window.GuardiaoAudio?.cinematic(false);
       if (document.body.dataset.view === "mapa") RaizesApp.refreshMap();

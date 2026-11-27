@@ -32,8 +32,8 @@ async function setup(b, mobile) {
 }
 async function rewindRetrospective(f) {
   await f.waitForFunction(() => JornadaRetorno.state().ready);
-  await f.evaluate(() => {
-    while (JornadaRetorno.state().active) JornadaRetorno.next();
+  await f.evaluate(async () => {
+    while (JornadaRetorno.state().active) await JornadaRetorno.next();
   });
 }
 (async () => {
@@ -147,12 +147,12 @@ async function rewindRetrospective(f) {
     await f.evaluate(() => {
       setTimeout(() => {
         VivaFinal.start();
-        const advance = () => {
+        const advance = async () => {
           if (!JornadaRetorno.state().ready) {
             setTimeout(advance, 100);
             return;
           }
-          while (JornadaRetorno.state().active) JornadaRetorno.next();
+          while (JornadaRetorno.state().active) await JornadaRetorno.next();
         };
         advance();
       }, 6200);

@@ -203,6 +203,9 @@ const base =
         String(id),
       );
       await p.click("#return-next");
+      await p.waitForFunction(
+        () => !JornadaRetorno.state().active || JornadaRetorno.state().ready,
+      );
     }
     assert.equal(await p.evaluate(() => document.body.dataset.view), "mapa");
     assert.equal(

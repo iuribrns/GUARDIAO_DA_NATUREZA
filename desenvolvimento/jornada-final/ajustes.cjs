@@ -174,6 +174,9 @@ async function ready(p, url) {
           path: out + `/retorno-${i + 1}-${mobile ? "celular" : "pc"}.png`,
         });
         await p.locator("#return-next").click();
+        await p.waitForFunction(
+          () => !JornadaRetorno.state().active || JornadaRetorno.state().ready,
+        );
       }
       assert.deepEqual(names, [
         "Carlos",
