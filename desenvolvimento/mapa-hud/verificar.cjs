@@ -25,6 +25,11 @@ async function geometry(frame) {
         ...document.querySelectorAll(".map-hud-actions button:not([hidden])"),
       ];
     return {
+      hudWidth: rect(document.querySelector(".map-hud")).width,
+      hudHeight: rect(document.querySelector(".map-hud-card")).height,
+      crystalGap:
+        rect(document.querySelector("[data-map-count]")).left -
+        rect(document.querySelector(".map-hud-slot:last-child")).right,
       overflow: cards.flatMap((card) =>
         [
           ...card.querySelectorAll(
@@ -91,6 +96,7 @@ async function artReady(frame) {
   });
   try {
     for (const [width, height, large] of [
+      [1920, 1080, false],
       [1280, 720, false],
       [844, 390, false],
       [740, 320, false],
@@ -211,6 +217,19 @@ async function artReady(frame) {
           JSON.stringify({ width, height, large, completed, ...g }),
         );
         assert.ok(g.targets && g.symbols);
+        assert.ok(
+          g.hudWidth <= 1360,
+          "rodapé não estica demais em monitores largos",
+        );
+        if (width < 1000)
+          assert.ok(
+            g.hudHeight <= (large ? 52 : 48),
+            "painéis compactos no celular",
+          );
+        assert.ok(
+          g.crystalGap >= 0 && g.crystalGap <= 10,
+          "cristais e contador ficam próximos e alinhados",
+        );
         assert.ok(g.mapFit, "mapa inteiro com a proporção original");
         assert.deepEqual(
           g.coordinates,
@@ -253,7 +272,50 @@ async function artReady(frame) {
         /placa-bloqueado\.webp/,
       );
       await frame.evaluate(() => RaizesApp.refreshMap());
-      await frame.locator("#map-backpack").click();
+      const bag = frame.locator("#map-backpack"),
+        r = await bag.boundingBox();
+      await bag.dispatchEvent("pointerdown", {
+        pointerType: width < 1000 ? "touch" : "mouse",
+        isPrimary: true,
+        button: 0,
+        clientX: r.x + r.width / 2,
+        clientY: r.y + r.height / 2,
+      });
+      assert.equal(await bag.locator(".map-touch-layer").count(), 1);
+      assert.equal(
+        await bag.evaluate((e) => e.getAnimations().length),
+        large ? 0 : 1,
+        "opção de menos movimento respeitada",
+      );
+      await page.waitForTimeout(70);
+      await page.screenshot({
+        path: `${out}/toque-${width}-${large ? "suave" : "animado"}.png`,
+      });
+      await page.waitForTimeout(300);
+      assert.equal(
+        await bag.locator(".map-touch-layer").count(),
+        0,
+        "efeito removido ao terminar",
+      );
+      for (let tap = 0; tap < 3; tap++)
+        await bag.dispatchEvent("pointerdown", {
+          pointerType: "touch",
+          isPrimary: true,
+          button: 0,
+        });
+      assert.equal(
+        await bag.locator(".map-touch-layer").count(),
+        1,
+        "toques rápidos não acumulam efeitos",
+      );
+      await bag.dispatchEvent("pointercancel", { pointerType: "touch" });
+      assert.equal(
+        await bag.locator(".map-touch-layer").count(),
+        0,
+        "gesto cancelado limpa o efeito",
+      );
+      if (width < 1000) await bag.tap();
+      else await bag.click();
       await frame.locator("#mochila-jornada").waitFor({ state: "visible" });
       await frame.locator("[data-pack-close]").click();
       await page.keyboard.press("Tab");

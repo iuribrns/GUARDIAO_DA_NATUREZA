@@ -106,5 +106,79 @@
       );
     });
   }
+  // Resposta ao toque sem substituir os símbolos, a posição ou a ação do botão.
+  const taps = new WeakMap();
+  function touch(event) {
+    const button = event.target.closest?.(
+      "#map-backpack,.map-hud-actions button,.map-hotspot",
+    );
+    if (
+      !button ||
+      button.disabled ||
+      button.getAttribute("aria-disabled") === "true" ||
+      document.body.dataset.view !== "mapa" ||
+      window.VivaFinal?.active ||
+      event.button > 0 ||
+      event.isPrimary === false
+    )
+      return;
+    taps.get(button)?.cancel();
+    const layer = document.createElement("span"),
+      quiet =
+        Raizes.prefs().reduceMotion ||
+        matchMedia("(prefers-reduced-motion:reduce)").matches;
+    layer.className = "map-touch-layer" + (quiet ? " is-quiet" : "");
+    layer.setAttribute("aria-hidden", "true");
+    button.append(layer);
+    let pulse, press, timer;
+    const run = {
+      cancel() {
+        pulse?.cancel();
+        press?.cancel();
+        clearTimeout(timer);
+        layer.remove();
+        if (taps.get(button) === run) taps.delete(button);
+      },
+    };
+    taps.set(button, run);
+    if (quiet) {
+      timer = setTimeout(() => run.cancel(), 150);
+      return;
+    }
+    const dot = document.createElement("span"),
+      r = button.getBoundingClientRect(),
+      pointer = event.type === "pointerdown";
+    dot.className = "map-touch-dot";
+    dot.style.left =
+      (pointer ? event.clientX - r.left - 4 : r.width / 2 - 4) + "px";
+    dot.style.top =
+      (pointer ? event.clientY - r.top - 4 : r.height / 2 - 4) + "px";
+    layer.append(dot);
+    // Fases e ações já têm pressão em :active. A mochila recebe o mesmo
+    // cuidado sem sobrepor duas animações de escala no restante dos controles.
+    if (button.id === "map-backpack")
+      press = button.animate(
+        [{ scale: "1" }, { scale: ".97", offset: 0.3 }, { scale: "1" }],
+        { duration: 240, easing: "ease-out" },
+      );
+    pulse = dot.animate(
+      [
+        { scale: ".35", opacity: 0.3 },
+        { scale: String(Math.max(r.width, r.height) / 18), opacity: 0 },
+      ],
+      { duration: 280, easing: "ease-out" },
+    );
+    pulse.onfinish = () => run.cancel();
+  }
+  document.addEventListener("pointerdown", touch, { passive: true });
+  document.addEventListener("pointercancel", (event) => {
+    const button = event.target.closest?.(
+      "#map-backpack,.map-hud-actions button,.map-hotspot",
+    );
+    if (button) taps.get(button)?.cancel();
+  });
+  document.addEventListener("click", (event) => {
+    if (event.detail === 0) touch(event);
+  });
   window.GuardiaoMapaHUD = { update };
 })();

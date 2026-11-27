@@ -1,6 +1,6 @@
 /* As placas do kit usam bordas preservadas; os símbolos mantêm a proporção. */
 .map-view .map-hud {
-  --hud-height: 76px;
+  --hud-height: 72px;
   position: absolute;
   inset: auto max(14px, env(safe-area-inset-right))
     max(12px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
@@ -10,6 +10,8 @@
   gap: 10px;
   z-index: 9;
   padding: 0;
+  max-width: 1360px;
+  margin-inline: auto;
   pointer-events: none;
 }
 .map-hud .map-hud-card {
@@ -57,8 +59,8 @@
 }
 .map-hud-card > img {
   flex: none;
-  width: 54px;
-  height: 54px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
 }
 .map-hud-copy {
@@ -99,6 +101,7 @@
 }
 .map-hud-slots {
   display: flex;
+  justify-content: space-between;
   gap: 3px;
   align-items: center;
   min-width: 0;
@@ -154,6 +157,7 @@
   pointer-events: auto;
 }
 .map-hud-actions > .small-button {
+  position: relative;
   flex: 1 1 0;
   min-width: 0;
   min-height: 44px;
@@ -170,6 +174,9 @@
 }
 .large-text .map-hud .map-hud-card {
   padding-block: 5px;
+}
+.large-text .map-view .map-hud {
+  --hud-height: 80px;
 }
 .large-text .map-hud-caption {
   font-size: 13px;
@@ -189,7 +196,7 @@
     bottom: 18px;
   }
   .map-view .map-hud {
-    --hud-height: 50px;
+    --hud-height: 48px;
     inset-inline: max(6px, env(safe-area-inset-left))
       max(6px, env(safe-area-inset-right));
     bottom: max(5px, env(safe-area-inset-bottom));
@@ -205,8 +212,8 @@
     border-width: 9px 23px;
   }
   .map-hud-card > img {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
   }
   .map-hud-copy {
     gap: 2px;
@@ -227,7 +234,7 @@
   }
   .map-hud-slot {
     max-width: 21px;
-    height: 22px;
+    height: 20px;
   }
   .map-hud-slot[data-earned="true"] {
     padding: 1px 3px;
@@ -252,6 +259,9 @@
   .large-text .map-hud-copy > strong {
     font-size: 14px;
   }
+  .large-text .map-view .map-hud {
+    --hud-height: 52px;
+  }
   .large-text .map-hud .map-hud-card {
     padding-block: 3px;
   }
@@ -264,6 +274,27 @@
   .large-text #map-current .map-hud-copy > span {
     font-size: 9px;
   }
+}
+.map-touch-layer {
+  position: absolute;
+  inset: 4px;
+  z-index: 3;
+  border-radius: 22px;
+  overflow: hidden;
+  pointer-events: none;
+}
+.map-touch-dot {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: #ffe9a5;
+  opacity: 0.3;
+  pointer-events: none;
+}
+.map-touch-layer.is-quiet {
+  background: #ffe9a529;
 }
 @media (orientation: landscape) and (max-height: 345px) {
   .map-view .island {
