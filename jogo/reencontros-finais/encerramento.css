@@ -357,8 +357,19 @@
   clear: none;
 }
 #final-credits #ending-restart {
-  background: transparent;
-  color: #254d34;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding-inline: 24px;
+  color: #fff3ce;
+  text-shadow: 0 1px 2px #153b29;
+}
+.restart-leaf {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  color: #ffe6a0;
 }
 .credits-copy > .credits-note {
   font: 400 12px/1.4 system-ui;
@@ -534,6 +545,14 @@
     padding-block: 8px;
     margin-bottom: 0;
   }
+  #final-credits #ending-restart {
+    gap: 5px;
+    padding-inline: 18px;
+  }
+  .restart-leaf {
+    width: 20px;
+    height: 20px;
+  }
   .large-text #return-line {
     font-size: 15px;
   }
@@ -600,6 +619,14 @@
     font-size: 16px;
     min-height: 48px;
     padding: 8px 16px;
+  }
+  #final-credits #ending-restart {
+    gap: 5px;
+    padding-inline: 12px;
+  }
+  .restart-leaf {
+    width: 20px;
+    height: 20px;
   }
   #return-status {
     position: static;
